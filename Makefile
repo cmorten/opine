@@ -1,4 +1,4 @@
-.PHONY: benchmark doc fmt
+.PHONY: benchmark doc fmt test
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
