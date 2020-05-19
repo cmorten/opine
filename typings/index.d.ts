@@ -5,7 +5,7 @@ import {
   HTTPOptions,
   HTTPSOptions,
   Status,
-  Cookie as DenoCookie
+  Cookie as DenoCookie,
 } from "../deps.ts";
 
 declare global {
@@ -430,9 +430,4 @@ export interface Application extends IRouter, Opine.Application {
   listen(addr: string): Server;
   listen(options: HTTPOptions): Server;
   listen(options: HTTPSOptions): Server;
-}
-
-export interface Opine extends Application {
-  request: Request;
-  response: Response;
 }

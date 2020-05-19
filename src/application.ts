@@ -20,24 +20,11 @@ import {
   IRoute,
 } from "../typings/index.d.ts";
 
-/**
- * Module dependencies.
- * @private
- */
-
 const create = Object.create;
 const slice = Array.prototype.slice;
 
-/**
- * TODO: description
- * 
- * @param {Request} req 
- * @param {Response} res 
- * @returns {NextFunction}
- * @private
- */
-const finalHandler = (req: Request, res: Response) =>
-  () => {
+const finalHandler = (req: Request, res: Response): Function =>
+  (): void => {
     // TODO: handle errors etc. more appropriately
     res.setStatus(Status.NotFound);
     res.end();
@@ -118,7 +105,7 @@ app.lazyrouter = function lazyrouter(): void {
 app.handle = function handle(
   req: Request,
   res: Response,
-  next: NextFunction = finalHandler(req, res),
+  next: Function = finalHandler(req, res),
 ): void {
   const router = this._router;
 

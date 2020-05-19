@@ -5,7 +5,7 @@ import { getParsedUrl } from "../utils.ts";
  * parameters of the request url.
  * 
  * @return {Function} query middleware
- * @api public
+ * @private
  */
 // TODO: feature parity with Express
 const queryMiddlewareFactory = () =>

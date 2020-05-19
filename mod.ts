@@ -6,3 +6,4 @@ export {
   Route,
   Router,
 } from "./src/opine.ts";
+export { VERSION } from "./version.ts";

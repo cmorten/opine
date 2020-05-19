@@ -1,4 +1,4 @@
-import { pathToRegexp } from "https://raw.githubusercontent.com/pillarjs/path-to-regexp/master/src/index.ts";
+import { pathToRegexp } from "../../deps.ts";
 
 const Layer: any = function Layer(
   this: any,

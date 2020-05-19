@@ -2,12 +2,12 @@ import Layer from "./layer.ts";
 import methods from "../methods.ts";
 
 /**
- * Initialize `Route` with the given `path`,
+ * Initialize `Route` with the given `path`.
  *
- * @param {String} path
+ * @param {string} path
  * @public
  */
-const Route: any = function Route(this: any, path: any) {
+const Route: any = function Route(this: any, path: string): void {
   this.path = path;
   this.stack = [];
 

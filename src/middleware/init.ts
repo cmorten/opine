@@ -7,7 +7,7 @@ const create = Object.create;
  * the X-Powered-By header field.
  *
  * @return {Function} init middleware
- * @api private
+ * @private
  */
 const initMiddlewareFactory = () =>
   function init(req: any, res: any, next: any) {

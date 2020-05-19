@@ -56,7 +56,7 @@ class Response implements DenoResponse {
    * Set _Content-Disposition_ header to _attachment_ with optional `filename`.
    *
    * @param {string} filename
-   * @return {Response}
+   * @return {Response} for chaining
    * @public
    */
   attachment(filename: string): this {

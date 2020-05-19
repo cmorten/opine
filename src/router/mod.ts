@@ -3,6 +3,11 @@ import Route from "./route.ts";
 import Layer from "./layer.ts";
 import { merge, getParsedUrl } from "../utils.ts";
 import methods from "../methods.ts";
+import {
+  Response,
+  Request,
+  NextFunction,
+} from "../../typings/index.d.ts";
 
 const setPrototypeOf = Object.setPrototypeOf;
 
@@ -157,12 +162,16 @@ function mergeParams(params: any, parent: any) {
 /**
  * Initialize a new `Router` with the given `options`.
  *
- * @param {object} [options]
+ * @param {object} options
  * @return {Router} which is an callable function
  * @public
  */
 const Router: any = function (options: { [key: string]: any } = {}): any {
-  const router: any = function router(req: any, res: any, next: Function) {
+  const router: any = function router(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): void {
     (router as any).handle(req, res, next);
   };
 
