@@ -12,7 +12,7 @@ benchmark:
 	@echo
 
 doc:
-	@typedoc --ignoreCompilerErrors --out ./typedoc --mode modules --excludeNotDocumented --excludePrivate ./src
+	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --excludeNotDocumented --excludePrivate ./src
 
 fmt:
 	@deno fmt
