@@ -1,6 +1,6 @@
 # opine
 
-An opinionated server for Deno ported from ExpressJS.
+Fast, minimalist web framework for Deno ported from ExpressJS.
 
 - [API Docs](https://asos-craigmorten.github.io/opine/) - created using [typedoc](https://typedoc.org/).
 - [Contributing Docs](./.github/CONTRIBUTING.md)
