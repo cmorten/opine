@@ -9,7 +9,8 @@
  */
 
 import { parseUrl } from "./utils.ts";
-import { STATUS_TEXT } from "https://deno.land/std/http/http_status.ts";
+import { STATUS_TEXT, Status } from "https://deno.land/std/http/http_status.ts";
+import { Request, Response, NextFunction } from "../typings/index.d.ts";
 
 var DOUBLE_SPACE_REGEXP = /\x20{2}/g;
 var NEWLINE_REGEXP = /\n/g;
@@ -20,7 +21,7 @@ var NEWLINE_REGEXP = /\n/g;
  * @param {string} message
  * @private
  */
-function createHtmlDocument(message) {
+function createHtmlDocument(message: string): string {
   var body = message
     .replace(NEWLINE_REGEXP, "<br>")
     .replace(DOUBLE_SPACE_REGEXP, " &nbsp;");
@@ -46,14 +47,11 @@ function createHtmlDocument(message) {
  *
  * @param {Request} req
  * @param {Response} res
- * @param {Object} [options]
  * @return {Function}
  * @public
  */
-function finalHandler(req, res, options) {
-  var opts = options || {};
-
-  return function (err) {
+function finalHandler(req: Request, res: Response): NextFunction {
+  return function (err?: any) {
     var headers;
     var msg;
     var status;
@@ -91,8 +89,7 @@ function finalHandler(req, res, options) {
  * @return {object}
  * @private
  */
-
-function getErrorHeaders(err) {
+function getErrorHeaders(err?: any): any {
   if (!err.headers || typeof err.headers !== "object") {
     return undefined;
   }
@@ -117,8 +114,7 @@ function getErrorHeaders(err) {
  * @return {string}
  * @private
  */
-
-function getErrorMessage(err, status) {
+function getErrorMessage(err: any, status: Status): string {
   // use err.stack, which typically includes err.message
   let msg = err.stack;
 
@@ -127,7 +123,7 @@ function getErrorMessage(err, status) {
     msg = err.toString();
   }
 
-  return msg || STATUS_TEXT[status];
+  return msg || STATUS_TEXT.get(status);
 }
 
 /**
@@ -137,8 +133,7 @@ function getErrorMessage(err, status) {
  * @return {number}
  * @private
  */
-
-function getErrorStatusCode(err) {
+function getErrorStatusCode(err: any): number | undefined {
   // check err.status
   if (typeof err.status === "number" && err.status >= 400 && err.status < 600) {
     return err.status;
@@ -153,12 +148,11 @@ function getErrorStatusCode(err) {
  * This is typically just the original pathname of the request
  * but will fallback to "resource" is that cannot be determined.
  *
- * @param {IncomingMessage} req
+ * @param {Request} req
  * @return {string}
  * @private
  */
-
-function getResourceName(req) {
+function getResourceName(req: Request): string {
   try {
     return parseUrl(req).pathname;
   } catch (e) {
@@ -169,12 +163,11 @@ function getResourceName(req) {
 /**
  * Get status code from response.
  *
- * @param {OutgoingMessage} res
+ * @param {Response} res
  * @return {number}
  * @private
  */
-
-function getResponseStatusCode(res) {
+function getResponseStatusCode(res: Response): number {
   var status = res.status;
 
   // default status code to 500 if outside valid range
@@ -188,20 +181,26 @@ function getResponseStatusCode(res) {
 /**
  * Send response.
  *
- * @param {IncomingMessage} req
- * @param {OutgoingMessage} res
+ * @param {Request} req
+ * @param {Response} res
  * @param {number} status
  * @param {object} headers
  * @param {string} message
  * @private
  */
-function send(req, res, status, headers, message) {
+function send(
+  req: Request,
+  res: Response,
+  status: Status,
+  headers: any,
+  message: any,
+): void {
   // response body
   const body = createHtmlDocument(message);
 
   // response status
   res.status = status;
-  res.statusMessage = STATUS_TEXT[status];
+  res.statusMessage = STATUS_TEXT.get(status);
 
   // response headers
   setHeaders(res, headers);
@@ -216,12 +215,11 @@ function send(req, res, status, headers, message) {
 /**
  * Set response headers from an object.
  *
- * @param {OutgoingMessage} res
+ * @param {Response} res
  * @param {object} headers
  * @private
  */
-
-function setHeaders(res, headers) {
+function setHeaders(res: Response, headers: any): void {
   if (!headers) {
     return;
   }

@@ -10,7 +10,7 @@ import Router from "./router/index.ts";
 import initMiddleware from "./middleware/init.ts";
 import query from "./middleware/query.ts";
 import ServerResponse from "./response.ts";
-import finalHandler from "./finalHandler.js";
+import finalHandler from "./finalHandler.ts";
 import {
   Request,
   Response,

@@ -1,5 +1,16 @@
 # ChangeLog
 
+## [0.0.3] - 21-05-2020
+
+### Added
+
+- Export query middleware
+
+### Updated
+
+- Convert finalHandler to ts file.
+- Some additional properties of Response type.
+
 ## [0.0.2] - 20-05-2020
 
 ### Added

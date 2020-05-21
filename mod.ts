@@ -5,5 +5,6 @@ export {
   response,
   Route,
   Router,
+  query,
 } from "./src/opine.ts";
-export { VERSION } from "./version.ts";
+export { VERSION, DENO_SUPPORTED_VERSION } from "./version.ts";

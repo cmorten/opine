@@ -215,9 +215,10 @@ export interface DownloadOptions {
 
 export interface Response<ResBody = any>
   extends DenoServerResponse, Opine.Response {
-  app: Application;
+  app?: Application;
   req?: Request;
-  locals: any;
+  locals?: any;
+  statusMessage?: any;
 
   append(field: string, value: string): this;
 
