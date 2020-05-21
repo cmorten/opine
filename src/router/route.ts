@@ -1,5 +1,6 @@
 import Layer from "./layer.ts";
 import methods from "../methods.ts";
+import { Request, Response, NextFunction } from "../../typings/index.d.ts";
 
 /**
  * Initialize `Route` with the given `path`.
@@ -57,7 +58,11 @@ Route.prototype._options = function _options() {
  * dispatch req, res into this route
  * @private
  */
-Route.prototype.dispatch = function dispatch(req: any, res: any, done: any) {
+Route.prototype.dispatch = function dispatch(
+  req: Request,
+  res: Response,
+  done: NextFunction,
+) {
   let idx = 0;
   let stack = this.stack;
   if (stack.length === 0) {
@@ -73,7 +78,7 @@ Route.prototype.dispatch = function dispatch(req: any, res: any, done: any) {
 
   next();
 
-  function next(err?: any): any {
+  function next(err?: Error | string): any {
     // signal to exit route
     if (err && err === "route") {
       return done();

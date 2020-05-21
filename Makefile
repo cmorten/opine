@@ -17,5 +17,8 @@ doc:
 fmt:
 	@deno fmt
 
+update-lock:
+	@deno run --lock=lock.json --lock-write mod.ts
+
 test:
 	@deno test

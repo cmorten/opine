@@ -189,7 +189,14 @@ export interface Request<ResBody = any>
   app?: Application;
   res?: Response<ResBody>;
   next?: NextFunction;
+  params?: any;
+  query?: any;
+  baseUrl?: string;
+  originalUrl?: string;
+  route: any;
   _parsedUrl?: URL;
+  _url?: string;
+  _raw?: string;
 }
 
 export interface MediaType {

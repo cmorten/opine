@@ -4,13 +4,13 @@ import {
   HTTPSOptions,
   HTTPOptions,
   Server,
-  Status,
 } from "../deps.ts";
 import methods from "./methods.ts";
-import Router from "./router/mod.ts";
+import Router from "./router/index.ts";
 import initMiddleware from "./middleware/init.ts";
 import query from "./middleware/query.ts";
 import ServerResponse from "./response.ts";
+import finalHandler from "./finalHandler.js";
 import {
   Request,
   Response,
@@ -23,14 +23,7 @@ import {
 const create = Object.create;
 const slice = Array.prototype.slice;
 
-const finalHandler = (req: Request, res: Response): Function =>
-  (): void => {
-    // TODO: handle errors etc. more appropriately
-    res.setStatus(Status.NotFound);
-    res.end();
-  };
-
-const app: any = create(null);
+const app: any = {};
 
 /**
  * Initialize the server.
@@ -61,7 +54,12 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   this.set("subdomain offset", 2);
   this.set("trust proxy", false);
 
-  // TODO: event emitter mounting
+  (this as any).on("mount", function onmount(this: any, parent: any) {
+    Object.setPrototypeOf(this.request, parent.request);
+    Object.setPrototypeOf(this.response, parent.response);
+    Object.setPrototypeOf(this.engines, parent.engines);
+    Object.setPrototypeOf(this.settings, parent.settings);
+  });
 
   // setup locals
   this.locals = create(null);
@@ -90,7 +88,7 @@ app.lazyrouter = function lazyrouter(): void {
       strict: this.enabled("strict routing"),
     });
     this._router.use(query());
-    this._router.use(initMiddleware());
+    this._router.use(initMiddleware(this));
   }
 };
 
@@ -105,9 +103,11 @@ app.lazyrouter = function lazyrouter(): void {
 app.handle = function handle(
   req: Request,
   res: Response,
-  next: Function = finalHandler(req, res),
+  next: Function,
 ): void {
   const router = this._router;
+
+  next = next || finalHandler(req as any, res as any);
 
   if (!router) {
     return next();
@@ -126,40 +126,64 @@ app.handle = function handle(
  * @returns {Application} for chaining
  * @public
  */
-app.use = function use(...args: any[]): Application {
-  const self = this;
-  const flatArgs = args.flat(1);
-  const [path, ...middlewares] = typeof flatArgs[0] !== "function"
-    ? flatArgs
-    : ["/", ...flatArgs];
+app.use = function use(fn: any): Application {
+  var offset = 0;
+  var path = "/";
 
-  if (middlewares.length === 0) {
+  // default path to '/'
+  // disambiguate app.use([fn])
+  if (typeof fn !== "function") {
+    var arg = fn;
+
+    while (Array.isArray(arg) && arg.length !== 0) {
+      arg = arg[0];
+    }
+
+    // first arg is the path
+    if (typeof arg !== "function") {
+      offset = 1;
+      path = fn;
+    }
+  }
+
+  var fns = slice.call(arguments, offset).flat(1);
+
+  if (fns.length === 0) {
     throw new TypeError("app.use() requires a middleware function");
   }
 
   // setup router
-  self.lazyrouter();
-  const router = self._router;
+  this.lazyrouter();
+  const router = this._router;
 
-  middlewares.forEach((middleware: any): void => {
-    if (!middleware || !middleware.handle || !middleware.set) {
-      return router.use(path, middleware);
+  fns.forEach(function (this: any, fn: any): void {
+    if (!fn || !fn.handle || !fn.set) {
+      return router.use(path, fn);
     }
 
-    middleware.mountpath = path;
-    middleware.parent = self;
+    fn.mountpath = path;
+    fn.parent = this;
 
     router.use(
       path,
-      (req: Request, res: Response, next: NextFunction): void => {
-        middleware.handle(req, res, (err?: Error) => {
+      function mounted_app(
+        req: Request,
+        res: Response,
+        next: NextFunction,
+      ): void {
+        const orig: any = req.app;
+        fn.handle(req, res, (err?: Error) => {
+          Object.setPrototypeOf(req, orig.request);
+          Object.setPrototypeOf(res, orig.response);
           next(err);
         });
       },
     );
-  }, self);
 
-  return self;
+    (fn as any).emit("mount", this as any);
+  }, this);
+
+  return this;
 };
 
 /**
@@ -175,7 +199,6 @@ app.use = function use(...args: any[]): Application {
  */
 app.route = function route(prefix: PathParams): IRoute {
   this.lazyrouter();
-
   return this._router.route(prefix);
 };
 
@@ -221,7 +244,7 @@ app.set = function set(setting: string, value: any): Application {
  * return value would be "/blog/admin".
  *
  * @return {string}
- * @public
+ * @private
  */
 app.path = function path(): string {
   return this.parent ? this.parent.path() + this.mountpath : "";
@@ -285,13 +308,10 @@ app.disable = function disable(setting: string): Application {
   return this.set(setting, false);
 };
 
+/**
+ * Delegate `.VERB(...)` calls to `router.VERB(...)`.
+ */
 methods.forEach((method: string): void => {
-  /**
-   * Delegate `.VERB(...)` calls to `router.VERB(...)`.
-   * 
-   * @return {Application} for chaining
-   * @public
-   */
   app[method] = function (path: string): Application {
     if (method === "get" && arguments.length === 1) {
       // app.get(setting)

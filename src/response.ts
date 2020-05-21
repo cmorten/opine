@@ -4,7 +4,7 @@ import {
   delCookie,
   Status,
   STATUS_TEXT,
-  resolve,
+  fromFileUrl,
   extname,
   contentType,
 } from "../deps.ts";
@@ -129,7 +129,7 @@ class Response implements DenoResponse {
       "Content-Disposition": contentDisposition("attachment", filename || path),
     };
 
-    return await this.sendFile(resolve(path), options);
+    return await this.sendFile(path, options);
   }
 
   /**
@@ -146,7 +146,7 @@ class Response implements DenoResponse {
       this.body = body;
     }
 
-    await this.req.respond(this);
+    await (this.req as any).respond(this);
   }
 
   // TODO: format() {}
@@ -239,7 +239,7 @@ class Response implements DenoResponse {
       body = "";
     }
 
-    if (this.req.method === "HEAD") {
+    if ((this.req as any).method === "HEAD") {
       this.end();
     } else {
       this.end(body);
@@ -263,6 +263,7 @@ class Response implements DenoResponse {
    * @public
    */
   async sendFile(path: string, options: DownloadOptions = {}): Promise<void> {
+    path = path.startsWith("file:") ? fromFileUrl(path) : path;
     const stats: Deno.FileInfo = await Deno.stat(path);
 
     if (stats.mtime) {
