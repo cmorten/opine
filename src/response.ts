@@ -159,7 +159,7 @@ class Response implements DenoResponse {
    * @public
    */
   get(field: string): string {
-    return this.headers.get(field) || "";
+    return this.headers.get(field.toLowerCase()) || "";
   }
 
   /**
@@ -317,11 +317,13 @@ class Response implements DenoResponse {
    * @public
    */
   set(field: string, value: string): this {
-    if (field.toLowerCase() === "content-type") {
+    const lowerCaseField = field.toLowerCase();
+
+    if (lowerCaseField === "content-type") {
       return this.type(value);
     }
 
-    this.headers.set(field, value);
+    this.headers.set(lowerCaseField, value);
 
     return this;
   }
@@ -358,7 +360,7 @@ class Response implements DenoResponse {
    * @public
    */
   type(type: string): this {
-    this.headers.set("Content-Type", contentType(type) as string);
+    this.headers.set("content-type", contentType(type) as string);
 
     return this;
   }
