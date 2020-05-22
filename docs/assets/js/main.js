@@ -381,7 +381,8 @@
             (o = c).test(I[1]) && (o = g, r = r.replace(o, ""));
           } else if (a.test(r)) {
             i = (I = a.exec(r))[1],
-              (a = f).test(i) && (u = w,
+              (a = f).test(i) &&
+              (u = w,
                 l = Q,
                 (a = x).test(r = i) ? r += "e" : u.test(r)
                 ? (o = g, r = r.replace(o, ""))
@@ -1564,7 +1565,7 @@ var typedoc,
           }
         },
         EventTarget.prototype.dispatchEvent = function (event) {
-          if (!(event.type in this.listeners)) return !0;
+          if (!(event.type in this.listeners))return !0;
           for (
             var stack = this.listeners[event.type].slice(),
               i = 0,
@@ -2041,9 +2042,8 @@ var typedoc,
             this.hasFocus != value &&
               (this.hasFocus = value,
                 this.el.classList.toggle("has-focus"),
-                value
-                  ? (this.setQuery(""), this.field.value = "")
-                  : this.field.value = this.query);
+                value ? (this.setQuery(""), this.field.value = "")
+                : this.field.value = this.query);
           },
           Search.prototype.setQuery = function (value) {
             this.query = value.trim(), this.updateResults();
@@ -2051,9 +2051,8 @@ var typedoc,
           Search.prototype.setCurrentResult = function (dir) {
             var current = this.results.querySelector(".current");
             if (current) {
-              var rel = 1 == dir
-                ? current.nextElementSibling
-                : current.previousElementSibling;
+              var rel = 1 == dir ? current.nextElementSibling
+              : current.previousElementSibling;
               rel &&
                 (current.classList.remove("current"),
                   rel.classList.add("current"));

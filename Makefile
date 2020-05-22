@@ -1,4 +1,4 @@
-.PHONY: benchmark doc fmt update-lock test typedoc
+.PHONY: benchmark build ci doc fmt fmt-check update-lock test typedoc
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
@@ -11,11 +11,22 @@ benchmark:
 	@./benchmarks/run.sh 100 ./benchmarks/middleware.ts
 	@echo
 
+build:
+	@deno run --lock=lock.json --reload mod.ts
+
+ci:
+	@make fmt-check
+	@make build
+	@make test
+
 doc:
 	@deno doc ./mod.ts
 
 fmt:
 	@deno fmt
+
+fmt-check:
+	@deno fmt --check
 
 update-lock:
 	@deno run --lock=lock.json --lock-write --reload mod.ts

@@ -20,4 +20,4 @@ jobs:
         uses: denolib/setup-deno@master
         with:
           deno-version: ${{ matrix.deno-version }}
-      - run: make test
+      - run: make ci
