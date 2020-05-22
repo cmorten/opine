@@ -1,4 +1,4 @@
-import { Request, ParsedURL } from "../types.ts"
+import { Request, ParsedURL } from "../types.ts";
 
 /**
  * Extracts the url from a Deno request object and

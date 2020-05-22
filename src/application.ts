@@ -19,7 +19,7 @@ import {
   Application,
   PathParams,
   IRoute,
-  Opine
+  Opine,
 } from "../src/types.ts";
 
 const create = Object.create;
@@ -57,11 +57,12 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
 
-  this.on("mount", function onmount(this: Opine, parent: Opine) {
+  const self: Opine = this as Opine;
+  this.on("mount", function onmount(parent: Opine) {
     // inherit prototypes
-    setPrototypeOf(this.request, parent.request);
-    setPrototypeOf(this.response, parent.response);
-    setPrototypeOf(this.settings, parent.settings);
+    setPrototypeOf(self.request, parent.request);
+    setPrototypeOf(self.response, parent.response);
+    setPrototypeOf(self.settings, parent.settings);
   });
 
   // setup locals
@@ -319,7 +320,7 @@ methods.forEach((method: string): void => {
     route[method].apply(route, slice.call(arguments, 1));
 
     return this;
-  }
+  };
 });
 
 /**
