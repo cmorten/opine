@@ -808,9 +808,9 @@ Note that sub-apps will:
   </td>
   <td>Varied</td>
   <td markdown="1">
-  Set the ETag response header. For possible values, see the [`etag` options table](#).
+    Set the ETag response header. For possible values, see the <a href="#">`etag` options table</a>
 
-[More about the HTTP ETag header](http://en.wikipedia.org/wiki/HTTP_ETag).
+<a href="http://en.wikipedia.org/wiki/HTTP_ETag">More about the HTTP ETag header</a>.
 
   </td>
   <td markdown="1">
@@ -833,7 +833,7 @@ Note that sub-apps will:
   </td>
   <td>Boolean</td>
   <td markdown="1">
-  Enable escaping JSON responses from the `res.json`, `res.jsonp`, and `res.send` APIs. This will escape the characters `<`, `>`, and `&` as Unicode escape sequences in JSON. The purpose of this it to assist with [mitigating certain types of persistent XSS attacks](https://blog.mozilla.org/security/2017/07/18/web-service-audits-firefox-accounts/) when clients sniff responses for HTML.
+  Enable escaping JSON responses from the `res.json`, `res.jsonp`, and `res.send` APIs. This will escape the characters `<`, `>`, and `&` as Unicode escape sequences in JSON. The purpose of this it to assist with <a href="https://blog.mozilla.org/security/2017/07/18/web-service-audits-firefox-accounts/">mitigating certain types of persistent XSS attacks</a> when clients sniff responses for HTML.
   <p><b>NOTE</b>: Sub-apps will inherit the value of this setting.</p>
   </td>
   <td>N/A (undefined)</td>
