@@ -128,7 +128,7 @@ This method is like the standard [app.METHOD()](#) methods, except it matches al
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -223,7 +223,7 @@ Routes HTTP DELETE requests to the specified path with the specified callback fu
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -357,7 +357,7 @@ Routes HTTP GET requests to the specified path with the specified callback funct
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -482,7 +482,7 @@ Routes an HTTP request, where METHOD is the HTTP method of the request, such as 
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -612,7 +612,7 @@ Routes HTTP POST requests to the specified path with the specified callback func
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -685,7 +685,7 @@ Routes HTTP PUT requests to the specified path with the specified callback funct
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -796,7 +796,7 @@ Note that sub-apps will:
 - Inherit the value of settings with no default value; these are explicitly noted in the table below.
 
 <div class="table-scroller">
-  <table class="doctable" border="1">
+  <table class="doctable">
     <thead><tr><th id="app-settings-property">Property</th><th>Type</th><th>Description</th><th>Default</th></tr></thead>
     <tbody>
     <tr>
@@ -897,7 +897,7 @@ This is typically set to the number of spaces to use to indent prettified JSON.
 
 ###### Options for `etag` setting
 
-  <table class="doctable" border="1">
+  <table class="doctable">
     <thead><tr><th>Type</th><th>Value</th></tr></thead>
     <tbody>
       <tr>
@@ -936,7 +936,7 @@ Mounts the specified middleware function or functions at the specified path: the
 
 ##### Arguments
 
-<table class="doctable" border="1" style="padding-left: 20px;">
+<table class="doctable" style="padding-left: 20px;">
   <tr>
     <th>Argument</th>
     <th>Description</th>
@@ -1048,7 +1048,7 @@ app.use(function (err, req, res, next) {
 
 The following table provides some simple examples of valid `path` values for mounting middleware.
 
-<table class="doctable" border="1">
+<table class="doctable">
   <thead>
     <tr>
       <th> Type </th>
@@ -1063,8 +1063,8 @@ The following table provides some simple examples of valid `path` values for mou
         <pre><code class="language-js">app.use('/abcd', function (req, res, next) {
   next();
 });</code></pre>
-</td>
-</tr>
+  </td>
+    </tr>
     <tr>
       <td>Path Pattern</td>
       <td>
@@ -1112,7 +1112,7 @@ The following table provides some simple examples of valid `path` values for mou
 
 The following table provides some simple examples of middleware functions that can be used as the `callback` argument to `app.use()`, `app.METHOD()`, and `app.all()`. Even though the examples are for `app.use()`, they are also valid for `app.use()`, `app.METHOD()`, and `app.all()`.
 
-<table class="doctable" border="1">
+<table class="doctable">
   <thead>
     <tr>
       <th>Usage</th>
