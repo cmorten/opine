@@ -62,7 +62,15 @@ Broadly we're in-tune with the following style guides:
 Before opening a PR, please run the following command to make sure your branch will build and pass all the tests:
 
 ```console
-yarn ci
+make test
+```
+
+### Documentation
+
+Before opening a PR, please run the following command to make sure your branch will being fully documented:
+
+```console
+make typedoc
 ```
 
 ## Opening a PR
