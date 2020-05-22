@@ -38,14 +38,11 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine API Docs](https://asos-craigmorten.github.io/opine/) - Created using [typedoc](https://typedoc.org/).
+- [Opine API Docs](https://asos-craigmorten.github.io/opine/) - Created using [typedoc](https://typedoc.org/)
+- [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
 - [License](./LICENSE.md)
-- [Changelog](./.github/CHANGELOG.md)
-
-Please also refer to:
-
-- [ExpressJS API Docs](https://expressjs.com/en/4x/api.html) - While Opine API documentation is under development, you may find it useful to fallback to using the Express docs which has a very similar API.
 - [ExpressJS License](./EXPRESS_LICENSE.md)
+- [Changelog](./.github/CHANGELOG.md)
 
 ## Philosophy
 
