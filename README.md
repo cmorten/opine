@@ -5,7 +5,7 @@ Fast, minimalist web framework for [Deno](https://deno.land/) ported from [Expre
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 
 ```ts
-import opine from "https://raw.githubusercontent.com/asos-craigmorten/opine/master/mod.ts";
+import opine from "https://deno.land/x/opine@master/mod.ts";
 
 const app = opine();
 
