@@ -38,7 +38,9 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine API Docs](https://asos-craigmorten.github.io/opine/) - Created using [typedoc](https://typedoc.org/)
+- [Opine API Docs](https://asos-craigmorten.github.io/opine/)
+- [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
+- [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
 - [License](./LICENSE.md)
 - [ExpressJS License](./EXPRESS_LICENSE.md)
