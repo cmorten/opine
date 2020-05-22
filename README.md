@@ -1,40 +1,74 @@
 # opine
 
-Fast, minimalist web framework for Deno ported from ExpressJS.
+Fast, minimalist web framework for [Deno](https://deno.land/) ported from [ExpressJS](https://github.com/expressjs/express).
 
-- [API Docs](https://asos-craigmorten.github.io/opine/) - created using [typedoc](https://typedoc.org/).
-- [Contributing Docs](./.github/CONTRIBUTING.md)
-- [Changelog](./.github/CHANGELOG.md)
-- [License](./LICENSE.md)
-- [ExpressJS License](./EXPRESS_LICENSE.md)
-
-## Example
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 
 ```ts
 import opine from "https://raw.githubusercontent.com/asos-craigmorten/opine/master/mod.ts";
-import {
-  Application,
-  Request,
-  Response,
-  NextFunction,
-} from "https://raw.githubusercontent.com/asos-craigmorten/opine/master/typings/index.d.ts";
 
-const app: Application = opine();
+const app = opine();
 
-app.use((_req: Request, res: Response, _next: NextFunction): void => {
+app.use((req, res) => {
   res.send("Hello World");
 });
 
 app.listen({ port: 3333 });
 ```
 
-Run this example now using Deno the [opine-demo.ts](https://gist.github.com/asos-craigmorten/944d0d14130ac5d1f297829010836a73) gist.
+## Installation
 
-```console
-deno run --allow-net https://gist.githubusercontent.com/asos-craigmorten/944d0d14130ac5d1f297829010836a73/raw/2b755366ae37a0a6e255d43ec1d1d6401e9cf47c/opine-demo.ts
+This is a [Deno](https://deno.land/) module available to import direct from this repo and via the [Deno Registry](https://deno.land/x).
+
+Before importing, [download and install Deno](https://deno.land/#installation).
+
+You can then import Opine straight into your project:
+
+```ts
+import opine from "https://deno.land/x/opine@master/mod.ts";
 ```
 
-And open the browser at <http://localhost:3333/>.
+## Features
+
+- Robust routing
+- Focus on high performance
+- HTTP helpers
+
+And more to come as we achieve feature parity with [ExpressJS](https://github.com/expressjs/express).
+
+## Docs
+
+- [API Docs](https://asos-craigmorten.github.io/opine/) - created using [typedoc](https://typedoc.org/).
+- [License](./LICENSE.md)
+- [ExpressJS License](./EXPRESS_LICENSE.md)
+- [Changelog](./.github/CHANGELOG.md)
+
+## Philosophy
+
+The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, web sites, hybrids, or public HTTP APIs.
+
+Opine will aim to achieve these same great goals, focussing first on developing robust tooling and features before moving onto accelerating performance and becoming super lightweight.
+
+As time passes, Opine's goals may naturally diverge from ExpressJS and this will be reflected here.
+
+## Examples
+
+To view the examples, clone the Opine repo:
+
+```console
+git clone git://github.com/asos-craigmorten/opine.git --depth 1
+cd opine
+```
+
+Then run whichever example you want:
+
+```console
+deno --allow-net --allow-read ./example/hello-world/index.ts
+```
+
+## Contributing
+
+[Contributing guide](./.github/CONTRIBUTING.md)
 
 ## Developing
 
@@ -59,5 +93,5 @@ make fmt
 ### Generate Documentation
 
 ```console
-make doc
+make typedoc
 ```
