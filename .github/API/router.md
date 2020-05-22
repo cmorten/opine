@@ -2,13 +2,27 @@
 
 Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 
-## Router
+## Router([options])
 
 A `router` object is an isolated instance of middleware and routes. You can think of it as a "mini-application" capable only of performing middleware and routing functions. Every Opine application has a built-in app router.
 
-A router behaves like middleware itself, so you can use it as an argument to [app.use()](./application.md#appusepath-callback--callback) or as the argument to another router's [use()](#) method.
+A router behaves like middleware itself, so you can use it as an argument to [app.use()](./application.md#appusepath-callback--callback) or as the argument to another router's [use()](#routerusepath-function--function) method.
 
-The top-level `opine` object has a [Router()](#) method that creates a new `router` object.
+Opine has a top-level named function export `Router()` that creates a new `router` object.
+
+```js
+import { Router } from "https://deno.land/x/opine@master/mod.ts";
+
+const router = Router(options);
+```
+
+The optional `options` parameter specifies the behavior of the router.
+
+| Property        | Description                                                                                                                                           | Default                                                                     | Availability |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------ |
+| `caseSensitive` | Enable case sensitivity.                                                                                                                              | Disabled by default, treating "/Foo" and "/foo" as the same.                |              |
+| `mergeParams`   | Preserve the `req.params` values from the parent router. If the parent and the child have conflicting param names, the child's value take precedence. | `false`                                                                     | 4.5.0+       |
+| `strict`        | Enable strict routing.                                                                                                                                | Disabled by default, "/foo" and "/foo/" are treated the same by the router. | &nbsp;       |
 
 Once you've created a router object, you can add middleware and HTTP method routes (such as `get`, `put`, `post`, and so on) to it just like an application. For example:
 

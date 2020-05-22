@@ -151,7 +151,7 @@ res.clearCookie({ name: "myCookie" });
 
 Transfers the file at `path` as an "attachment". Typically, browsers will prompt the user for download. By default, the `Content-Disposition` header "filename=" parameter is `path` (this typically appears in the browser dialog). Override this default with the `filename` parameter.
 
-This method uses [res.sendFile()](#) to transfer the file.
+This method uses [res.sendFile()](#async-ressendfilepath) to transfer the file.
 
 ```ts
 await res.download("/report-12345.pdf");
@@ -176,7 +176,7 @@ try {
 
 Ends the response process. This method actually just wraps the a method from the Deno standard http module, specifically the [respond() method of http.ServerRequest](https://doc.deno.land/https/deno.land/std/http/mod.ts#ServerRequest).
 
-Use to quickly end the response without any data. If you need to respond with data, you should instead use methods such as [res.send()](#) and [res.json()](#).
+Use to quickly end the response without any data. If you need to respond with data, you should instead use methods such as [res.send()](#ressendbody) and [res.json()](#resjsonbody).
 
 ```ts
 await res.end();
