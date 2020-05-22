@@ -1,6 +1,6 @@
-import Layer from "./layer.ts";
-import methods from "../methods.ts";
-import { Request, Response, NextFunction } from "../../typings/index.d.ts";
+import { Layer } from "./layer.ts";
+import { methods } from "../methods.ts";
+import { Request, Response, NextFunction } from "../types.ts";
 
 /**
  * Initialize `Route` with the given `path`.
@@ -8,7 +8,7 @@ import { Request, Response, NextFunction } from "../../typings/index.d.ts";
  * @param {string} path
  * @public
  */
-const Route: any = function Route(this: any, path: string): void {
+export const Route: any = function Route(this: any, path: string): void {
   this.path = path;
   this.stack = [];
 
@@ -131,7 +131,7 @@ Route.prototype.dispatch = function dispatch(
  *
  * @param {function} handler
  * @return {Route} for chaining
- * @api public
+ * @public
  */
 Route.prototype.all = function all() {
   let handles = Array.prototype.slice.call(arguments).flat(1);
@@ -179,5 +179,3 @@ methods.forEach(function (method) {
     return this;
   };
 });
-
-export default Route;

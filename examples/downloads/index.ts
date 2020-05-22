@@ -23,6 +23,8 @@ app.get("/files/:file(*)", async function (req, res, next) {
     if (err instanceof Deno.errors.NotFound) {
       res.status = 404;
       res.send("Cant find that file, sorry!");
+
+      return;
     }
 
     return next(err);

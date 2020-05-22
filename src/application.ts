@@ -5,12 +5,13 @@ import {
   HTTPOptions,
   Server,
 } from "../deps.ts";
-import methods from "./methods.ts";
-import Router from "./router/index.ts";
-import initMiddleware from "./middleware/init.ts";
-import query from "./middleware/query.ts";
-import ServerResponse from "./response.ts";
-import finalHandler from "./finalHandler.ts";
+import { methods } from "./methods.ts";
+import { Router } from "./router/index.ts";
+import { init } from "./middleware/init.ts";
+import { query } from "./middleware/query.ts";
+import { Response as ServerResponse } from "./response.ts";
+import { finalHandler } from "./utils/finalHandler.ts";
+import { compileETag } from "./utils/compileETag.ts";
 import {
   Request,
   Response,
@@ -18,12 +19,19 @@ import {
   Application,
   PathParams,
   IRoute,
-} from "../typings/index.d.ts";
+  Opine
+} from "../src/types.ts";
 
 const create = Object.create;
+const setPrototypeOf = Object.setPrototypeOf;
 const slice = Array.prototype.slice;
 
-const app: any = {};
+/**
+ * Application prototype.
+ * 
+ * @public
+ */
+export const app: Application = {} as Application;
 
 /**
  * Initialize the server.
@@ -46,19 +54,14 @@ app.init = function init(): void {
  * @private
  */
 app.defaultConfiguration = function defaultConfiguration(): void {
-  // TODO: env mode (dev vs prod)
-
   this.enable("x-powered-by");
   this.set("etag", "weak");
-  this.set("query parser", "extended");
-  this.set("subdomain offset", 2);
-  this.set("trust proxy", false);
 
-  (this as any).on("mount", function onmount(this: any, parent: any) {
-    Object.setPrototypeOf(this.request, parent.request);
-    Object.setPrototypeOf(this.response, parent.response);
-    Object.setPrototypeOf(this.engines, parent.engines);
-    Object.setPrototypeOf(this.settings, parent.settings);
+  this.on("mount", function onmount(this: Opine, parent: Opine) {
+    // inherit prototypes
+    setPrototypeOf(this.request, parent.request);
+    setPrototypeOf(this.response, parent.response);
+    setPrototypeOf(this.settings, parent.settings);
   });
 
   // setup locals
@@ -70,7 +73,7 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   // default locals
   this.locals.settings = this.settings;
 
-  // TODO: views, jsonp settings and cache
+  this.set("jsonp callback name", "callback");
 };
 
 /**
@@ -88,7 +91,7 @@ app.lazyrouter = function lazyrouter(): void {
       strict: this.enabled("strict routing"),
     });
     this._router.use(query());
-    this._router.use(initMiddleware(this));
+    this._router.use(init(this as Opine));
   }
 };
 
@@ -103,11 +106,11 @@ app.lazyrouter = function lazyrouter(): void {
 app.handle = function handle(
   req: Request,
   res: Response,
-  next: Function,
+  next: NextFunction,
 ): void {
   const router = this._router;
 
-  next = next || finalHandler(req as any, res as any);
+  next = next || finalHandler(req, res);
 
   if (!router) {
     return next();
@@ -126,27 +129,11 @@ app.handle = function handle(
  * @returns {Application} for chaining
  * @public
  */
-app.use = function use(fn: any): Application {
-  var offset = 0;
-  var path = "/";
-
-  // default path to '/'
-  // disambiguate app.use([fn])
-  if (typeof fn !== "function") {
-    var arg = fn;
-
-    while (Array.isArray(arg) && arg.length !== 0) {
-      arg = arg[0];
-    }
-
-    // first arg is the path
-    if (typeof arg !== "function") {
-      offset = 1;
-      path = fn;
-    }
-  }
-
-  var fns = slice.call(arguments, offset).flat(1);
+app.use = function use(...args: any[]): Application {
+  const [path, ...nonPathArgs] = typeof args[0] !== "function"
+    ? args
+    : ["/", ...args];
+  const fns = nonPathArgs.flat(1);
 
   if (fns.length === 0) {
     throw new TypeError("app.use() requires a middleware function");
@@ -156,7 +143,8 @@ app.use = function use(fn: any): Application {
   this.lazyrouter();
   const router = this._router;
 
-  fns.forEach(function (this: any, fn: any): void {
+  fns.forEach(function (this: Application, fn: any): void {
+    // non-opine app
     if (!fn || !fn.handle || !fn.set) {
       return router.use(path, fn);
     }
@@ -171,16 +159,18 @@ app.use = function use(fn: any): Application {
         res: Response,
         next: NextFunction,
       ): void {
-        const orig: any = req.app;
+        const orig = req.app as Opine;
+
         fn.handle(req, res, (err?: Error) => {
-          Object.setPrototypeOf(req, orig.request);
-          Object.setPrototypeOf(res, orig.response);
+          setPrototypeOf(req, orig.request);
+          setPrototypeOf(res, orig.response);
           next(err);
         });
       },
     );
 
-    (fn as any).emit("mount", this as any);
+    // mounted an app
+    fn.emit("mount", this);
   }, this);
 
   return this;
@@ -194,7 +184,7 @@ app.use = function use(fn: any): Application {
  * See the Route api docs for details.
  *
  * @param {PathParams} prefix
- * @returns {IRoute}
+ * @returns {Route}
  * @public
  */
 app.route = function route(prefix: PathParams): IRoute {
@@ -220,7 +210,7 @@ app.route = function route(prefix: PathParams): IRoute {
  * @return {Application} for chaining
  * @public
  */
-app.set = function set(setting: string, value: any): Application {
+app.set = function set(setting: string, value?: any): Application {
   if (arguments.length === 1) {
     // app.get(setting)
     return this.settings[setting];
@@ -228,7 +218,12 @@ app.set = function set(setting: string, value: any): Application {
 
   this.settings[setting] = value;
 
-  // TODO: matched settings support for "etag", "query parser", trust proxy"
+  // trigger matched settings
+  switch (setting) {
+    case "etag":
+      this.set("etag fn", compileETag(value));
+      break;
+  }
 
   return this;
 };
@@ -312,7 +307,7 @@ app.disable = function disable(setting: string): Application {
  * Delegate `.VERB(...)` calls to `router.VERB(...)`.
  */
 methods.forEach((method: string): void => {
-  app[method] = function (path: string): Application {
+  (app as any)[method] = function (path: string): Application {
     if (method === "get" && arguments.length === 1) {
       // app.get(setting)
       return this.set(path);
@@ -324,7 +319,7 @@ methods.forEach((method: string): void => {
     route[method].apply(route, slice.call(arguments, 1));
 
     return this;
-  };
+  }
 });
 
 /**
@@ -334,7 +329,7 @@ methods.forEach((method: string): void => {
  * @return {Application} for chaining
  * @public
  */
-app.all = function all(path: string): Application {
+app.all = function all(path: PathParams): Application {
   this.lazyrouter();
 
   const route = this._router.route(path);
@@ -368,7 +363,7 @@ app.listen = function listen(
 
   const start = async () => {
     for await (const request of server) {
-      this(request, new ServerResponse());
+      this(request as Request, new ServerResponse());
     }
   };
 
@@ -376,5 +371,3 @@ app.listen = function listen(
 
   return server;
 };
-
-export default app;

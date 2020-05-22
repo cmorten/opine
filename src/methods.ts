@@ -3,9 +3,10 @@
 
 /**
  * Supported Deno methods.
+ * 
  * @public
  */
-const methods: string[] = [
+export const methods: string[] = [
   "get",
   "post",
   "put",
@@ -33,9 +34,3 @@ const methods: string[] = [
   "search",
   "connect",
 ];
-
-/**
- * Module exports.
- * @public
- */
-export default methods;

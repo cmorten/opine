@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>RequestHandler | </title>
+	<meta name="description" content="Documentation for ">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title"></a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_types_.html">&quot;types&quot;</a>
+				</li>
+				<li>
+					<a href="_types_.requesthandler.html">RequestHandler</a>
+				</li>
+			</ul>
+			<h1>Interface RequestHandler&lt;P, ResBody, ReqQuery&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>P<span class="tsd-signature-symbol">: </span><a href="../modules/_types_.html#params" class="tsd-signature-type">Params</a></h4>
+					</li>
+					<li>
+						<h4>ResBody</h4>
+					</li>
+					<li>
+						<h4>ReqQuery</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">RequestHandler</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_types_.irouter.html" class="tsd-signature-type">IRouter</a>
+							</li>
+							<li>
+								<a href="_types_.handler.html" class="tsd-signature-type">Handler</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="_types_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span>, res<span class="tsd-signature-symbol">: </span><a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span>, next<span class="tsd-signature-symbol">: </span><a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in types.ts:50</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>req: <a href="_types_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5>res: <a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5>next: <a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_application_.html">&quot;application&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_methods_.html">&quot;methods&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_init_.html">&quot;middleware/init&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_query_.html">&quot;middleware/query&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_opine_.html">&quot;opine&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_request_.html">&quot;request&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_response_.html">&quot;response&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_index_.html">&quot;router/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_layer_.html">&quot;router/layer&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_route_.html">&quot;router/route&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_types_.html">&quot;types&quot;</a>
+						<ul>
+							<li class=" tsd-kind-namespace tsd-parent-kind-module tsd-is-not-exported">
+								<a href="../modules/_types_.__global.html">__global</a>
+							</li>
+						</ul>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_compileetag_.html">&quot;utils/compileETag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_contentdisposition_.html">&quot;utils/content<wbr>Disposition&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_definegetter_.html">&quot;utils/define<wbr>Getter&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_encodeurl_.html">&quot;utils/encode<wbr>Url&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_escapehtml_.html">&quot;utils/escape<wbr>Html&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_etag_.html">&quot;utils/etag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_finalhandler_.html">&quot;utils/final<wbr>Handler&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_fresh_.html">&quot;utils/fresh&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_merge_.html">&quot;utils/merge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_mergedescriptors_.html">&quot;utils/merge<wbr>Descriptors&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_pathtoregex_.html">&quot;utils/path<wbr>ToRegex&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_stringify_.html">&quot;utils/stringify&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_url_.html">&quot;utils/url&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.application.html" class="tsd-kind-icon">Application</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.byterange.html" class="tsd-kind-icon">Byte<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.cookie.html" class="tsd-kind-icon">Cookie</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.dictionary.html" class="tsd-kind-icon">Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.handler.html" class="tsd-kind-icon">Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.iroute.html" class="tsd-kind-icon">IRoute</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.irouter.html" class="tsd-kind-icon">IRouter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.irouterhandler.html" class="tsd-kind-icon">IRouter<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.iroutermatcher.html" class="tsd-kind-icon">IRouter<wbr>Matcher</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.mediatype.html" class="tsd-kind-icon">Media<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.nextfunction.html" class="tsd-kind-icon">Next<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.opine.html" class="tsd-kind-icon">Opine</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.paramsdictionary.html" class="tsd-kind-icon">Params<wbr>Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.request.html" class="tsd-kind-icon">Request</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.requesthandler.html" class="tsd-kind-icon">Request<wbr>Handler</a>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.requestranges.html" class="tsd-kind-icon">Request<wbr>Ranges</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.response.html" class="tsd-kind-icon">Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.router.html" class="tsd-kind-icon">Router</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#applicationrequesthandler" class="tsd-kind-icon">Application<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#denoresponsebody" class="tsd-kind-icon">Deno<wbr>Response<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#errback" class="tsd-kind-icon">Errback</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#errorrequesthandler" class="tsd-kind-icon">Error<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#params" class="tsd-kind-icon">Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#paramsarray" class="tsd-kind-icon">Params<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#parsedurl" class="tsd-kind-icon">ParsedURL</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#pathparams" class="tsd-kind-icon">Path<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#requesthandlerparams" class="tsd-kind-icon">Request<wbr>Handler<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#requestparamhandler" class="tsd-kind-icon">Request<wbr>Param<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#responsebody" class="tsd-kind-icon">Response<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#send" class="tsd-kind-icon">Send</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

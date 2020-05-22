@@ -6,21 +6,23 @@ export {
   Server,
   ServerRequest,
   Response,
-} from "https://deno.land/std/http/server.ts";
-export { Status, STATUS_TEXT } from "https://deno.land/std/http/http_status.ts";
+} from "https://deno.land/std@0.52.0/http/server.ts";
+export { Status, STATUS_TEXT } from "https://deno.land/std@0.52.0/http/http_status.ts";
 export {
   setCookie,
   Cookie,
   delCookie,
-} from "https://deno.land/std/http/cookie.ts";
+} from "https://deno.land/std@0.52.0/http/cookie.ts";
 export {
   extname,
   fromFileUrl,
-  resolve,
-} from "https://deno.land/std/path/mod.ts";
-export { contentType } from "https://deno.land/x/media_types@v2.3.1/mod.ts";
-export { setImmediate } from "https://deno.land/std/node/timers.ts";
+  basename,
+} from "https://deno.land/std@0.52.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.52.0/node/timers.ts";
+export { Sha1 } from "https://deno.land/std@0.52.0/hash/sha1.ts";
+export { encoder } from "https://deno.land/std@0.52.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
-} from "https://deno.land/x/evt/mod.ts";
+} from "https://deno.land/x/evt@v1.6.8/mod.ts";
+export { contentType } from "https://deno.land/x/media_types@v2.3.1/mod.ts";

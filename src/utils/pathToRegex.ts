@@ -10,10 +10,10 @@
 /**
  * Match matching groups in a regular expression.
  */
-var MATCHING_GROUP_REGEXP = /\((?!\?)/g;
+const MATCHING_GROUP_REGEXP = /\((?!\?)/g;
 
-type PathArray = (string | RegExp)[];
-type Path = string | RegExp | PathArray;
+export type PathArray = (string | RegExp)[];
+export type Path = string | RegExp | PathArray;
 
 /**
  * Normalize the given path string,
@@ -28,9 +28,9 @@ type Path = string | RegExp | PathArray;
  * @param  {any[]} keys
  * @param  {any} options
  * @return {RegExp}
- * @api private
+ * @private
  */
-function pathToRegexp(
+export function pathToRegexp(
   path: Path,
   keys: any[],
   options: any,
@@ -143,8 +143,3 @@ function pathToRegexp(
 
   return new RegExp(path, flags);
 }
-
-/**
- * Expose `pathToRegexp`.
- */
-export default pathToRegexp;

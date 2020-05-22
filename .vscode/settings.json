@@ -5,5 +5,6 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "axetroy.vscode-deno"
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

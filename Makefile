@@ -1,4 +1,4 @@
-.PHONY: benchmark doc fmt test
+.PHONY: benchmark doc fmt update-lock test typedoc
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
@@ -12,13 +12,16 @@ benchmark:
 	@echo
 
 doc:
-	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --excludeNotDocumented --excludePrivate ./src
+	@deno doc ./mod.ts
 
 fmt:
 	@deno fmt
 
 update-lock:
-	@deno run --lock=lock.json --lock-write mod.ts
+	@deno run --lock=lock.json --lock-write --reload mod.ts
 
 test:
 	@deno test
+
+typedoc:
+	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals --includes ./typings/index.d.ts ./src

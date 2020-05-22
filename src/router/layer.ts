@@ -1,7 +1,7 @@
-import pathToRegexp from "../pathToRegex.ts";
-import { Request, Response, NextFunction } from "../../typings/index.d.ts";
+import { pathToRegexp } from "../utils/pathToRegex.ts";
+import { Request, Response, NextFunction } from "../types.ts";
 
-const Layer: any = function Layer(
+export const Layer: any = function Layer(
   this: any,
   path: any,
   options: any = {},
@@ -29,7 +29,7 @@ const Layer: any = function Layer(
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
- * @api private
+ * @private
  */
 
 Layer.prototype.handle_error = function handle_error(
@@ -58,7 +58,7 @@ Layer.prototype.handle_error = function handle_error(
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
- * @api private
+ * @private
  */
 Layer.prototype.handle_request = function handle(
   req: Request,
@@ -85,7 +85,7 @@ Layer.prototype.handle_request = function handle(
  *
  * @param {String} path
  * @return {Boolean}
- * @api private
+ * @private
  */
 Layer.prototype.match = function match(path: any) {
   let match;
@@ -161,5 +161,3 @@ function decode_param(val: any) {
     throw err;
   }
 }
-
-export default Layer;

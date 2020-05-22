@@ -1,3 +1,6 @@
+import { contentDisposition } from "./utils/contentDisposition.ts";
+import { stringify } from "./utils/stringify.ts";
+import { encodeUrl } from "./utils/encodeUrl.ts";
 import {
   setCookie,
   Cookie,
@@ -6,26 +9,23 @@ import {
   STATUS_TEXT,
   fromFileUrl,
   extname,
+  basename,
   contentType,
 } from "../deps.ts";
 import {
   Response as DenoResponse,
-  DownloadOptions,
   ResponseBody,
   Request,
   Application,
   DenoResponseBody,
-} from "../typings/index.d.ts";
-
-const contentDisposition = (type: string, filename: string): string => {
-  return `${type}${filename ? `; filename="${filename}"` : ""}`;
-};
+} from "../src/types.ts";
 
 /**
- * Response.
+ * Response class.
+ * 
  * @public
  */
-class Response implements DenoResponse {
+export class Response implements DenoResponse {
   status: Status = 200;
   headers: Headers = new Headers();
   body!: DenoResponseBody;
@@ -70,7 +70,7 @@ class Response implements DenoResponse {
   }
 
   /**
-   * Set a cookie.
+   * Set a cookie. Sets the cookie path to "/" if not defined.
    *
    * Examples:
    *
@@ -82,6 +82,10 @@ class Response implements DenoResponse {
    * @public
    */
   cookie(cookie: Cookie): this {
+    if (cookie.path == null) {
+      cookie.path = "/";
+    }
+
     setCookie(this, cookie);
 
     return this;
@@ -106,30 +110,33 @@ class Response implements DenoResponse {
    *
    * Optionally providing an alternate attachment `filename`.
    *
-   * Optionally providing an `options` object to use with `res.sendFile()`.
    * This function will set the `Content-Disposition` header, overriding
-   * any `Content-Disposition` header passed as header options in order
-   * to set the attachment and filename.
+   * any existing `Content-Disposition` header in order to set the attachment
+   * and filename.
    *
    * This method uses `res.sendFile()`.
    *
    * @param {string} path
    * @param {string} filename
-   * @param {DownloadOptions} options
-   * @return {Promise<void>}
+   * @return {Promise<Response>}
    * @public
    */
   async download(
     path: string,
     filename?: string,
-    options: DownloadOptions = {},
-  ): Promise<void> {
-    options.headers = {
-      ...options.headers,
-      "Content-Disposition": contentDisposition("attachment", filename || path),
-    };
+  ): Promise<this | void> {
+    this.set(
+      "Content-Disposition",
+      contentDisposition("attachment", basename(filename || path)),
+    );
 
-    return await this.sendFile(path, options);
+    try {
+      await this.sendFile(path);
+    } catch (err) {
+      this.unset("Content-Disposition");
+
+      throw err;
+    }
   }
 
   /**
@@ -146,7 +153,28 @@ class Response implements DenoResponse {
       this.body = body;
     }
 
-    await (this.req as any).respond(this);
+    await this.req.respond(this);
+  }
+
+  /**
+   * Sets an ETag header.
+   * 
+   * @param {string|Uint8Array|Deno.FileInfo} chunk 
+   * @returns {Response} for chaining
+   * @publics
+   */
+  etag(chunk: string | Uint8Array | Deno.FileInfo): this {
+    const etagFn = this.app.get("etag fn");
+
+    if (typeof etagFn === "function" && typeof (chunk as any).length) {
+      const etag = etagFn(chunk);
+
+      if (etag) {
+        this.set("ETag", etag);
+      }
+    }
+
+    return this;
   }
 
   // TODO: format() {}
@@ -175,21 +203,117 @@ class Response implements DenoResponse {
    * @public
    */
   json(body: ResponseBody): this {
-    // TODO: app settings support for replacer, spaces, escape etc.
-    const stringifiedBody = JSON.stringify(body);
+    const app = this.app;
+    const replacer = app.get("json replacer");
+    const spaces = app.get("json spaces");
+    const escape = app.get("json escape");
+    body = stringify(body, replacer, spaces, escape);
 
     if (!this.get("Content-Type")) {
       this.type("application/json");
     }
 
-    return this.send(stringifiedBody);
+    return this.send(body);
   }
 
-  // TODO: jsonp() {}
+  /**
+   * Send JSON response with JSONP callback support.
+   *
+   * Examples:
+   *
+   *     res.jsonp(null);
+   *     res.jsonp({ user: 'tj' });
+   *
+   * @param {ResponseBody} body
+   * @return {Response} for chaining
+   * @public
+   */
+  jsonp(body: ResponseBody) {
+    const app = this.app;
+    const replacer = app.get("json replacer");
+    const spaces = app.get("json spaces");
+    const escape = app.get("json escape");
+    body = stringify(body, replacer, spaces, escape);
 
-  // TODO: links() {}
+    let callback = this.req.query[app.get("jsonp callback name")];
 
-  // TODO: locations() {}
+    if (Array.isArray(callback)) {
+      callback = callback[0];
+    }
+
+    if (typeof callback === "string" && callback.length !== 0) {
+      this.set("X-Content-Type-Options", "nosniff");
+      this.type("text/javascript");
+
+      // restrict callback charset
+      callback = callback.replace(/[^\[\]\w$.]/g, "");
+
+      // replace chars not allowed in JavaScript that are in JSON
+      body = body
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029");
+
+      // the /**/ is a specific security mitigation for "Rosetta Flash JSONP abuse"
+      // the typeof check is just to reduce client error noise
+      body = `/**/ typeof ${callback} === 'function' && ${callback}(${body});`;
+    } else if (!this.get("Content-Type")) {
+      this.set("X-Content-Type-Options", "nosniff");
+      this.set("Content-Type", "application/json");
+    }
+
+    return this.send(body);
+  }
+
+  /**
+   * Set Link header field with the given `links`.
+   *
+   * Examples:
+   *
+   *    res.links({
+   *      next: 'http://api.example.com/users?page=2',
+   *      last: 'http://api.example.com/users?page=5'
+   *    });
+   *
+   * @param {any} links
+   * @return {Response} for chaining
+   * @public
+   */
+  links(links: any) {
+    let currentLink = this.get("Link");
+
+    if (currentLink) {
+      currentLink += ", ";
+    }
+
+    const link = currentLink +
+      Object.entries(links).map(([field, rel]) => `<${field}>; rel="${rel}"`)
+        .join(", ");
+
+    return this.set("Link", link);
+  }
+
+  /**
+   * Set the location header to `url`.
+   *
+   * The given `url` can also be "back", which redirects
+   * to the _Referrer_ or _Referer_ headers or "/".
+   *
+   * Examples:
+   *
+   *    res.location('/foo/bar').;
+   *    res.location('http://example.com');
+   *    res.location('../login');
+   *
+   * @param {string} url
+   * @return {Response} for chaining
+   * @public
+   */
+  location(url: string): this {
+    const loc = url === "back" ? (this.req.get("Referrer") || "/") : url;
+
+    // set location
+    return this.set("Location", encodeUrl(loc));
+  }
 
   // TODO: redirect() {}
 
@@ -207,28 +331,45 @@ class Response implements DenoResponse {
    * @return {Response} for chaining
    * @public
    */
-  send(body: ResponseBody): this {
+  send(body: ResponseBody = ""): this {
+    let chunk: DenoResponseBody;
+
     switch (typeof body) {
       case "string":
-        if (!this.get("Content-Type")) {
-          this.type("html");
-        }
-
+        chunk = body;
         break;
       case "boolean":
       case "number":
+        return this.json(body);
       case "object":
       default:
-        if (body === null) {
-          body = "";
-        }
+        if (
+          body instanceof Uint8Array ||
+          typeof (body as Deno.Reader).read === "function"
+        ) {
+          chunk = body as Uint8Array | Deno.Reader;
 
-        return this.json(body);
+          if (!this.get("Content-Type")) {
+            this.type("bin");
+          }
+        } else {
+          return this.json(body);
+        }
     }
 
-    const ct = contentType(this.get("Content-Type"));
-    if (ct) {
-      this.set("Content-Type", ct);
+    if (typeof chunk === "string" && !this.get("Content-Type")) {
+      this.type("html");
+    }
+
+    if (
+      !this.get("ETag") && (typeof chunk === "string" ||
+        chunk instanceof Uint8Array)
+    ) {
+      this.etag(chunk);
+    }
+
+    if (this.req.fresh) {
+      this.status = 304;
     }
 
     if (this.status === 204 || this.status === 304) {
@@ -236,13 +377,13 @@ class Response implements DenoResponse {
       this.unset("Content-Length");
       this.unset("Transfer-Encoding");
 
-      body = "";
+      chunk = "";
     }
 
-    if ((this.req as any).method === "HEAD") {
+    if (this.req.method === "HEAD") {
       this.end();
     } else {
-      this.end(body);
+      this.end(chunk);
     }
 
     return this;
@@ -253,30 +394,34 @@ class Response implements DenoResponse {
    *
    * Automatically sets the _Content-Type_ response header field.
    *
-   * Options:
-   *
-   *   - `maxAge`   defaulting to 0
-   *
    * @param {string} path
-   * @param {DownloadOptions} options
-   * @return {Promise<void>}
+   * @return {Promise<Response>}
    * @public
    */
-  async sendFile(path: string, options: DownloadOptions = {}): Promise<void> {
+  async sendFile(path: string): Promise<this> {
     path = path.startsWith("file:") ? fromFileUrl(path) : path;
-    const stats: Deno.FileInfo = await Deno.stat(path);
 
-    if (stats.mtime) {
-      this.set("Last-Modified", stats.mtime.toUTCString());
+    if (!path) {
+      throw new TypeError("path argument is required to res.sendFile");
     }
 
-    this.set("Content-Length", String(stats.size));
-    this.set("Cache-Control", `max-age=${((options.maxAge || 0) / 1000) | 0}`);
-    this.type(extname(path));
+    if (typeof path !== "string") {
+      throw new TypeError("path must be a string to res.sendFile");
+    }
 
     const body = await Deno.readFile(path);
 
-    return this.end(body);
+    const stats: Deno.FileInfo = await Deno.stat(path);
+    if (stats.mtime) {
+      this.set("Last-Modified", stats.mtime.toUTCString());
+    }
+    if (!this.get("ETag")) {
+      this.etag(stats);
+    }
+
+    this.type(extname(path));
+
+    return this.send(body);
   }
 
   /**
@@ -295,7 +440,7 @@ class Response implements DenoResponse {
    * @public
    */
   sendStatus(code: Status): this {
-    const body: string = STATUS_TEXT.get(code as Status) || String(code);
+    const body: string = STATUS_TEXT.get(code) || String(code);
 
     this.setStatus(code);
     this.type("txt");
@@ -360,7 +505,7 @@ class Response implements DenoResponse {
    * @public
    */
   type(type: string): this {
-    this.headers.set("content-type", contentType(type) as string);
+    this.headers.set("content-type", contentType(type) || "");
 
     return this;
   }
@@ -380,9 +525,3 @@ class Response implements DenoResponse {
 
   // TODO: vary() {}
 }
-
-/**
- * Module exports.
- * @publics
- */
-export default Response;

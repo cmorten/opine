@@ -1,0 +1,839 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Router | </title>
+	<meta name="description" content="Documentation for ">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title"></a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_types_.html">&quot;types&quot;</a>
+				</li>
+				<li>
+					<a href="_types_.router.html">Router</a>
+				</li>
+			</ul>
+			<h1>Interface Router&lt;P, ResBody, ReqQuery&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>P<span class="tsd-signature-symbol">: </span><a href="../modules/_types_.html#params" class="tsd-signature-type">Params</a></h4>
+					</li>
+					<li>
+						<h4>ResBody</h4>
+					</li>
+					<li>
+						<h4>ReqQuery</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="_types_.irouter.html" class="tsd-signature-type">IRouter</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Router</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="_types_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span>, res<span class="tsd-signature-symbol">: </span><a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span>, next<span class="tsd-signature-symbol">: </span><a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in types.ts:50</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>req: <a href="_types_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5>res: <a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5>next: <a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#all" class="tsd-kind-icon">all</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#checkout" class="tsd-kind-icon">checkout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#copy" class="tsd-kind-icon">copy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#head" class="tsd-kind-icon">head</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#lock" class="tsd-kind-icon">lock</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#m_search" class="tsd-kind-icon">m-<wbr>search</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#merge" class="tsd-kind-icon">merge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#mkactivity" class="tsd-kind-icon">mkactivity</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#mkcol" class="tsd-kind-icon">mkcol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#move" class="tsd-kind-icon">move</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#notify" class="tsd-kind-icon">notify</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#patch" class="tsd-kind-icon">patch</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#post" class="tsd-kind-icon">post</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#propfind" class="tsd-kind-icon">propfind</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#proppatch" class="tsd-kind-icon">proppatch</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#purge" class="tsd-kind-icon">purge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#put" class="tsd-kind-icon">put</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#report" class="tsd-kind-icon">report</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#search" class="tsd-kind-icon">search</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#trace" class="tsd-kind-icon">trace</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#unlock" class="tsd-kind-icon">unlock</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#use" class="tsd-kind-icon">use</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_types_.router.html#route" class="tsd-kind-icon">route</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="all" class="tsd-anchor"></a>
+					<h3>all</h3>
+					<div class="tsd-signature tsd-kind-icon">all<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#all">all</a></p>
+						<ul>
+							<li>Defined in types.ts:126</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Special-cased &quot;all&quot; method, applying the given route <code>path</code>,
+							middleware, and callback to <em>every</em> HTTP method.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="checkout" class="tsd-anchor"></a>
+					<h3>checkout</h3>
+					<div class="tsd-signature tsd-kind-icon">checkout<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#checkout">checkout</a></p>
+						<ul>
+							<li>Defined in types.ts:135</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="connect" class="tsd-anchor"></a>
+					<h3>connect</h3>
+					<div class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#connect">connect</a></p>
+						<ul>
+							<li>Defined in types.ts:136</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="copy" class="tsd-anchor"></a>
+					<h3>copy</h3>
+					<div class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#copy">copy</a></p>
+						<ul>
+							<li>Defined in types.ts:137</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="delete" class="tsd-anchor"></a>
+					<h3>delete</h3>
+					<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#delete">delete</a></p>
+						<ul>
+							<li>Defined in types.ts:130</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"get"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#get">get</a></p>
+						<ul>
+							<li>Defined in types.ts:127</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="head" class="tsd-anchor"></a>
+					<h3>head</h3>
+					<div class="tsd-signature tsd-kind-icon">head<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"head"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#head">head</a></p>
+						<ul>
+							<li>Defined in types.ts:133</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="lock" class="tsd-anchor"></a>
+					<h3>lock</h3>
+					<div class="tsd-signature tsd-kind-icon">lock<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#lock">lock</a></p>
+						<ul>
+							<li>Defined in types.ts:138</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="m_search" class="tsd-anchor"></a>
+					<h3>m-<wbr>search</h3>
+					<div class="tsd-signature tsd-kind-icon">m-<wbr>search<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#m_search">m-search</a></p>
+						<ul>
+							<li>Defined in types.ts:143</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="merge" class="tsd-anchor"></a>
+					<h3>merge</h3>
+					<div class="tsd-signature tsd-kind-icon">merge<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#merge">merge</a></p>
+						<ul>
+							<li>Defined in types.ts:139</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="mkactivity" class="tsd-anchor"></a>
+					<h3>mkactivity</h3>
+					<div class="tsd-signature tsd-kind-icon">mkactivity<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#mkactivity">mkactivity</a></p>
+						<ul>
+							<li>Defined in types.ts:140</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="mkcol" class="tsd-anchor"></a>
+					<h3>mkcol</h3>
+					<div class="tsd-signature tsd-kind-icon">mkcol<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#mkcol">mkcol</a></p>
+						<ul>
+							<li>Defined in types.ts:141</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="move" class="tsd-anchor"></a>
+					<h3>move</h3>
+					<div class="tsd-signature tsd-kind-icon">move<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#move">move</a></p>
+						<ul>
+							<li>Defined in types.ts:142</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="notify" class="tsd-anchor"></a>
+					<h3>notify</h3>
+					<div class="tsd-signature tsd-kind-icon">notify<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#notify">notify</a></p>
+						<ul>
+							<li>Defined in types.ts:144</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="options" class="tsd-anchor"></a>
+					<h3>options</h3>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"options"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#options">options</a></p>
+						<ul>
+							<li>Defined in types.ts:132</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="patch" class="tsd-anchor"></a>
+					<h3>patch</h3>
+					<div class="tsd-signature tsd-kind-icon">patch<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"patch"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#patch">patch</a></p>
+						<ul>
+							<li>Defined in types.ts:131</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="post" class="tsd-anchor"></a>
+					<h3>post</h3>
+					<div class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"post"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#post">post</a></p>
+						<ul>
+							<li>Defined in types.ts:128</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="propfind" class="tsd-anchor"></a>
+					<h3>propfind</h3>
+					<div class="tsd-signature tsd-kind-icon">propfind<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#propfind">propfind</a></p>
+						<ul>
+							<li>Defined in types.ts:145</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="proppatch" class="tsd-anchor"></a>
+					<h3>proppatch</h3>
+					<div class="tsd-signature tsd-kind-icon">proppatch<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#proppatch">proppatch</a></p>
+						<ul>
+							<li>Defined in types.ts:146</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="purge" class="tsd-anchor"></a>
+					<h3>purge</h3>
+					<div class="tsd-signature tsd-kind-icon">purge<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#purge">purge</a></p>
+						<ul>
+							<li>Defined in types.ts:147</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="put" class="tsd-anchor"></a>
+					<h3>put</h3>
+					<div class="tsd-signature tsd-kind-icon">put<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"put"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#put">put</a></p>
+						<ul>
+							<li>Defined in types.ts:129</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="report" class="tsd-anchor"></a>
+					<h3>report</h3>
+					<div class="tsd-signature tsd-kind-icon">report<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#report">report</a></p>
+						<ul>
+							<li>Defined in types.ts:148</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="search" class="tsd-anchor"></a>
+					<h3>search</h3>
+					<div class="tsd-signature tsd-kind-icon">search<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#search">search</a></p>
+						<ul>
+							<li>Defined in types.ts:149</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="stack" class="tsd-anchor"></a>
+					<h3>stack</h3>
+					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#stack">stack</a></p>
+						<ul>
+							<li>Defined in types.ts:162</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Stack of configured routes</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="subscribe" class="tsd-anchor"></a>
+					<h3>subscribe</h3>
+					<div class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#subscribe">subscribe</a></p>
+						<ul>
+							<li>Defined in types.ts:150</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="trace" class="tsd-anchor"></a>
+					<h3>trace</h3>
+					<div class="tsd-signature tsd-kind-icon">trace<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#trace">trace</a></p>
+						<ul>
+							<li>Defined in types.ts:151</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="unlock" class="tsd-anchor"></a>
+					<h3>unlock</h3>
+					<div class="tsd-signature tsd-kind-icon">unlock<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#unlock">unlock</a></p>
+						<ul>
+							<li>Defined in types.ts:152</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="unsubscribe" class="tsd-anchor"></a>
+					<h3>unsubscribe</h3>
+					<div class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">:</span> <a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#unsubscribe">unsubscribe</a></p>
+						<ul>
+							<li>Defined in types.ts:153</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="use" class="tsd-anchor"></a>
+					<h3>use</h3>
+					<div class="tsd-signature tsd-kind-icon">use<span class="tsd-signature-symbol">:</span> <a href="_types_.irouterhandler.html" class="tsd-signature-type">IRouterHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#use">use</a></p>
+						<ul>
+							<li>Defined in types.ts:155</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="route" class="tsd-anchor"></a>
+					<h3>route</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">(</span>prefix<span class="tsd-signature-symbol">: </span><a href="../modules/_types_.html#pathparams" class="tsd-signature-type">PathParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_types_.iroute.html" class="tsd-signature-type">IRoute</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_types_.irouter.html">IRouter</a>.<a href="_types_.irouter.html#route">route</a></p>
+								<ul>
+									<li>Defined in types.ts:157</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prefix: <a href="../modules/_types_.html#pathparams" class="tsd-signature-type">PathParams</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_types_.iroute.html" class="tsd-signature-type">IRoute</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_application_.html">&quot;application&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_methods_.html">&quot;methods&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_init_.html">&quot;middleware/init&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_query_.html">&quot;middleware/query&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_opine_.html">&quot;opine&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_request_.html">&quot;request&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_response_.html">&quot;response&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_index_.html">&quot;router/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_layer_.html">&quot;router/layer&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_route_.html">&quot;router/route&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_types_.html">&quot;types&quot;</a>
+						<ul>
+							<li class=" tsd-kind-namespace tsd-parent-kind-module tsd-is-not-exported">
+								<a href="../modules/_types_.__global.html">__global</a>
+							</li>
+						</ul>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_compileetag_.html">&quot;utils/compileETag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_contentdisposition_.html">&quot;utils/content<wbr>Disposition&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_definegetter_.html">&quot;utils/define<wbr>Getter&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_encodeurl_.html">&quot;utils/encode<wbr>Url&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_escapehtml_.html">&quot;utils/escape<wbr>Html&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_etag_.html">&quot;utils/etag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_finalhandler_.html">&quot;utils/final<wbr>Handler&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_fresh_.html">&quot;utils/fresh&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_merge_.html">&quot;utils/merge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_mergedescriptors_.html">&quot;utils/merge<wbr>Descriptors&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_pathtoregex_.html">&quot;utils/path<wbr>ToRegex&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_stringify_.html">&quot;utils/stringify&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_url_.html">&quot;utils/url&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.application.html" class="tsd-kind-icon">Application</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.byterange.html" class="tsd-kind-icon">Byte<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.cookie.html" class="tsd-kind-icon">Cookie</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.dictionary.html" class="tsd-kind-icon">Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.handler.html" class="tsd-kind-icon">Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.iroute.html" class="tsd-kind-icon">IRoute</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.irouter.html" class="tsd-kind-icon">IRouter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.irouterhandler.html" class="tsd-kind-icon">IRouter<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.iroutermatcher.html" class="tsd-kind-icon">IRouter<wbr>Matcher</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.mediatype.html" class="tsd-kind-icon">Media<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.nextfunction.html" class="tsd-kind-icon">Next<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.opine.html" class="tsd-kind-icon">Opine</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.paramsdictionary.html" class="tsd-kind-icon">Params<wbr>Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.request.html" class="tsd-kind-icon">Request</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.requesthandler.html" class="tsd-kind-icon">Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.requestranges.html" class="tsd-kind-icon">Request<wbr>Ranges</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.response.html" class="tsd-kind-icon">Response</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_types_.router.html" class="tsd-kind-icon">Router</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#all" class="tsd-kind-icon">all</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#checkout" class="tsd-kind-icon">checkout</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#connect" class="tsd-kind-icon">connect</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#copy" class="tsd-kind-icon">copy</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#head" class="tsd-kind-icon">head</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#lock" class="tsd-kind-icon">lock</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#m_search" class="tsd-kind-icon">m-<wbr>search</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#merge" class="tsd-kind-icon">merge</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#mkactivity" class="tsd-kind-icon">mkactivity</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#mkcol" class="tsd-kind-icon">mkcol</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#move" class="tsd-kind-icon">move</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#notify" class="tsd-kind-icon">notify</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#options" class="tsd-kind-icon">options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#patch" class="tsd-kind-icon">patch</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#post" class="tsd-kind-icon">post</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#propfind" class="tsd-kind-icon">propfind</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#proppatch" class="tsd-kind-icon">proppatch</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#purge" class="tsd-kind-icon">purge</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#put" class="tsd-kind-icon">put</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#report" class="tsd-kind-icon">report</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#search" class="tsd-kind-icon">search</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#stack" class="tsd-kind-icon">stack</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#subscribe" class="tsd-kind-icon">subscribe</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#trace" class="tsd-kind-icon">trace</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#unlock" class="tsd-kind-icon">unlock</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#use" class="tsd-kind-icon">use</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_types_.router.html#route" class="tsd-kind-icon">route</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#applicationrequesthandler" class="tsd-kind-icon">Application<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#denoresponsebody" class="tsd-kind-icon">Deno<wbr>Response<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#errback" class="tsd-kind-icon">Errback</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#errorrequesthandler" class="tsd-kind-icon">Error<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#params" class="tsd-kind-icon">Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#paramsarray" class="tsd-kind-icon">Params<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#parsedurl" class="tsd-kind-icon">ParsedURL</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#pathparams" class="tsd-kind-icon">Path<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#requesthandlerparams" class="tsd-kind-icon">Request<wbr>Handler<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#requestparamhandler" class="tsd-kind-icon">Request<wbr>Param<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_types_.html#responsebody" class="tsd-kind-icon">Response<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/_types_.html#send" class="tsd-kind-icon">Send</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

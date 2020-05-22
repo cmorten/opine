@@ -1,6 +1,12 @@
-import { Request, Response, NextFunction } from "../../typings/index.d.ts";
+import {
+  Request,
+  Response,
+  NextFunction,
+  Opine,
+} from "../../src/types.ts";
 
 const create = Object.create;
+const setPrototypeOf = Object.setPrototypeOf;
 
 /**
  * Initialization middleware, exposing the
@@ -8,24 +14,23 @@ const create = Object.create;
  * locals if not defined, as well as defaulting
  * the X-Powered-By header field.
  *
+ * @param {Opine} app
  * @return {Function} init middleware
  * @private
  */
-const initMiddlewareFactory = function (app: any) {
-  return function init(req: Request, res: Response, next: NextFunction) {
+export const init = function (app: Opine) {
+  return function opineInit(req: Request, res: Response, next: NextFunction) {
     res.set("X-Powered-By", "Opine");
 
     req.res = res;
     res.req = req;
     req.next = next;
 
-    Object.setPrototypeOf(req, app.request);
-    Object.setPrototypeOf(res, app.response);
+    setPrototypeOf(req, app.request);
+    setPrototypeOf(res, app.response);
 
     res.locals = res.locals || create(null);
 
     next();
   };
 };
-
-export default initMiddlewareFactory;

@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -71,41 +69,51 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>References</h3>
+							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_opine_.html#default" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_opine_.html#response" class="tsd-kind-icon">response</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="_opine_.html#opine" class="tsd-kind-icon">opine</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_opine_.html#opine" class="tsd-kind-icon">opine</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>References</h2>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="default" class="tsd-anchor"></a>
-					<h3>default</h3>
-					Renames and exports <a href="_opine_.html#opine">opine</a>
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="response" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> response</h3>
+					<div class="tsd-signature tsd-kind-icon">response<span class="tsd-signature-symbol">:</span> <a href="../classes/_response_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol"> = Object.create(ServerResponse.prototype)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/opine.ts#L18">opine.ts:18</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response prototype.</p>
+						</div>
+					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="opine" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> opine</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">opine<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application</span></li>
+					<h3>opine</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">opine<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.opine.html" class="tsd-signature-type">Opine</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/opine.ts#L22">opine.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/opine.ts#L26">opine.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -113,7 +121,7 @@
 									<p>Create an Opine application.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Application</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_types_.opine.html" class="tsd-signature-type">Opine</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -126,31 +134,85 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="_application_.html">&quot;application&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="_methods_.html">&quot;methods&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_middleware_init_.html">&quot;middleware/init&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_middleware_query_.html">&quot;middleware/query&quot;</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="_opine_.html">&quot;opine&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="_request_.html">&quot;request&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="_response_.html">&quot;response&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_router_mod_.html">&quot;router/mod&quot;</a>
+						<a href="_router_index_.html">&quot;router/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_router_layer_.html">&quot;router/layer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_router_route_.html">&quot;router/route&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_utils_.html">&quot;utils&quot;</a>
+						<a href="_types_.html">&quot;types&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_compileetag_.html">&quot;utils/compileETag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_contentdisposition_.html">&quot;utils/content<wbr>Disposition&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_definegetter_.html">&quot;utils/define<wbr>Getter&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_encodeurl_.html">&quot;utils/encode<wbr>Url&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_escapehtml_.html">&quot;utils/escape<wbr>Html&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_etag_.html">&quot;utils/etag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_finalhandler_.html">&quot;utils/final<wbr>Handler&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_fresh_.html">&quot;utils/fresh&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_merge_.html">&quot;utils/merge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_mergedescriptors_.html">&quot;utils/merge<wbr>Descriptors&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_pathtoregex_.html">&quot;utils/path<wbr>ToRegex&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_stringify_.html">&quot;utils/stringify&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_url_.html">&quot;utils/url&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_opine_.html#default" class="tsd-kind-icon">default</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_opine_.html#response" class="tsd-kind-icon">response</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_opine_.html#opine" class="tsd-kind-icon">opine</a>
 					</li>
 				</ul>
@@ -163,8 +225,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>

@@ -1,13 +1,14 @@
 import { setImmediate } from "../../deps.ts";
-import Route from "./route.ts";
-import Layer from "./layer.ts";
-import { merge, parseUrl } from "../utils.ts";
-import methods from "../methods.ts";
+import { Route } from "./route.ts";
+import { Layer } from "./layer.ts";
+import { merge } from "../utils/merge.ts";
+import { parseUrl } from "../utils/url.ts";
+import { methods } from "../methods.ts";
 import {
   Response,
   Request,
   NextFunction,
-} from "../../typings/index.d.ts";
+} from "../types.ts";
 
 const objectRegExp = /^\[object (\S+)\]$/;
 const setPrototypeOf = Object.setPrototypeOf;
@@ -19,7 +20,7 @@ const setPrototypeOf = Object.setPrototypeOf;
  * @return {Router} which is an callable function
  * @public
  */
-const Router: any = function (options: any = {}): any {
+export const Router: any = function (options: any = {}): any {
   function router(
     req: Request,
     res: Response,
@@ -582,5 +583,3 @@ function wrap(old: any, fn: any) {
     fn.apply(this, args);
   };
 }
-
-export default Router;

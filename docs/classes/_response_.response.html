@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -72,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Response.</p>
+						<p>Response class.</p>
 					</div>
 				</div>
 			</section>
@@ -95,6 +93,17 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#app" class="tsd-kind-icon">app</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#body" class="tsd-kind-icon">body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#headers" class="tsd-kind-icon">headers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#locals" class="tsd-kind-icon">locals</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#req" class="tsd-kind-icon">req</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_response_.response.html#status" class="tsd-kind-icon">status</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#append" class="tsd-kind-icon">append</a></li>
@@ -103,8 +112,12 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#cookie" class="tsd-kind-icon">cookie</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#download" class="tsd-kind-icon">download</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#end" class="tsd-kind-icon">end</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#etag" class="tsd-kind-icon">etag</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#json" class="tsd-kind-icon">json</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#jsonp" class="tsd-kind-icon">jsonp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#links" class="tsd-kind-icon">links</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#location" class="tsd-kind-icon">location</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#send" class="tsd-kind-icon">send</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#sendfile" class="tsd-kind-icon">send<wbr>File</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_response_.response.html#sendstatus" class="tsd-kind-icon">send<wbr>Status</a></li>
@@ -115,6 +128,69 @@
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="app" class="tsd-anchor"></a>
+					<h3>app</h3>
+					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_types_.application.html" class="tsd-signature-type">Application</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L32">response.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="body" class="tsd-anchor"></a>
+					<h3>body</h3>
+					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#denoresponsebody" class="tsd-signature-type">DenoResponseBody</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L31">response.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="headers" class="tsd-anchor"></a>
+					<h3>headers</h3>
+					<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol"> = new Headers()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L30">response.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="locals" class="tsd-anchor"></a>
+					<h3>locals</h3>
+					<div class="tsd-signature tsd-kind-icon">locals<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L34">response.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="req" class="tsd-anchor"></a>
+					<h3>req</h3>
+					<div class="tsd-signature tsd-kind-icon">req<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L33">response.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Status</span><span class="tsd-signature-symbol"> = 200</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L29">response.ts:29</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -129,7 +205,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L49">response.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L49">response.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L62">response.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L62">response.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -187,13 +263,13 @@
 					<a name="clearcookie" class="tsd-anchor"></a>
 					<h3>clear<wbr>Cookie</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clear<wbr>Cookie<span class="tsd-signature-symbol">(</span>cookie<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Cookie</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">clear<wbr>Cookie<span class="tsd-signature-symbol">(</span>cookie<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L97">response.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L101">response.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -204,7 +280,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>cookie: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Cookie</span></h5>
+									<h5>cookie: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -216,18 +292,18 @@
 					<a name="cookie" class="tsd-anchor"></a>
 					<h3>cookie</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">cookie<span class="tsd-signature-symbol">(</span>cookie<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Cookie</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">cookie<span class="tsd-signature-symbol">(</span>cookie<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L84">response.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L84">response.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set a cookie.</p>
+									<p>Set a cookie. Sets the cookie path to &quot;/&quot; if not defined.</p>
 								</div>
 								<p>Examples:</p>
 								<p>   // &quot;Remember Me&quot; for 15 minutes
@@ -236,7 +312,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>cookie: <span class="tsd-signature-type">Cookie</span></h5>
+									<h5>cookie: <a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -248,13 +324,13 @@
 					<a name="download" class="tsd-anchor"></a>
 					<h3>download</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filename<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DownloadOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filename<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L122">response.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L124">response.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,10 +338,9 @@
 									<p>Transfer the file at the given <code>path</code> as an attachment.</p>
 								</div>
 								<p>Optionally providing an alternate attachment <code>filename</code>.</p>
-								<p>Optionally providing an <code>options</code> object to use with <code>res.sendFile()</code>.
-									This function will set the <code>Content-Disposition</code> header, overriding
-									any <code>Content-Disposition</code> header passed as header options in order
-								to set the attachment and filename.</p>
+								<p>This function will set the <code>Content-Disposition</code> header, overriding
+									any existing <code>Content-Disposition</code> header in order to set the attachment
+								and filename.</p>
 								<p>This method uses <code>res.sendFile()</code>.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -276,11 +351,8 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filename: <span class="tsd-signature-type">string</span></h5>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">DownloadOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -288,13 +360,13 @@
 					<a name="end" class="tsd-anchor"></a>
 					<h3>end</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DenoResponseBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">?: </span><a href="../modules/_types_.html#denoresponsebody" class="tsd-signature-type">DenoResponseBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L142">response.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L149">response.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,10 +377,43 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> body: <span class="tsd-signature-type">DenoResponseBody</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> body: <a href="../modules/_types_.html#denoresponsebody" class="tsd-signature-type">DenoResponseBody</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="etag" class="tsd-anchor"></a>
+					<h3>etag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">etag<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.FileInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L166">response.ts:166</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets an ETag header.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>publics</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunk: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.FileInfo</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>for chaining</p>
 						</li>
 					</ul>
 				</section>
@@ -322,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L161">response.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L189">response.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,13 +450,13 @@
 					<a name="json" class="tsd-anchor"></a>
 					<h3>json</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ResponseBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L177">response.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L205">response.ts:205</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,7 +470,108 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>body: <span class="tsd-signature-type">ResponseBody</span></h5>
+									<h5>body: <a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>for chaining</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="jsonp" class="tsd-anchor"></a>
+					<h3>jsonp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">jsonp<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L231">response.ts:231</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Send JSON response with JSONP callback support.</p>
+								</div>
+								<p>Examples:</p>
+								<pre><code><span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.jsonp</span>(<span class="hljs-selector-tag">null</span>);
+<span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.jsonp</span>({ <span class="hljs-attribute">user</span>: <span class="hljs-string">'tj'</span> });</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>body: <a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>for chaining</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="links" class="tsd-anchor"></a>
+					<h3>links</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">links<span class="tsd-signature-symbol">(</span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L281">response.ts:281</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set Link header field with the given <code>links</code>.</p>
+								</div>
+								<p>Examples:</p>
+								<p>   res.links({
+									next: &#39;<a href="http://api.example.com/users?page=2&#39;">http://api.example.com/users?page=2&#39;</a>,
+									last: &#39;<a href="http://api.example.com/users?page=5&#39;">http://api.example.com/users?page=5&#39;</a>
+								});</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>links: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>for chaining</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="location" class="tsd-anchor"></a>
+					<h3>location</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L311">response.ts:311</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the location header to <code>url</code>.</p>
+								</div>
+								<p>The given <code>url</code> can also be &quot;back&quot;, which redirects
+								to the <em>Referrer</em> or <em>Referer</em> headers or &quot;/&quot;.</p>
+								<p>Examples:</p>
+								<p>   res.location(&#39;/foo/bar&#39;).;
+									res.location(&#39;<a href="http://example.com&#39;">http://example.com&#39;</a>);
+								res.location(&#39;../login&#39;);</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -377,13 +583,13 @@
 					<a name="send" class="tsd-anchor"></a>
 					<h3>send</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ResponseBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">?: </span><a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L210">response.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L334">response.ts:334</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,7 +603,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>body: <span class="tsd-signature-type">ResponseBody</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> body: <a href="../modules/_types_.html#responsebody" class="tsd-signature-type">ResponseBody</a><span class="tsd-signature-symbol"> = &quot;&quot;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -409,13 +615,13 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 					<a name="sendfile" class="tsd-anchor"></a>
 					<h3>send<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DownloadOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L265">response.ts:265</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L401">response.ts:401</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,21 +629,14 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 									<p>Transfer the file at the given <code>path</code>.</p>
 								</div>
 								<p>Automatically sets the <em>Content-Type</em> response header field.</p>
-								<p>Options:</p>
-								<ul>
-									<li><code>maxAge</code>   defaulting to 0</li>
-								</ul>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">DownloadOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -451,7 +650,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L296">response.ts:296</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L442">response.ts:442</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -485,7 +684,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L318">response.ts:318</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L464">response.ts:464</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -520,7 +719,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L338">response.ts:338</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L486">response.ts:486</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -551,7 +750,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L359">response.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L507">response.ts:507</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -586,7 +785,7 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/9b7143f/src/response.ts#L372">response.ts:372</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/4800d8c/src/response.ts#L520">response.ts:520</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -614,22 +813,76 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/_application_.html">&quot;application&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/_methods_.html">&quot;methods&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_init_.html">&quot;middleware/init&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_middleware_query_.html">&quot;middleware/query&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/_opine_.html">&quot;opine&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_request_.html">&quot;request&quot;</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/_response_.html">&quot;response&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_router_mod_.html">&quot;router/mod&quot;</a>
+						<a href="../modules/_router_index_.html">&quot;router/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_router_layer_.html">&quot;router/layer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_router_route_.html">&quot;router/route&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_utils_.html">&quot;utils&quot;</a>
+						<a href="../modules/_types_.html">&quot;types&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_compileetag_.html">&quot;utils/compileETag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_contentdisposition_.html">&quot;utils/content<wbr>Disposition&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_definegetter_.html">&quot;utils/define<wbr>Getter&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_encodeurl_.html">&quot;utils/encode<wbr>Url&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_escapehtml_.html">&quot;utils/escape<wbr>Html&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_etag_.html">&quot;utils/etag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_finalhandler_.html">&quot;utils/final<wbr>Handler&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_fresh_.html">&quot;utils/fresh&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_merge_.html">&quot;utils/merge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_mergedescriptors_.html">&quot;utils/merge<wbr>Descriptors&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_pathtoregex_.html">&quot;utils/path<wbr>ToRegex&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_stringify_.html">&quot;utils/stringify&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_utils_url_.html">&quot;utils/url&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -640,6 +893,24 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_response_.response.html" class="tsd-kind-icon">Response</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#app" class="tsd-kind-icon">app</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#body" class="tsd-kind-icon">body</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#headers" class="tsd-kind-icon">headers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#locals" class="tsd-kind-icon">locals</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#req" class="tsd-kind-icon">req</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_response_.response.html#status" class="tsd-kind-icon">status</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_response_.response.html#append" class="tsd-kind-icon">append</a>
 							</li>
@@ -659,10 +930,22 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 								<a href="_response_.response.html#end" class="tsd-kind-icon">end</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_response_.response.html#etag" class="tsd-kind-icon">etag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_response_.response.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_response_.response.html#json" class="tsd-kind-icon">json</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_response_.response.html#jsonp" class="tsd-kind-icon">jsonp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_response_.response.html#links" class="tsd-kind-icon">links</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_response_.response.html#location" class="tsd-kind-icon">location</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_response_.response.html#send" class="tsd-kind-icon">send</a>
@@ -699,12 +982,20 @@ res.<span class="hljs-built_in">send</span>(<span class="hljs-string">'&lt;p&gt;
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 		</div>
 	</div>

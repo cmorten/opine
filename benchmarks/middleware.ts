@@ -4,7 +4,7 @@ import {
   Request,
   Response,
   NextFunction,
-} from "../typings/index.d.ts";
+} from "../src/types.ts";
 
 const app: Application = opine();
 

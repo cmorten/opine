@@ -1,33 +1,36 @@
-import application from "./application.ts";
-import req from "./request.ts";
-import response from "./response.ts";
-import Route from "./router/route.ts";
-import Router from "./router/index.ts";
-import { mixin } from "./utils.ts";
+import { app as application } from "./application.ts";
+import { request } from "./request.ts";
+import { Response as ServerResponse } from "./response.ts";
+import { mergeDescriptors } from "./utils/mergeDescriptors.ts";
 import { EventEmitter, getEvent } from "../deps.ts";
 import {
-  Application,
+  Opine,
   Request,
   Response,
   NextFunction,
-} from "../typings/index.d.ts";
+} from "./types.ts";
 
-const res: Response = Object.create(response.prototype);
+/**
+ * Response prototype.
+ * 
+ * @public
+ */
+export const response: Response = Object.create(ServerResponse.prototype);
 
 /**
  * Create an Opine application.
  * 
- * @return {Application}
+ * @return {Opine}
  * @public
  */
-function opine(): Application {
-  const app: any = (
+export function opine(): Opine {
+  const app = ((
     req: Request,
     res: Response,
     next: NextFunction,
   ): void => {
     app.handle(req, res, next);
-  };
+  }) as Opine;
 
   const eventEmitter = EventEmitter.create<[string, any]>();
 
@@ -35,13 +38,15 @@ function opine(): Application {
   app.on = (event: string, arg: any) =>
     eventEmitter.$attach(getEvent(event), arg);
 
-  mixin(app, application);
+  mergeDescriptors(app, application, false);
 
-  app.request = Object.create(req, {
+  // expose the prototype that will get set on requests
+  app.request = Object.create(request, {
     app: { configurable: true, enumerable: true, writable: true, value: app },
   });
 
-  app.response = Object.create(res, {
+  // expose the prototype that will get set on responses
+  app.response = Object.create(response, {
     app: { configurable: true, enumerable: true, writable: true, value: app },
   });
 
@@ -49,15 +54,3 @@ function opine(): Application {
 
   return app;
 }
-
-export default opine;
-
-export {
-  application,
-  req as request,
-  res as response,
-  Route,
-  Router,
-};
-
-export { default as query } from "./middleware/query.ts";

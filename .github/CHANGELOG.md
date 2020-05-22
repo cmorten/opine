@@ -1,5 +1,18 @@
 # ChangeLog
 
+## [0.0.4] - 22-05-2020
+
+### Added
+
+- Etags and fresh checking.
+- `request.get()` and `request.fresh`.
+
+### Updated
+
+- Types overhaul.
+- Large refactor of import / export strategy.
+- Bug fixes.
+
 ## [0.0.3] - 21-05-2020
 
 ### Added

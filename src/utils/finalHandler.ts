@@ -1,5 +1,5 @@
 /*!
- * Modified final handler for Deno.
+ * Adapted final handler for Deno.
  *
  * REF: https://raw.githubusercontent.com/pillarjs/finalHandler/master/index.js
  *
@@ -8,12 +8,13 @@
  * MIT Licensed
  */
 
-import { parseUrl } from "./utils.ts";
-import { STATUS_TEXT, Status } from "https://deno.land/std/http/http_status.ts";
-import { Request, Response, NextFunction } from "../typings/index.d.ts";
+import { parseUrl } from "./url.ts";
+import { escapeHtml } from "./escapeHtml.ts";
+import { STATUS_TEXT, Status } from "../../deps.ts";
+import { Request, Response, NextFunction } from "../types.ts";
 
-var DOUBLE_SPACE_REGEXP = /\x20{2}/g;
-var NEWLINE_REGEXP = /\n/g;
+const DOUBLE_SPACE_REGEXP = /\x20{2}/g;
+const NEWLINE_REGEXP = /\n/g;
 
 /**
  * Create a minimal HTML document.
@@ -22,7 +23,7 @@ var NEWLINE_REGEXP = /\n/g;
  * @private
  */
 function createHtmlDocument(message: string): string {
-  var body = message
+  const body = escapeHtml(message)
     .replace(NEWLINE_REGEXP, "<br>")
     .replace(DOUBLE_SPACE_REGEXP, " &nbsp;");
 
@@ -50,11 +51,11 @@ function createHtmlDocument(message: string): string {
  * @return {Function}
  * @public
  */
-function finalHandler(req: Request, res: Response): NextFunction {
+export function finalHandler(req: Request, res: Response): NextFunction {
   return function (err?: any) {
-    var headers;
-    var msg;
-    var status;
+    let headers;
+    let msg;
+    let status;
 
     // unhandled error
     if (err) {
@@ -94,11 +95,11 @@ function getErrorHeaders(err?: any): any {
     return undefined;
   }
 
-  var headers = Object.create(null);
-  var keys = Object.keys(err.headers);
+  const headers = Object.create(null);
+  const keys = Object.keys(err.headers);
 
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
     headers[key] = err.headers[key];
   }
 
@@ -168,7 +169,7 @@ function getResourceName(req: Request): string {
  * @private
  */
 function getResponseStatusCode(res: Response): number {
-  var status = res.status;
+  let status = res.status;
 
   // default status code to 500 if outside valid range
   if (typeof status !== "number" || status < 400 || status > 599) {
@@ -224,11 +225,9 @@ function setHeaders(res: Response, headers: any): void {
     return;
   }
 
-  var keys = Object.keys(headers);
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
+  const keys = Object.keys(headers);
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
     res.set(key, headers[key]);
   }
 }
-
-export default finalHandler;
