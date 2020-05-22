@@ -20,12 +20,12 @@ app.listen({ port: 3000 });
 
 The `app` object has methods for
 
-- Routing HTTP requests; see for example, [app.METHOD](#).
-- Configuring middleware; see [app.route](#).
+- Routing HTTP requests; see for example, [app.METHOD](#appmethodpath-callback--callback-).
+- Configuring middleware; see [app.route](#approutepath).
 
-It also has settings (properties) that affect how the application behaves; for more information, see [Application settings](#).
+It also has settings (properties) that affect how the application behaves; for more information, see [Application settings](#application-settings).
 
-> The Opine application object can be referred from the [request object](#) and the [response object](#) as `req.app`, and `res.app`, respectively.
+> The Opine application object can be referred from the request object and the response object as `req.app`, and `res.app`, respectively.
 
 ### Properties
 
@@ -41,9 +41,9 @@ console.dir(app.locals.email);
 // => 'me@myapp.com'
 ```
 
-Once set, the value of `app.locals` properties persist throughout the life of the application, in contrast with [res.locals](#) properties that are valid only for the lifetime of the request.
+Once set, the value of `app.locals` properties persist throughout the life of the application, in contrast with `res.locals` properties that are valid only for the lifetime of the request.
 
-Local variables are available in middleware via `req.app.locals` (see [req.app](#)).
+Local variables are available in middleware via `req.app.locals` (see `req.app`).
 
 ```ts
 app.locals.title = "My App";
@@ -70,7 +70,7 @@ admin.get("/", function (req, res) {
 app.use("/admin", admin); // mount the sub app
 ```
 
-It is similar to the [baseUrl](#) property of the `req` object, except `req.baseUrl` returns the matched URL path, instead of the matched patterns.
+It is similar to the `baseUrl` property of the `req` object, except `req.baseUrl` returns the matched URL path, instead of the matched patterns.
 
 If a sub-app is mounted on multiple path patterns, `app.mountpath` returns the list of patterns it is mounted on, as shown in the following example.
 
@@ -124,7 +124,7 @@ app.use("/admin", admin);
 
 #### app.all(path, callback [, callback ...])</h3>
 
-This method is like the standard [app.METHOD()](#) methods, except it matches all HTTP verbs.
+This method is like the standard [app.METHOD()](#appmethodpath-callback--callback-) methods, except it matches all HTTP verbs.
 
 ##### Arguments
 
@@ -292,7 +292,7 @@ app.delete("/", function (req, res) {
 
 #### app.disable(name)
 
-Sets the Boolean setting `name` to `false`, where `name` is one of the properties from the [app settings table](#). Calling `app.set('foo', false)` for a Boolean property is the same as calling `app.disable('foo')`.
+Sets the Boolean setting `name` to `false`, where `name` is one of the properties from the [app settings table](#application-settings). Calling `app.set('foo', false)` for a Boolean property is the same as calling `app.disable('foo')`.
 
 For example:
 
@@ -304,7 +304,7 @@ app.get("x-powered-by");
 
 #### app.disabled(name)
 
-Returns `true` if the Boolean setting `name` is disabled (`false`), where `name` is one of the properties from the [app settings table](#).
+Returns `true` if the Boolean setting `name` is disabled (`false`), where `name` is one of the properties from the [app settings table](#application-settings).
 
 ```ts
 app.disabled("x-powered-by");
@@ -317,7 +317,7 @@ app.disabled("x-powered-by");
 
 #### app.enable(name)
 
-Sets the Boolean setting `name` to `true`, where `name` is one of the properties from the [app settings table](#). Calling `app.set('foo', true)` for a Boolean property is the same as calling `app.enable('foo')`.
+Sets the Boolean setting `name` to `true`, where `name` is one of the properties from the [app settings table](#application-settings). Calling `app.set('foo', true)` for a Boolean property is the same as calling `app.enable('foo')`.
 
 ```ts
 app.enable("x-powered-by");
@@ -327,7 +327,7 @@ app.get("x-powered-by");
 
 #### app.enabled(name)
 
-Returns `true` if the setting `name` is enabled (`true`), where `name` is one of the properties from the [app settings table](#).
+Returns `true` if the setting `name` is enabled (`true`), where `name` is one of the properties from the [app settings table](#application-settings).
 
 ```ts
 app.enabled("x-powered-by");
@@ -340,7 +340,7 @@ app.enabled("x-powered-by");
 
 #### app.get(name)
 
-Returns the value of `name` app setting, where `name` is one of the strings in the [app settings table](#). For example:
+Returns the value of `name` app setting, where `name` is one of the strings in the [app settings table](#application-settings). For example:
 
 ```ts
 app.get("title");
@@ -478,7 +478,7 @@ app.listen({ port: 3000, certFile: "myCertFile", keyFile: "myKeyFile" });
 
 #### app.METHOD(path, callback [, callback ...]
 
-Routes an HTTP request, where METHOD is the HTTP method of the request, such as GET, PUT, POST, and so on, in lowercase. Thus, the actual methods are `app.get()`, `app.post()`, `app.put()`, and so on. See [Routing methods](#) below for the complete list.
+Routes an HTTP request, where METHOD is the HTTP method of the request, such as GET, PUT, POST, and so on, in lowercase. Thus, the actual methods are `app.get()`, `app.post()`, `app.put()`, and so on. See [Routing methods](#routing-methods) below for the complete list.
 
 ##### Arguments
 
@@ -575,7 +575,7 @@ To route methods that translate to invalid JavaScript variable names, use the br
 
 > The `app.get()` function is automatically called for the HTTP `HEAD` method in addition to the `GET` method if `app.head()` was not called for the path before `app.get()`.
 
-The method, `app.all()`, is not derived from any HTTP method and loads middleware at the specified path for _all_ HTTP request methods. For more information, see [app.all](#).
+The method, `app.all()`, is not derived from any HTTP method and loads middleware at the specified path for _all_ HTTP request methods. For more information, see [app.all](#appallpath-callback--callback-).
 
 #### app.path()
 
@@ -594,7 +594,7 @@ console.dir(blog.path()); // '/blog'
 console.dir(blogAdmin.path()); // '/blog/admin'
 ```
 
-The behavior of this method can become very complicated in complex cases of mounted apps: it is usually better to use [req.baseUrl](#) to get the canonical path of the app.
+The behavior of this method can become very complicated in complex cases of mounted apps: it is usually better to use `req.baseUrl` to get the canonical path of the app.
 
 #### app.post(path, callback [, callback ...])
 
@@ -765,11 +765,11 @@ app
 
 #### app.set(name, value)
 
-Assigns setting `name` to `value`. You may store any value that you want, but certain names can be used to configure the behavior of the server. These special names are listed in the [app settings table](#).
+Assigns setting `name` to `value`. You may store any value that you want, but certain names can be used to configure the behavior of the server. These special names are listed in the [app settings table](#application-settings).
 
 Calling `app.set('foo', true)` for a Boolean property is the same as calling `app.enable('foo')`. Similarly, calling `app.set('foo', false)` for a Boolean property is the same as calling `app.disable('foo')`.
 
-Retrieve the value of a setting with [`app.get()`](#).
+Retrieve the value of a setting with [`app.get()`](#appgetname).
 
 ```ts
 app.set("title", "My Site");
@@ -808,7 +808,7 @@ Note that sub-apps will:
   </td>
   <td>Varied</td>
   <td markdown="1">
-    Set the ETag response header. For possible values, see the <a href="#">`etag` options table</a>
+    Set the ETag response header. For possible values, see the <a href="#options-for-etag-setting">`etag` options table</a>
 
 <a href="http://en.wikipedia.org/wiki/HTTP_ETag">More about the HTTP ETag header</a>.
 
