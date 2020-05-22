@@ -342,7 +342,7 @@ export interface Response<ResBody = any>
    *
    *     res.end();
    *     res.end('<p>some html</p>');
-   *     res.status(404).end('Sorry, cant find that');
+   *     res.setStatus(404).end('Sorry, cant find that');
    */
   end(): Promise<void>;
   end(body: DenoResponseBody): Promise<void>;
@@ -357,8 +357,8 @@ export interface Response<ResBody = any>
    *
    *     res.json(null);
    *     res.json({ user: 'tj' });
-   *     res.status(500).json('oh noes!');
-   *     res.status(404).json(`I don't have that`);
+   *     res.setStatus(500).json('oh noes!');
+   *     res.setStatus(404).json(`I don't have that`);
    */
   json: Send<ResBody, this>;
 
@@ -369,8 +369,8 @@ export interface Response<ResBody = any>
    *
    *     res.jsonp(null);
    *     res.jsonp({ user: 'tj' });
-   *     res.status(500).jsonp('oh noes!');
-   *     res.status(404).jsonp(`I don't have that`);
+   *     res.setStatus(500).jsonp('oh noes!');
+   *     res.setStatus(404).jsonp(`I don't have that`);
    */
   jsonp: Send<ResBody, this>;
 
@@ -422,7 +422,7 @@ export interface Response<ResBody = any>
    *     res.send(new Buffer('wahoo'));
    *     res.send({ some: 'json' });
    *     res.send('<p>some html</p>');
-   *     res.status(404).send('Sorry, cant find that');
+   *     res.setStatus(404).send('Sorry, cant find that');
    */
   send: Send<ResBody, this>;
 
@@ -458,10 +458,10 @@ export interface Response<ResBody = any>
    *
    * Examples:
    *
-   *    res.sendStatus(200); // equivalent to res.status(200).send('OK')
-   *    res.sendStatus(403); // equivalent to res.status(403).send('Forbidden')
-   *    res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
-   *    res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')
+   *    res.sendStatus(200); // equivalent to res.setStatus(200).send('OK')
+   *    res.sendStatus(403); // equivalent to res.setStatus(403).send('Forbidden')
+   *    res.sendStatus(404); // equivalent to res.setStatus(404).send('Not Found')
+   *    res.sendStatus(500); // equivalent to res.setStatus(500).send('Internal Server Error')
    */
   sendStatus(code: Status): this;
 

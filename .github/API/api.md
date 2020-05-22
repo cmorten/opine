@@ -6,3 +6,6 @@ Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 
 - [opine()](./opine.md)
 - [Application](./application.md)
+- [Request](./request.md)
+- [Response](./response.md)
+- [Router](./router.md)

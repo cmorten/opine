@@ -1150,7 +1150,7 @@ app.use(function (req, res, next) {
 A router is valid middleware.
 
 ```ts
-const router = opine.Router();
+const router = Router();
 
 router.get("/", function (req, res, next) {
   next();
@@ -1179,15 +1179,15 @@ app.use(subApp);
         You can specify more than one middleware function at the same mount path.
 
 ```ts
-const r1 = opine.Router();
+const r1 = Router();
 
-r1.get('/', function (req, res, next) {
+r1.get("/", function (req, res, next) {
   next();
 });
 
-const r2 = opine.Router();
+const r2 = Router();
 
-r2.get('/', function (req, res, next) {
+r2.get("/", function (req, res, next) {
   next();
 });
 
@@ -1204,19 +1204,19 @@ app.use(r1, r2);
       then you <em>must</em> specify the mount path.
 
 ```ts
-const r1 = opine.Router();
+const r1 = Router();
 
-r1.get('/', function (req, res, next) {
+r1.get("/", function (req, res, next) {
   next();
 });
 
-const r2 = opine.Router();
+const r2 = Router();
 
-r2.get('/', function (req, res, next) {
+r2.get("/", function (req, res, next) {
   next();
 });
 
-app.use('/', [r1, r2]);
+app.use("/", [r1, r2]);
 ```
 
   </td>
@@ -1227,19 +1227,29 @@ app.use('/', [r1, r2]);
         You can combine all the above ways of mounting middleware.
 
 ```ts
-function mw1(req, res, next) { next(); }
-function mw2(req, res, next) { next(); }
+function mw1(req, res, next) {
+  next();
+}
+function mw2(req, res, next) {
+  next();
+}
 
-const r1 = opine.Router();
-r1.get('/', function (req, res, next) { next(); });
+const r1 = Router();
+r1.get("/", function (req, res, next) {
+  next();
+});
 
-const r2 = opine.Router();
+const r2 = Router();
 
-r2.get('/', function (req, res, next) { next(); });
+r2.get("/", function (req, res, next) {
+  next();
+});
 
 const subApp = opine();
 
-subApp.get('/', function (req, res, next) { next(); });
+subApp.get("/", function (req, res, next) {
+  next();
+});
 
 app.use(mw1, [mw2, r1, r2], subApp);
 ```
