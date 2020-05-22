@@ -38,10 +38,14 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [API Docs](https://asos-craigmorten.github.io/opine/) - created using [typedoc](https://typedoc.org/).
+- [Opine API Docs](https://asos-craigmorten.github.io/opine/) - Created using [typedoc](https://typedoc.org/).
 - [License](./LICENSE.md)
-- [ExpressJS License](./EXPRESS_LICENSE.md)
 - [Changelog](./.github/CHANGELOG.md)
+
+Please also refer to:
+
+- [ExpressJS API Docs](https://expressjs.com/en/4x/api.html) - While Opine API documentation is under development, you may find it useful to fallback to using the Express docs which has a very similar API.
+- [ExpressJS License](./EXPRESS_LICENSE.md)
 
 ## Philosophy
 
@@ -49,7 +53,7 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
 
 Opine will aim to achieve these same great goals, focussing first on developing robust tooling and features before moving onto accelerating performance and becoming super lightweight.
 
-As time passes, Opine's goals may naturally diverge from ExpressJS and this will be reflected here.
+As time passes, Opine's goals may naturally diverge from [ExpressJS](https://github.com/expressjs/express) and this will be reflected here.
 
 ## Examples
 
