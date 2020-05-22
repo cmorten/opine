@@ -18,11 +18,11 @@ const router = Router(options);
 
 The optional `options` parameter specifies the behavior of the router.
 
-| Property        | Description                                                                                                                                           | Default                                                                     | Availability |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------ |
-| `caseSensitive` | Enable case sensitivity.                                                                                                                              | Disabled by default, treating "/Foo" and "/foo" as the same.                |              |
-| `mergeParams`   | Preserve the `req.params` values from the parent router. If the parent and the child have conflicting param names, the child's value take precedence. | `false`                                                                     | 4.5.0+       |
-| `strict`        | Enable strict routing.                                                                                                                                | Disabled by default, "/foo" and "/foo/" are treated the same by the router. | &nbsp;       |
+| Property        | Description                                                                                                                                           | Default                                                                     |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `caseSensitive` | Enable case sensitivity.                                                                                                                              | Disabled by default, treating "/Foo" and "/foo" as the same.                |
+| `mergeParams`   | Preserve the `req.params` values from the parent router. If the parent and the child have conflicting param names, the child's value take precedence. | `false`                                                                     |
+| `strict`        | Enable strict routing.                                                                                                                                | Disabled by default, "/foo" and "/foo/" are treated the same by the router. |
 
 Once you've created a router object, you can add middleware and HTTP method routes (such as `get`, `put`, `post`, and so on) to it just like an application. For example:
 
