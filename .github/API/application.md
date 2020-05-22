@@ -545,39 +545,29 @@ For examples, see <a href="#path-examples">Path examples</a>.
 
 Opine supports the following routing methods corresponding to the HTTP methods of the same names:
 
-<table style="border: 0px; background: none; width: 100%;">
-<tr>
-<td style="background: none; border: 0px; width: 33%;" markdown="1">
-<li>`checkout`</li>
-<li>`copy`</li>
-<li>`delete`</li>
-<li>`get`</li>
-<li>`head`</li>
-<li>`lock`</li>
-<li>`merge`</li>
-<li>`mkactivity`</li>
-</td>
-<td style="background: none; border: 0px; width: 33%;" markdown="1">
-<li>`mkcol`</li>
-<li>`move`</li>
-<li>`m-search`</li>
-<li>`notify`</li>
-<li>`options`</li>
-<li>`patch`</li>
-<li>`post`</li>
-</td>
-<td style="background: none; border: 0px; width: 33%;" markdown="1">
-<li>`purge`</li>
-<li>`put`</li>
-<li>`report`</li>
-<li>`search`</li>
-<li>`subscribe`</li>
-<li>`trace`</li>
-<li>`unlock`</li>
-<li>`unsubscribe`</li>
-</td>
-</tr>
-</table>
+- `checkout`
+- `copy`
+- `delete`
+- `get`
+- `head`
+- `lock`
+- `merge`
+- `mkactivity`
+- `mkcol`
+- `move`
+- `m-search`
+- `notify`
+- `options`
+- `patch`
+- `post`
+- `purge`
+- `put`
+- `report`
+- `search`
+- `subscribe`
+- `trace`
+- `unlock`
+- `unsubscribe`
 
 The API documentation has explicit entries only for the most popular HTTP methods `app.get()`, `app.post()`, `app.put()`, and `app.delete()`. However, the other methods listed above work in exactly the same way.
 
@@ -1060,30 +1050,50 @@ The following table provides some simple examples of valid `path` values for mou
       <td>Path</td>
       <td>
       This will match paths starting with `/abcd`:
-        <pre><code class="language-js">app.use('/abcd', function (req, res, next) {
+
+```ts
+app.use("/abcd", function (req, res, next) {
   next();
-});</code></pre>
+});
+```
+
   </td>
     </tr>
     <tr>
       <td>Path Pattern</td>
       <td>
       This will match paths starting with `/abcd` and `/abd`:
-        <pre><code class="language-js">app.use('/abc?d', function (req, res, next) {
-  next();
-});</code></pre>This will match paths starting with `/abcd`, `/abbcd`, `/abbbbbcd`, and so on:
 
-<pre><code class="language-js">app.use('/ab+cd', function (req, res, next) {
+```ts
+app.use("/abc?d", function (req, res, next) {
   next();
-});</code></pre>This will match paths starting with `/abcd`, `/abxcd`, `/abFOOcd`, `/abbArcd`, and so on:
+});
+```
 
-<pre><code class="language-js">app.use('/ab\*cd', function (req, res, next) {
-  next();
-});</code></pre>This will match paths starting with `/ad` and `/abcd`:
+This will match paths starting with `/abcd`, `/abbcd`, `/abbbbbcd`, and so on:
 
-<pre><code class="language-js">app.use('/a(bc)?d', function (req, res, next) {
+```ts
+app.use("/ab+cd", function (req, res, next) {
   next();
-});</code></pre>
+});
+```
+
+This will match paths starting with `/abcd`, `/abxcd`, `/abFOOcd`, `/abbArcd`, and so on:
+
+```ts
+app.use("/ab*cd", function (req, res, next) {
+  next();
+});
+```
+
+This will match paths starting with `/ad` and `/abcd`:
+
+```ts
+app.use("/a(bc)?d", function (req, res, next) {
+  next();
+});
+```
+
   </td>
     </tr>
     <tr>
@@ -1091,18 +1101,25 @@ The following table provides some simple examples of valid `path` values for mou
       <td>
       This will match paths starting with `/abc` and `/xyz`:
 
-<pre><code class="language-js">app.use(/\/abc|\/xyz/, function (req, res, next) {
+```ts
+app.use(/\/abc|\/xyz/, function (req, res, next) {
   next();
-});</code></pre>
+});
+```
+
   </td>
     </tr>
     <tr>
       <td>Array</td>
       <td>
       This will match paths starting with `/abcd`, `/xyza`, `/lmn`, and `/pqr`:
-        <pre><code class="language-js">app.use(['/abcd', '/xyza', /\/lmn|\/pqr/], function (req, res, next) {
+
+```ts
+app.use(["/abcd", "/xyza", /\/lmn|\/pqr/], function (req, res, next) {
   next();
-});</code></pre>
+});
+```
+
   </td>
     </tr>
   </tbody>
@@ -1123,41 +1140,61 @@ The following table provides some simple examples of middleware functions that c
     <tr>
       <td>Single Middleware</td>
       <td>You can define and mount a middleware function locally.
-<pre><code class="language-js">app.use(function (req, res, next) {
+
+```ts
+app.use(function (req, res, next) {
   next();
 });
-</code></pre>
+```
+
 A router is valid middleware.
-<pre><code class="language-js">const router = opine.Router();
-router.get('/', function (req, res, next) {
+
+```ts
+const router = opine.Router();
+
+router.get("/", function (req, res, next) {
   next();
 });
+
 app.use(router);
-</code></pre>
+```
+
 An Opine app is valid middleware.
-<pre><code class="language-js">const subApp = opine();
-subApp.get('/', function (req, res, next) {
+
+```ts
+const subApp = opine();
+
+subApp.get("/", function (req, res, next) {
   next();
 });
+
 app.use(subApp);
-</code></pre>
-      </td>
+```
+
+  </td>
     </tr>
     <tr>
       <td>Series of Middleware</td>
       <td>
         You can specify more than one middleware function at the same mount path.
-<pre><code class="language-js">const r1 = opine.Router();
+
+```ts
+const r1 = opine.Router();
+
 r1.get('/', function (req, res, next) {
   next();
 });
+
 const r2 = opine.Router();
+
 r2.get('/', function (req, res, next) {
   next();
 });
+
 app.use(r1, r2);
-</code></pre>
-      </td>
+```
+
+  </td>
     </tr>
     <tr>
       <td>Array</td>
@@ -1165,32 +1202,48 @@ app.use(r1, r2);
       Use an array to group middleware logically.
       If you pass an array of middleware as the first or only middleware parameters,
       then you <em>must</em> specify the mount path.
-<pre><code class="language-js">const r1 = opine.Router();
+
+```ts
+const r1 = opine.Router();
+
 r1.get('/', function (req, res, next) {
   next();
 });
+
 const r2 = opine.Router();
+
 r2.get('/', function (req, res, next) {
   next();
 });
+
 app.use('/', [r1, r2]);
-</code></pre>
-      </td>
+```
+
+  </td>
     </tr>
     <tr>
       <td>Combination</td>
       <td>
         You can combine all the above ways of mounting middleware.
-<pre><code class="language-js">function mw1(req, res, next) { next(); }
+
+```ts
+function mw1(req, res, next) { next(); }
 function mw2(req, res, next) { next(); }
+
 const r1 = opine.Router();
-const r2 = opine.Router();
-const subApp = opine();
 r1.get('/', function (req, res, next) { next(); });
+
+const r2 = opine.Router();
+
 r2.get('/', function (req, res, next) { next(); });
+
+const subApp = opine();
+
 subApp.get('/', function (req, res, next) { next(); });
+
 app.use(mw1, [mw2, r1, r2], subApp);
-</code></pre>
+```
+
 </td>
 </tr>
 
