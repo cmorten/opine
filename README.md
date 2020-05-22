@@ -55,14 +55,14 @@ As time passes, Opine's goals may naturally diverge from ExpressJS and this will
 
 To view the examples, clone the Opine repo:
 
-```console
+```bash
 git clone git://github.com/asos-craigmorten/opine.git --depth 1
 cd opine
 ```
 
 Then run whichever example you want:
 
-```console
+```bash
 deno --allow-net --allow-read ./example/hello-world/index.ts
 ```
 
@@ -74,24 +74,24 @@ deno --allow-net --allow-read ./example/hello-world/index.ts
 
 ### Run Tests
 
-```console
+```bash
 make test
 ```
 
 ### Run Benchmarks
 
-```console
+```bash
 make benchmark
 ```
 
 ### Format Code
 
-```console
+```bash
 make fmt
 ```
 
 ### Generate Documentation
 
-```console
+```bash
 make typedoc
 ```
