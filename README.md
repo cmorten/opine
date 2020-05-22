@@ -38,13 +38,13 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine API Docs](./.github/API/api.md)
+- [Opine API Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md)
 - [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
-- [License](./LICENSE.md)
-- [ExpressJS License](./EXPRESS_LICENSE.md)
-- [Changelog](./.github/CHANGELOG.md)
+- [License](https://github.com/asos-craigmorten/opine/blob/master/LICENSE.md)
+- [ExpressJS License](https://github.com/asos-craigmorten/opine/blob/master/EXPRESS_LICENSE.md)
+- [Changelog](https://github.com/asos-craigmorten/opine/blob/master/.github/CHANGELOG.md)
 
 ## Philosophy
 
@@ -71,7 +71,7 @@ deno --allow-net --allow-read ./example/hello-world/index.ts
 
 ## Contributing
 
-[Contributing guide](./.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/asos-craigmorten/opine/blob/master/.github/CONTRIBUTING.md)
 
 ## Developing
 
