@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.2.0] - 23-05-2020
+
+### Added
+
+- `json`, `text`, `raw` and `urlencoded` body parser middlewares.
+
 ## [0.1.0] - 23-05-2020
 
 ### Added

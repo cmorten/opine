@@ -1,4 +1,4 @@
-.PHONY: benchmark build ci doc fmt fmt-check update-lock test typedoc
+.PHONY: benchmark build ci doc fmt fmt-check precommit test typedoc update-lock
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
@@ -28,11 +28,18 @@ fmt:
 fmt-check:
 	@deno fmt --check
 
-update-lock:
-	@deno run --lock=lock.json --lock-write --reload mod.ts
+precommit:
+	@make typedoc
+	@make fmt
+	@make fmt
+	@make fmt
+	@make update-lock
 
 test:
 	@deno test --allow-net ./test/units/
 
 typedoc:
 	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals --includes ./typings/index.d.ts ./src
+
+update-lock:
+	@deno run --lock=lock.json --lock-write --reload mod.ts

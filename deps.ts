@@ -28,4 +28,8 @@ export {
   Evt as EventEmitter,
   to as getEvent,
 } from "https://deno.land/x/evt@v1.6.8/mod.ts";
-export { contentType } from "https://deno.land/x/media_types@v2.3.1/mod.ts";
+export {
+  contentType,
+  charset,
+} from "https://deno.land/x/media_types@v2.3.1/mod.ts";
+export { createHttpError } from "https://deno.land/x/oak@v4.0.0/httpError.ts";

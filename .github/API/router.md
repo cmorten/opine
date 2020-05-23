@@ -10,7 +10,7 @@ A router behaves like middleware itself, so you can use it as an argument to [ap
 
 Opine has a top-level named function export `Router()` that creates a new `router` object.
 
-```js
+```ts
 import { Router } from "https://deno.land/x/opine@master/mod.ts";
 
 const router = Router(options);

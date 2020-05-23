@@ -9,4 +9,8 @@ export { request } from "./src/request.ts";
 export { Router } from "./src/router/index.ts";
 export { Route } from "./src/router/route.ts";
 export { query } from "./src/middleware/query.ts";
+export { json } from "./src/middleware/bodyParser/json.ts";
+export { raw } from "./src/middleware/bodyParser/raw.ts";
+export { text } from "./src/middleware/bodyParser/text.ts";
+export { urlencoded } from "./src/middleware/bodyParser/urlencoded.ts";
 export { VERSION, DENO_SUPPORTED_VERSION } from "./version.ts";
