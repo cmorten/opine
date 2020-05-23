@@ -1,22 +1,7 @@
 import { Request, ParsedURL } from "../types.ts";
 
-/**
- * Extracts the url from a Deno request object and
- * returns a full URL string with memoization.
- * 
- * @param {Request} req 
- * @returns {string}
- * @public
- */
-export const getFullUrl = (req: Request): string => {
-  const proto = req.proto ? `${req.proto.split("/")[0].toLowerCase()}://` : "";
-  const host = req.headers.get("host") || "";
-  const path = req.url;
-
-  req._url = `${proto}${host}${path}`;
-
-  return req._url;
-};
+const fillInProtocol = "http://";
+const fillInProtohost = "deno.land";
 
 /**
  * Extracts the url from a Deno request object and
@@ -37,8 +22,43 @@ export const parseUrl = (req: Request): ParsedURL => {
     return parsedUrl;
   }
 
-  req._parsedUrl = new URL(getFullUrl(req));
-  req._parsedUrl._raw = url;
+  // Start with attempting to parse the `url` itself.
+  try {
+    req._parsedUrl = new URL(url) as any;
+  } catch (_) {
+    // Attempt to parse non-FQDN url.
 
-  return req._parsedUrl;
+    req.headers = req.headers || new Headers();
+    const host = req.headers.get("host");
+    const protocol = req.proto
+      ? `${req.proto.split("/")[0].toLowerCase()}://`
+      : "";
+
+    // TODO: Currently lacking a good `url.parse` method
+    req._url = `${protocol || fillInProtocol}${host || fillInProtohost}${url}`;
+
+    let newParsedUrl: URL = {} as any;
+    try {
+      newParsedUrl = new URL(req._url) as any;
+    } catch (_) {}
+
+    req._parsedUrl = {
+      protocol: protocol ? newParsedUrl.protocol : null,
+      hostname: host ? newParsedUrl.hostname : null,
+      host: host ? newParsedUrl.host : null,
+      href: host ? newParsedUrl.href : null,
+      origin: host ? newParsedUrl.origin : null,
+      port: host ? newParsedUrl.port : null,
+      hash: newParsedUrl.hash || null,
+      search: newParsedUrl.search || null,
+      searchParams: newParsedUrl.searchParams || null,
+      pathname: url ? newParsedUrl.pathname || url || null : null,
+      password: newParsedUrl.password || null,
+      username: newParsedUrl.username || null,
+    } as any;
+  }
+
+  (req._parsedUrl as any)._raw = url;
+
+  return req._parsedUrl as ParsedURL;
 };

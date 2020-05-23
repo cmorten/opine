@@ -32,7 +32,7 @@ update-lock:
 	@deno run --lock=lock.json --lock-write --reload mod.ts
 
 test:
-	@deno test ./test
+	@deno test --allow-net ./test/units/
 
 typedoc:
 	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals --includes ./typings/index.d.ts ./src

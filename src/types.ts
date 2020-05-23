@@ -190,6 +190,8 @@ export interface IRoute {
   trace: IRouterHandler<this>;
   unlock: IRouterHandler<this>;
   unsubscribe: IRouterHandler<this>;
+
+  dispatch: RequestHandler;
 }
 
 export interface Router extends IRouter {}

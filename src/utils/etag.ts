@@ -25,6 +25,11 @@ function entitytag(entity: any): string {
     return '"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk"';
   }
 
+  if (entity instanceof Uint8Array) {
+    const decoder = new TextDecoder();
+    entity = decoder.decode(entity);
+  }
+
   // compute hash of entity
   const sha1 = new Sha1();
   sha1.update(entity);

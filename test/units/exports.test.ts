@@ -1,5 +1,6 @@
-import { opine, Router, application, request, response } from "../mod.ts";
-import { describe, it, expect } from "../deps.ts";
+import { opine, Router, application, request, response } from "../../mod.ts";
+import { expect } from "../deps.ts";
+import { describe, it } from "../utils.ts";
 
 describe("exports", () => {
   it("should expose Router", () => {

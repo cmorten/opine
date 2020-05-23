@@ -1,5 +1,17 @@
 # ChangeLog
 
+## [0.1.0] - 23-05-2020
+
+### Added
+
+- Test coverage for majority of code that doesn't require supertest.
+
+### Updated
+
+- fix: bug in router when next is undefined
+- fix: bug in url parser for FQDN and other combinations
+- fix: bug in etag generator not decoding Uint8Arrays
+
 ## [0.0.4] - 22-05-2020
 
 ### Added

@@ -50,7 +50,7 @@ export const Router: any = function (options: any = {}): any {
 Router.handle = function handle(
   req: Request,
   res: Response,
-  out: NextFunction,
+  out: NextFunction = () => {},
 ) {
   const self: any = this;
 

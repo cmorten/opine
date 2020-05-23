@@ -1,5 +1,6 @@
-import opine from "../mod.ts";
-import { describe, it, expect } from "../deps.ts";
+import opine from "../../mod.ts";
+import { expect } from "../deps.ts";
+import { describe, it } from "../utils.ts";
 
 const mockSetting = "test-setting";
 const mockValue = Symbol("test-value");
