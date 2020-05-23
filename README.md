@@ -2,7 +2,7 @@
 
 Fast, minimalist web framework for [Deno](https://deno.land/) ported from [ExpressJS](https://github.com/expressjs/express).
 
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
+![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 
 ```ts
 import opine from "https://deno.land/x/opine@master/mod.ts";
