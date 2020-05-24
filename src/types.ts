@@ -205,7 +205,11 @@ export interface RequestRanges {}
 
 export type Errback = (err: Error) => void;
 
-export type ParsedURL = URL & { _raw?: string };
+export type ParsedURL = URL & {
+  path?: string | null;
+  query?: string | null;
+  _raw?: string | null;
+};
 
 /**
  * @param P  For most requests, this should be `ParamsDictionary`, but if you're
@@ -272,6 +276,7 @@ export interface Request<
 
   _url?: string;
   _parsedUrl?: ParsedURL;
+  _parsedOriginalUrl?: ParsedURL;
 }
 
 export interface MediaType {

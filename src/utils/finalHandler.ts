@@ -8,10 +8,10 @@
  * MIT Licensed
  */
 
-import { parseUrl } from "./url.ts";
+import { parseUrl } from "./parseUrl.ts";
 import { escapeHtml } from "./escapeHtml.ts";
 import { STATUS_TEXT, Status } from "../../deps.ts";
-import { Request, Response, NextFunction } from "../types.ts";
+import { Request, Response, NextFunction, ParsedURL } from "../types.ts";
 
 const DOUBLE_SPACE_REGEXP = /\x20{2}/g;
 const NEWLINE_REGEXP = /\n/g;
@@ -155,7 +155,7 @@ function getErrorStatusCode(err: any): number | undefined {
  */
 function getResourceName(req: Request): string {
   try {
-    return parseUrl(req).pathname;
+    return (parseUrl(req) as ParsedURL).pathname;
   } catch (e) {
     return "resource";
   }

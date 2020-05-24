@@ -1,3 +1,10 @@
+/**
+ * Run this example using:
+ * 
+ *    deno run --allow-net --allow-read ./examples/downloads/index.ts
+ * 
+ */
+
 import { dirname, join } from "https://deno.land/std/path/mod.ts";
 import opine from "../../mod.ts";
 

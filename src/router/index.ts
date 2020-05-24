@@ -2,7 +2,7 @@ import { setImmediate } from "../../deps.ts";
 import { Route } from "./route.ts";
 import { Layer } from "./layer.ts";
 import { merge } from "../utils/merge.ts";
-import { parseUrl } from "../utils/url.ts";
+import { parseUrl } from "../utils/parseUrl.ts";
 import { methods } from "../methods.ts";
 import {
   Response,
@@ -121,7 +121,7 @@ Router.handle = function handle(
     }
 
     // get pathname of request
-    let path = parseUrl(req).pathname;
+    let path = (parseUrl(req) || {}).pathname;
 
     if (path == null) {
       return done(layerError);

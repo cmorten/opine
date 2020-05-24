@@ -1,5 +1,5 @@
-import { parseUrl } from "../utils/url.ts";
-import { Request, Response, NextFunction } from "../types.ts";
+import { parseUrl } from "../utils/parseUrl.ts";
+import { Request, Response, NextFunction, ParsedURL } from "../types.ts";
 
 /**
  * Exposes a query object containing the querystring
@@ -11,7 +11,8 @@ import { Request, Response, NextFunction } from "../types.ts";
 export const query = function () {
   return function opineQuery(req: Request, _res: Response, next: NextFunction) {
     if (!req.query) {
-      req.query = Object.fromEntries(parseUrl(req).searchParams);
+      const url = parseUrl(req) as ParsedURL;
+      req.query = Object.fromEntries(url.searchParams);
     }
 
     next();
