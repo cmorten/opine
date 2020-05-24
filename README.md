@@ -28,6 +28,12 @@ You can then import Opine straight into your project:
 import opine from "https://deno.land/x/opine@master/mod.ts";
 ```
 
+> **Note:** Opine currently only supports Deno v1.0.0 due to some breaking typescript changes introduced in Deno v1.0.1 ([#5704](https://github.com/denoland/deno/issues/5704)). Fixes will be implemented soon, but in the meantime you can set the version of Deno (once installed) using the `upgrade` command:
+>
+> ```bash
+> deno upgrade --version 1.0.0
+> ```
+
 ## Features
 
 - Robust routing
