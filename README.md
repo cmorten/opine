@@ -22,10 +22,34 @@ This is a [Deno](https://deno.land/) module available to import direct from this
 
 Before importing, [download and install Deno](https://deno.land/#installation).
 
+> Please refer to the [version file](./version.ts) for a list of Deno versions supported by Opine.
+>
+> Once Deno is installed, you can easily switch between Deno versions using the `upgrade` command:
+>
+> ```bash
+> # Upgrade to latest version:
+> deno upgrade
+>
+> # Upgrade to a specific version, replace `<version>` with the version you want (e.g. `1.0.0`):
+> deno upgrade --version <version>
+> ```
+
 You can then import Opine straight into your project:
 
 ```ts
 import opine from "https://deno.land/x/opine@master/mod.ts";
+```
+
+If you want to use a specific version of Opine, just modify the import url to contain the version:
+
+```ts
+import opine from "https://deno.land/x/opine@0.3.0/mod.ts";
+```
+
+Or if you want to use a specific commit of Opine, just modify the import url to contain the commit hash:
+
+```ts
+import opine from "https://deno.land/x/opine@c21f8d6/mod.ts";
 ```
 
 ## Features
@@ -38,7 +62,7 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine API Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md)
+- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md) - usually the best place when getting started ✨
 - [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
@@ -56,18 +80,28 @@ As time passes, Opine's goals may naturally diverge from [ExpressJS](https://git
 
 ## Examples
 
-To view the examples, clone the Opine repo:
+To run the [examples](./examples), you have two choices:
 
-```bash
-git clone git://github.com/asos-craigmorten/opine.git --depth 1
-cd opine
-```
+1. Run the example using Deno directly from GitHub, for example:
 
-Then run whichever example you want:
+    ```bash
+    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts
+    ```
 
-```bash
-deno --allow-net --allow-read ./example/hello-world/index.ts
-```
+1. Clone the Opine repo locally:
+
+    ```bash
+    git clone git://github.com/asos-craigmorten/opine.git --depth 1
+    cd opine
+    ```
+
+    Then run the example you want:
+
+    ```bash
+    deno --allow-net --allow-read ./example/hello-world/index.ts
+    ```
+
+All the [examples](./examples) contain example commands in their READMEs to help get you started for either of the above methods.
 
 ## Contributing
 

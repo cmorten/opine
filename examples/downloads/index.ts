@@ -3,6 +3,12 @@
  * 
  *    deno run --allow-net --allow-read ./examples/downloads/index.ts
  * 
+ *    if have the repo cloned locally OR
+ * 
+ *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/downloads/index.ts
+ * 
+ *    if you don't!
+ * 
  */
 
 import { dirname, join } from "https://deno.land/std/path/mod.ts";
@@ -21,12 +27,15 @@ app.get("/", function (_req, res) {
   );
 });
 
+// If we used `/files/*`, the name could be accessed via req.params[0]
+// but here we have named it using :file
 app.get("/files/:file(*)", async function (req, res, next) {
   const filePath = join(__dirname, "files", req.params.file);
 
   try {
     await res.download(filePath);
   } catch (err) {
+    // file for download not found
     if (err instanceof Deno.errors.NotFound) {
       res.status = 404;
       res.send("Cant find that file, sorry!");
@@ -34,6 +43,7 @@ app.get("/files/:file(*)", async function (req, res, next) {
       return;
     }
 
+    // non-404 error
     return next(err);
   }
 });

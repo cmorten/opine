@@ -1,3 +1,16 @@
+/**
+ * Run this example using:
+ * 
+ *    deno run --allow-net ./examples/multi-router/index.ts
+ * 
+ *    if have the repo cloned locally OR
+ * 
+ *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/multi-router/index.ts
+ * 
+ *    if you don't!
+ * 
+ */
+
 import opine from "../../mod.ts";
 import APIv1 from "./controllers/APIv1.ts";
 import APIv2 from "./controllers/APIv2.ts";
