@@ -33,10 +33,15 @@ jobs:
       - name: Run Benchmark Tests
         run: echo "::set-output name=results::$(make benchmark)"
         id: run_benchmark_tests
-      - name: Post Results To PR
-        uses: unsplash/comment-on-pr@master
-        with:
-          msg: ${{join(steps.run_benchmark_tests.outputs.*, '\n')}}
-          check_for_duplicate_msg: false
+      - name: Add Comment To PR
         env:
+          BODY: ${{ steps.run_benchmark_tests.outputs.results }}
+          URL: ${{ github.event.issue.comments_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl \
+            -X POST \
+            ${URL} \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            --data "{ \"body\": \"${BODY}\" }"
