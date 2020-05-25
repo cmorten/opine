@@ -36,11 +36,11 @@ export function serveStatic(root: string, options: any = {}): Handler {
   // default redirect
   const redirect = options.redirect !== false;
 
-  // headers listener
-  const setHeaders = options.setHeaders;
+  // before hook
+  const before = options.before;
 
-  if (setHeaders && typeof setHeaders !== "function") {
-    throw new TypeError("option setHeaders must be function");
+  if (before && typeof before !== "function") {
+    throw new TypeError("option before must be function");
   }
 
   // setup options for send
@@ -94,8 +94,8 @@ export function serveStatic(root: string, options: any = {}): Handler {
       return onDirectory(res, req, next, forwardError, fullPath);
     }
 
-    if (setHeaders) {
-      setHeaders(res, path, stat);
+    if (before) {
+      await before(res, path, stat);
     }
 
     try {
