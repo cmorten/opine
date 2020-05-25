@@ -1,0 +1,5 @@
+future: true
+encoding: "UTF-8"
+include:
+  - "_*_.html"
+  - "_*_.*.html"
