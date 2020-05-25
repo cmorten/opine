@@ -32,7 +32,7 @@ jobs:
           deno-version: ${{ matrix.deno-version }}
       - name: Run Benchmark Tests
         run: |
-          results=$(echo "**Benchmark Results**:"\\n"$(make benchmark)")
+          results=$(echo "**Benchmark Results**:$(make benchmark)")
           results="${results//'%'/'%25'}"
           results="${results//$'\n'/'%0A'}"
           results="${results//$'\r'/'%0D'}"
