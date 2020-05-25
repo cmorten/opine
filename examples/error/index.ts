@@ -12,7 +12,7 @@
  */
 
 import opine from "../../mod.ts";
-import { Response, Request, NextFunction } from "../../typings/index.d.ts";
+import { Response, Request, NextFunction } from "../../src/types.ts";
 
 const app = opine();
 
@@ -22,18 +22,18 @@ const app = opine();
 // middleware, you may have several of them,
 // in different orders etc.
 
-function error(err: any, _req: Request, res: Response, _next: NextFunction) {
+function error(err: any, req: Request, res: Response, next: NextFunction) {
   // respond with custom 500 "Internal Server Error".
   res.setStatus(500);
   res.json({ message: "Internal Server Error", error: err.message });
 }
 
-app.get("/", function (_req, _res) {
+app.get("/", function (req, res) {
   // Caught and passed down to the errorHandler middleware
   throw new Error("sync error");
 });
 
-app.get("/next", function (_req, _res, next) {
+app.get("/next", function (req, res, next) {
   // We can also pass exceptions to next()
   // The reason for setTimeout() is to show that
   // next() can be called inside an async operation,

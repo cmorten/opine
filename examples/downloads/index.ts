@@ -17,7 +17,7 @@ import opine from "../../mod.ts";
 const app = opine();
 const __dirname = dirname(import.meta.url);
 
-app.get("/", function (_req, res) {
+app.get("/", function (req, res) {
   res.send(
     "<ul>" +
       '<li>Download <a href="/files/amazing.txt">amazing.txt</a>.</li>' +

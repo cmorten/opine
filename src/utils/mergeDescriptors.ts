@@ -25,14 +25,6 @@ export function mergeDescriptors(
   src: object,
   redefine: boolean = true,
 ) {
-  if (!dest) {
-    throw new TypeError("argument dest is required");
-  }
-
-  if (!src) {
-    throw new TypeError("argument src is required");
-  }
-
   Object.getOwnPropertyNames(src).forEach(
     function forEachOwnPropertyName(name) {
       if (!redefine && hasOwnProperty.call(dest, name)) {

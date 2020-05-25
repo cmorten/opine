@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.0.2]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Deno ${{ matrix.deno-version }}
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - name: Run Benchmark Tests
+        run: echo "::set-output name=benchmark_results::$(make benchmark)\n"
+        id: run_benchmark_tests
+      - name: Post Results To PR
+        uses: unsplash/comment-on-pr@master
+        with:
+          msg: ${{ steps.run_benchmark_tests.outputs.benchmark_results }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

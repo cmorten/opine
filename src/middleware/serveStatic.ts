@@ -30,14 +30,6 @@ import { createHttpError } from "https://deno.land/x/oak@v4.0.0/httpError.ts";
  */
 // TODO: header options - see https://github.com/expressjs/serve-static/#options
 export function serveStatic(root: string, options: any = {}): Handler {
-  if (!root) {
-    throw new TypeError("root path required");
-  }
-
-  if (typeof root !== "string") {
-    throw new TypeError("root path must be a string");
-  }
-
   // fall-though
   const fallthrough = options.fallthrough !== false;
 
@@ -72,7 +64,6 @@ export function serveStatic(root: string, options: any = {}): Handler {
       // method not allowed
       res.status = 405;
       res.set("Allow", "GET, HEAD");
-      res.set("Content-Length", "0");
       res.end();
       return;
     }
@@ -100,7 +91,7 @@ export function serveStatic(root: string, options: any = {}): Handler {
     }
 
     if (stat.isDirectory) {
-      onDirectory(res, req, next, forwardError);
+      return onDirectory(res, req, next, forwardError, fullPath);
     }
 
     if (setHeaders) {
@@ -185,8 +176,9 @@ function createRedirectDirectoryListener(): Function {
     req: Request,
     next: NextFunction,
     forwardError: boolean,
+    fullPath: string,
   ): void {
-    if (this.hasTrailingSlash()) {
+    if (fullPath.endsWith("/")) {
       if (forwardError) {
         return next(createHttpError(404));
       }
@@ -211,7 +203,6 @@ function createRedirectDirectoryListener(): Function {
 
     // send redirect response
     res.status = 301;
-    res.set("Content-Type", "text/html; charset=UTF-8");
     res.set("Content-Security-Policy", "default-src 'none'");
     res.set("X-Content-Type-Options", "nosniff");
     res.set("Location", loc);

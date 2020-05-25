@@ -81,8 +81,21 @@ app.listen({ port: <span class="hljs-number">3333</span> });</code></pre>
 				</a>
 				<p>This is a <a href="https://deno.land/">Deno</a> module available to import direct from this repo and via the <a href="https://deno.land/x">Deno Registry</a>.</p>
 				<p>Before importing, <a href="https://deno.land/#installation">download and install Deno</a>.</p>
+				<blockquote>
+					<p>Please refer to the <a href="./version.ts">version file</a> for a list of Deno versions supported by Opine.</p>
+					<p>Once Deno is installed, you can easily switch between Deno versions using the <code>upgrade</code> command:</p>
+					<pre><code class="language-bash"><span class="hljs-comment"># Upgrade to latest version:</span>
+deno upgrade
+
+<span class="hljs-comment"># Upgrade to a specific version, replace `&lt;version&gt;` with the version you want (e.g. `1.0.0`):</span>
+deno upgrade --version &lt;version&gt;</code></pre>
+				</blockquote>
 				<p>You can then import Opine straight into your project:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@master/mod.ts"</span>;</code></pre>
+				<p>If you want to use a specific version of Opine, just modify the import url to contain the version:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@0.3.0/mod.ts"</span>;</code></pre>
+				<p>Or if you want to use a specific commit of Opine, just modify the import url to contain the commit hash:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@c21f8d6/mod.ts"</span>;</code></pre>
 				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
 					<h2>Features</h2>
 				</a>
@@ -96,7 +109,7 @@ app.listen({ port: <span class="hljs-number">3333</span> });</code></pre>
 					<h2>Docs</h2>
 				</a>
 				<ul>
-					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md">Opine API Docs</a></li>
+					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md">Opine Docs</a> - usually the best place when getting started ✨</li>
 					<li><a href="https://asos-craigmorten.github.io/opine/">Opine Type Docs</a></li>
 					<li><a href="https://doc.deno.land/https/deno.land/x/opine/mod.ts">Opine Deno Docs</a></li>
 					<li><a href="https://expressjs.com/en/4x/api.html">ExpressJS API Docs</a></li>
@@ -113,11 +126,19 @@ app.listen({ port: <span class="hljs-number">3333</span> });</code></pre>
 				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
 					<h2>Examples</h2>
 				</a>
-				<p>To view the examples, clone the Opine repo:</p>
-				<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> git://github.com/asos-craigmorten/opine.git --depth 1
-<span class="hljs-built_in">cd</span> opine</code></pre>
-				<p>Then run whichever example you want:</p>
-				<pre><code class="language-bash">deno --allow-net --allow-read ./example/hello-world/index.ts</code></pre>
+				<p>To run the <a href="./examples">examples</a>, you have two choices:</p>
+				<ol>
+					<li><p>Run the example using Deno directly from GitHub, for example:</p>
+						<pre><code class="language-bash"> deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts</code></pre>
+					</li>
+					<li><p>Clone the Opine repo locally:</p>
+						<pre><code class="language-bash"> git <span class="hljs-built_in">clone</span> git://github.com/asos-craigmorten/opine.git --depth 1
+ <span class="hljs-built_in">cd</span> opine</code></pre>
+						<p> Then run the example you want:</p>
+						<pre><code class="language-bash"> deno --allow-net --allow-read ./example/hello-world/index.ts</code></pre>
+					</li>
+				</ol>
+				<p>All the <a href="./examples">examples</a> contain example commands in their READMEs to help get you started for either of the above methods.</p>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
@@ -186,6 +207,9 @@ app.listen({ port: <span class="hljs-number">3333</span> });</code></pre>
 						<a href="modules/_middleware_query_.html">&quot;middleware/query&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_middleware_servestatic_.html">&quot;middleware/serve<wbr>Static&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_opine_.html">&quot;opine&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -237,13 +261,13 @@ app.listen({ port: <span class="hljs-number">3333</span> });</code></pre>
 						<a href="modules/_utils_mergedescriptors_.html">&quot;utils/merge<wbr>Descriptors&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_utils_parseurl_.html">&quot;utils/parse<wbr>Url&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_utils_pathtoregex_.html">&quot;utils/path<wbr>ToRegex&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_utils_stringify_.html">&quot;utils/stringify&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_utils_url_.html">&quot;utils/url&quot;</a>
 					</li>
 				</ul>
 			</nav>

@@ -34,14 +34,6 @@ export const request: Request = Object.create(ServerRequest.prototype);
  * @public
  */
 request.get = function get(name: string): string {
-  if (!name) {
-    throw new TypeError("name argument is required to req.get");
-  }
-
-  if (typeof name !== "string") {
-    throw new TypeError("name must be a string to req.get");
-  }
-
   const lc = name.toLowerCase();
 
   switch (lc) {

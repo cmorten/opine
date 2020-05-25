@@ -20,7 +20,6 @@ export {
   extname,
   fromFileUrl,
   basename,
-  resolve,
   join,
 } from "https://deno.land/std@0.52.0/path/mod.ts";
 export { setImmediate } from "https://deno.land/std@0.52.0/node/timers.ts";
