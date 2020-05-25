@@ -101,7 +101,7 @@ To run the [examples](./examples), you have two choices:
     deno --allow-net --allow-read ./example/hello-world/index.ts
     ```
 
-All the examples contain helper commands in the comments of their `index.ts` file to help get you started for either method.
+All the [examples](./examples) contain example commands in their READMEs to help get you started for either of the above methods.
 
 ## Contributing
 

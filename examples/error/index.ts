@@ -1,11 +1,11 @@
 /**
  * Run this example using:
  * 
- *    deno run --allow-net --allow-read ./examples/error/index.ts
+ *    deno run --allow-net ./examples/error/index.ts
  * 
- *    if have the repo cloned locally OR
+ *    if have the repo cloned locally _OR_
  * 
- *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/error/index.ts
+ *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/error/index.ts
  * 
  *    if you don't!
  * 
@@ -21,12 +21,15 @@ const app = opine();
 // otherwise they behave exactly like regular
 // middleware, you may have several of them,
 // in different orders etc.
+
 function error(err: any, _req: Request, res: Response, _next: NextFunction) {
+  // respond with custom 500 "Internal Server Error".
   res.setStatus(500);
   res.json({ message: "Internal Server Error", error: err.message });
 }
 
 app.get("/", function (_req, _res) {
+  // Caught and passed down to the errorHandler middleware
   throw new Error("sync error");
 });
 
