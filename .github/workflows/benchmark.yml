@@ -34,9 +34,8 @@ jobs:
         run: echo "::set-output name=results::$(echo \"Benchmark Results:\n\n$(make benchmark)\")"
         id: run_benchmark_tests
       - name: Post Results To PR
-        uses: unsplash/comment-on-pr@master
+        uses: mshick/add-pr-comment@v1
         with:
-          msg: ${{ steps.run_benchmark_tests.outputs.results }}
-          check_for_duplicate_msg: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{ steps.run_benchmark_tests.outputs.results }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-repeats: false

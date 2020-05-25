@@ -12,6 +12,6 @@ wrk 'http://localhost:3333/?foo[bar]=baz' \
   -c 50 \
   -t 8 \
   | grep 'Requests/sec' \
-  | awk '{ print "  " $2 }'
+  | awk '{ print "  " $2 " RPS" }'
 
 kill $pid
