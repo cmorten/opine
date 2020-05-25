@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [0.3.0] - 25-05-2020
+
+### Updated
+
+- `evt@1.6.8` -> `evt@1.7.9` to pull in bug fixes for Deno `>=1.0.1`.
+- Moved from `DENO_SUPPORTED_VERSION` to `DENO_SUPPORTED_VERSIONS`
+- Added `v1.0.1` and `v1.0.2` to CI workflow.
+
 ## [0.2.0] - 23-05-2020
 
 ### Added
