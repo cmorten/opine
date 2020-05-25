@@ -68,7 +68,7 @@ The following table describes the properties of the optional `options` object.
 
 ## serveStatic(root, [options])
 
-This is a built-in middleware function in Express. It serves static files and is based on [serve-static](https://github.com/expressjs/serve-static/).
+This is a built-in middleware function in Opine. It serves static files and is based on [serve-static](https://github.com/expressjs/serve-static/).
 
 > NOTE: For best results, use a reverse proxy cache to improve performance of serving static assets.
 
