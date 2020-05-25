@@ -1,5 +1,16 @@
 # ChangeLog
 
+## [0.4.0] - 25-05-2020
+
+- feat: initial serveStatic implementation
+- refactor: clean up examples.
+- refactor: remove superfluous verification code given we have static type checking.
+- refactor: remove unnecessary file path parsing.
+- chore: remove old typings folder.
+- chore: update docs, lockfile etc.
+- feat: add benchmarks github action
+- feat: update API docs with `serveStatic` middleware section
+
 ## [0.3.0] - 25-05-2020
 
 ### Updated
