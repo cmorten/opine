@@ -4,9 +4,9 @@
 
 ### Updated
 
-- `evt@1.6.8` -> `evt@1.7.9` to pull in bug fixes for Deno `>=1.0.1`.
+- `evt@1.6.8` -> `evt@1.7.9` to pull in bug fixes for Deno `>=1.0.2`.
 - Moved from `DENO_SUPPORTED_VERSION` to `DENO_SUPPORTED_VERSIONS`
-- Added `v1.0.1` and `v1.0.2` to CI workflow.
+- Added support for `v1.0.2` to CI workflow (`v1.0.1` not supported due to breaking error in Deno).
 
 ## [0.2.0] - 23-05-2020
 
