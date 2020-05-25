@@ -19,7 +19,12 @@ jobs:
         run: |
           curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
           sudo apt-get update
-          sudo apt-get install wrk
+          sudo apt-get install build-essential libssl-dev git -y
+          git clone https://github.com/wg/wrk.git wrk
+          cd wrk
+          make
+          # move the executable to somewhere in your PATH, ex:
+          sudo cp wrk /usr/local/bin
       - uses: actions/checkout@v2
       - name: Use Deno ${{ matrix.deno-version }}
         uses: denolib/setup-deno@master
