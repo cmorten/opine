@@ -1,14 +1,14 @@
 import { Router } from "../../../mod.ts";
-import { Router as IRouter } from "../../../typings/index.d.ts";
+import { IRouter, Response, Request } from "../../../src/types.ts";
 
-const APIv2: IRouter = Router();
+const APIv1: IRouter = Router();
 
-APIv2.get("/", function (_req, res) {
+APIv1.get("/", function (req: Request, res: Response) {
   res.send("Hello from APIv2 root route.");
 });
 
-APIv2.get("/users", function (_req, res) {
+APIv1.get("/users", function (req: Request, res: Response) {
   res.send("List of APIv2 users.");
 });
 
-export default APIv2;
+export default APIv1;

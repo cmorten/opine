@@ -399,16 +399,6 @@ export class Response implements DenoResponse {
    * @public
    */
   async sendFile(path: string): Promise<this> {
-    path = path.startsWith("file:") ? fromFileUrl(path) : path;
-
-    if (!path) {
-      throw new TypeError("path argument is required to res.sendFile");
-    }
-
-    if (typeof path !== "string") {
-      throw new TypeError("path must be a string to res.sendFile");
-    }
-
     const body = await Deno.readFile(path);
 
     const stats: Deno.FileInfo = await Deno.stat(path);

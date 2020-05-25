@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.0.2]
+
+    steps:
+      - name: Install wrk package
+        run: |
+          curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install build-essential libssl-dev git -y
+          git clone https://github.com/wg/wrk.git wrk
+          cd wrk
+          make
+          # move the executable to somewhere in your PATH, ex:
+          sudo cp wrk /usr/local/bin
+      - uses: actions/checkout@v2
+      - name: Use Deno ${{ matrix.deno-version }}
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - name: Run Benchmark Tests
+        run: |
+          results=$(echo "**Benchmark Results**:$(make benchmark)")
+          results="${results//'%'/'%25'}"
+          results="${results//$'\n'/'%0A'}"
+          results="${results//$'\r'/'%0D'}"
+          echo "::set-output name=results::$results"
+        id: run_benchmark_tests
+      - name: Post Results To PR
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: ${{ steps.run_benchmark_tests.outputs.results }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-repeats: false

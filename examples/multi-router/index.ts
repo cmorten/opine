@@ -20,7 +20,7 @@ const app = opine();
 app.use("/api/v1", APIv1);
 app.use("/api/v2", APIv2);
 
-app.get("/", function (_req, res) {
+app.get("/", function (req, res) {
   res.send("Hello from root route.");
 });
 
