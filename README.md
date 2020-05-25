@@ -44,7 +44,7 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine API Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md)
+- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md) - usually the best place when getting started ✨
 - [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
