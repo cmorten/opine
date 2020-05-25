@@ -16,7 +16,10 @@ jobs:
 
     steps:
       - name: Install wrk package
-        run: sudo apt-get install wrk
+        run: |
+          curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install wrk
       - uses: actions/checkout@v2
       - name: Use Deno ${{ matrix.deno-version }}
         uses: denolib/setup-deno@master
