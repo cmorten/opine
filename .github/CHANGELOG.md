@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.4.2] - 26-05-2020
+
+- fix: formatting bug.
+
 ## [0.4.1] - 26-05-2020
 
 - feat: allow Express-like `port` passing signature for `app.listen()`.

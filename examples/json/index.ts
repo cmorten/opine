@@ -33,4 +33,6 @@ app.post("/", function (req, res) {
 app.listen({ port: 3000 });
 console.log("Opine started on port 3000");
 console.log("Try a `POST /` with any JSON payload!");
-console.log(`curl -X POST http://localhost:3000/ -d '{"message": "Hello Deno!"}'`);
+console.log(
+  `curl -X POST http://localhost:3000/ -d '{"message": "Hello Deno!"}'`,
+);
