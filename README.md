@@ -13,7 +13,7 @@ app.use((req, res) => {
   res.send("Hello World");
 });
 
-app.listen({ port: 3333 });
+app.listen(3000);
 ```
 
 ## Installation

@@ -348,13 +348,17 @@ app.all = function all(path: PathParams): Application {
 /**
  * Listen for connections.
  *
- * @param {string|HTTPOptions|HTTPSOptions} options
+ * @param {number|string|HTTPOptions|HTTPSOptions} options
  * @returns {Server} Configured Deno server
  * @public
  */
 app.listen = function listen(
-  options: string | HTTPOptions | HTTPSOptions,
+  options: number | string | HTTPOptions | HTTPSOptions,
 ): Server {
+  if (typeof options === "number") {
+    options = `:${options}`;
+  }
+
   const isTlsOptions = typeof options !== "string" &&
     typeof (options as HTTPSOptions).certFile !== "undefined";
 

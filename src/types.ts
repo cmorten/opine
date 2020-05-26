@@ -624,6 +624,7 @@ export interface Application extends IRouter, Opine.Application {
    *
    * A Deno `Server` is returned.
    */
+  listen(port: number): Server;
   listen(addr: string): Server;
   listen(options: HTTPOptions): Server;
   listen(options: HTTPSOptions): Server;

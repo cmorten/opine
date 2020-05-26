@@ -11,7 +11,7 @@
  * 
  */
 
-import { dirname, join } from "https://deno.land/std/path/mod.ts";
+import { dirname, join } from "../../deps.ts";
 import { opine, serveStatic } from "../../mod.ts";
 
 const app = opine();
@@ -40,6 +40,11 @@ app.use("/static", serveStatic(join(__dirname, "public")));
 // this will allow "GET /style.css" instead of "GET /css/style.css":
 app.use(serveStatic(join(__dirname, "public", "css")));
 
+// You can call listen the same as Express with just
+// a port: `app.listen(3000)`, or with any arguments
+// that the Deno `http.serve` methods accept. Namely
+// an address string, HttpOptions or HttpsOptions
+// objects.
 app.listen({ port: 3000 });
 
 console.log("listening on port 3000");

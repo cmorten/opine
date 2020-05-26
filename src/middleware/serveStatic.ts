@@ -10,7 +10,7 @@
  * MIT Licensed
  */
 
-import { join, fromFileUrl } from "../../deps.ts";
+import { join, fromFileUrl, createHttpError } from "../../deps.ts";
 import { escapeHtml } from "../utils/escapeHtml.ts";
 import { encodeUrl } from "../utils/encodeUrl.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
@@ -21,7 +21,7 @@ import {
   Handler,
   ParsedURL,
 } from "../types.ts";
-import { createHttpError } from "https://deno.land/x/oak@v4.0.0/httpError.ts";
+
 /**
  * @param {string} root
  * @param {object} [options]
