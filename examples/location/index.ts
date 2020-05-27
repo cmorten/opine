@@ -19,6 +19,11 @@ app.get("/home", function (req, res, next) {
   res.send("Hello Deno!");
 });
 
+// We set the Location header using `res.location()` and then
+// send the response with a 301.
+//
+// To learn more about the Location header, please refer to
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location
 app.get("/redirect", function (req, res, next) {
   res.location("/home").sendStatus(301);
 });
