@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [0.5.0] - 27-05-2020
+
+- fix: major bug with the body parsers. `req.body` is protected in Deno and thus cannot overwrite. We _could_ look to use a proxy like method in the future. For now we populate `req.parsedBody` instead.
+- docs: update middlewares and request docs to cover the use of `req.parsedBody`.
+- test: update body-parser unit tests.
+- docs: update examples to include `urlencoded`, `text` and `raw` body parser examples.
+- docs: add `README.md` to the examples + improve each examples' `README.md`.
+
 ## [0.4.2] - 26-05-2020
 
 - fix: formatting bug.

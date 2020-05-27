@@ -1,5 +1,9 @@
 # error
 
+An example of how to use and write error middleware.
+
+## How to run this example
+
 Run this example using:
 
 ```bash

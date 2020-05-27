@@ -15,14 +15,14 @@ import { opine, json } from "../../mod.ts";
 
 const app = opine();
 
-// Use the JSON body parser to set `req.body` to the
+// Use the JSON body parser to set `req.parsedBody` to the
 // passed JSON payload.
 app.use(json());
 
 // Receive `POST` requests to `/` and return the passed
 // JSON body.
 app.post("/", function (req, res) {
-  res.send(req.body);
+  res.send(req.parsedBody);
 });
 
 // You can call listen the same as Express with just
@@ -34,5 +34,5 @@ app.listen({ port: 3000 });
 console.log("Opine started on port 3000");
 console.log("Try a `POST /` with any JSON payload!");
 console.log(
-  `curl -X POST http://localhost:3000/ -d '{"message": "Hello Deno!"}'`,
+  `curl -X POST http://localhost:3000/ -d '{"message": "Hello Deno!"}' -H "Content-Type: application/json"`,
 );
