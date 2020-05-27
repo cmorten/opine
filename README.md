@@ -2,7 +2,8 @@
 
 Fast, minimalist web framework for [Deno](https://deno.land/) ported from [ExpressJS](https://github.com/expressjs/express).
 
-![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
+![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![](https://img.shields.io/github/issues/asos-craigmorten/opine)](https://img.shields.io/github/issues/asos-craigmorten/opine) 
+![](https://img.shields.io/github/stars/asos-craigmorten/opine) ![](https://img.shields.io/github/forks/asos-craigmorten/opine) ![](https://img.shields.io/github/license/asos-craigmorten/opine) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity) [![HitCount](http://hits.dwyl.com/asos-craigmorten/opine.svg)](http://hits.dwyl.com/asos-craigmorten/opine)
 
 ```ts
 import opine from "https://deno.land/x/opine@master/mod.ts";
