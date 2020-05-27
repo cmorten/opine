@@ -1,4 +1,8 @@
-# hello-world
+# json
+
+An example of how to use the `json` body-parser middleware in your Opine applications.
+
+## How to run this example
 
 Run this example using:
 

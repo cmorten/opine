@@ -1,5 +1,9 @@
 # hello-world
 
+A basic example of how to configure and start an Opine server.
+
+## How to run this example
+
 Run this example using:
 
 ```bash

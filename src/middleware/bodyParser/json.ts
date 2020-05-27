@@ -80,14 +80,14 @@ export function json(options: any = {}) {
     res: Response,
     next: NextFunction,
   ) {
-    if ((req as any)._body) {
+    if ((req as any)._isParsed) {
       next();
       return;
     }
 
     // skip requests without bodies
-    if (!req.body || !hasBody(req)) {
-      (req as any).body = {};
+    if (!hasBody(req)) {
+      req.parsedBody = {};
       next();
       return;
     }

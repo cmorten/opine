@@ -1,4 +1,8 @@
-# downloads
+# static-files
+
+An example of how to serve static files to a user using the Opine `serveStatic` middleware.
+
+## How to run this example
 
 Run this example using:
 

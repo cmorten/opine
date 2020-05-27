@@ -8,9 +8,9 @@ This is a built-in middleware function in Opine. It parses incoming requests wit
 
 Returns middleware that only parses JSON and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body. It does not yet support automatic inflation of `gzip` nor `deflate` encodings.
 
-A new `body` object containing the parsed data is populated on the `request` object after the middleware (i.e. `req.body`), or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred.
+A new `parsedBody` object containing the parsed data is populated on the `request` object after the middleware (i.e. `req.parsedBody`), or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. _Note:_ this is one way Opine differs from Express due to `req.body` being a protected property in Deno.
 
-> As `req.body`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
+> As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
 import { opine, json } from "https://deno.land/x/opine@master/mod.ts";
@@ -20,8 +20,8 @@ const app = opine();
 app.use(json()); // for parsing application/json
 
 app.post("/profile", function (req, res, next) {
-  console.log(req.body);
-  res.json(req.body);
+  console.log(req.parsedBody);
+  res.json(req.parsedBody);
 });
 ```
 
@@ -41,10 +41,9 @@ This is a built-in middleware function in Opine. It parses incoming request payl
 
 Returns middleware that parses all bodies as a `Buffer` and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body. It does not yet support automatic inflation of `gzip` nor `deflate` encodings.
 
-A new `body` `Buffer` containing the parsed data is populated on the `request` object after the middleware (i.e. `req.body`), or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error
-occurred.
+A new `parsedBody` `Buffer` containing the parsed data is populated on the `request` object after the middleware (i.e. `req.parsedBody`), or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. _Note:_ this is one way Opine differs from Express due to `req.body` being a protected property in Deno.
 
-> As `req.body`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.toString()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.body` is a `Buffer` before calling buffer methods is recommended.
+> As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.toString()` may fail in multiple ways, for example stacking multiple parsers `req.parsedBody` may be from a different parser. Testing that `req.parsedBody` is a `Buffer` before calling buffer methods is recommended.
 
 ```ts
 import { opine, raw } from "https://deno.land/x/opine@master/mod.ts";
@@ -54,8 +53,8 @@ const app = opine();
 app.use(raw()); // for parsing application/octet-stream
 
 app.post("/upload", function (req, res, next) {
-  console.log(req.body);
-  res.json(req.body);
+  console.log(req.parsedBody);
+  res.json(req.parsedBody);
 });
 ```
 
@@ -138,9 +137,9 @@ This is a built-in middleware function in Opine. It parses incoming request payl
 
 Returns middleware that parses all bodies as a string and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body. It does not yet support automatic inflation of `gzip` nor `deflate` encodings.
 
-A new `body` string containing the parsed data is populated on the `request` object after the middleware (i.e. `req.body`), or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred.
+A new `parsedBody` string containing the parsed data is populated on the `request` object after the middleware (i.e. `req.parsedBody`), or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. _Note:_ this is one way Opine differs from Express due to `req.body` being a protected property in Deno.
 
-> As `req.body`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.trim()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.body` is a string before calling string methods is recommended.
+> As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.trim()` may fail in multiple ways, for example stacking multiple parsers `req.parsedBody` may be from a different parser. Testing that `req.parsedBody` is a string before calling string methods is recommended.
 
 ```ts
 import { opine, text } from "https://deno.land/x/opine@master/mod.ts";
@@ -150,8 +149,8 @@ const app = opine();
 app.use(text()); // for parsing text/plain
 
 app.post("/logs", function (req, res, next) {
-  console.log(req.body);
-  res.json(req.body);
+  console.log(req.parsedBody);
+  res.json(req.parsedBody);
 });
 ```
 
@@ -169,9 +168,9 @@ This is a built-in middleware function in Opine. It parses incoming requests wit
 
 Returns middleware that only parses urlencoded bodies and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts only UTF-8 encoding of the body. It does not yet support automatic inflation of `gzip` nor `deflate` encodings.
 
-A new `body` object containing the parsed data is populated on the `request` object after the middleware (i.e. `req.body`), or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. This object will contain key-value pairs, where the value can be any type supported by the URLSearchParams API.
+A new `parsedBody` object containing the parsed data is populated on the `request` object after the middleware (i.e. `req.parsedBody`), or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. This object will contain key-value pairs, where the value can be any type supported by the URLSearchParams API. _Note:_ this is one way Opine differs from Express due to `req.body` being a protected property in Deno.
 
-> As `req.body`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
+> As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
 import { opine, urlencoded } from "https://deno.land/x/opine@master/mod.ts";
@@ -181,8 +180,8 @@ const app = opine();
 app.use(urlencoded()); // for parsing application/x-www-form-urlencoded
 
 app.post("/submit", function (req, res, next) {
-  console.log(req.body);
-  res.json(req.body);
+  console.log(req.parsedBody);
+  res.json(req.parsedBody);
 });
 ```
 

@@ -277,6 +277,8 @@ export interface Request<
   _url?: string;
   _parsedUrl?: ParsedURL;
   _parsedOriginalUrl?: ParsedURL;
+
+  parsedBody?: any;
 }
 
 export interface MediaType {

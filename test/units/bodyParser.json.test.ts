@@ -15,12 +15,12 @@ textHeaders.set("Content-Type", "text/plain");
 // easy port of Express tests.
 describe("bodyParser: json", () => {
   it("should handle requests without bodies", (done) => {
-    const req: any = {};
+    const req: any = { headers: jsonHeaders };
     const parser = json();
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual({});
+      expect(req.parsedBody).toEqual({});
       done();
     });
   });
@@ -34,7 +34,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual(mockJson);
+      expect(req.parsedBody).toEqual(mockJson);
       done();
     });
   });
@@ -48,7 +48,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual([mockJson]);
+      expect(req.parsedBody).toEqual([mockJson]);
       done();
     });
   });
@@ -66,7 +66,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual(mockJson);
+      expect(req.parsedBody).toEqual(mockJson);
       done();
     });
   });
@@ -84,6 +84,7 @@ describe("bodyParser: json", () => {
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
       expect(req.body).toEqual(mockBody);
+      expect(req.parsedBody).toBeUndefined();
       done();
     });
   });
