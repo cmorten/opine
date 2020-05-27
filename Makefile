@@ -34,8 +34,6 @@ lock:
 precommit:
 	@make typedoc
 	@make fmt
-	@make fmt
-	@make fmt
 	@make lock
 
 test:

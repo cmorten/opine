@@ -421,7 +421,7 @@ export interface Response<ResBody = any>
    *
    *      res.location('/login');
    */
-  // location(url: string): this;
+  location(url: string): this;
 
   /**
    * Send a response.

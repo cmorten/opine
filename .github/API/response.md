@@ -271,6 +271,14 @@ A `path` value of "back" has a special meaning, it refers to the URL specified i
 >
 > Browsers take the responsibility of deriving the intended URL from the current URL or the referring URL, and the URL specified in the `Location` header; and redirect the user accordingly.
 
+**Note:** If you wish to perform a redirect using `res.location()`, you will also need to manually send the request. This method only sets the `Location` header. To perform a redirect alongside this method use `res.sendStatus()`. For example:
+
+```ts
+app.get("/redirect", function (req, res, next) {
+  res.location("/home").sendStatus(301);
+});
+```
+
 #### res.send([body])
 
 Sends the HTTP response.

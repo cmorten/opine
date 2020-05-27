@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.5.1] - 27-05-2020
+
+- fix: missing location method type
+- feat: add res.location usage example
+- feat: update API docs pointer out use of res.location()
+
 ## [0.5.0] - 27-05-2020
 
 - fix: major bug with the body parsers. `req.body` is protected in Deno and thus cannot overwrite. We _could_ look to use a proxy like method in the future. For now we populate `req.parsedBody` instead.
