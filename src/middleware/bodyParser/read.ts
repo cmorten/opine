@@ -31,7 +31,7 @@ export async function read(
   options: any,
 ) {
   // flag as parsed
-  (req as any)._body = true;
+  (req as any)._isParsed = true;
 
   // read options
   const verify = options.verify;
@@ -65,7 +65,7 @@ export async function read(
 
   // parse
   try {
-    (req as any).body = parse(body);
+    req.parsedBody = parse(body);
   } catch (err) {
     next(createHttpError(400, err));
     return;

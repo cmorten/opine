@@ -15,12 +15,12 @@ textHeaders.set("Content-Type", "text/plain");
 // easy port of Express tests.
 describe("bodyParser: text", () => {
   it("should handle requests without bodies", (done) => {
-    const req: any = {};
+    const req: any = { headers: textHeaders };
     const parser = text();
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual("");
+      expect(req.parsedBody).toEqual("");
       done();
     });
   });
@@ -34,7 +34,7 @@ describe("bodyParser: text", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.body).toEqual(mockText);
+      expect(req.parsedBody).toEqual(mockText);
       done();
     });
   });
@@ -52,6 +52,7 @@ describe("bodyParser: text", () => {
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
       expect(req.body).toEqual(mockBody);
+      expect(req.parsedBody).toBeUndefined();
       done();
     });
   });
