@@ -20,6 +20,7 @@ import {
   PathParams,
   IRoute,
   Opine,
+  Router as IRouter,
 } from "../src/types.ts";
 
 const create = Object.create;
@@ -96,10 +97,10 @@ app.defaultConfiguration = function defaultConfiguration(): void {
  */
 app.lazyrouter = function lazyrouter(): void {
   if (!this._router) {
-    this._router = new Router({
+    this._router = new (Router as any)({
       caseSensitive: this.enabled("case sensitive routing"),
       strict: this.enabled("strict routing"),
-    });
+    }) as IRouter;
     // TODO: query parser
     this._router.use(query());
     this._router.use(init(this as Opine));
@@ -154,7 +155,7 @@ app.use = function use(...args: any[]): Application {
   this.lazyrouter();
   const router = this._router;
 
-  fns.forEach(function (this: Application, fn: any): void {
+  fns.forEach(function (this: Application, fn: any) {
     // non-opine app
     if (!fn || !fn.handle || !fn.set) {
       return router.use(path, fn);
@@ -347,7 +348,7 @@ app.all = function all(path: PathParams): Application {
   const args = slice.call(arguments, 1);
 
   for (let i = 0; i < methods.length; i++) {
-    route[methods[i]].apply(route, args);
+    (route as any)[methods[i]].apply(route, args);
   }
 
   return this;

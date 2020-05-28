@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.5.3] - 28-05-2020
+
+- fix: better types for `Router`.
+
 ## [0.5.2] - 28-05-2020
 
 - fix: only set `x-powered-by` header if it is enabled as a setting.

@@ -159,6 +159,29 @@ export interface IRouter extends RequestHandler {
   route(prefix: PathParams): IRoute;
 
   /**
+   * @private
+   */
+  handle: RequestHandler;
+
+  /**
+   * @private
+   */
+  process_params(
+    layer: any,
+    called: any,
+    req: Request,
+    res: Response,
+    done: NextFunction,
+  ): void;
+
+  params: any;
+  _params: any[];
+
+  caseSensitive: boolean;
+  mergeParams: boolean;
+  strict: boolean;
+
+  /**
    * Stack of configured routes
    */
   stack: any[];
@@ -652,7 +675,7 @@ export interface Application extends IRouter, Opine.Application {
   /**
    * Used to get all registered routes in Opine Application
    */
-  _router: any;
+  _router: Router;
 
   use: ApplicationRequestHandler<this>;
 
