@@ -183,6 +183,14 @@ await res.end();
 await res.setStatus(404).end();
 ```
 
+#### res.etag(data)
+
+Sets the response `ETag` HTTP header using the specified `data` parameter. The etag implementation used is determined by the [etag application setting](./application.md#application-settings).
+
+```ts
+res.etag(fileStat);
+```
+
 #### res.get(field)
 
 Returns the HTTP response header specified by `field`. The match is case-insensitive.
@@ -400,4 +408,12 @@ res.type("application/json");
 // => 'application/json'
 res.type("png");
 // => 'image/png'
+```
+
+#### res.unset(field)
+
+Remove the response's HTTP header `field`.
+
+```ts
+res.set("Content-Type");
 ```

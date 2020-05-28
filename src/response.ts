@@ -33,6 +33,7 @@ export class Response implements DenoResponse {
   req!: Request;
   locals!: any;
 
+  // TODO: Supporting arrays.
   /**
    * Append additional header `field` with value `val`.
    *
@@ -69,6 +70,7 @@ export class Response implements DenoResponse {
     return this;
   }
 
+  // TODO: back-compat support for Express signature.
   /**
    * Set a cookie. Sets the cookie path to "/" if not defined.
    *
@@ -91,6 +93,7 @@ export class Response implements DenoResponse {
     return this;
   }
 
+  // TODO: back-compat support for Express signature.
   /**
    * Clear a cookie.
    *
@@ -105,6 +108,7 @@ export class Response implements DenoResponse {
     return this;
   }
 
+  // TODO: back-compat support for Express signature. i.e. support options.
   /**
    * Transfer the file at the given `path` as an attachment.
    *
@@ -161,7 +165,7 @@ export class Response implements DenoResponse {
    * 
    * @param {string|Uint8Array|Deno.FileInfo} chunk 
    * @returns {Response} for chaining
-   * @publics
+   * @public
    */
   etag(chunk: string | Uint8Array | Deno.FileInfo): this {
     const etagFn = this.app.get("etag fn");
@@ -389,6 +393,15 @@ export class Response implements DenoResponse {
     return this;
   }
 
+  // TODO: back-compat support for Express signature. Specifically options
+  // parameter, but likely not callback. Should support:
+  //
+  // - abort handling
+  // - directory handling
+  // - error handling - see https://github.com/pillarjs/send/blob/master/index.js#L267
+  // - `options` - see https://github.com/pillarjs/send#sendreq-path-options
+  // - other headers: 'Accept-Ranges', 'Cache-Control', 'Content-Range'
+
   /**
    * Transfer the file at the given `path`.
    *
@@ -438,6 +451,8 @@ export class Response implements DenoResponse {
     return this.send(body);
   }
 
+  // TODO: back-compat support for Express signature.
+  // Namely objects and arrays.
   /**
    * Set header `field` to `value`, or pass
    * an object of header fields.

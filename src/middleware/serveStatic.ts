@@ -22,13 +22,18 @@ import {
   ParsedURL,
 } from "../types.ts";
 
+// TODO: header options, and various other error handling, see:
+// - notes in response.ts for `res.sendFile()`
+// - notes in response.ts for `res.download()`
+// - https://github.com/expressjs/serve-static/#options
 /**
+ * Serve static files.
+ * 
  * @param {string} root
  * @param {object} [options]
  * @return {Handler}
  * @public
  */
-// TODO: header options - see https://github.com/expressjs/serve-static/#options
 export function serveStatic(root: string, options: any = {}): Handler {
   // fall-though
   const fallthrough = options.fallthrough !== false;

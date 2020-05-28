@@ -46,6 +46,36 @@ request.get = function get(name: string): string {
   }
 };
 
+// TODO: req.accepts()
+
+// TODO: req.acceptsEncodings()
+
+// TODO: req.acceptsCharsets()
+
+// TODO: req.acceptsLanguages()
+
+// TODO: req.range()
+
+// TODO: req.param()
+
+// TODO: req.is()
+
+// TODO: req.protocol
+
+// TODO: req.secure
+
+// TODO: req.ip
+
+// TODO: req.ips
+
+// TODO: req.subdomains
+
+// TODO: req.path
+
+// TODO: req.hostname
+
+// TODO: req.host
+
 /**
  * Check if the request is fresh, aka
  * Last-Modified and/or the ETag
@@ -74,3 +104,7 @@ defineGetter(request, "fresh", function (this: Request): boolean {
 
   return false;
 });
+
+// TODO: req.stale
+
+// TODO: req.xhr

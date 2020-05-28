@@ -20,7 +20,7 @@ const setPrototypeOf = Object.setPrototypeOf;
  */
 export const init = function (app: Opine) {
   return function opineInit(req: Request, res: Response, next: NextFunction) {
-    res.set("X-Powered-By", "Opine");
+    if (app.enabled("x-powered-by")) res.set("X-Powered-By", "Opine");
 
     req.res = res;
     res.req = req;
