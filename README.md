@@ -110,8 +110,10 @@ All the [examples](./examples) contain example commands in their READMEs to help
 
 ---
 
+## License
+
 There are several third party modules that have been ported into this module. Each third party module has maintained it's license and copyrights. The only exception is for Express, from which this entire module has been ported, whose license and copyrights are available at [EXPRESS_LICENSE](./EXPRESS_LICENSE.md) in the root of this repository, and cover all files within the [source](./src) directory which not been explicitly licensed otherwise.
 
 All modules adapted into this module are licensed under the MIT License.
 
-All additional work is copyright (c) 2020 Craig Morten <craig.morten@asos.com> under the [MIT License](./LICENSE.md).
+Opine is licensed under the [MIT License](./LICENSE.md).
