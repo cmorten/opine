@@ -9,6 +9,7 @@ import {
   Request,
   NextFunction,
   Router as IRouter,
+  RouterConstructor,
 } from "../types.ts";
 
 const objectRegExp = /^\[object (\S+)\]$/;
@@ -21,7 +22,7 @@ const setPrototypeOf = Object.setPrototypeOf;
  * @return {Router} which is an callable function
  * @public
  */
-export const Router: IRouter = function (options: any = {}): any {
+export const Router: RouterConstructor = function (options: any = {}): any {
   function router(
     req: Request,
     res: Response,
@@ -39,7 +40,7 @@ export const Router: IRouter = function (options: any = {}): any {
   router.strict = options.strict;
   router.stack = [] as any[];
 
-  return router;
+  return router as IRouter;
 } as any;
 
 // TODO: Router.param

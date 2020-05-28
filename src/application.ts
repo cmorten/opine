@@ -97,10 +97,10 @@ app.defaultConfiguration = function defaultConfiguration(): void {
  */
 app.lazyrouter = function lazyrouter(): void {
   if (!this._router) {
-    this._router = new (Router as any)({
+    this._router = new Router({
       caseSensitive: this.enabled("case sensitive routing"),
       strict: this.enabled("strict routing"),
-    }) as IRouter;
+    });
     // TODO: query parser
     this._router.use(query());
     this._router.use(init(this as Opine));

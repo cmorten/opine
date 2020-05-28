@@ -24,8 +24,8 @@ describe("Router", function () {
 
     router.use("/foo", another);
     router.handle(
-      { url: "/foo/bar", method: "GET" },
-      { end: done },
+      { url: "/foo/bar", method: "GET" } as Request,
+      { end: done } as Response,
     );
   });
 
@@ -41,8 +41,8 @@ describe("Router", function () {
     router.use("/:foo", another);
 
     router.handle(
-      { url: "/test/route", method: "GET" },
-      { end: done },
+      { url: "/test/route", method: "GET" } as Request,
+      { end: done } as Response,
     );
   });
 
@@ -53,7 +53,7 @@ describe("Router", function () {
       done(new Error("'route.use' should not be called"));
     });
 
-    router.handle({ url: "", method: "GET" }, {}, done);
+    router.handle({ url: "", method: "GET" } as Request, {} as Response, done);
   });
 
   it("should handle missing URL", function (done) {
@@ -63,7 +63,7 @@ describe("Router", function () {
       throw new Error("'router.use' should not be called");
     });
 
-    router.handle({ method: "GET" }, {}, done);
+    router.handle({ method: "GET" } as Request, {} as Response, done);
   });
 
   it("should not stack overflow with many registered routes", function (done) {
@@ -81,8 +81,8 @@ describe("Router", function () {
     });
 
     router.handle(
-      { url: "/", method: "GET" },
-      { end: done },
+      { url: "/", method: "GET" } as Request,
+      { end: done } as Response,
     );
   });
 
@@ -99,9 +99,9 @@ describe("Router", function () {
           expect(val).toEqual("foo");
           done();
         },
-      };
+      } as Response;
       router.handle(
-        { url: "/foo", method: "GET" },
+        { url: "/foo", method: "GET" } as Request,
         res,
       );
     });
@@ -111,21 +111,21 @@ describe("Router", function () {
     it("should throw if a callback is null", function () {
       expect(function () {
         const router = new Router();
-        router.route("/foo").all(null);
+        router.route("/foo").all(null as any);
       }).toThrow();
     });
 
     it("should throw if a callback is undefined", function () {
       expect(function () {
         const router = new Router();
-        router.route("/foo").all(undefined);
+        router.route("/foo").all(undefined as any);
       }).toThrow();
     });
 
     it("should throw if a callback is not a function", function () {
       expect(function () {
         const router = new Router();
-        router.route("/foo").all("not a function");
+        router.route("/foo").all("not a function" as any);
       }).toThrow();
     });
 
@@ -165,8 +165,8 @@ describe("Router", function () {
       );
 
       router.handle(
-        { url: "/foo", method: "GET" },
-        {},
+        { url: "/foo", method: "GET" } as Request,
+        {} as Response,
         done,
       );
     });
@@ -193,8 +193,8 @@ describe("Router", function () {
       );
 
       router.handle(
-        { url: "/foo/2", method: "GET" },
-        {},
+        { url: "/foo/2", method: "GET" } as Request,
+        {} as Response,
         function () {},
       );
     });
@@ -220,8 +220,8 @@ describe("Router", function () {
       );
 
       router.handle(
-        { url: "/", method: "GET" },
-        {},
+        { url: "/", method: "GET" } as Request,
+        {} as Response,
         done,
       );
     });
@@ -238,7 +238,7 @@ describe("Router", function () {
         next();
       });
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -262,7 +262,7 @@ describe("Router", function () {
         },
       );
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -286,7 +286,7 @@ describe("Router", function () {
         },
       );
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -310,7 +310,7 @@ describe("Router", function () {
         },
       );
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -340,7 +340,7 @@ describe("Router", function () {
         },
       );
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(2);
         done();
@@ -384,7 +384,7 @@ describe("Router", function () {
         },
       );
 
-      router.handle(request, {}, function (err: any) {
+      router.handle(request as any, {} as Response, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(3);
         done();
@@ -404,7 +404,11 @@ describe("Router", function () {
       const url = "/foo?bar=baz";
 
       methods.forEach(function testMethod(method) {
-        router.handle({ url: url, method: method }, {}, function () {});
+        router.handle(
+          { url: url, method: method } as Request,
+          {} as Response,
+          function () {},
+        );
       });
 
       expect(count).toEqual(methods.length);
@@ -431,10 +435,26 @@ describe("Router", function () {
         res.end();
       });
 
-      router.handle({ url: "/", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "/foo", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "foo", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "*", method: "GET" }, { end: cb }, no);
+      router.handle(
+        { url: "/", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "/foo", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "foo", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "*", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
     });
   });
 
@@ -449,28 +469,28 @@ describe("Router", function () {
     it("should reject string as middleware", function () {
       const router = new Router();
       expect(function () {
-        router.use("/", "foo");
+        router.use("/", "foo" as any);
       }).toThrow(/requires a middleware function but got a string/);
     });
 
     it("should reject number as middleware", function () {
       const router = new Router();
       expect(function () {
-        router.use("/", 42);
+        router.use("/", 42 as any);
       }).toThrow(/requires a middleware function but got a number/);
     });
 
     it("should reject null as middleware", function () {
       const router = new Router();
       expect(function () {
-        router.use("/", null);
+        router.use("/", null as any);
       }).toThrow(/requires a middleware function but got a Null/);
     });
 
     it("should reject Date as middleware", function () {
       const router = new Router();
       expect(function () {
-        router.use("/", new Date());
+        router.use("/", new Date() as any);
       }).toThrow(/requires a middleware function but got a Date/);
     });
 
@@ -494,10 +514,26 @@ describe("Router", function () {
         res.end();
       });
 
-      router.handle({ url: "/", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "/foo", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "foo", method: "GET" }, { end: cb }, no);
-      router.handle({ url: "*", method: "GET" }, { end: cb }, no);
+      router.handle(
+        { url: "/", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "/foo", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "foo", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
+      router.handle(
+        { url: "*", method: "GET" } as Request,
+        { end: cb } as Response,
+        no,
+      );
     });
 
     it("should accept array of middleware", function (done) {
@@ -519,14 +555,18 @@ describe("Router", function () {
         done();
       });
 
-      router.handle({ url: "/foo", method: "GET" }, {}, function () {});
+      router.handle(
+        { url: "/foo", method: "GET" } as Request,
+        {} as Response,
+        function () {},
+      );
     });
   });
 
   describe("parallel requests", function () {
     it("should not mix requests", function (done) {
-      const req1: any = { url: "/foo/50/bar", method: "get" };
-      const req2: any = { url: "/foo/10/bar", method: "get" };
+      const req1: any = { url: "/foo/50/bar", method: "get" } as Request;
+      const req2: any = { url: "/foo/10/bar", method: "get" } as Request;
       const router = new Router();
       const sub = new Router();
 
@@ -558,14 +598,14 @@ describe("Router", function () {
       router.use("/foo/:ms/", new Router());
       router.use("/foo/:ms/", sub);
 
-      router.handle(req1, {}, function (err: any) {
+      router.handle(req1, {} as Response, function (err: any) {
         expect(err).toBeUndefined();
         expect(req1.ms).toEqual(50);
         expect(req1.originalUrl).toEqual("/foo/50/bar");
         cb();
       });
 
-      router.handle(req2, {}, function (err: any) {
+      router.handle(req2, {} as Response, function (err: any) {
         expect(err).toBeUndefined();
         expect(req2.ms).toEqual(10);
         expect(req2.originalUrl).toEqual("/foo/10/bar");

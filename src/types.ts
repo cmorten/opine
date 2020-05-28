@@ -120,7 +120,7 @@ export interface IRouterHandler<T> {
   (...handlers: RequestHandlerParams[]): T;
 }
 
-export interface IRouter extends RequestHandler {
+export interface IRouter {
   /**
    * Special-cased "all" method, applying the given route `path`,
    * middleware, and callback to _every_ HTTP method.
@@ -159,9 +159,14 @@ export interface IRouter extends RequestHandler {
   route(prefix: PathParams): IRoute;
 
   /**
+   * Dispatch a req, res pair into the application. Starts pipeline processing.
+   *
+   * If no callback is provided, then default error handlers will respond
+   * in the event of an error bubbling through the stack.
+   * 
    * @private
    */
-  handle: RequestHandler;
+  handle(req: Request, res: Response, next?: NextFunction): void;
 
   /**
    * @private
@@ -219,7 +224,18 @@ export interface IRoute {
   dispatch: RequestHandler;
 }
 
-export interface Router extends IRouter {}
+export interface Router extends IRouter, RequestHandler {}
+
+export interface RouterOptions {
+  caseSensitive?: boolean;
+  mergeParams?: boolean;
+  strict?: boolean;
+}
+
+export interface RouterConstructor extends IRouter {
+  new (options?: RouterOptions): Router;
+  (options?: RouterOptions): Router;
+}
 
 export interface ByteRange {
   start: number;
@@ -583,14 +599,6 @@ export interface Application extends IRouter, Opine.Application {
    * it reads app settings which might be set after that has run.
    */
   lazyrouter(): void;
-
-  /**
-   * Dispatch a req, res pair into the application. Starts pipeline processing.
-   *
-   * If no callback is provided, then default error handlers will respond
-   * in the event of an error bubbling through the stack.
-   */
-  handle(req: Request, res: Response, next?: NextFunction): void;
 
   /**
    * Assign `setting` to `val`, or return `setting`'s value.
