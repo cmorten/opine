@@ -93,11 +93,12 @@ function getBodyReader(req: Request, inflate: boolean = true) {
     );
   }
 
+  // TODO: support deflate and gzip encoding.
   switch (encoding) {
     case "identity":
       return req.body;
-    case "deflate": // TODO:
-    case "gzip": // TODO:
+    case "deflate":
+    case "gzip":
     default:
       throw createHttpError(
         415,

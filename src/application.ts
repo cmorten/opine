@@ -26,6 +26,8 @@ const create = Object.create;
 const setPrototypeOf = Object.setPrototypeOf;
 const slice = Array.prototype.slice;
 
+// TODO: move app over to class based?
+
 /**
  * Application prototype.
  * 
@@ -56,9 +58,15 @@ app.init = function init(): void {
 app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
+  // TODO: env
+  // TODO: query parser
+  // TODO: subdomain offset
+  // TODO: trust proxy
 
   const self: Opine = this as Opine;
   this.on("mount", function onmount(parent: Opine) {
+    // TODO: trust proxy
+
     // inherit prototypes
     setPrototypeOf(self.request, parent.request);
     setPrototypeOf(self.response, parent.response);
@@ -74,6 +82,7 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   // default locals
   this.locals.settings = this.settings;
 
+  // TODO: views
   this.set("jsonp callback name", "callback");
 };
 
@@ -91,6 +100,7 @@ app.lazyrouter = function lazyrouter(): void {
       caseSensitive: this.enabled("case sensitive routing"),
       strict: this.enabled("strict routing"),
     });
+    // TODO: query parser
     this._router.use(query());
     this._router.use(init(this as Opine));
   }
@@ -193,9 +203,9 @@ app.route = function route(prefix: PathParams): IRoute {
   return this._router.route(prefix);
 };
 
-// TODO: app.engine
+// TODO: app.engine()
 
-// TODO: app.param
+// TODO: app.param()
 
 /**
  * Assign `setting` to `val`, or return `setting`'s value.
@@ -343,8 +353,10 @@ app.all = function all(path: PathParams): Application {
   return this;
 };
 
-// TODO: app.render
+// TODO: app.render()
 
+// TODO: consider adding optional callback to ease Express transition.
+// TODO: consider using a Proxy to enable setting / getting of `req.body`.
 /**
  * Listen for connections.
  *

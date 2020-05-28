@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.5.2] - 28-05-2020
+
+- fix: only set `x-powered-by` header if it is enabled as a setting.
+- feat: add missing methods to `response.md` API docs: `unset` and `etag`.
+- chore: audit of feature gap between Express and Opine. Available as TODOs in the code.
+
 ## [0.5.1] - 27-05-2020
 
 - fix: missing location method type
