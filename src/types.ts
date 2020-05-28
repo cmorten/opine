@@ -1,5 +1,6 @@
-// Type definitions for Opine
+// Type definitions for Opine.
 // Definitions by: Craig Morten <https://github.com/asos-craigmorten>
+
 // TODO: consider integrating these types into the app files themselves
 // rather than having a separate file.
 

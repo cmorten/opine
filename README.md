@@ -2,7 +2,7 @@
 
 Fast, minimalist web framework for [Deno](https://deno.land/) ported from [ExpressJS](https://github.com/expressjs/express).
 
-![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![](https://img.shields.io/github/issues/asos-craigmorten/opine)](https://img.shields.io/github/issues/asos-craigmorten/opine) 
+![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![](https://img.shields.io/github/issues/asos-craigmorten/opine)](https://img.shields.io/github/issues/asos-craigmorten/opine)
 ![](https://img.shields.io/github/stars/asos-craigmorten/opine) ![](https://img.shields.io/github/forks/asos-craigmorten/opine) ![](https://img.shields.io/github/license/asos-craigmorten/opine) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity) [![HitCount](http://hits.dwyl.com/asos-craigmorten/opine.svg)](http://hits.dwyl.com/asos-craigmorten/opine)
 
 ```ts
@@ -85,22 +85,22 @@ To run the [examples](./examples), you have two choices:
 
 1. Run the example using Deno directly from GitHub, for example:
 
-    ```bash
-    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts
-    ```
+   ```bash
+   deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts
+   ```
 
 1. Clone the Opine repo locally:
 
-    ```bash
-    git clone git://github.com/asos-craigmorten/opine.git --depth 1
-    cd opine
-    ```
+   ```bash
+   git clone git://github.com/asos-craigmorten/opine.git --depth 1
+   cd opine
+   ```
 
-    Then run the example you want:
+   Then run the example you want:
 
-    ```bash
-    deno --allow-net --allow-read ./example/hello-world/index.ts
-    ```
+   ```bash
+   deno --allow-net --allow-read ./example/hello-world/index.ts
+   ```
 
 All the [examples](./examples) contain example commands in their READMEs to help get you started for either of the above methods.
 
@@ -108,28 +108,10 @@ All the [examples](./examples) contain example commands in their READMEs to help
 
 [Contributing guide](https://github.com/asos-craigmorten/opine/blob/master/.github/CONTRIBUTING.md)
 
-## Developing
+---
 
-### Run Tests
+There are several third party modules that have been ported into this module. Each third party module has maintained it's license and copyrights. The only exception is for Express, from which this entire module has been ported, whose license and copyrights are available at [EXPRESS_LICENSE](./EXPRESS_LICENSE.md) in the root of this repository, and cover all files within the [source](./src) directory which not been explicitly licensed otherwise.
 
-```bash
-make test
-```
+All modules adapted into this module are licensed under the MIT License.
 
-### Run Benchmarks
-
-```bash
-make benchmark
-```
-
-### Format Code
-
-```bash
-make fmt
-```
-
-### Generate Documentation
-
-```bash
-make typedoc
-```
+All additional work is copyright (c) 2020 Craig Morten <craig.morten@asos.com> under the [MIT License](./LICENSE.md).
