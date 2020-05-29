@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.6.1] - 29-05-2020
+
+- refactor: Replace internal ports of NPM modules with tested third party module equivalents.
+
 ## [0.6.0] - 29-05-2020
 
 - feat: deliver content negotiation with the `res.format()` and `res.vary()` methods.

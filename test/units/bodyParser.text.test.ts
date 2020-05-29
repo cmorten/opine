@@ -7,6 +7,7 @@ const mockText = "Hello Deno!";
 
 const jsonHeaders = new Headers();
 jsonHeaders.set("Content-Type", "application/json");
+jsonHeaders.set("Content-Length", "1");
 
 const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
@@ -16,6 +17,7 @@ textHeaders.set("Content-Type", "text/plain");
 describe("bodyParser: text", () => {
   it("should handle requests without bodies", (done) => {
     const req: any = { headers: textHeaders };
+    req.headers.set("Content-Length", "0");
     const parser = text();
 
     parser(req, {} as any, (err?: any) => {
@@ -30,6 +32,7 @@ describe("bodyParser: text", () => {
       body: new Deno.Buffer(encoder.encode(mockText)),
       headers: textHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = text();
 
     parser(req, {} as any, (err?: any) => {

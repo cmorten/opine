@@ -30,7 +30,7 @@
  */
 
 import { Request, Response, NextFunction } from "../../types.ts";
-import { createHttpError } from "../../../deps.ts";
+import { createError } from "../../../deps.ts";
 
 const decoder = new TextDecoder();
 
@@ -71,7 +71,7 @@ export async function read(
     const raw = await Deno.readAll(reader);
     body = decoder.decode(raw);
   } catch (err) {
-    next(createHttpError(400, err));
+    next(createError(400, err));
   }
 
   // verify
@@ -79,7 +79,7 @@ export async function read(
     try {
       verify(req, res, body, encoding);
     } catch (err) {
-      next(createHttpError(403, err));
+      next(createError(403, err));
       return;
     }
   }
@@ -88,7 +88,7 @@ export async function read(
   try {
     req.parsedBody = parse(body);
   } catch (err) {
-    next(createHttpError(400, err));
+    next(createError(400, err));
     return;
   }
 
@@ -108,7 +108,7 @@ function getBodyReader(req: Request, inflate: boolean = true) {
     .toLowerCase();
 
   if (inflate === false && encoding !== "identity") {
-    throw createHttpError(
+    throw createError(
       415,
       'unsupported content encoding "' + encoding + '"',
     );
@@ -121,7 +121,7 @@ function getBodyReader(req: Request, inflate: boolean = true) {
     case "deflate":
     case "gzip":
     default:
-      throw createHttpError(
+      throw createError(
         415,
         'unsupported content encoding "' + encoding + '"',
       );

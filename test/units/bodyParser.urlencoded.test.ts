@@ -10,6 +10,7 @@ formHeaders.set("Content-Type", "application/x-www-form-urlencoded");
 
 const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
+textHeaders.set("Content-Length", "1");
 
 //TODO: refactor this once have a supertest equivalent allowing for
 // easy port of Express tests.
@@ -30,6 +31,7 @@ describe("bodyParser: urlencoded", () => {
       body: new Deno.Buffer(encoder.encode(mockFormData.toString())),
       headers: formHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = urlencoded();
 
     parser(req, {} as any, (err?: any) => {
@@ -47,6 +49,7 @@ describe("bodyParser: urlencoded", () => {
       body: mockBody,
       headers: textHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = urlencoded();
 
     parser(req, {} as any, (err?: any) => {

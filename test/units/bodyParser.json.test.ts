@@ -10,6 +10,7 @@ jsonHeaders.set("Content-Type", "application/json");
 
 const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
+textHeaders.set("Content-Length", "1");
 
 //TODO: refactor this once have a supertest equivalent allowing for
 // easy port of Express tests.
@@ -30,6 +31,7 @@ describe("bodyParser: json", () => {
       body: new Deno.Buffer(encoder.encode(JSON.stringify(mockJson))),
       headers: jsonHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = json();
 
     parser(req, {} as any, (err?: any) => {
@@ -44,6 +46,7 @@ describe("bodyParser: json", () => {
       body: new Deno.Buffer(encoder.encode(JSON.stringify([mockJson]))),
       headers: jsonHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = json();
 
     parser(req, {} as any, (err?: any) => {
@@ -62,6 +65,7 @@ describe("bodyParser: json", () => {
       ),
       headers: jsonHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = json();
 
     parser(req, {} as any, (err?: any) => {
@@ -79,6 +83,7 @@ describe("bodyParser: json", () => {
       body: mockBody,
       headers: textHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = json();
 
     parser(req, {} as any, (err?: any) => {

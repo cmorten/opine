@@ -34,9 +34,14 @@ export {
   contentType,
   charset,
 } from "https://deno.land/x/media_types@v2.3.1/mod.ts";
-export { createHttpError } from "https://deno.land/x/oak@v4.0.0/httpError.ts";
+export { createError } from "https://deno.land/x/http_errors/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@master/mod.ts";
-export { typeofrequest } from "https://deno.land/x/type_is@master/mod.ts";
+export {
+  typeofrequest,
+  hasBody,
+} from "https://deno.land/x/type_is@master/mod.ts";
 export { isIP } from "https://deno.land/x/isIP@master/mod.ts";
 export { vary } from "https://deno.land/x/vary@master/mod.ts";
 export { lookup } from "https://deno.land/x/media_types@v2.3.3/mod.ts";
+export { escapeHtml } from "https://deno.land/x/escape_html/mod.ts";
+export { encodeUrl } from "https://deno.land/x/encodeurl/mod.ts";

@@ -29,11 +29,11 @@
  * 
  */
 
-import { createHttpError } from "../../../deps.ts";
+import { createError } from "../../../deps.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { Request, Response, NextFunction } from "../../types.ts";
-import { hasBody } from "./hasBody.ts";
+import { hasBody } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
 /**
@@ -74,7 +74,7 @@ export function urlencoded(options: any = {}) {
     }
 
     // skip requests without bodies
-    if (!hasBody(req)) {
+    if (!hasBody(req.headers)) {
       (req as any).parsedBody = Object.fromEntries(
         new URLSearchParams().entries(),
       );
@@ -90,7 +90,7 @@ export function urlencoded(options: any = {}) {
     const charset = getCharset(req) || "utf-8";
     if (charset !== "utf-8") {
       return next(
-        createHttpError(
+        createError(
           415,
           'unsupported charset "' + charset.toUpperCase() + '"',
         ),

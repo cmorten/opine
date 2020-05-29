@@ -10,6 +10,7 @@ octetHeaders.set("Content-Type", "application/octet-stream");
 
 const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
+textHeaders.set("Content-Length", "1");
 
 //TODO: refactor this once have a supertest equivalent allowing for
 // easy port of Express tests.
@@ -30,6 +31,7 @@ describe("bodyParser: raw", () => {
       body: new Deno.Buffer(encoder.encode(mockText)),
       headers: octetHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = raw();
 
     parser(req, {} as any, (err?: any) => {
@@ -47,6 +49,7 @@ describe("bodyParser: raw", () => {
       body: mockBody,
       headers: textHeaders,
     };
+    req.headers.set("Content-Length", "1");
     const parser = raw();
 
     parser(req, {} as any, (err?: any) => {

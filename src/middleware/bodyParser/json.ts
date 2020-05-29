@@ -29,11 +29,10 @@
  * 
  */
 
-import { createHttpError } from "../../../deps.ts";
+import { createError, hasBody } from "../../../deps.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { typeChecker } from "./typeChecker.ts";
-import { hasBody } from "./hasBody.ts";
 import { Request, Response, NextFunction } from "../../types.ts";
 
 /**
@@ -106,7 +105,7 @@ export function json(options: any = {}) {
     }
 
     // skip requests without bodies
-    if (!hasBody(req)) {
+    if (!hasBody(req.headers)) {
       req.parsedBody = {};
       next();
       return;
@@ -122,7 +121,7 @@ export function json(options: any = {}) {
     const charset = getCharset(req) || "utf-8";
     if (charset.substr(0, 4) !== "utf-") {
       next(
-        createHttpError(
+        createError(
           415,
           'unsupported charset "' + charset.toUpperCase() + '"',
         ),

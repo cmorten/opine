@@ -31,9 +31,13 @@
  *
  */
 
-import { join, fromFileUrl, createHttpError } from "../../deps.ts";
-import { escapeHtml } from "../utils/escapeHtml.ts";
-import { encodeUrl } from "../utils/encodeUrl.ts";
+import {
+  join,
+  fromFileUrl,
+  createError,
+  escapeHtml,
+  encodeUrl,
+} from "../../deps.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
 import {
   Response,
@@ -184,7 +188,7 @@ function createNotFoundDirectoryListener(): Function {
     forwardError: boolean,
   ): void {
     if (forwardError) {
-      return next(createHttpError(404));
+      return next(createError(404));
     }
 
     next();
@@ -206,7 +210,7 @@ function createRedirectDirectoryListener(): Function {
   ): void {
     if (fullPath.endsWith("/")) {
       if (forwardError) {
-        return next(createHttpError(404));
+        return next(createError(404));
       }
 
       return next();

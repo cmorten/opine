@@ -30,20 +30,7 @@
  */
 
 import { Request } from "../../types.ts";
-import { hasBody } from "./hasBody.ts";
-import { contentType } from "../../../deps.ts";
-
-function normalize(type: any) {
-  return contentType(type || "")?.split(";")[0];
-}
-
-function typeIs(req: Request, type: string) {
-  if (!hasBody(req)) {
-    return false;
-  }
-
-  return normalize(req.headers.get("Content-Type")) === normalize(type);
-}
+import { typeofrequest } from "../../../deps.ts";
 
 /**
  * Get the simple type checker.
@@ -53,6 +40,6 @@ function typeIs(req: Request, type: string) {
  */
 export function typeChecker(type: string) {
   return function checkType(req: Request) {
-    return Boolean(typeIs(req, type));
+    return Boolean(typeofrequest(req.headers, [type]));
   };
 }

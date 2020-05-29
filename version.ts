@@ -1,7 +1,7 @@
 /** 
  * Version of Opine.
  */
-export const VERSION: string = "0.6.0";
+export const VERSION: string = "0.6.1";
 
 /**
  * Supported version of Deno.

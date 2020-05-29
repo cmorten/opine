@@ -1,4 +1,4 @@
-import { encodeUrl } from "./encodeUrl.ts";
+import { encodeUrl } from "../../deps.ts";
 
 /**
  * Creates a Content-Disposition Header value from

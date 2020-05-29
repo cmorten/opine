@@ -29,8 +29,7 @@
  */
 
 import { parseUrl } from "./parseUrl.ts";
-import { escapeHtml } from "./escapeHtml.ts";
-import { STATUS_TEXT, Status } from "../../deps.ts";
+import { STATUS_TEXT, Status, escapeHtml } from "../../deps.ts";
 import { Request, Response, NextFunction, ParsedURL } from "../types.ts";
 
 const DOUBLE_SPACE_REGEXP = /\x20{2}/g;

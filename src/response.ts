@@ -1,6 +1,5 @@
 import { contentDisposition } from "./utils/contentDisposition.ts";
 import { stringify } from "./utils/stringify.ts";
-import { encodeUrl } from "./utils/encodeUrl.ts";
 import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
 import {
   setCookie,
@@ -12,6 +11,7 @@ import {
   basename,
   contentType,
   vary,
+  encodeUrl,
 } from "../deps.ts";
 import {
   Response as DenoResponse,

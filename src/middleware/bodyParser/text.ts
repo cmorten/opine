@@ -32,7 +32,7 @@
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { Request, Response, NextFunction } from "../../types.ts";
-import { hasBody } from "./hasBody.ts";
+import { hasBody } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
 /**
@@ -66,7 +66,7 @@ export function text(options: any = {}) {
     }
 
     // skip requests without bodies
-    if (!hasBody(req)) {
+    if (!hasBody(req.headers)) {
       req.parsedBody = "";
       next();
       return;
