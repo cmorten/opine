@@ -127,18 +127,42 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_parsedoriginalurl" class="tsd-kind-icon">_parsed<wbr>Original<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_url" class="tsd-kind-icon">_url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#app" class="tsd-kind-icon">app</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#body" class="tsd-kind-icon">body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#conn" class="tsd-kind-icon">conn</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#fresh" class="tsd-kind-icon">fresh</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#headers" class="tsd-kind-icon">headers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#hostname" class="tsd-kind-icon">hostname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#method" class="tsd-kind-icon">method</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#next" class="tsd-kind-icon">next</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#params" class="tsd-kind-icon">params</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#proto" class="tsd-kind-icon">proto</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protomajor" class="tsd-kind-icon">proto<wbr>Major</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protominor" class="tsd-kind-icon">proto<wbr>Minor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protocol" class="tsd-kind-icon">protocol</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#query" class="tsd-kind-icon">query</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#res" class="tsd-kind-icon">res</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#route" class="tsd-kind-icon">route</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#secure" class="tsd-kind-icon">secure</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#stale" class="tsd-kind-icon">stale</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#subdomains" class="tsd-kind-icon">subdomains</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#xhr" class="tsd-kind-icon">xhr</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#accepts" class="tsd-kind-icon">accepts</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#is" class="tsd-kind-icon">is</a></li>
 							</ul>
 						</section>
 					</div>
@@ -152,9 +176,15 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">_parsed<wbr>Original<wbr>Url<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#parsedurl" class="tsd-signature-type">ParsedURL</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L279">types.ts:279</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L504">types.ts:504</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>After calling <code>originalUrl</code> on the request object, the original url
+							is memoization by storing onto the <code>_parsedOriginalUrl</code> property.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="_parsedurl" class="tsd-anchor"></a>
@@ -162,19 +192,15 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">_parsed<wbr>Url<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#parsedurl" class="tsd-signature-type">ParsedURL</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L278">types.ts:278</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L498">types.ts:498</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="_url" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> _url</h3>
-					<div class="tsd-signature tsd-kind-icon">_url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L277">types.ts:277</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>After calling <code>parseUrl</code> on the request object, the parsed url
+							is memoization by storing onto the <code>_parsedUrl</code> property.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="app" class="tsd-anchor"></a>
@@ -182,7 +208,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <a href="_types_.application.html" class="tsd-signature-type">Application</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L268">types.ts:268</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L478">types.ts:478</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +218,32 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L266">types.ts:266</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L470">types.ts:470</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="body" class="tsd-anchor"></a>
+					<h3>body</h3>
+					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Deno.Reader</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L456">types.ts:456</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Body of request.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="conn" class="tsd-anchor"></a>
+					<h3>conn</h3>
+					<div class="tsd-signature tsd-kind-icon">conn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Deno.Conn</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L476">types.ts:476</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +253,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">fresh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L256">types.ts:256</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L439">types.ts:439</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -219,7 +270,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">'/user/*'</span>, <span cla
 					<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L249">types.ts:249</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L369">types.ts:369</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,12 +312,47 @@ req.get(<span class="hljs-string">'Something'</span>);
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="headers" class="tsd-anchor"></a>
+					<h3>headers</h3>
+					<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Headers</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L475">types.ts:475</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hostname" class="tsd-anchor"></a>
+					<h3>hostname</h3>
+					<div class="tsd-signature tsd-kind-icon">hostname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L432">types.ts:432</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Parse the &quot;Host&quot; header field hostname.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="method" class="tsd-anchor"></a>
+					<h3>method</h3>
+					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L458">types.ts:458</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="next" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> next</h3>
 					<div class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">:</span> <a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L275">types.ts:275</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L485">types.ts:485</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -276,7 +362,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">original<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L264">types.ts:264</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L466">types.ts:466</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -286,7 +372,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">P</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L258">types.ts:258</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L460">types.ts:460</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -296,9 +382,81 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">parsed<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L281">types.ts:281</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L492">types.ts:492</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>After body parsers, Request will contain parsedBody property
+								containing the parsed body.
+							See: opine/src/middleware/bodyParser/</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L427">types.ts:427</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Returns the pathname of the URL.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="proto" class="tsd-anchor"></a>
+					<h3>proto</h3>
+					<div class="tsd-signature tsd-kind-icon">proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L472">types.ts:472</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="protomajor" class="tsd-anchor"></a>
+					<h3>proto<wbr>Major</h3>
+					<div class="tsd-signature tsd-kind-icon">proto<wbr>Major<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L474">types.ts:474</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="protominor" class="tsd-anchor"></a>
+					<h3>proto<wbr>Minor</h3>
+					<div class="tsd-signature tsd-kind-icon">proto<wbr>Minor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L473">types.ts:473</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="protocol" class="tsd-anchor"></a>
+					<h3>protocol</h3>
+					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L402">types.ts:402</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Return the protocol string &quot;http&quot; or &quot;https&quot;
+								when requested with TLS. When the &quot;trust proxy&quot;
+								setting is enabled the &quot;X-Forwarded-Proto&quot; header
+								field will be trusted. If you&#39;re running behind
+								a reverse proxy that supplies https for you this
+							may be enabled.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="query" class="tsd-anchor"></a>
@@ -306,7 +464,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReqQuery</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L260">types.ts:260</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L462">types.ts:462</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -316,7 +474,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">res<span class="tsd-signature-symbol">:</span> <a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L274">types.ts:274</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L484">types.ts:484</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -332,9 +490,443 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/8c21e1b/src/types.ts#L262">types.ts:262</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L464">types.ts:464</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="secure" class="tsd-anchor"></a>
+					<h3>secure</h3>
+					<div class="tsd-signature tsd-kind-icon">secure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L409">types.ts:409</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Short-hand for:</p>
+						</div>
+						<p>   req.protocol == &#39;https&#39;</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="stale" class="tsd-anchor"></a>
+					<h3>stale</h3>
+					<div class="tsd-signature tsd-kind-icon">stale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L446">types.ts:446</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Check if the request is stale, aka
+								&quot;Last-Modified&quot; and / or the &quot;ETag&quot; for the
+							resource has changed.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="subdomains" class="tsd-anchor"></a>
+					<h3>subdomains</h3>
+					<div class="tsd-signature tsd-kind-icon">subdomains<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L422">types.ts:422</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Return subdomains as an array.</p>
+						</div>
+						<p>Subdomains are the dot-separated parts of the host before the main domain of
+							the app. By default, the domain of the app is assumed to be the last two
+						parts of the host. This can be changed by setting &quot;subdomain offset&quot;.</p>
+						<p>For example, if the domain is &quot;deno.dinosaurs.example.com&quot;:
+							If &quot;subdomain offset&quot; is not set, req.subdomains is <code>[&quot;dinosaurs&quot;, &quot;deno&quot;]</code>.
+						If &quot;subdomain offset&quot; is 3, req.subdomains is <code>[&quot;deno&quot;]</code>.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="url" class="tsd-anchor"></a>
+					<h3>url</h3>
+					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L468">types.ts:468</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="xhr" class="tsd-anchor"></a>
+					<h3>xhr</h3>
+					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L451">types.ts:451</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Check if the request was an <em>XMLHttpRequest</em>.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="accepts" class="tsd-anchor"></a>
+					<h3>accepts</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">accepts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L311">types.ts:311</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if the given <code>type(s)</code> is acceptable, returning
+										the best match when true, otherwise <code>undefined</code>, in which
+									case you should respond with 406 &quot;Not Acceptable&quot;.</p>
+								</div>
+								<p>The <code>type</code> value may be a single mime type string
+									such as &quot;application/json&quot;, the extension name
+									such as &quot;json&quot;, a comma-delimited list such as &quot;json, html, text/plain&quot;,
+									or an array <code>[&quot;json&quot;, &quot;html&quot;, &quot;text/plain&quot;]</code>. When a list
+								or array is given the <em>best</em> match, if any is returned.</p>
+								<p>Examples:</p>
+								<pre><code><span class="hljs-regexp">//</span> Accept: text/html
+req.accepts(<span class="hljs-string">'html'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"html"</span>
+
+<span class="hljs-regexp">//</span> Accept: text<span class="hljs-regexp">/*, application/</span>json
+req.accepts(<span class="hljs-string">'html'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"html"</span>
+req.accepts(<span class="hljs-string">'text/html'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"text/html"</span>
+req.accepts(<span class="hljs-string">'json, text'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"json"</span>
+req.accepts(<span class="hljs-string">'application/json'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"application/json"</span>
+
+<span class="hljs-regexp">//</span> Accept: text<span class="hljs-regexp">/*, application/</span>json
+req.accepts(<span class="hljs-string">'image/png'</span>);
+req.accepts(<span class="hljs-string">'png'</span>);
+<span class="hljs-regexp">//</span> =&gt; undefined
+
+<span class="hljs-regexp">//</span> Accept: text<span class="hljs-regexp">/*;q=.5, application/</span>json
+req.accepts([<span class="hljs-string">'html'</span>, <span class="hljs-string">'json'</span>]);
+req.accepts(<span class="hljs-string">'html, json'</span>);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">"json"</span></code></pre>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L312">types.ts:312</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L313">types.ts:313</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L314">types.ts:314</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="acceptscharsets" class="tsd-anchor"></a>
+					<h3>accepts<wbr>Charsets</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Charsets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Charsets<span class="tsd-signature-symbol">(</span>charset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Charsets<span class="tsd-signature-symbol">(</span>charset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Charsets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>charset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L323">types.ts:323</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first accepted charset of the specified character sets,
+										based on the request&#39;s Accept-Charset HTTP header field.
+									If none of the specified charsets is accepted, returns false.</p>
+								</div>
+								<p>For more information, or if you have issues or concerns, see accepts.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L324">types.ts:324</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>charset: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L325">types.ts:325</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>charset: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L326">types.ts:326</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>charset: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="acceptsencodings" class="tsd-anchor"></a>
+					<h3>accepts<wbr>Encodings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Encodings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Encodings<span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Encodings<span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Encodings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L335">types.ts:335</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first accepted encoding of the specified encodings,
+										based on the request&#39;s Accept-Encoding HTTP header field.
+									If none of the specified encodings is accepted, returns false.</p>
+								</div>
+								<p>For more information, or if you have issues or concerns, see accepts.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L336">types.ts:336</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>encoding: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L337">types.ts:337</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L338">types.ts:338</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>encoding: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="acceptslanguages" class="tsd-anchor"></a>
+					<h3>accepts<wbr>Languages</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Languages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Languages<span class="tsd-signature-symbol">(</span>lang<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Languages<span class="tsd-signature-symbol">(</span>lang<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">accepts<wbr>Languages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>lang<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L347">types.ts:347</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first accepted language of the specified languages,
+										based on the request&#39;s Accept-Language HTTP header field.
+									If none of the specified languages is accepted, returns false.</p>
+								</div>
+								<p>For more information, or if you have issues or concerns, see accepts.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L348">types.ts:348</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lang: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L349">types.ts:349</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lang: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L350">types.ts:350</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>lang: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="is" class="tsd-anchor"></a>
+					<h3>is</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/types.ts#L392">types.ts:392</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if the incoming request contains the &quot;Content-Type&quot;
+									header field, and it contains the give mime <code>type</code>.</p>
+								</div>
+								<p>Examples:</p>
+								<pre><code> // <span class="hljs-keyword">With</span> Content-<span class="hljs-keyword">Type</span>: <span class="hljs-type">text</span>/html; charset=utf<span class="hljs-number">-8</span>
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'html'</span>);
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'text/html'</span>);
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'text/*'</span>);
+ // =&gt; <span class="hljs-keyword">true</span>
+
+ // <span class="hljs-keyword">When</span> Content-<span class="hljs-keyword">Type</span> <span class="hljs-keyword">is</span> application/<span class="hljs-type">json</span>
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'json'</span>);
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'application/json'</span>);
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'application/*'</span>);
+ // =&gt; <span class="hljs-keyword">true</span>
+
+ req.<span class="hljs-keyword">is</span>(<span class="hljs-string">'html'</span>);
+ // =&gt; <span class="hljs-keyword">false</span></code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -356,7 +948,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_types_.application.html" class="tsd-kind-icon">Application</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
@@ -374,7 +966,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_types_.iroute.html" class="tsd-kind-icon">IRoute</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_types_.irouter.html" class="tsd-kind-icon">IRouter</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
@@ -389,7 +981,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_types_.nextfunction.html" class="tsd-kind-icon">Next<wbr>Function</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_types_.opine.html" class="tsd-kind-icon">Opine</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
@@ -407,19 +999,31 @@ req.get(<span class="hljs-string">'Something'</span>);
 								<a href="_types_.request.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#_url" class="tsd-kind-icon">_url</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#app" class="tsd-kind-icon">app</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#body" class="tsd-kind-icon">body</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#conn" class="tsd-kind-icon">conn</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#fresh" class="tsd-kind-icon">fresh</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#headers" class="tsd-kind-icon">headers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#hostname" class="tsd-kind-icon">hostname</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#method" class="tsd-kind-icon">method</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#next" class="tsd-kind-icon">next</a>
@@ -434,6 +1038,21 @@ req.get(<span class="hljs-string">'Something'</span>);
 								<a href="_types_.request.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#proto" class="tsd-kind-icon">proto</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#protomajor" class="tsd-kind-icon">proto<wbr>Major</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#protominor" class="tsd-kind-icon">proto<wbr>Minor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#protocol" class="tsd-kind-icon">protocol</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#query" class="tsd-kind-icon">query</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -441,6 +1060,36 @@ req.get(<span class="hljs-string">'Something'</span>);
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.request.html#route" class="tsd-kind-icon">route</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#secure" class="tsd-kind-icon">secure</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#stale" class="tsd-kind-icon">stale</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#subdomains" class="tsd-kind-icon">subdomains</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#url" class="tsd-kind-icon">url</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.request.html#xhr" class="tsd-kind-icon">xhr</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.request.html#accepts" class="tsd-kind-icon">accepts</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.request.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.request.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.request.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.request.html#is" class="tsd-kind-icon">is</a>
 							</li>
 						</ul>
 					</li>
@@ -457,6 +1106,12 @@ req.get(<span class="hljs-string">'Something'</span>);
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_types_.router.html" class="tsd-kind-icon">Router</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.routerconstructor.html" class="tsd-kind-icon">Router<wbr>Constructor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_types_.routeroptions.html" class="tsd-kind-icon">Router<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../modules/_types_.html#applicationrequesthandler" class="tsd-kind-icon">Application<wbr>Request<wbr>Handler</a>
@@ -514,6 +1169,7 @@ req.get(<span class="hljs-string">'Something'</span>);
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>

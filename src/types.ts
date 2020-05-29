@@ -272,6 +272,84 @@ export interface Request<
   ReqQuery = any,
 > extends DenoServerRequest, Opine.Request {
   /**
+   * Check if the given `type(s)` is acceptable, returning
+   * the best match when true, otherwise `undefined`, in which
+   * case you should respond with 406 "Not Acceptable".
+   *
+   * The `type` value may be a single mime type string
+   * such as "application/json", the extension name
+   * such as "json", a comma-delimited list such as "json, html, text/plain",
+   * or an array `["json", "html", "text/plain"]`. When a list
+   * or array is given the _best_ match, if any is returned.
+   *
+   * Examples:
+   *
+   *     // Accept: text/html
+   *     req.accepts('html');
+   *     // => "html"
+   *
+   *     // Accept: text/*, application/json
+   *     req.accepts('html');
+   *     // => "html"
+   *     req.accepts('text/html');
+   *     // => "text/html"
+   *     req.accepts('json, text');
+   *     // => "json"
+   *     req.accepts('application/json');
+   *     // => "application/json"
+   *
+   *     // Accept: text/*, application/json
+   *     req.accepts('image/png');
+   *     req.accepts('png');
+   *     // => undefined
+   *
+   *     // Accept: text/*;q=.5, application/json
+   *     req.accepts(['html', 'json']);
+   *     req.accepts('html, json');
+   *     // => "json"
+   */
+  accepts(): string[];
+  accepts(type: string): string[];
+  accepts(type: string[]): string[];
+  accepts(...type: string[]): string[];
+
+  /**
+   * Returns the first accepted charset of the specified character sets,
+   * based on the request's Accept-Charset HTTP header field.
+   * If none of the specified charsets is accepted, returns false.
+   *
+   * For more information, or if you have issues or concerns, see accepts.
+   */
+  acceptsCharsets(): string[];
+  acceptsCharsets(charset: string): string[];
+  acceptsCharsets(charset: string[]): string[];
+  acceptsCharsets(...charset: string[]): string[];
+
+  /**
+   * Returns the first accepted encoding of the specified encodings,
+   * based on the request's Accept-Encoding HTTP header field.
+   * If none of the specified encodings is accepted, returns false.
+   *
+   * For more information, or if you have issues or concerns, see accepts.
+   */
+  acceptsEncodings(): string[];
+  acceptsEncodings(encoding: string): string[];
+  acceptsEncodings(encoding: string[]): string[];
+  acceptsEncodings(...encoding: string[]): string[];
+
+  /**
+   * Returns the first accepted language of the specified languages,
+   * based on the request's Accept-Language HTTP header field.
+   * If none of the specified languages is accepted, returns false.
+   *
+   * For more information, or if you have issues or concerns, see accepts.
+   */
+  acceptsLanguages(): string[];
+  acceptsLanguages(lang: string): string[];
+  acceptsLanguages(lang: string[]): string[];
+  acceptsLanguages(...lang: string[]): string[];
+
+  /**
    * Return request header.
    *
    * The `Referrer` header field is special-cased,
@@ -291,11 +369,93 @@ export interface Request<
   get: (name: string) => string;
 
   /**
+   * Check if the incoming request contains the "Content-Type"
+   * header field, and it contains the give mime `type`.
+   *
+   * Examples:
+   *
+   *      // With Content-Type: text/html; charset=utf-8
+   *      req.is('html');
+   *      req.is('text/html');
+   *      req.is('text/*');
+   *      // => true
+   *
+   *      // When Content-Type is application/json
+   *      req.is('json');
+   *      req.is('application/json');
+   *      req.is('application/*');
+   *      // => true
+   *
+   *      req.is('html');
+   *      // => false
+   */
+  is(type: string | string[]): string | boolean | null;
+
+  /**
+   * Return the protocol string "http" or "https"
+   * when requested with TLS. When the "trust proxy"
+   * setting is enabled the "X-Forwarded-Proto" header
+   * field will be trusted. If you're running behind
+   * a reverse proxy that supplies https for you this
+   * may be enabled.
+   */
+  protocol: string;
+
+  /**
+   * Short-hand for:
+   *
+   *    req.protocol == 'https'
+   */
+  secure: boolean;
+
+  /**
+   * Return subdomains as an array.
+   *
+   * Subdomains are the dot-separated parts of the host before the main domain of
+   * the app. By default, the domain of the app is assumed to be the last two
+   * parts of the host. This can be changed by setting "subdomain offset".
+   *
+   * For example, if the domain is "deno.dinosaurs.example.com":
+   * If "subdomain offset" is not set, req.subdomains is `["dinosaurs", "deno"]`.
+   * If "subdomain offset" is 3, req.subdomains is `["deno"]`.
+   */
+  subdomains: string[];
+
+  /**
+   * Returns the pathname of the URL.
+   */
+  path: string;
+
+  /**
+   * Parse the "Host" header field hostname.
+   */
+  hostname: string;
+
+  /**
    * Check if the request is fresh, aka
    * Last-Modified and/or the ETag
    * still match.
    */
   fresh: boolean;
+
+  /**
+   * Check if the request is stale, aka
+   * "Last-Modified" and / or the "ETag" for the
+   * resource has changed.
+   */
+  stale: boolean;
+
+  /**
+   * Check if the request was an _XMLHttpRequest_.
+   */
+  xhr: boolean;
+
+  /**
+   * Body of request.
+   */
+  body: Deno.Reader;
+
+  method: string;
 
   params: P;
 
@@ -305,7 +465,15 @@ export interface Request<
 
   originalUrl: string;
 
+  url: string;
+
   baseUrl: string;
+
+  proto: string;
+  protoMinor: number;
+  protoMajor: number;
+  headers: Headers;
+  conn: Deno.Conn;
 
   app: Application;
 
@@ -316,11 +484,24 @@ export interface Request<
   res?: Response<ResBody>;
   next?: NextFunction;
 
-  _url?: string;
-  _parsedUrl?: ParsedURL;
-  _parsedOriginalUrl?: ParsedURL;
-
+  /**
+   * After body parsers, Request will contain parsedBody property
+   * containing the parsed body.
+   * See: opine/src/middleware/bodyParser/
+   */
   parsedBody?: any;
+
+  /**
+   * After calling `parseUrl` on the request object, the parsed url
+   * is memoization by storing onto the `_parsedUrl` property.
+   */
+  _parsedUrl?: ParsedURL;
+
+  /**
+   * After calling `originalUrl` on the request object, the original url
+   * is memoization by storing onto the `_parsedOriginalUrl` property.
+   */
+  _parsedOriginalUrl?: ParsedURL;
 }
 
 export interface MediaType {
@@ -376,7 +557,7 @@ export interface Response<ResBody = any>
    *
    * Optionally providing an alternate attachment `filename`.
    *
-   * This method uses `res.sendfile()`.
+   * This method uses `res.sendFile()`.
    */
   download(path: string): Promise<this | void>;
   download(path: string, filename: string): Promise<this | void>;
@@ -397,6 +578,60 @@ export interface Response<ResBody = any>
    */
   end(): Promise<void>;
   end(body: DenoResponseBody): Promise<void>;
+
+  /**
+   * Respond to the Acceptable formats using an `obj`
+   * of mime-type callbacks.
+   *
+   * This method uses `req.accepted`, an array of
+   * acceptable types ordered by their quality values.
+   * When "Accept" is not present the _first_ callback
+   * is invoked, otherwise the first match is used. When
+   * no match is performed the server responds with
+   * 406 "Not Acceptable".
+   *
+   * Content-Type is set for you, however if you choose
+   * you may alter this within the callback using `res.type()`
+   * or `res.set('Content-Type', ...)`.
+   *
+   *    res.format({
+   *      'text/plain': function(){
+   *        res.send('hey');
+   *      },
+   *
+   *      'text/html': function(){
+   *        res.send('<p>hey</p>');
+   *      },
+   *
+   *      'application/json': function(){
+   *        res.send({ message: 'hey' });
+   *      }
+   *    });
+   *
+   * In addition to canonicalized MIME types you may
+   * also use extnames mapped to these types:
+   *
+   *    res.format({
+   *      text: function(){
+   *        res.send('hey');
+   *      },
+   *
+   *      html: function(){
+   *        res.send('<p>hey</p>');
+   *      },
+   *
+   *      json: function(){
+   *        res.send({ message: 'hey' });
+   *      }
+   *    });
+   *
+   * By default Express passes an `Error`
+   * with a `.status` of 406 to `next(err)`
+   * if a match is not made. If you provide
+   * a `.default` callback it will be invoked
+   * instead.
+   */
+  format(obj: any): this;
 
   /** Get value for header `field`. */
   get(field: string): string;
@@ -552,6 +787,15 @@ export interface Response<ResBody = any>
    *    res.unset('Accept');
    */
   unset(field: string): this;
+
+  /**
+   * Adds the field to the Vary response header, if it is not there already.
+   * Examples:
+   *
+   *     res.vary('User-Agent').render('docs');
+   *
+   */
+  vary(field: string): this;
 }
 
 export interface Handler extends RequestHandler {}

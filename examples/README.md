@@ -2,6 +2,7 @@
 
 This directory contains a series of self-contained examples that you can use as starting points for your app, or as snippets to pull into your existing applications:
 
+- [content-negotiation](./content-negotiation) - An example of how to perform content negotiation using the `res.format()` method.
 - [downloads](./downloads) - Dummy file index server using path matching patterns and `res.download()` to serve files to the user.
 - [error](./error) - An example of how to use and write error middleware.
 - [hello-world](./hello-world) - A basic example of how to configure and start an Opine server.
