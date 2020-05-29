@@ -367,6 +367,7 @@ app.all = function all(path: PathParams): Application {
  */
 app.listen = function listen(
   options: number | string | HTTPOptions | HTTPSOptions,
+  callback?: Function,
 ): Server {
   if (typeof options === "number") {
     options = `:${options}`;
@@ -386,6 +387,8 @@ app.listen = function listen(
   };
 
   start();
+
+  if (callback && typeof callback === "function") callback();
 
   return server;
 };

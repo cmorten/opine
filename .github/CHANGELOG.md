@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.6.2] - 29-05-2020
+
+- feat: support express style callback on `app.listen()`.
+
 ## [0.6.1] - 29-05-2020
 
 - refactor: Replace internal ports of NPM modules with tested third party module equivalents.
