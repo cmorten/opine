@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.6.3] - 29-05-2020
+
+- fix: set versions on all deps to prevent adopting breaking changes from `master`.
+- feat: minor upgrade of the `std` library third party module imports to `0.53.0`.
+
 ## [0.6.2] - 29-05-2020
 
 - feat: support express style callback on `app.listen()`.
