@@ -132,6 +132,16 @@ console.dir(req.fresh);
 // => true
 ```
 
+#### req.hostname
+
+Contains the hostname derived from the `Host` HTTP header.
+
+```ts
+// Host: "example.com:3000"
+console.dir(req.hostname);
+// => 'example.com'
+```
+
 #### req.method
 
 Contains a string corresponding to the HTTP method of the request: `GET`, `POST`, `PUT`, and so on.
@@ -194,6 +204,15 @@ console.dir(req.path);
 
 > When called from a middleware, the mount point is not included in `req.path`. See [app.use()](./application.md#appusepath-callback--callback) for more details.
 
+#### req.protocol
+
+Contains the request protocol string: either `http` or (for TLS requests) `https`.
+
+```ts
+console.dir(req.protocol);
+// => 'http'
+```
+
 #### req.query
 
 This property is an object containing a property for each query string parameter in the route.
@@ -246,7 +265,91 @@ Example output from the previous snippet:
   methods: { get: true } }
 ```
 
+#### req.secure
+
+A Boolean property that is true if a TLS connection is established. Equivalent to:
+
+```js
+console.dir(req.protocol === "https");
+// => true
+```
+
+#### req.stale
+
+Indicates whether the request is "stale," and is the opposite of `req.fresh`. For more information, see [req.fresh](#req.fresh).
+
+```ts
+console.dir(req.stale);
+// => true
+```
+
+#### req.subdomains
+
+An array of subdomains in the domain name of the request.
+
+```ts
+// Host: "deno.dinosaurs.example.com"
+console.dir(req.subdomains);
+// => ['dinosaurs', 'deno']
+```
+
+The application property `subdomain offset`, which defaults to 2, is used for determining the
+beginning of the subdomain segments. To change this behavior, change its value
+using [app.set](/{{ page.lang }}/4x/api.html#app.set).
+
+#### req.xhr
+
+A Boolean property that is `true` if the request's `X-Requested-With` header field is "XMLHttpRequest", indicating that the request was issued by a client library such as jQuery.
+
+```js
+console.dir(req.xhr);
+// => true
+```
+
 ### Methods
+
+#### req.accepts(types)
+
+Checks if the specified content types are acceptable, based on the request's `Accept` HTTP header field. The method returns the best match, or if none of the specified content types is acceptable, returns empty (in which case, the application should respond with `406 "Not Acceptable"`).
+
+The `type` value may be a single MIME type string (such as "application/json"), an extension name such as "json", a comma-delimited list, or an array. For a list or array, the method returns the _best_ match (if any).
+
+```ts
+// Accept: text/html
+req.accepts("html");
+// => "html"
+
+// Accept: text/*, application/json
+req.accepts("html");
+// => "html"
+req.accepts("text/html");
+// => "text/html"
+req.accepts(["json", "text"]);
+// => "json"
+req.accepts("application/json");
+// => "application/json"
+
+// Accept: text/*, application/json
+req.accepts("image/png");
+req.accepts("png");
+// => false
+
+// Accept: text/*;q=.5, application/json
+req.accepts(["html", "json"]);
+// => "json"
+```
+
+#### req.acceptsCharsets(charset [, ...])
+
+Returns the first accepted charset of the specified character sets, based on the request's `Accept-Charset` HTTP header field. If none of the specified charsets is accepted, returns empty.
+
+#### req.acceptsEncodings(encoding [, ...])
+
+Returns the first accepted encoding of the specified encodings, based on the request's `Accept-Encoding` HTTP header field. If none of the specified encodings is accepted, returns empty.
+
+#### req.acceptsLanguages(lang [, ...])
+
+Returns the first accepted language of the specified languages, based on the request's `Accept-Language` HTTP header field. If none of the specified languages is accepted, returns empty.
 
 #### req.get(field)
 
@@ -262,3 +365,30 @@ req.get("content-type");
 req.get("Something");
 // => undefined
 ```
+
+#### req.is(type)
+
+Returns the matching content type if the incoming request's "Content-Type" HTTP header field matches the MIME type specified by the `type` parameter. If the request has no body, returns `null`. Returns `false` otherwise.
+
+```js
+// With Content-Type: text/html; charset=utf-8
+req.is('html')
+// => 'html'
+req.is('text/html')
+// => 'text/html'
+req.is('text/*')
+// => 'text/*'
+
+// When Content-Type is application/json
+req.is('json')
+// => 'json'
+req.is('application/json')
+// => 'application/json'
+req.is('application/*')
+// => 'application/*'
+
+req.is('html')
+// => false
+```
+
+For more information, or if you have issues or concerns, see [type-is](https://github.com/expressjs/type-is).

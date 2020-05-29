@@ -1,5 +1,25 @@
 # ChangeLog
 
+## [0.6.0] - 29-05-2020
+
+- feat: deliver content negotiation with the `res.format()` and `res.vary()` methods.
+- feat: flesh out majority of missing `request` methods and properties:
+  - `req.accepts()`
+  - `req.acceptsCharsets()`
+  - `req.acceptsEncodings()`
+  - `req.acceptsLanguages()`
+  - `req.is()`
+  - `req.protocol`
+  - `req.secure`
+  - `req.subdomains`
+  - `req.path`
+  - `req.hostname`
+  - `req.stale`
+  - `req.xhr`
+- chore: update to types.
+- chore: add a content negotiation example to the examples.
+- chore: update the docs with the new methods / properties.
+
 ## [0.5.4] - 28-05-2020
 
 - fix: better types for `RouterConstructor`.

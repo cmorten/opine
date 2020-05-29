@@ -1,16 +1,17 @@
 import { contentDisposition } from "./utils/contentDisposition.ts";
 import { stringify } from "./utils/stringify.ts";
 import { encodeUrl } from "./utils/encodeUrl.ts";
+import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
 import {
   setCookie,
   Cookie,
   delCookie,
   Status,
   STATUS_TEXT,
-  fromFileUrl,
   extname,
   basename,
   contentType,
+  vary,
 } from "../deps.ts";
 import {
   Response as DenoResponse,
@@ -18,6 +19,7 @@ import {
   Request,
   Application,
   DenoResponseBody,
+  NextFunction,
 } from "../src/types.ts";
 
 /**
@@ -181,7 +183,89 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: format() {}
+  /**
+   * Respond to the Acceptable formats using an `obj`
+   * of mime-type callbacks.
+   *
+   * This method uses `req.accepted`, an array of
+   * acceptable types ordered by their quality values.
+   * When "Accept" is not present the _first_ callback
+   * is invoked, otherwise the first match is used. When
+   * no match is performed the server responds with
+   * 406 "Not Acceptable".
+   *
+   * Content-Type is set for you, however if you choose
+   * you may alter this within the callback using `res.type()`
+   * or `res.set('Content-Type', ...)`.
+   *
+   *    res.format({
+   *      'text/plain': function(){
+   *        res.send('hey');
+   *      },
+   *
+   *      'text/html': function(){
+   *        res.send('<p>hey</p>');
+   *      },
+   *
+   *      'application/json': function(){
+   *        res.send({ message: 'hey' });
+   *      }
+   *    });
+   *
+   * In addition to canonicalized MIME types you may
+   * also use extnames mapped to these types:
+   *
+   *    res.format({
+   *      text: function(){
+   *        res.send('hey');
+   *      },
+   *
+   *      html: function(){
+   *        res.send('<p>hey</p>');
+   *      },
+   *
+   *      json: function(){
+   *        res.send({ message: 'hey' });
+   *      }
+   *    });
+   *
+   * By default Express passes an `Error`
+   * with a `.status` of 406 to `next(err)`
+   * if a match is not made. If you provide
+   * a `.default` callback it will be invoked
+   * instead.
+   *
+   * @param {Object} obj
+   * @return {Response} for chaining
+   * @public
+   */
+  format(obj: any): this {
+    const req = this.req;
+    const next = req.next as NextFunction;
+
+    const { default: fn, ...rest } = obj;
+    const keys = Object.keys(rest);
+    const key = keys.length > 0 ? req.accepts(keys)[0] : false;
+
+    this.vary("Accept");
+
+    if (key) {
+      this.set("Content-Type", normalizeType(key).value);
+      obj[key](req, this, next);
+    } else if (fn) {
+      fn();
+    } else {
+      const err = new Error("Not Acceptable") as any;
+      err.status = err.statusCode = 406;
+      err.types = normalizeTypes(keys).map(function (o) {
+        return o.value;
+      });
+
+      next(err);
+    }
+
+    return this;
+  }
 
   /**
    * Get value for header `field`.
@@ -528,5 +612,17 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: vary() {}
+  /**
+   * Add `field` to Vary. If already present in the Vary set, then
+   * this call is simply ignored.
+   *
+   * @param {Array|String} field
+   * @return {Response} for chaining
+   * @public
+   */
+  vary(field: string | string[]): this {
+    vary(this.headers, field);
+
+    return this;
+  }
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;middleware/bodyParser/read&quot; | </title>
+	<title>&quot;utils/normalizeType&quot; | </title>
 	<meta name="description" content="Documentation for ">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_middleware_bodyparser_read_.html">&quot;middleware/bodyParser/read&quot;</a>
+					<a href="_utils_normalizetype_.html">&quot;utils/normalizeType&quot;</a>
 				</li>
 			</ul>
-			<h1>Module &quot;middleware/bodyParser/read&quot;</h1>
+			<h1>Module &quot;utils/normalizeType&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -68,62 +68,81 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="_middleware_bodyparser_read_.html#decoder" class="tsd-kind-icon">decoder</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_middleware_bodyparser_read_.html#getbodyreader" class="tsd-kind-icon">get<wbr>Body<wbr>Reader</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private"><a href="_middleware_bodyparser_read_.html#read" class="tsd-kind-icon">read</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_normalizetype_.html#acceptparams" class="tsd-kind-icon">accept<wbr>Params</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private"><a href="_utils_normalizetype_.html#normalizetype" class="tsd-kind-icon">normalize<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private"><a href="_utils_normalizetype_.html#normalizetypes" class="tsd-kind-icon">normalize<wbr>Types</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-					<a name="decoder" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decoder</h3>
-					<div class="tsd-signature tsd-kind-icon">decoder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TextDecoder</span><span class="tsd-signature-symbol"> = new TextDecoder()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/middleware/bodyParser/read.ts#L35">middleware/bodyParser/read.ts:35</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-					<a name="getbodyreader" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Body<wbr>Reader</h3>
+					<a name="acceptparams" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> accept<wbr>Params</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Body<wbr>Reader<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, inflate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">accept<wbr>Params<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>quality<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/middleware/bodyParser/read.ts#L106">middleware/bodyParser/read.ts:106</a></li>
+									<li>Defined in utils/normalizeType.ts:11</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the content stream of the request.</p>
+									<p>Parse accept params <code>str</code> returning an
+									object with <code>.value</code>, <code>.quality</code> and <code>.params</code>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>req: <a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a></h5>
+									<h5>str: <span class="tsd-signature-type">string</span></h5>
 								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>quality<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>quality<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private">
+					<a name="normalizetype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> normalize<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in utils/normalizeType.ts:35</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Normalize the given <code>type</code>, for example &quot;html&quot; becomes &quot;text/html&quot;.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> inflate: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -131,42 +150,30 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private">
-					<a name="read" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> read</h3>
+					<a name="normalizetypes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> normalize<wbr>Types</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, res<span class="tsd-signature-symbol">: </span><a href="../classes/_response_.response.html" class="tsd-signature-type">Response</a>, next<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a>, parse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Types<span class="tsd-signature-symbol">(</span>types<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/0a1804e/src/middleware/bodyParser/read.ts#L47">middleware/bodyParser/read.ts:47</a></li>
+									<li>Defined in utils/normalizeType.ts:48</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Read a request into a buffer and parse.</p>
+									<p>Normalize <code>types</code>, for example &quot;html&quot; becomes &quot;text/html&quot;.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>req: <a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a></h5>
-								</li>
-								<li>
-									<h5>res: <a href="../classes/_response_.response.html" class="tsd-signature-type">Response</a></h5>
-								</li>
-								<li>
-									<h5>next: <a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a></h5>
-								</li>
-								<li>
-									<h5>parse: <span class="tsd-signature-type">Function</span></h5>
-								</li>
-								<li>
-									<h5>options: <span class="tsd-signature-type">any</span></h5>
+									<h5>types: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -179,20 +186,20 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="_middleware_bodyparser_read_.html">&quot;middleware/body<wbr>Parser/read&quot;</a>
+						<a href="_utils_normalizetype_.html">&quot;utils/normalize<wbr>Type&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_middleware_bodyparser_read_.html#decoder" class="tsd-kind-icon">decoder</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="_middleware_bodyparser_read_.html#getbodyreader" class="tsd-kind-icon">get<wbr>Body<wbr>Reader</a>
+						<a href="_utils_normalizetype_.html#acceptparams" class="tsd-kind-icon">accept<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private">
-						<a href="_middleware_bodyparser_read_.html#read" class="tsd-kind-icon">read</a>
+						<a href="_utils_normalizetype_.html#normalizetype" class="tsd-kind-icon">normalize<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private">
+						<a href="_utils_normalizetype_.html#normalizetypes" class="tsd-kind-icon">normalize<wbr>Types</a>
 					</li>
 				</ul>
 			</nav>

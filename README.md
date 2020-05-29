@@ -23,18 +23,6 @@ This is a [Deno](https://deno.land/) module available to import direct from this
 
 Before importing, [download and install Deno](https://deno.land/#installation).
 
-> Please refer to the [version file](./version.ts) for a list of Deno versions supported by Opine.
->
-> Once Deno is installed, you can easily switch between Deno versions using the `upgrade` command:
->
-> ```bash
-> # Upgrade to latest version:
-> deno upgrade
->
-> # Upgrade to a specific version, replace `<version>` with the version you want (e.g. `1.0.0`):
-> deno upgrade --version <version>
-> ```
-
 You can then import Opine straight into your project:
 
 ```ts
@@ -58,6 +46,7 @@ import opine from "https://deno.land/x/opine@c21f8d6/mod.ts";
 - Robust routing
 - Focus on high performance
 - HTTP helpers
+- Content negotiation
 
 And more to come as we achieve feature parity with [ExpressJS](https://github.com/expressjs/express).
 

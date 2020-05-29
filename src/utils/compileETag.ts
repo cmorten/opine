@@ -39,9 +39,8 @@ export const wetag = createETagGenerator({ weak: true });
  *
  * @param {String} path
  * @return {Boolean}
- * @api private
+ * @private
  */
-
 export const compileETag = function (value: any) {
   let fn;
 
