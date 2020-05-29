@@ -452,9 +452,9 @@ app.listen = function (options) {
 };
 ```
 
-#### app.listen(port, [callback])
+#### app.listen([port], [callback])
 
-Binds and listens for connections on the specified numerical port. This method is nearly identical to Deno's [http.listenAndServe()](https://doc.deno.land/https/deno.land/std/http/server.ts#listenAndServe).
+Binds and listens for connections on the specified numerical port. If no port is provided, an available port is assigned for you. This method is similar to Deno's [http.listenAndServe()](https://doc.deno.land/https/deno.land/std/http/server.ts#listenAndServe).
 
 This method is supported for legacy reasons to aid in transitions from Express on Node.
 

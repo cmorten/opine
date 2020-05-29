@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.7.0] - 29-05-2020
+
+- feat: support passing no parameters to `app.listen()` and being automatically assigned a port.
+
 ## [0.6.3] - 29-05-2020
 
 - fix: set versions on all deps to prevent adopting breaking changes from `master`.

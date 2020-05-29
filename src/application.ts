@@ -366,10 +366,12 @@ app.all = function all(path: PathParams): Application {
  * @public
  */
 app.listen = function listen(
-  options: number | string | HTTPOptions | HTTPSOptions,
+  options?: number | string | HTTPOptions | HTTPSOptions,
   callback?: Function,
 ): Server {
-  if (typeof options === "number") {
+  if (typeof options === "undefined") {
+    options = { port: 0 };
+  } else if (typeof options === "number") {
     options = `:${options}`;
   }
 
