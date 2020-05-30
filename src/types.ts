@@ -820,7 +820,7 @@ export interface Application extends IRouter, Opine.Application {
    */
   (
     req: Request,
-    res: Response,
+    res?: Response,
   ): void;
 
   /**

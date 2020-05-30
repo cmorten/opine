@@ -12,6 +12,7 @@ import {
   contentType,
   vary,
   encodeUrl,
+  fromFileUrl,
 } from "../deps.ts";
 import {
   Response as DenoResponse,
@@ -496,6 +497,7 @@ export class Response implements DenoResponse {
    * @public
    */
   async sendFile(path: string): Promise<this> {
+    path = path.startsWith("file:") ? fromFileUrl(path) : path;
     const body = await Deno.readFile(path);
 
     const stats: Deno.FileInfo = await Deno.stat(path);

@@ -383,8 +383,23 @@ app.listen = function listen(
     : serve(options);
 
   const start = async () => {
-    for await (const request of server) {
-      this(request as Request, new ServerResponse());
+    try {
+      for await (const request of server) {
+        this(request as Request);
+      }
+    } catch (serverError) {
+      if (server) {
+        try {
+          server.close();
+        } catch (err) {
+          // Server might have been already closed
+          if (!(err instanceof Deno.errors.BadResource)) {
+            throw err;
+          }
+        }
+      }
+
+      throw serverError;
     }
   };
 

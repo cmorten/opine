@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.8.0] - 30-05-2020
+
+- fix: `res.sendFile()` not correctly resolving paths, impacting `res.download()` and other APIs that use it internally.
+- feat: decouple the base Opine route handler from the server it starts so can use Opine as a route handler within other libraries / frameworks as middleware with a server that is not started via `app.listen()`.
+- feat: attempt to close the server within `app.listen()` if an exception occurs in the server connection handling loop.
+
 ## [0.7.0] - 29-05-2020
 
 - feat: support passing no parameters to `app.listen()` and being automatically assigned a port.

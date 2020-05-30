@@ -26,7 +26,7 @@ export const response: Response = Object.create(ServerResponse.prototype);
 export function opine(): Opine {
   const app = ((
     req: Request,
-    res: Response,
+    res: Response = new ServerResponse(),
     next: NextFunction,
   ): void => {
     app.handle(req, res, next);
