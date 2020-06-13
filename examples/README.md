@@ -10,6 +10,7 @@ This directory contains a series of self-contained examples that you can use as 
 - [json](./json) - An example of how to use the `json` body-parser middleware in your Opine applications.
 - [location](./location) - An example of how set the `Location` header using `res.location()` for a `301` redirect.
 - [multi-router](./multi-router) - An example of how to use the Opine `Router` to mount several controllers onto a path within an application / API.
+- [proxy](./proxy) - Example using `opine-http-proxy` as a proxy middleware.
 - [raw](./raw) - An example of how to use the `raw` body-parser middleware in your Opine applications.
 - [static-files](./static-files) - An example of how to serve static files to a user using the Opine `serveStatic` middleware.
 - [text](./text) - An example of how to use the `text` body-parser middleware in your Opine applications.
