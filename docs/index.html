@@ -68,12 +68,12 @@
 				<p>Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
 				<p><a href="https://github.com/asos-craigmorten/opine/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/opine" alt="GitHub tag"></a> <img src="https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg" alt="Test"> <a href="https://doc.deno.land/https/deno.land/x/opine/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"></a> <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a> <a href="https://img.shields.io/github/issues/asos-craigmorten/opine"><img src="https://img.shields.io/github/issues/asos-craigmorten/opine" alt=""></a>
 				<img src="https://img.shields.io/github/stars/asos-craigmorten/opine" alt=""> <img src="https://img.shields.io/github/forks/asos-craigmorten/opine" alt=""> <img src="https://img.shields.io/github/license/asos-craigmorten/opine" alt=""> <a href="https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a> <a href="http://hits.dwyl.com/asos-craigmorten/opine"><img src="http://hits.dwyl.com/asos-craigmorten/opine.svg" alt="HitCount"></a></p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@master/mod.ts"</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/opine@main/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> app = opine();
 
 app.use(<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
-  res.send(<span class="hljs-string">"Hello World"</span>);
+  res.send(<span class="hljs-string">&quot;Hello World&quot;</span>);
 });
 
 app.listen(<span class="hljs-number">3000</span>);</code></pre>
@@ -83,11 +83,11 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
 				<p>This is a <a href="https://deno.land/">Deno</a> module available to import direct from this repo and via the <a href="https://deno.land/x">Deno Registry</a>.</p>
 				<p>Before importing, <a href="https://deno.land/#installation">download and install Deno</a>.</p>
 				<p>You can then import Opine straight into your project:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@master/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/opine@main/mod.ts&quot;</span>;</code></pre>
 				<p>If you want to use a specific version of Opine, just modify the import url to contain the version:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@0.3.0/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/opine@0.3.0/mod.ts&quot;</span>;</code></pre>
 				<p>Or if you want to use a specific commit of Opine, just modify the import url to contain the commit hash:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/opine@c21f8d6/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> opine <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/opine@c21f8d6/mod.ts&quot;</span>;</code></pre>
 				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
 					<h2>Features</h2>
 				</a>
@@ -102,13 +102,13 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
 					<h2>Docs</h2>
 				</a>
 				<ul>
-					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md">Opine Docs</a> - usually the best place when getting started ✨</li>
+					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md">Opine Docs</a> - usually the best place when getting started ✨</li>
 					<li><a href="https://asos-craigmorten.github.io/opine/">Opine Type Docs</a></li>
 					<li><a href="https://doc.deno.land/https/deno.land/x/opine/mod.ts">Opine Deno Docs</a></li>
 					<li><a href="https://expressjs.com/en/4x/api.html">ExpressJS API Docs</a></li>
-					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/LICENSE.md">License</a></li>
-					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/EXPRESS_LICENSE.md">ExpressJS License</a></li>
-					<li><a href="https://github.com/asos-craigmorten/opine/blob/master/.github/CHANGELOG.md">Changelog</a></li>
+					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/LICENSE.md">License</a></li>
+					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/EXPRESS_LICENSE.md">ExpressJS License</a></li>
+					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/.github/CHANGELOG.md">Changelog</a></li>
 				</ul>
 				<a href="#philosophy" id="philosophy" style="color: inherit; text-decoration: none;">
 					<h2>Philosophy</h2>
@@ -122,7 +122,7 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
 				<p>To run the <a href="./examples">examples</a>, you have two choices:</p>
 				<ol>
 					<li><p>Run the example using Deno directly from GitHub, for example:</p>
-						<pre><code class="language-bash">deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts</code></pre>
+						<pre><code class="language-bash">deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/hello-world/index.ts</code></pre>
 					</li>
 					<li><p>Clone the Opine repo locally:</p>
 						<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> git://github.com/asos-craigmorten/opine.git --depth 1
@@ -135,7 +135,7 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
-				<p><a href="https://github.com/asos-craigmorten/opine/blob/master/.github/CONTRIBUTING.md">Contributing guide</a></p>
+				<p><a href="https://github.com/asos-craigmorten/opine/blob/main/.github/CONTRIBUTING.md">Contributing guide</a></p>
 				<hr>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>

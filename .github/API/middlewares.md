@@ -13,7 +13,7 @@ A new `parsedBody` object containing the parsed data is populated on the `reques
 > As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, json } from "https://deno.land/x/opine@master/mod.ts";
+import { opine, json } from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 
@@ -46,7 +46,7 @@ A new `parsedBody` `Buffer` containing the parsed data is populated on the `requ
 > As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.toString()` may fail in multiple ways, for example stacking multiple parsers `req.parsedBody` may be from a different parser. Testing that `req.parsedBody` is a `Buffer` before calling buffer methods is recommended.
 
 ```ts
-import { opine, raw } from "https://deno.land/x/opine@master/mod.ts";
+import { opine, raw } from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 
@@ -142,7 +142,7 @@ A new `parsedBody` string containing the parsed data is populated on the `reques
 > As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.trim()` may fail in multiple ways, for example stacking multiple parsers `req.parsedBody` may be from a different parser. Testing that `req.parsedBody` is a string before calling string methods is recommended.
 
 ```ts
-import { opine, text } from "https://deno.land/x/opine@master/mod.ts";
+import { opine, text } from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 
@@ -173,7 +173,7 @@ A new `parsedBody` object containing the parsed data is populated on the `reques
 > As `req.parsedBody`'s shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.parsedBody.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, urlencoded } from "https://deno.land/x/opine@master/mod.ts";
+import { opine, urlencoded } from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 

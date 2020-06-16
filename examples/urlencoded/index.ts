@@ -5,7 +5,7 @@
  * 
  *    if have the repo cloned locally OR
  * 
- *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/urlencoded/index.ts
+ *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/urlencoded/index.ts
  * 
  *    if you don't!
  * 
