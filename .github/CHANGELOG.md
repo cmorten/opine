@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.9.0] - 16-06-2020
+
+- fix: lockfile dependencies.
+- fix: handling of empty bodies (Content-Length: 0) within body parsers.
+- chore: update support matrix to last version of v1.0.x and include v1.1.0.
+
 ## [0.8.0] - 30-05-2020
 
 - fix: `res.sendFile()` not correctly resolving paths, impacting `res.download()` and other APIs that use it internally.

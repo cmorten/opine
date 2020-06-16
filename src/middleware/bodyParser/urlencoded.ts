@@ -74,7 +74,10 @@ export function urlencoded(options: any = {}) {
     }
 
     // skip requests without bodies
-    if (!hasBody(req.headers)) {
+    if (
+      !hasBody(req.headers) ||
+      parseInt(req.headers.get("content-length") || "") === 0
+    ) {
       (req as any).parsedBody = Object.fromEntries(
         new URLSearchParams().entries(),
       );
