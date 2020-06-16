@@ -13,7 +13,7 @@ deno run --allow-net ./examples/text/index.ts
 if have the repo cloned locally _OR_
 
 ```bash
-deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/text/index.ts
+deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/text/index.ts
 ```
 
 if you don't!

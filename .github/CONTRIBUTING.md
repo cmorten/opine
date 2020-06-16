@@ -21,9 +21,9 @@ Be sure to check for existing issues before raising your own!
 
 ### Branching
 
-On this project we follow mainline development (or trunk based development), and our default branch is `master`.
+On this project we follow mainline development (or trunk based development), and our default branch is `main`.
 
-Therefore you need to branch from `master` and merge into `master`.
+Therefore you need to branch from `main` and merge into `main`.
 
 We use the following convention for branch names `feat/issue-#-short-description`, where the the `#` should be replaced with the GitHub issue number, and the short description should provide an idea of what the branch is for.
 
@@ -93,7 +93,7 @@ make test
 
 ## Opening a PR
 
-Once you're confident your branch is ready to review, open a PR against `master` on this repo.
+Once you're confident your branch is ready to review, open a PR against `main` on this repo.
 
 Please make sure you fill the PR template correctly.
 

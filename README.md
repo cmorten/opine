@@ -6,7 +6,7 @@ Fast, minimalist web framework for [Deno](https://deno.land/) ported from [Expre
 ![](https://img.shields.io/github/stars/asos-craigmorten/opine) ![](https://img.shields.io/github/forks/asos-craigmorten/opine) ![](https://img.shields.io/github/license/asos-craigmorten/opine) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity) [![HitCount](http://hits.dwyl.com/asos-craigmorten/opine.svg)](http://hits.dwyl.com/asos-craigmorten/opine)
 
 ```ts
-import opine from "https://deno.land/x/opine@master/mod.ts";
+import opine from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 
@@ -26,7 +26,7 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import opine from "https://deno.land/x/opine@master/mod.ts";
+import opine from "https://deno.land/x/opine@main/mod.ts";
 ```
 
 If you want to use a specific version of Opine, just modify the import url to contain the version:
@@ -52,13 +52,13 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 
 ## Docs
 
-- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/master/.github/API/api.md) - usually the best place when getting started ✨
+- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) - usually the best place when getting started ✨
 - [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
-- [License](https://github.com/asos-craigmorten/opine/blob/master/LICENSE.md)
-- [ExpressJS License](https://github.com/asos-craigmorten/opine/blob/master/EXPRESS_LICENSE.md)
-- [Changelog](https://github.com/asos-craigmorten/opine/blob/master/.github/CHANGELOG.md)
+- [License](https://github.com/asos-craigmorten/opine/blob/main/LICENSE.md)
+- [ExpressJS License](https://github.com/asos-craigmorten/opine/blob/main/EXPRESS_LICENSE.md)
+- [Changelog](https://github.com/asos-craigmorten/opine/blob/main/.github/CHANGELOG.md)
 
 ## Philosophy
 
@@ -75,7 +75,7 @@ To run the [examples](./examples), you have two choices:
 1. Run the example using Deno directly from GitHub, for example:
 
    ```bash
-   deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/hello-world/index.ts
+   deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/hello-world/index.ts
    ```
 
 1. Clone the Opine repo locally:
@@ -95,7 +95,7 @@ All the [examples](./examples) contain example commands in their READMEs to help
 
 ## Contributing
 
-[Contributing guide](https://github.com/asos-craigmorten/opine/blob/master/.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/asos-craigmorten/opine/blob/main/.github/CONTRIBUTING.md)
 
 ---
 

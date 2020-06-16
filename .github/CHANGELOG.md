@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.10.0] - 16-06-2020
+
+- feat: move to "main" branch
+
 ## [0.9.0] - 16-06-2020
 
 - fix: lockfile dependencies.

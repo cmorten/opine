@@ -5,7 +5,7 @@
  * 
  *    if have the repo cloned locally OR
  * 
- *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/multi-router/index.ts
+ *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/multi-router/index.ts
  * 
  *    if you don't!
  * 

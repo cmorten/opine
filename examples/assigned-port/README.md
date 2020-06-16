@@ -13,7 +13,7 @@ deno run --allow-net ./examples/assigned-port/index.ts
 if have the repo cloned locally _OR_
 
 ```bash
-deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/master/examples/assigned-port/index.ts
+deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/assigned-port/index.ts
 ```
 
 if you don't!
