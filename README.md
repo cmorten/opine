@@ -1,9 +1,36 @@
-# opine
+<p align="center">
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" src="https://github.com/asos-craigmorten/opine/blob/main/.github/icon.png" alt="Deno reading an opinionated book"></a>
+  <h1 align="center">Opine</h1>
+</p>
+<p align="center">
+Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
+<p align="center">
+   <a href="https://github.com/asos-craigmorten/opine/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/opine" alt="Current version" /></a>
+   <img src="https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg" alt="Current test status" />
+   <a href="https://doc.deno.land/https/deno.land/x/opine/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="Deno docs" /></a>
+   <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
+   <a href="https://github.com/asos-craigmorten/opine/issues/"><img src="https://img.shields.io/github/issues/asos-craigmorten/opine" alt="Opine issues" /></a>
+   <img src="https://img.shields.io/github/stars/asos-craigmorten/opine" alt="Opine stars" />
+   <img src="https://img.shields.io/github/forks/asos-craigmorten/opine" alt="Opine forks" />
+   <img src="https://img.shields.io/github/license/asos-craigmorten/opine" alt="Opine license" />
+   <a href="https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
+   <a href="http://hits.dwyl.com/asos-craigmorten/opine"><img src="http://hits.dwyl.com/asos-craigmorten/opine.svg" alt="Opine repository visit count" /></a>
+</p>
 
-Fast, minimalist web framework for [Deno](https://deno.land/) ported from [ExpressJS](https://github.com/expressjs/express).
+---
 
-[![GitHub tag](https://img.shields.io/github/tag/asos-craigmorten/opine)](https://github.com/asos-craigmorten/opine/tags/) ![Test](https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/opine/mod.ts) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![](https://img.shields.io/github/issues/asos-craigmorten/opine)](https://img.shields.io/github/issues/asos-craigmorten/opine)
-![](https://img.shields.io/github/stars/asos-craigmorten/opine) ![](https://img.shields.io/github/forks/asos-craigmorten/opine) ![](https://img.shields.io/github/license/asos-craigmorten/opine) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity) [![HitCount](http://hits.dwyl.com/asos-craigmorten/opine.svg)](http://hits.dwyl.com/asos-craigmorten/opine)
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Features](#features)
+- [Documentation](#documentation)
+- [Philosophy](#philosophy)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Getting Started
 
 ```ts
 import opine from "https://deno.land/x/opine@main/mod.ts";
@@ -50,7 +77,7 @@ import opine from "https://deno.land/x/opine@c21f8d6/mod.ts";
 
 And more to come as we achieve feature parity with [ExpressJS](https://github.com/expressjs/express).
 
-## Docs
+## Documentation
 
 - [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) - usually the best place when getting started ✨
 - ~[Opine Type Docs](https://asos-craigmorten.github.io/opine/)~ - Unavailable while awaiting GitHub's support of alternatively named default branches.
@@ -106,3 +133,5 @@ There are several third party modules that have been ported into this module. Ea
 All modules adapted into this module are licensed under the MIT License.
 
 Opine is licensed under the [MIT License](./LICENSE.md).
+
+Icon designed and created by [Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).
