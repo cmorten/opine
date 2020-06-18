@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.10.1] - 18-06-2020
+
+- feat: integration with <https://nest.land> package repository.
+
 ## [0.10.0] - 16-06-2020
 
 - feat: move to "main" branch

@@ -1,4 +1,4 @@
-.PHONY: benchmark build ci doc fmt fmt-check lock precommit test typedoc
+.PHONY: benchmark build ci doc fmt fmt-check lock precommit publishegg test typedoc
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
@@ -35,6 +35,10 @@ precommit:
 	@make typedoc
 	@make fmt
 	@make lock
+
+publishegg:
+	@eggs link --key ${NEST_LAND_KEY}
+	@eggs publish
 
 test:
 	@deno test --allow-net ./test/units/
