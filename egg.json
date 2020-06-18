@@ -1,7 +1,7 @@
 {
     "name": "opine",
     "description": "Fast, minimalist web framework for Deno ported from ExpressJS.",
-    "version": "0.10.0"
+    "version": "0.10.0",
     "stable": true,
     "files": [
         "./mod.ts",
