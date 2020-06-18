@@ -5,7 +5,13 @@
     "stable": true,
     "files": [
         "./mod.ts",
+        "./deps.ts",
+        "./version.ts",
+        "./lock.json",
         "./src/**/*",
-        "./README.md"
+        "./README.md",
+        "./LICENSE.md",
+        "./EXPRESS_LICENSE.md",
+        "./.github/CHANGELOG.md"
     ]
 }
