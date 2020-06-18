@@ -13,7 +13,7 @@ jobs:
         with:
           deno-version: 1.1.0
       - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.1.0/mod.ts
-      - run: export PATH="~/.deno/bin:$PATH"
+      - run: export PATH="/home/runner/.deno/bin:${PATH}"
       - run: make publishegg
         env:
           NEST_LAND_KEY: ${{secrets.NEST_LAND_KEY}}
