@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" src="https://github.com/asos-craigmorten/opine/blob/main/.github/icon.png" alt="Deno reading an opinionated book"></a>
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height:200px;" src="https://github.com/asos-craigmorten/opine/blob/raw/.github/icon.png" alt="Deno reading an opinionated book"></a>
   <h1 align="center">Opine</h1>
 </p>
 <p align="center">
