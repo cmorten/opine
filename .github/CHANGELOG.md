@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.10.2] - 19-06-2020
+
+- feat: add repository field to `egg.json`.
+- chore: upgrade eggs CLI in CI.
+
 ## [0.10.1] - 18-06-2020
 
 - feat: integration with <https://nest.land> package repository.
