@@ -701,6 +701,19 @@ export interface Response<ResBody = any>
   location(url: string): this;
 
   /**
+   * Render `view` with the given `options` and optional callback `fn`.
+   * When a callback function is given a response will _not_ be made
+   * automatically, otherwise a response of _200_ and _text/html_ is given.
+   *
+   * Options:
+   *
+   *  - `cache`     boolean hinting to the engine it should cache
+   *  - `filename`  filename of the view being rendered
+   */
+  render(view: string, options?: object, callback?: (err: Error, html: string) => void): void;
+  render(view: string, callback?: (err: Error, html: string) => void): void;
+
+  /**
    * Send a response.
    *
    * Examples:
@@ -961,6 +974,28 @@ export interface Application extends IRouter, Opine.Application {
   cache: any;
 
   parent: any;
+
+  engines: any;
+
+  /**
+   * Register the given template engine callback `fn` for the
+   * provided extension `ext`.
+   */ 
+  engine(ext: string, fn: (path: string, options: object, callback: (e: any, rendered: string) => void) => void): this;
+
+  /**
+   * Render the given view `name` name with `options`
+   * and a callback accepting an error and the
+   * rendered template string.
+   *
+   * Example:
+   *
+   *    app.render('email', { name: 'Deno' }, function(err, html) {
+   *      // ...
+   *    })
+   */
+  render(name: string, options?: object, callback?: (err: Error, html: string) => void): void;
+  render(name: string, callback: (err: Error, html: string) => void): void;
 }
 
 export interface Opine extends Application {

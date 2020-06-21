@@ -22,6 +22,7 @@ export {
   basename,
   join,
   dirname,
+  resolve,
 } from "https://deno.land/std@0.53.0/path/mod.ts";
 export { setImmediate } from "https://deno.land/std@0.53.0/node/timers.ts";
 export { Sha1 } from "https://deno.land/std@0.53.0/hash/sha1.ts";
