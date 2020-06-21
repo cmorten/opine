@@ -22,6 +22,8 @@ The `app` object has methods for
 
 - Routing HTTP requests; see for example, [app.METHOD](#appmethodpath-callback--callback-).
 - Configuring middleware; see [app.route](#approutepath).
+- Rendering HTML views; see [app.render](#apprenderview-locals-callback).
+- Registering a template engine; see [app.engine](#appengineext-callback).
 
 It also has settings (properties) that affect how the application behaves; for more information, see [Application settings](#application-settings).
 
@@ -338,6 +340,22 @@ app.enabled("x-powered-by");
 // => true
 ```
 
+#### app.engine(ext, callback)
+
+Register the given template engine callback for the provided extension.
+
+The template engine callback can be async, and should take a path and template options as arguments.
+
+```ts
+async function render(path: string, options: any) {
+  const str = await Deno.readTextFile(path);
+
+  return str.replace("{{user.name}}", options.user.name);
+}
+
+app.engine("tmpl", render);
+```
+
 #### app.get(name)
 
 Returns the value of `name` app setting, where `name` is one of the strings in the [app settings table](#application-settings). For example:
@@ -491,7 +509,7 @@ const app = opine();
 app.listen({ port: 3000, certFile: "myCertFile", keyFile: "myKeyFile" });
 ```
 
-#### app.METHOD(path, callback [, callback ...]
+#### app.METHOD(path, callback [, callback ...])
 
 Routes an HTTP request, where METHOD is the HTTP method of the request, such as GET, PUT, POST, and so on, in lowercase. Thus, the actual methods are `app.get()`, `app.post()`, `app.put()`, and so on. See [Routing methods](#routing-methods) below for the complete list.
 
@@ -754,6 +772,24 @@ For examples, see <a href="#path-examples">Path examples</a>.
 ```ts
 app.put("/", function (req, res) {
   res.send("PUT request to homepage");
+});
+```
+
+#### app.render(view, [locals], callback)
+
+Returns the rendered HTML of a view via the `callback` function. It accepts an optional parameter that is an object containing local variables for the view. It is like [res.render()](#res.render), except it cannot send the rendered view to the client on its own.
+
+> Think of `app.render()` as a utility function for generating rendered view strings. Internally `res.render()` uses `app.render()` to render views.
+>
+> The local variable `cache` is reserved for enabling view cache. Set it to `true`, if you want to cache view during development; view caching is enabled in production by default.
+
+```ts
+app.render("email", function (err, html) {
+  // ...
+});
+
+app.render("email", { name: "Deno" }, function (err, html) {
+  // ...
 });
 ```
 
