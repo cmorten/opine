@@ -4,7 +4,7 @@ import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
 import {
   setCookie,
   Cookie,
-  delCookie,
+  deleteCookie,
   Status,
   STATUS_TEXT,
   extname,
@@ -106,7 +106,7 @@ export class Response implements DenoResponse {
    */
   clearCookie(cookie: string | Cookie): this {
     const cookieName = typeof cookie === "string" ? cookie : cookie.name;
-    delCookie(this, cookieName);
+    deleteCookie(this, cookieName);
 
     return this;
   }
@@ -418,7 +418,7 @@ export class Response implements DenoResponse {
    *
    * @public
    */
-  render(view: string, options: any, callback: any = () => {}) {
+  render(view: string, options: any = {}, callback?: any) {
     const app = this.req.app;
     const req = this.req;
     const self = this;

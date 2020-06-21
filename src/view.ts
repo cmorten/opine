@@ -1,4 +1,11 @@
-import { extname, resolve, dirname, basename, join } from "../deps.ts";
+import {
+  extname,
+  resolve,
+  dirname,
+  basename,
+  join,
+  fromFileUrl,
+} from "../deps.ts";
 
 /**
  * Return a stat, maybe.
@@ -15,6 +22,9 @@ function tryStat(path: string) {
   }
 }
 
+function toPath(pathLike: string) {
+  return pathLike.startsWith("file:") ? fromFileUrl(pathLike) : pathLike;
+}
 
 export class View {
   defaultEngine!: any;
@@ -40,7 +50,12 @@ export class View {
     this.defaultEngine = options.defaultEngine;
     this.ext = extname(fileName);
     this.name = fileName;
-    this.root = options.root;
+
+    if (Array.isArray(options.root)) {
+      this.root = options.root.map(toPath);
+    } else {
+      this.root = toPath(options.root);
+    }
 
     if (!this.ext && !this.defaultEngine) {
       throw new Error(
@@ -81,8 +96,17 @@ export class View {
    * @private
    */
   resolve(dir: string, file: string) {
-    const path = join(dir, file);
-    const stat = tryStat(path);
+    let path = join(dir, file);
+    let stat = tryStat(path);
+
+    if (stat && stat.isFile) {
+      return path;
+    }
+
+    // <path>/index.<ext>
+    const ext = this.ext;
+    path = join(dir, basename(file, ext), `index${ext}`);
+    stat = tryStat(path);
 
     if (stat && stat.isFile) {
       return path;
@@ -104,13 +128,13 @@ export class View {
       const loc = resolve(root, name);
       const dir = dirname(loc);
       const file = basename(loc);
-
       path = this.resolve(dir, file);
     }
 
     return path;
   }
 
+  // TODO: move to / support Deno async style over callbacks
   /**
    * Render with the given options.
    *
@@ -118,7 +142,8 @@ export class View {
    * @param {Function} callback
    * @private
    */
-  render(options: object, callback: Function) {
-    this.engine(this.path, options, callback);
-  };
+  async render(options: object, callback: Function) {
+    const out = await this.engine(this.path, options);
+    callback(undefined, out);
+  }
 }

@@ -4,8 +4,10 @@ This directory contains a series of self-contained examples that you can use as 
 
 - [assigned-port](./assigned-port) - A basic example of starting an Opine server with a port that is assigned for you.
 - [content-negotiation](./content-negotiation) - An example of how to perform content negotiation using the `res.format()` method.
+- [dejs](./dejs) - Example of how to use Opine's template engine and rendering capabilities with the `dejs` module.
 - [downloads](./downloads) - Dummy file index server using path matching patterns and `res.download()` to serve files to the user.
 - [error](./error) - An example of how to use and write error middleware.
+- [error-pages](./error-pages) - Example of how to use Opine's template engine and rendering capabilities for custom error pages.
 - [hello-world](./hello-world) - A basic example of how to configure and start an Opine server.
 - [json](./json) - An example of how to use the `json` body-parser middleware in your Opine applications.
 - [location](./location) - An example of how set the `Location` header using `res.location()` for a `301` redirect.

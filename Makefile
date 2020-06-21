@@ -37,7 +37,7 @@ precommit:
 	@make lock
 
 test:
-	@deno test --allow-net ./test/units/
+	@deno test --allow-net --allow-read ./test/units/
 
 typedoc:
 	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals ./src

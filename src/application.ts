@@ -5,6 +5,7 @@ import {
   HTTPOptions,
   Server,
   resolve,
+  fromFileUrl,
 } from "../deps.ts";
 import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";
@@ -61,7 +62,6 @@ app.init = function init(): void {
 app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
-  // TODO: env
   // TODO: query parser
   // TODO: subdomain offset
   // TODO: trust proxy
@@ -90,8 +90,6 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   this.set("view", View);
   this.set("views", resolve("views"));
   this.set("jsonp callback name", "callback");
-
-  // TODO: env based?
   this.enable("view cache");
 };
 
@@ -222,10 +220,6 @@ app.route = function route(prefix: PathParams): IRoute {
  * @public
  */
 app.engine = function engine(ext: string, fn: Function) {
-  if (typeof fn !== "function") {
-    throw new Error("callback function required");
-  }
-
   const extension = ext[0] !== "." ? `.${ext}` : ext;
   this.engines[extension] = fn;
 
@@ -384,9 +378,9 @@ app.all = function all(path: PathParams): Application {
  * Try rendering a view.
  * @private
  */
-function tryRender(view: any, options: any, callback: Function) {
+async function tryRender(view: any, options: any, callback: Function) {
   try {
-    view.render(options, callback);
+    await view.render(options, callback);
   } catch (err) {
     callback(err);
   }
@@ -418,6 +412,8 @@ app.render = function render(
   const renderOptions: any = {};
   let done = callback;
   let view;
+
+  name = name.startsWith("file:") ? fromFileUrl(name) : name;
 
   // support callback function as second arg
   if (typeof options === "function") {
@@ -452,8 +448,8 @@ app.render = function render(
 
     view = new View(name, {
       defaultEngine: this.get("view engine"),
+      engines,
       root: this.get("views"),
-      engines: engines,
     });
 
     if (!view.path) {
