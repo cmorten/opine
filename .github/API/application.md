@@ -340,7 +340,7 @@ app.enabled("x-powered-by");
 // => true
 ```
 
-#### app.engine(ext, callback)
+#### app.engine(ext, callback)
 
 Register the given template engine callback for the provided extension.
 
