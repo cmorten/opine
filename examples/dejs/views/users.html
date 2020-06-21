@@ -1,0 +1,15 @@
+<!--
+  This template assumes you are running the example from the root
+  of the Opine project. The `dejs` doesn't resolve included paths
+  relative to the current template.
+-->
+<%- await include('examples/dejs/views/header.html', { title }); %>
+
+<h1>Users</h1>
+<ul id="users">
+  <% users.forEach(function(user){ %>
+    <li><%= user.name %> &lt;<%= user.email %>&gt;</li>
+  <% }) %>
+</ul>
+
+<%- await include('examples/dejs/views/footer.html'); %>

@@ -4,14 +4,17 @@ import {
   HTTPSOptions,
   HTTPOptions,
   Server,
+  resolve,
+  fromFileUrl,
 } from "../deps.ts";
 import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";
 import { init } from "./middleware/init.ts";
 import { query } from "./middleware/query.ts";
-import { Response as ServerResponse } from "./response.ts";
 import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
+import { merge } from "./utils/merge.ts";
+import { View } from "./view.ts";
 import {
   Request,
   Response,
@@ -20,7 +23,6 @@ import {
   PathParams,
   IRoute,
   Opine,
-  Router as IRouter,
 } from "../src/types.ts";
 
 const create = Object.create;
@@ -47,6 +49,7 @@ export const app: Application = {} as Application;
  */
 app.init = function init(): void {
   this.cache = {};
+  this.engines = {};
   this.settings = {};
 
   this.defaultConfiguration();
@@ -59,7 +62,6 @@ app.init = function init(): void {
 app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
-  // TODO: env
   // TODO: query parser
   // TODO: subdomain offset
   // TODO: trust proxy
@@ -71,6 +73,7 @@ app.defaultConfiguration = function defaultConfiguration(): void {
     // inherit prototypes
     setPrototypeOf(self.request, parent.request);
     setPrototypeOf(self.response, parent.response);
+    setPrototypeOf(self.engines, parent.engines);
     setPrototypeOf(self.settings, parent.settings);
   });
 
@@ -83,8 +86,11 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   // default locals
   this.locals.settings = this.settings;
 
-  // TODO: views
+  // default configuration
+  this.set("view", View);
+  this.set("views", resolve("views"));
   this.set("jsonp callback name", "callback");
+  this.enable("view cache");
 };
 
 /**
@@ -204,7 +210,21 @@ app.route = function route(prefix: PathParams): IRoute {
   return this._router.route(prefix);
 };
 
-// TODO: app.engine()
+/**
+ * Register the given template engine callback `fn` for the
+ * provided extension `ext`.
+ *
+ * @param {string} ext
+ * @param {Function} fn
+ * @return {Application} for chaining
+ * @public
+ */
+app.engine = function engine(ext: string, fn: Function) {
+  const extension = ext[0] !== "." ? `.${ext}` : ext;
+  this.engines[extension] = fn;
+
+  return this;
+};
 
 // TODO: app.param()
 
@@ -354,9 +374,110 @@ app.all = function all(path: PathParams): Application {
   return this;
 };
 
-// TODO: app.render()
+/**
+ * Try rendering a view.
+ * @private
+ */
+async function tryRender(view: any, options: any, callback: Function) {
+  try {
+    await view.render(options, callback);
+  } catch (err) {
+    callback(err);
+  }
+}
 
-// TODO: consider adding optional callback to ease Express transition.
+/**
+ * Render the given view `name` name with `options`
+ * and a callback accepting an error and the
+ * rendered template string.
+ *
+ * Example:
+ *
+ *    app.render('email', { name: 'Deno' }, function(err, html) {
+ *      // ...
+ *    })
+ *
+ * @param {string} name
+ * @param {Object|Function} options or callback
+ * @param {Function} callback
+ * @public
+ */
+app.render = function render(
+  name: string,
+  options: any,
+  callback: Function = () => {},
+) {
+  const cache = this.cache;
+  const engines = this.engines;
+  const renderOptions: any = {};
+  let done = callback;
+  let view;
+
+  name = name.startsWith("file:") ? fromFileUrl(name) : name;
+
+  // support callback function as second arg
+  if (typeof options === "function") {
+    done = options;
+    options = {};
+  }
+
+  // merge app.locals
+  merge(renderOptions, this.locals);
+
+  // merge options._locals
+  if (options._locals) {
+    merge(renderOptions, options._locals);
+  }
+
+  // merge options
+  merge(renderOptions, options);
+
+  // set .cache unless explicitly provided
+  if (renderOptions.cache == null) {
+    renderOptions.cache = this.enabled("view cache");
+  }
+
+  // primed cache
+  if (renderOptions.cache) {
+    view = cache[name];
+  }
+
+  // view
+  if (!view) {
+    const View = this.get("view");
+
+    view = new View(name, {
+      defaultEngine: this.get("view engine"),
+      engines,
+      root: this.get("views"),
+    });
+
+    if (!view.path) {
+      const dirs = Array.isArray(view.root) && view.root.length > 1
+        ? `directories "${view.root.slice(0, -1).join('", "')}" or "${
+          view.root[view.root.length - 1]
+        }"`
+        : `directory "${view.root}"`;
+
+      const err = new Error(
+        `Failed to lookup view "${name}" in views ${dirs}`,
+      );
+
+      (err as any).view = view;
+
+      return done(err);
+    }
+
+    // prime the cache
+    if (renderOptions.cache) {
+      cache[name] = view;
+    }
+  }
+
+  // render
+  tryRender(view, renderOptions, done);
+};
+
 // TODO: consider using a Proxy to enable setting / getting of `req.body`.
 /**
  * Listen for connections.

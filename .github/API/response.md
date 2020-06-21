@@ -334,6 +334,34 @@ app.get("/redirect", function (req, res, next) {
 });
 ```
 
+#### res.render(view [, locals][, callback])
+
+Renders a `view` and sends the rendered HTML string to the client. Optional parameters:
+
+- `locals`, an object whose properties define local variables for the view.
+- `callback`, a callback function. If provided, the method returns both the possible error and rendered string, but does not perform an automated response. When an error occurs, the method invokes `next(err)` internally.
+
+The `view` argument is a string that is the file path of the view file to render. This can be an absolute path, or a path relative to the `views` setting. If the path does not contain a file extension, then the `view engine` setting determines the file extension.
+
+**NOTE:** The `view` argument is used in file system operations like reading a file from disk, and as so for security reasons should not contain input from the end-user.
+
+> The local variable `cache` enables view caching. Set it to `true`, to cache the view during development; view caching is enabled by default.
+
+```ts
+// send the rendered view to the client
+res.render("index");
+
+// if a callback is specified, the rendered HTML string has to be sent explicitly
+res.render("index", function (err, html) {
+  res.send(html);
+});
+
+// pass a local variable to the view
+res.render("user", { name: "Deno" }, function (err, html) {
+  // ...
+});
+```
+
 #### res.send([body])
 
 Sends the HTTP response.

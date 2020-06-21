@@ -4,7 +4,7 @@ import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
 import {
   setCookie,
   Cookie,
-  delCookie,
+  deleteCookie,
   Status,
   STATUS_TEXT,
   extname,
@@ -106,7 +106,7 @@ export class Response implements DenoResponse {
    */
   clearCookie(cookie: string | Cookie): this {
     const cookieName = typeof cookie === "string" ? cookie : cookie.name;
-    delCookie(this, cookieName);
+    deleteCookie(this, cookieName);
 
     return this;
   }
@@ -406,7 +406,45 @@ export class Response implements DenoResponse {
 
   // TODO: redirect() {}
 
-  // TODO: render() {}
+  /**
+   * Render `view` with the given `options` and optional callback `fn`.
+   * When a callback function is given a response will _not_ be made
+   * automatically, otherwise a response of _200_ and _text/html_ is given.
+   *
+   * Options:
+   *
+   *  - `cache`     boolean hinting to the engine it should cache
+   *  - `filename`  filename of the view being rendered
+   *
+   * @public
+   */
+  render(view: string, options: any = {}, callback?: any) {
+    const app = this.req.app;
+    const req = this.req;
+    const self = this;
+    let done = callback;
+
+    // support callback function as second arg
+    if (typeof options === "function") {
+      done = options;
+      options = {};
+    }
+
+    // merge res.locals
+    options._locals = self.locals;
+
+    // default callback to respond
+    done = done || function (err: any, str: string) {
+      if (err) {
+        return (req as any).next(err);
+      }
+
+      self.send(str);
+    };
+
+    // render
+    app.render(view, options, done);
+  }
 
   /**
    * Send a response.

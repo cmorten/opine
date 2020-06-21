@@ -1,0 +1,8 @@
+<%- await include("examples/error-pages/views/error_header.ejs"); %>
+<h2>Error: <%= error.message %></h2>
+<% if (settings['verbose errors']) { %>
+  <pre><%= error.stack %></pre>
+<% } else { %>
+  <p>An error occurred!</p>
+<% } %>
+<%- await include("examples/error-pages/views/footer.ejs"); %>
