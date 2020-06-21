@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.11.0] - 21-06-2020
+
+- feat: add render and engine public APIs.
+
 ## [0.10.2] - 19-06-2020
 
 - feat: add repository field to `egg.json`.
