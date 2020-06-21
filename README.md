@@ -72,8 +72,12 @@ import opine from "https://deno.land/x/opine@c21f8d6/mod.ts";
 
 - Robust routing
 - Focus on high performance
-- HTTP helpers
+- Large selection of HTTP helpers including support for downloading / sending files, etags, Content-Disposition, cookies, JSONP etc.
+- Support for static serving of assets
+- View system supporting template engines
 - Content negotiation
+- Compatible with [SuperDeno](https://github.com/asos-craigmorten/superdeno) for easy server testing
+- Supports HTTP proxy middleware with [opine-http-proxy](https://github.com/asos-craigmorten/opine-http-proxy)
 
 And more to come as we achieve feature parity with [ExpressJS](https://github.com/expressjs/express).
 
