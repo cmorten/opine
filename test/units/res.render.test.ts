@@ -25,7 +25,7 @@ describe("res", function () {
         res.render(join(__dirname, "../fixtures", "user.tmpl"));
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect("<p>Deno</p>", done);
     });
@@ -40,7 +40,7 @@ describe("res", function () {
         res.render(join(__dirname, "../fixtures", "user"));
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect("<p>Deno</p>", done);
     });
@@ -56,7 +56,7 @@ describe("res", function () {
         res.render(join(__dirname, "../fixtures", "broken.send"));
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect(500, /Could not find a view engine for extension/, done);
     });
@@ -72,7 +72,7 @@ describe("res", function () {
         res.render(join(__dirname, "../fixtures", "user"));
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect(500, /No default engine was specified/, done);
     });
@@ -87,7 +87,7 @@ describe("res", function () {
         res.render("user.tmpl");
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect("<p>Deno</p>", done);
     });
@@ -102,7 +102,7 @@ describe("res", function () {
         res.render("name.tmpl");
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect("<p>Deno</p>", done);
     });
@@ -117,7 +117,7 @@ describe("res", function () {
         res.render("blog/post");
       });
 
-      superdeno(app as any)
+      superdeno(app)
         .get("/")
         .expect("<h1>Blog Post</h1>", done);
     });
@@ -136,7 +136,7 @@ describe("res", function () {
           res.setStatus(500).send("got error: " + err.name);
         });
 
-        superdeno(app as any)
+        superdeno(app)
           .get("/")
           .expect(500, "got error: RenderError", done);
       });
@@ -153,7 +153,7 @@ describe("res", function () {
           res.render("email");
         });
 
-        superdeno(app as any)
+        superdeno(app)
           .get("/")
           .expect("<p>This is an email</p>", done);
       });
@@ -169,7 +169,7 @@ describe("res", function () {
           res.render("user.tmpl", { user: { name: "Deno" } });
         });
 
-        superdeno(app as any)
+        superdeno(app)
           .get("/")
           .expect("<p>Deno</p>", done);
       });
@@ -188,7 +188,7 @@ describe("res", function () {
             res.render("user.tmpl", { user: { name: "Deno" } });
           });
 
-          superdeno(app as any)
+          superdeno(app)
             .get("/")
             .expect("<span>Deno</span>", done);
         });
@@ -206,7 +206,7 @@ describe("res", function () {
             res.render("name.tmpl", { name: "Deno" });
           });
 
-          superdeno(app as any)
+          superdeno(app)
             .get("/")
             .expect("<p>Deno</p>", done);
         });

@@ -30,11 +30,12 @@ export { encoder } from "https://deno.land/std@0.58.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
-} from "https://deno.land/x/evt@1.7.9/mod.ts";
+} from "https://deno.land/x/evt@1.7.13/mod.ts";
 export {
   contentType,
   charset,
-} from "https://deno.land/x/media_types@v2.3.1/mod.ts";
+  lookup,
+} from "https://deno.land/x/media_types@v2.3.7/mod.ts";
 export { createError } from "https://deno.land/x/http_errors@2.0.0/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@1.0.0/mod.ts";
 export {
@@ -43,6 +44,5 @@ export {
 } from "https://deno.land/x/type_is@1.0.1/mod.ts";
 export { isIP } from "https://deno.land/x/isIP@1.0.0/mod.ts";
 export { vary } from "https://deno.land/x/vary@dc17535/mod.ts";
-export { lookup } from "https://deno.land/x/media_types@v2.3.3/mod.ts";
 export { escapeHtml } from "https://deno.land/x/escape_html@1.0.0/mod.ts";
 export { encodeUrl } from "https://deno.land/x/encodeurl@1.0.0/mod.ts";

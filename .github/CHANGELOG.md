@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.12.0] - 23-06-2020
+
+- chore: update dependencies.
+
 ## [0.11.0] - 21-06-2020
 
 - feat: add render and engine public APIs.
