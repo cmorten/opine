@@ -575,29 +575,54 @@ export class Response implements DenoResponse {
     return this.send(body);
   }
 
-  // TODO: back-compat support for Express signature.
-  // Namely objects and arrays.
   /**
    * Set header `field` to `value`, or pass
    * an object of header fields.
    *
    * Examples:
    *
-   *    res.set('Accept', 'application/json');
-   *
+   *     res.set('Accept', 'application/json');
+   *     res.set({
+   *       'Accept-Language': 'en-US,en;q=0.5',
+   *       'Accept': 'text/html',
+   *     });
    * @param {string} field
    * @param {string} value
    * @return {Response} for chaining
    * @public
    */
-  set(field: string, value: string): this {
-    const lowerCaseField = field.toLowerCase();
+  set(field: string, value: string): this;
+  set(obj: Record<string, string[] | string>): this;
+  set(field: string, value: string[]): this;
+  set(field: unknown, value?: unknown): this {
+    if (arguments.length === 2) {
+      const lowerCaseField = (field + "").toLowerCase();
+      const firstVal = (Array.isArray(value) ? value[0] : value) + "";
 
-    if (lowerCaseField === "content-type") {
-      return this.type(value);
+      this.headers.set(lowerCaseField, firstVal);
+
+      if (lowerCaseField === "content-type") {
+        this.type(firstVal);
+      } else {
+        this.headers.set(lowerCaseField, firstVal);
+      }
+
+      if (Array.isArray(value)) {
+        if (lowerCaseField === "content-type") {
+          throw new TypeError("Content-Type cannot be set to an Array");
+        }
+
+        for (let i = 1, len = value.length; i < len; i++) {
+          this.headers.append(lowerCaseField, value[i] + "");
+        }
+      }
+    } else if (typeof field === "object" && field) {
+      const entries = Object.entries(field);
+
+      for (const [key, val] of entries) {
+        this.set(key, val);
+      }
     }
-
-    this.headers.set(lowerCaseField, value);
 
     return this;
   }
