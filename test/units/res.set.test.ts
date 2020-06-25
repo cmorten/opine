@@ -18,54 +18,58 @@ describe("res", function () {
         .end(done);
     });
 
-    it("should coerce to a string", function (done) {
+    it("should coerce value to string", function (done) {
       const app = opine();
 
       app.use(function (req, res) {
         res.set("X-Number", 123 as any);
+        res.set(
+          "Access-Control-Allow-Methods",
+          ["POST", "GET", "OPTIONS"] as any,
+        );
         res.end(typeof res.get("X-Number"));
       });
 
       superdeno(app)
         .get("/")
+        .expect("Access-Control-Allow-Methods", "POST,GET,OPTIONS")
         .expect("X-Number", "123")
         .expect(200, "string", done);
     });
-  });
 
-  describe(".set(field, values)", function () {
-    it("should set multiple response header fields", function (done) {
+    it("should support multiple Set-Cookie headers", function (done) {
       const app = opine();
 
+      const firstCookie =
+        "DOCKER_COMPOSE=up;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
+      const secondCookie =
+        "CARGO=build;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
+
       app.use(function (req, res) {
-        res.set("Set-Cookie", ["type=ninja", "language=javascript"]);
         res.set(
-          "Accept",
-          ["text/html", "application/xhtml+xml", "application/xml;q=0.9"],
+          "Set-Cookie",
+          firstCookie,
         );
-        res.send(res.get("Set-Cookie"));
+        res.set(
+          "Set-Cookie",
+          secondCookie,
+        );
+
+        res.send(JSON.stringify(Array.from(res.headers?.entries() ?? [])));
       });
 
       superdeno(app)
         .get("/")
-        .expect(
-          "Accept",
-          "text/html, application/xhtml+xml, application/xml;q=0.9",
-        )
-        .expect(200, "type=ninja, language=javascript", done);
-    });
+        .expect(200, (err, res) => {
+          if (err) {
+            done(err);
+            return;
+          }
 
-    it("should coerce to an array of strings", function (done) {
-      const app = opine();
-
-      app.use(function (req, res) {
-        res.set("X-Numbers", [123 as any, 456 as any]).end();
-      });
-
-      superdeno(app)
-        .get("/")
-        .expect("X-Numbers", "123, 456")
-        .expect(200, done);
+          expect(res.text).toMatch(`["set-cookie","${firstCookie}"]`);
+          expect(res.text).toMatch(`["set-cookie","${secondCookie}"]`);
+          done();
+        });
     });
 
     it("should not set a charset of one is already set", function (done) {
@@ -81,28 +85,6 @@ describe("res", function () {
         .expect("Content-Type", "text/html; charset=lol")
         .expect(200, done);
     });
-
-    it("should throw when Content-Type is an array", function (done) {
-      const app = opine();
-      const mimeType = "application/wasm";
-
-      app.use(function (req, res) {
-        res.set("Content-Type", [mimeType]);
-        res.end();
-      });
-
-      superdeno(app)
-        .get("/")
-        .expect(
-          500,
-          /TypeError: Content-Type cannot be set to an Array/,
-          (err, res) => {
-            expect(res.header["content-type"]).not.toMatch(/application\/wasm/);
-
-            done();
-          },
-        );
-    });
   });
 
   describe(".set(object)", function () {
@@ -113,7 +95,6 @@ describe("res", function () {
         res.set({
           "X-Foo": "bar",
           "X-Bar": "baz",
-          "Access-Control-Allow-Methods": ["POST", "GET", "OPTIONS"],
         }).end();
       });
 
@@ -121,22 +102,58 @@ describe("res", function () {
         .get("/")
         .expect("X-Foo", "bar")
         .expect("X-Bar", "baz")
-        .expect("access-control-allow-methods", "POST, GET, OPTIONS")
         .end(done);
     });
 
-    it("should coerce to a string", function (done) {
+    it("should coerce value to a string", function (done) {
       const app = opine();
 
       app.use(function (req, res) {
-        res.set({ "X-Number": 123 as any });
+        res.set(
+          {
+            "X-Number": 123 as any,
+            "Access-Control-Allow-Methods": ["POST", "GET", "OPTIONS"] as any,
+          },
+        );
         res.end(typeof res.get("X-Number"));
       });
 
       superdeno(app)
         .get("/")
         .expect("X-Number", "123")
+        .expect("access-control-allow-methods", "POST,GET,OPTIONS")
         .expect(200, "string", done);
+    });
+
+    it("should support multiple Set-Cookie headers", function (done) {
+      const app = opine();
+
+      const firstCookie =
+        "DOCKER_COMPOSE=up;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
+      const secondCookie =
+        "CARGO=build;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
+
+      app.use(function (req, res) {
+        res.set({
+          "set-cookie": firstCookie,
+          "SET-COOKIE": secondCookie,
+        });
+
+        res.send(JSON.stringify(Array.from(res.headers?.entries() ?? [])));
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(200, (err, res) => {
+          if (err) {
+            done(err);
+            return;
+          }
+
+          expect(res.text).toMatch(`["set-cookie","${firstCookie}"]`);
+          expect(res.text).toMatch(`["set-cookie","${secondCookie}"]`);
+          done();
+        });
     });
   });
 });

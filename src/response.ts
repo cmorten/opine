@@ -583,38 +583,25 @@ export class Response implements DenoResponse {
    *
    *     res.set('Accept', 'application/json');
    *     res.set({
-   *       'Accept-Language': ["en-US", "en;q=0.5"],
+   *       'Accept-Language': "en-US, en;q=0.5",
    *       'Accept': 'text/html',
    *     });
-   *    res.set("Accept", ['text/html', "application/xhtml+xml", "application/xml;q=0.9"]);
    * @param {string} field
    * @param {string} value
    * @return {Response} for chaining
    * @public
    */
   set(field: string, value: string): this;
-  set(obj: Record<string, string[] | string>): this;
-  set(field: string, value: string[]): this;
+  set(obj: Record<string, string>): this;
   set(field: unknown, value?: unknown): this {
     if (arguments.length === 2) {
       const lowerCaseField = (field + "").toLowerCase();
+      const coercedVal = value + "";
 
-      if (Array.isArray(value)) {
-        if (lowerCaseField === "content-type") {
-          throw new TypeError("Content-Type cannot be set to an Array");
-        }
-
-        this.headers.set(lowerCaseField, value[0] + "");
-
-        for (let i = 1, len = value.length; i < len; i++) {
-          this.headers.append(lowerCaseField, value[i] + "");
-        }
+      if (lowerCaseField === "content-type") {
+        this.type(coercedVal);
       } else {
-        if (lowerCaseField === "content-type") {
-          this.type(value + "");
-        } else {
-          this.headers.set(lowerCaseField, value + "");
-        }
+        this.headers.set(lowerCaseField, coercedVal);
       }
     } else if (typeof field === "object" && field) {
       const entries = Object.entries(field);
