@@ -583,9 +583,10 @@ export class Response implements DenoResponse {
    *
    *     res.set('Accept', 'application/json');
    *     res.set({
-   *       'Accept-Language': 'en-US,en;q=0.5',
+   *       'Accept-Language': ["en-US", "en;q=0.5"],
    *       'Accept': 'text/html',
    *     });
+   *    res.set("Accept", ['text/html', "application/xhtml+xml", "application/xml;q=0.9"]);
    * @param {string} field
    * @param {string} value
    * @return {Response} for chaining
@@ -597,23 +598,22 @@ export class Response implements DenoResponse {
   set(field: unknown, value?: unknown): this {
     if (arguments.length === 2) {
       const lowerCaseField = (field + "").toLowerCase();
-      const firstVal = (Array.isArray(value) ? value[0] : value) + "";
-
-      this.headers.set(lowerCaseField, firstVal);
-
-      if (lowerCaseField === "content-type") {
-        this.type(firstVal);
-      } else {
-        this.headers.set(lowerCaseField, firstVal);
-      }
 
       if (Array.isArray(value)) {
         if (lowerCaseField === "content-type") {
           throw new TypeError("Content-Type cannot be set to an Array");
         }
 
+        this.headers.set(lowerCaseField, value[0] + "");
+
         for (let i = 1, len = value.length; i < len; i++) {
           this.headers.append(lowerCaseField, value[i] + "");
+        }
+      } else {
+        if (lowerCaseField === "content-type") {
+          this.type(value + "");
+        } else {
+          this.headers.set(lowerCaseField, value + "");
         }
       }
     } else if (typeof field === "object" && field) {
