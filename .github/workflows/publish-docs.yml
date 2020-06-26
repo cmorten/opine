@@ -23,12 +23,9 @@ jobs:
       - run: make typedoc
       - run: make ci
       - name: Publish Updated Type Docs
-        uses: github-actions-x/commit@v2.6
+        uses: EndBug/add-and-commit@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: "main"
-          commit-message: "publish typedocs"
-          files: docs/
-          rebase: "true"
-          name: Craig Morten
-          email: craig.morten@asos.com 
+          message: "publish typedocs"
+          add: "docs"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
