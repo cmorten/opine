@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.13.0] - 26-06-2020
+
+- feat: [#24] Object and array support for `res.set()` (#28).
+- chore: [#29] Automate typedoc publish (#30).
+- chore: [#16] Benchmark workflow name fix (#31).
+
 ## [0.12.0] - 23-06-2020
 
 - chore: update dependencies.
