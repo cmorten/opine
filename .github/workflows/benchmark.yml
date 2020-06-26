@@ -30,9 +30,10 @@ jobs:
 
           <details>
           <summary>PR to merge $GITHUB_HEAD_REF $GITHUB_SHA -> $GITHUB_BASE_REF</summary>
+
+          \`\`\`$(make benchmark)
           \`\`\`
-          $(make benchmark)
-          \`\`\`
+
           </details>
           EOF
       - name: Save PR message as artifact
