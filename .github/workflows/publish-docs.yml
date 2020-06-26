@@ -27,5 +27,6 @@ jobs:
         with:
           message: "publish typedocs"
           add: "docs"
+          force: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
