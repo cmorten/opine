@@ -575,29 +575,41 @@ export class Response implements DenoResponse {
     return this.send(body);
   }
 
-  // TODO: back-compat support for Express signature.
-  // Namely objects and arrays.
   /**
    * Set header `field` to `value`, or pass
    * an object of header fields.
    *
    * Examples:
    *
-   *    res.set('Accept', 'application/json');
-   *
+   *     res.set('Accept', 'application/json');
+   *     res.set({
+   *       'Accept-Language': "en-US, en;q=0.5",
+   *       'Accept': 'text/html',
+   *     });
    * @param {string} field
    * @param {string} value
    * @return {Response} for chaining
    * @public
    */
-  set(field: string, value: string): this {
-    const lowerCaseField = field.toLowerCase();
+  set(field: string, value: string): this;
+  set(obj: Record<string, string>): this;
+  set(field: unknown, value?: unknown): this {
+    if (arguments.length === 2) {
+      const lowerCaseField = (field + "").toLowerCase();
+      const coercedVal = value + "";
 
-    if (lowerCaseField === "content-type") {
-      return this.type(value);
+      if (lowerCaseField === "content-type") {
+        this.type(coercedVal);
+      } else {
+        this.headers.set(lowerCaseField, coercedVal);
+      }
+    } else if (typeof field === "object" && field) {
+      const entries = Object.entries(field);
+
+      for (const [key, val] of entries) {
+        this.set(key, val);
+      }
     }
-
-    this.headers.set(lowerCaseField, value);
 
     return this;
   }

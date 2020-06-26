@@ -452,10 +452,16 @@ res.sendStatus(9999); // equivalent to res.setStatus(9999).send('9999')
 
 #### res.set(field [, value])
 
-Sets the response's HTTP header `field` to `value`.
+Sets the response's HTTP header `field` to `value`, or pass an object to set multiple fields at once.
 
 ```ts
 res.set("Content-Type", "text/plain");
+
+res.set({
+  "Content-Type", "text/plain; charset=utf-8",
+  "Content-Length": "123",
+  "Cache-control": "no-store",
+});
 ```
 
 #### res.setStatus(code)

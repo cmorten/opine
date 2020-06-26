@@ -771,9 +771,14 @@ export interface Response<ResBody = any>
    *
    * Examples:
    *
-   *    res.set('Accept', 'application/json');s
+   *     res.set('Accept', 'application/json');
+   *     res.set({
+   *       'Accept-Language': en-US, en;q=0.5,
+   *       'Accept': 'text/html',
+   *     });
    */
   set(field: string, value: string): this;
+  set(obj: Record<string, string>): this;
 
   /**
    * Set status `code`.
