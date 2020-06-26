@@ -29,3 +29,6 @@ jobs:
           push-branch: "main"
           commit-message: "publish typedocs"
           files: docs/
+          rebase: "true"
+          name: Craig Morten
+          email: craig.morten@asos.com 
