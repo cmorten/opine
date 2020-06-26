@@ -1,0 +1,30 @@
+name: Publish TypeDocs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install deps
+        run: make deps
+      - name: Use Deno v1.1.1
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: 1.1.1
+      - run: make typedoc
+      - run: make ci
+      - name: Publish Updated Type Docs
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: "main"
+          commit-message: "publish typedocs"

@@ -1,4 +1,4 @@
-.PHONY: benchmark build ci doc fmt fmt-check lock precommit test typedoc
+.PHONY: benchmark build ci deps doc fmt fmt-check lock test typedoc
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
@@ -19,6 +19,9 @@ ci:
 	@make build
 	@make test
 
+deps:
+	@npm install -g typescript typedoc
+
 doc:
 	@deno doc ./mod.ts
 
@@ -31,14 +34,12 @@ fmt-check:
 lock:
 	@deno run --lock=lock.json --lock-write --reload mod.ts
 
-precommit:
-	@make typedoc
-	@make fmt
-	@make lock
-
 test:
 	@deno test --allow-net --allow-read ./test/units/
 
 typedoc:
-	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals ./src
-
+	@rm -rf docs
+	@typedoc --ignoreCompilerErrors --out ./docs --mode modules --includeDeclarations --excludeExternals --name opine ./src
+	@make fmt
+	@make fmt
+	@echo 'future: true\nencoding: "UTF-8"\ninclude:\n  - "_*_.html"\n  - "_*_.*.html"' > ./docs/_config.yaml
