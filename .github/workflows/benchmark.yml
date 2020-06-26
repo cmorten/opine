@@ -1,19 +1,11 @@
-name: Test
+name: Run benchmark
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
 
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        deno-version: [1.1.1]
-
     steps:
       - name: Install wrk package
         run: |
@@ -29,18 +21,22 @@ jobs:
       - name: Use Deno ${{ matrix.deno-version }}
         uses: denolib/setup-deno@master
         with:
-          deno-version: ${{ matrix.deno-version }}
+          deno-version: 1.1.1
       - name: Run Benchmark Tests
         run: |
-          results=$(echo "**Benchmark Results**:$(make benchmark)")
-          results="${results//'%'/'%25'}"
-          results="${results//$'\n'/'%0A'}"
-          results="${results//$'\r'/'%0D'}"
-          echo "::set-output name=results::$results"
-        id: run_benchmark_tests
-      - name: Post Results To PR
-        uses: mshick/add-pr-comment@v1
+          mkdir -p artifacts          
+          cat > artifacts/message.md <<EOF
+          # Benchmark results
+
+          <details>
+          <summary>PR to merge $GITHUB_HEAD_REF $GITHUB_SHA -> $GITHUB_BASE_REF</summary>
+          \`\`\`
+          $(make benchmark)
+          \`\`\`
+          </details>
+          EOF
+      - name: Save PR message as artifact
+        uses: actions/upload-artifact@v1
         with:
-          message: ${{ steps.run_benchmark_tests.outputs.results }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          allow-repeats: false
+          name: pr_message
+          path: artifacts
