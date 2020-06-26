@@ -28,3 +28,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: "main"
           commit-message: "publish typedocs"
+          files: docs/
