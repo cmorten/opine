@@ -23,10 +23,7 @@ jobs:
       - run: make typedoc
       - run: make ci
       - name: Publish Updated Type Docs
-        uses: EndBug/add-and-commit@v4
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          message: "publish typedocs"
-          add: "docs"
-          force: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: publish typedocs
+          push_options: --force
