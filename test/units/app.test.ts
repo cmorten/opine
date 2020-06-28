@@ -1,5 +1,5 @@
 import opine from "../../mod.ts";
-import { expect } from "../deps.ts";
+import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 describe("app", () => {
@@ -20,10 +20,10 @@ describe("app", () => {
     expect(typeof app).toEqual("function");
   });
 
-  // TODO: find a suitable supertest replacement
-  // it("should 404 without routes", (done) => {
-  //   request(opine()).get("/").expect(404, done);
-  // });
+  it("should 404 without routes", (done) => {
+    const app = opine();
+    superdeno(app).get("/").expect(404, done);
+  });
 });
 
 describe("app.parent", () => {
@@ -71,5 +71,12 @@ describe("app.path()", () => {
     expect(app.path()).toEqual("");
     expect(blog.path()).toEqual("/blog");
     expect(blogAdmin.path()).toEqual("/blog/admin");
+  });
+});
+
+describe("view cache", () => {
+  it('should enable "view cache" by default', function () {
+    const app = opine();
+    expect(app.enabled("view cache")).toBeTruthy();
   });
 });

@@ -31,6 +31,7 @@ import {
 export class Response implements DenoResponse {
   status: Status = 200;
   headers: Headers = new Headers();
+  written: Boolean = false;
   body!: DenoResponseBody;
   app!: Application;
   req!: Request;
@@ -160,6 +161,7 @@ export class Response implements DenoResponse {
       this.body = body;
     }
 
+    this.written = true;
     await this.req.respond(this);
   }
 
@@ -246,7 +248,7 @@ export class Response implements DenoResponse {
 
     const { default: fn, ...rest } = obj;
     const keys = Object.keys(rest);
-    const key = keys.length > 0 ? req.accepts(keys)[0] : false;
+    const key = keys.length > 0 ? req.accepts(keys) : false;
 
     this.vary("Accept");
 
@@ -285,7 +287,7 @@ export class Response implements DenoResponse {
    * Examples:
    *
    *     res.json(null);
-   *     res.json({ user: 'tj' });
+   *     res.json({ user: 'deno' });
    *
    * @param {ResponseBody} body
    * @return {Response} for chaining
@@ -311,7 +313,7 @@ export class Response implements DenoResponse {
    * Examples:
    *
    *     res.jsonp(null);
-   *     res.jsonp({ user: 'tj' });
+   *     res.jsonp({ user: 'deno' });
    *
    * @param {ResponseBody} body
    * @return {Response} for chaining

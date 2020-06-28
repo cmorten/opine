@@ -1,5 +1,5 @@
 import { opine, Router, application, request, response } from "../../mod.ts";
-import { expect } from "../deps.ts";
+import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 describe("exports", () => {
@@ -28,33 +28,33 @@ describe("exports", () => {
     expect((opine() as any).mockExtensionMethod()).toEqual(mockReturnValue);
   });
 
-  // it("should permit modifying the .request prototype", function (done) {
-  //   opine.request.foo = () => {
-  //     return "bar";
-  //   };
-  //   var app = opine();
+  it("should permit modifying the .request prototype", function (done) {
+    (request as any).foo = function () {
+      return "bar";
+    };
+    const app = opine();
 
-  //   app.use(function (req, res, next) {
-  //     res.end(req.foo());
-  //   });
+    app.use(function (req, res, next) {
+      res.end((req as any).foo());
+    });
 
-  //   request(app)
-  //     .get("/")
-  //     .expect("bar", done);
-  // });
+    superdeno(app)
+      .get("/")
+      .expect("bar", done);
+  });
 
-  // it("should permit modifying the .response prototype", function (done) {
-  //   opine.response.foo = () => {
-  //     this.send("bar");
-  //   };
-  //   var app = opine();
+  it("should permit modifying the .response prototype", function (done) {
+    (response as any).foo = function () {
+      (this as any).send("bar");
+    };
+    const app = opine();
 
-  //   app.use(function (req, res, next) {
-  //     res.foo();
-  //   });
+    app.use(function (req, res, next) {
+      (res as any).foo();
+    });
 
-  //   request(app)
-  //     .get("/")
-  //     .expect("bar", done);
-  // });
+    superdeno(app)
+      .get("/")
+      .expect("bar", done);
+  });
 });

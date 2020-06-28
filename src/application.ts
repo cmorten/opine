@@ -137,6 +137,9 @@ app.handle = function handle(
   router.handle(req, res, next);
 };
 
+const isPath = (thing: any) =>
+  typeof thing === "string" || thing instanceof RegExp;
+
 /**
  * Proxy `Router#use()` to add middleware to the app router.
  * See Router#use() documentation for details.
@@ -148,10 +151,12 @@ app.handle = function handle(
  * @public
  */
 app.use = function use(...args: any[]): Application {
-  const [path, ...nonPathArgs] = typeof args[0] !== "function"
-    ? args
-    : ["/", ...args];
-  const fns = nonPathArgs.flat(1);
+  const firstArg = args[0];
+  const [path, ...nonPathArgs] =
+    (Array.isArray(firstArg) ? isPath(firstArg[0]) : isPath(firstArg))
+      ? args
+      : ["/", ...args];
+  const fns = nonPathArgs.flat(Infinity);
 
   if (fns.length === 0) {
     throw new TypeError("app.use() requires a middleware function");

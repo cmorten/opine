@@ -32,7 +32,7 @@ describe("Route", function () {
       let count = 0;
       const route: IRoute = new Route("/foo");
 
-      var cb = function (err: any) {
+      const cb = function (err: any) {
         if (count < methods.length) return;
         if (err) return done(err);
         expect(count).toEqual(methods.length);

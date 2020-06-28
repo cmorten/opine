@@ -68,7 +68,7 @@ export function parseUrl(req: Request): ParsedURL | undefined {
  * @public
  */
 export function originalUrl(req: Request): ParsedURL | undefined {
-  var url = req.originalUrl;
+  const url = req.originalUrl;
 
   if (typeof url !== "string") {
     // Fallback
@@ -112,7 +112,7 @@ function fastParse(str: string): ParsedURL {
   // This takes the regexp from https://github.com/joyent/node/pull/7878
   // Which is /^(\/[^?#\s]*)(\?[^#\s]*)?$/
   // And unrolls it into a for loop
-  for (var i = 1; i < str.length; i++) {
+  for (let i = 1; i < str.length; i++) {
     switch (str.charCodeAt(i)) {
       case 0x3f:/* ?  */
         if (search === null) {

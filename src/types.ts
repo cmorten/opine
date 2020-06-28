@@ -305,10 +305,10 @@ export interface Request<
    *     req.accepts('html, json');
    *     // => "json"
    */
-  accepts(): string[];
-  accepts(type: string): string[];
-  accepts(type: string[]): string[];
-  accepts(...type: string[]): string[];
+  accepts(): string | undefined;
+  accepts(type: string): string | undefined;
+  accepts(type: string[]): string | undefined;
+  accepts(...type: string[]): string | undefined;
 
   /**
    * Returns the first accepted charset of the specified character sets,
@@ -317,10 +317,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsCharsets(): string[];
-  acceptsCharsets(charset: string): string[];
-  acceptsCharsets(charset: string[]): string[];
-  acceptsCharsets(...charset: string[]): string[];
+  acceptsCharsets(): string | undefined;
+  acceptsCharsets(charset: string): string | undefined;
+  acceptsCharsets(charset: string[]): string | undefined;
+  acceptsCharsets(...charset: string[]): string | undefined;
 
   /**
    * Returns the first accepted encoding of the specified encodings,
@@ -329,10 +329,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsEncodings(): string[];
-  acceptsEncodings(encoding: string): string[];
-  acceptsEncodings(encoding: string[]): string[];
-  acceptsEncodings(...encoding: string[]): string[];
+  acceptsEncodings(): string | undefined;
+  acceptsEncodings(encoding: string): string | undefined;
+  acceptsEncodings(encoding: string[]): string | undefined;
+  acceptsEncodings(...encoding: string[]): string | undefined;
 
   /**
    * Returns the first accepted language of the specified languages,
@@ -341,10 +341,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsLanguages(): string[];
-  acceptsLanguages(lang: string): string[];
-  acceptsLanguages(lang: string[]): string[];
-  acceptsLanguages(...lang: string[]): string[];
+  acceptsLanguages(): string | undefined;
+  acceptsLanguages(lang: string): string | undefined;
+  acceptsLanguages(lang: string[]): string | undefined;
+  acceptsLanguages(...lang: string[]): string | undefined;
 
   /**
    * Return request header.
@@ -363,7 +363,7 @@ export interface Request<
    *     req.get('Something');
    *     // => undefined
    */
-  get: (name: string) => string;
+  get: (name: string) => string | undefined;
 
   /**
    * Check if the incoming request contains the "Content-Type"
@@ -521,6 +521,11 @@ export interface Response<ResBody = any>
   statusMessage?: any;
 
   /**
+   * Boolean signifying whether the request has already been responded to.
+   */
+  written: Boolean;
+
+  /**
    * Appends the specified value to the HTTP response header field.
    * If the header is not already set, it creates the header with the specified value.
    * The value parameter can be a string or an array.
@@ -639,7 +644,7 @@ export interface Response<ResBody = any>
    * Examples:
    *
    *     res.json(null);
-   *     res.json({ user: 'tj' });
+   *     res.json({ user: 'deno' });
    *     res.setStatus(500).json('oh noes!');
    *     res.setStatus(404).json(`I don't have that`);
    */
@@ -651,7 +656,7 @@ export interface Response<ResBody = any>
    * Examples:
    *
    *     res.jsonp(null);
-   *     res.jsonp({ user: 'tj' });
+   *     res.jsonp({ user: 'deno' });
    *     res.setStatus(500).jsonp('oh noes!');
    *     res.setStatus(404).jsonp(`I don't have that`);
    */

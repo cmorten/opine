@@ -172,7 +172,7 @@ describe("Router", function () {
     });
 
     it("should handle throwing inside routes with params", function (done) {
-      var router = new Router();
+      const router = new Router();
 
       router.get(
         "/foo/:id",

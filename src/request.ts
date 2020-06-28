@@ -51,13 +51,16 @@ export const request: Request = Object.create(ServerRequest.prototype);
  *     // => "json"
  *
  * @param {string|string[]} type
- * @return {string[]}
+ * @return {string|undefined}
  * @public
  */
-request.accepts = function (this: Request) {
+request.accepts = function (this: Request, ...args: any[]) {
+  if (args.length === 1 && Array.isArray(args[0])) {
+    args = args[0];
+  }
   const accept = new Accepts(this.headers);
 
-  return accept.types.apply(accept, arguments as any);
+  return accept.types.apply(accept, [args])[0];
 };
 
 /**
@@ -65,27 +68,33 @@ request.accepts = function (this: Request) {
  * otherwise you should respond with 406 "Not Acceptable".
  *
  * @param {String} ...charset
- * @return {String|Array}
+ * @return {String|undefined}
  * @public
  */
-request.acceptsCharsets = function (this: Request) {
+request.acceptsCharsets = function (this: Request, ...args: any[]) {
+  if (args.length === 1 && Array.isArray(args[0])) {
+    args = args[0];
+  }
   const accept = new Accepts(this.headers);
 
-  return accept.charsets.apply(accept, arguments as any);
+  return accept.charsets.apply(accept, [args])[0];
 };
 
 /**
  * Check if the given `encoding`s are accepted.
  *
  * @param {String} ...encoding
- * @return {String|Array}
+ * @return {String|undefined}
  * @public
  */
 
-request.acceptsEncodings = function (this: Request) {
+request.acceptsEncodings = function (this: Request, ...args: any[]) {
+  if (args.length === 1 && Array.isArray(args[0])) {
+    args = args[0];
+  }
   const accept = new Accepts(this.headers);
 
-  return accept.encodings.apply(accept, arguments as any);
+  return accept.encodings.apply(accept, [args])[0];
 };
 
 /**
@@ -93,13 +102,16 @@ request.acceptsEncodings = function (this: Request) {
  * otherwise you should respond with 406 "Not Acceptable".
  *
  * @param {String} ...lang
- * @return {String|Array}
+ * @return {String|undefined}
  * @public
  */
-request.acceptsLanguages = function (this: Request) {
+request.acceptsLanguages = function (this: Request, ...args: any[]) {
+  if (args.length === 1 && Array.isArray(args[0])) {
+    args = args[0];
+  }
   const accept = new Accepts(this.headers);
 
-  return accept.languages.apply(accept, arguments as any);
+  return accept.languages.apply(accept, [args])[0];
 };
 
 /**
@@ -125,16 +137,16 @@ request.acceptsLanguages = function (this: Request) {
  * @return {string}
  * @public
  */
-request.get = function get(name: string): string {
+request.get = function get(name: string): string | undefined {
   const lc = name.toLowerCase();
 
   switch (lc) {
     case "referer":
     case "referrer":
       return this.headers.get("referrer") ||
-        this.headers.get("referer") || "";
+        this.headers.get("referer") || undefined;
     default:
-      return this.headers.get(lc) || "";
+      return this.headers.get(lc) || undefined;
   }
 };
 
@@ -179,12 +191,10 @@ request.is = function is(this: Request, types: string | string[]) {
   return typeofrequest(this.headers, arr as string[]);
 };
 
+// TODO: trust proxy work.
 /**
  * Return the protocol string "http" or "https"
- * when requested with TLS. When the "trust proxy"
- * setting trusts the socket address, the
- * "X-Forwarded-Proto" header field will be trusted
- * and used if present.
+ * when requested with TLS.
  *
  * If you're running behind a reverse proxy that
  * supplies https for you this may be enabled.
@@ -196,21 +206,6 @@ defineGetter(request, "protocol", function protocol(this: Request) {
   const proto = this.proto.includes("https") ? "https" : "http";
 
   return proto;
-
-  // TODO: trust proxy work.
-  // const trust = this.app.get("trust proxy fn");
-
-  // TODO: consider (this.conn.remoteAddr as Deno.NetAddr).hostname
-  // if (!trust(this.connection.remoteAddress, 0)) {
-  //   return proto;
-  // }
-
-  // Note: X-Forwarded-Proto is normally only ever a
-  //       single value, but this is to be safe.
-  // const header = this.get("X-Forwarded-Proto") || proto;
-  // const index = header.indexOf(",");
-
-  // return index !== -1 ? header.substring(0, index).trim() : header.trim();
 });
 
 /**
@@ -309,7 +304,7 @@ defineGetter(request, "fresh", function (this: Request): boolean {
 
   // 2xx or 304 as per rfc2616 14.26
   if ((status >= 200 && status < 300) || 304 === status) {
-    return fresh(Object.fromEntries(this.headers), {
+    return fresh(Object.fromEntries(this.headers as any), {
       "etag": res.get("ETag"),
       "last-modified": res.get("Last-Modified"),
     });

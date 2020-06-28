@@ -14,7 +14,7 @@ export const query = function () {
   return function opineQuery(req: Request, _res: Response, next: NextFunction) {
     if (!req.query) {
       const url = parseUrl(req) as ParsedURL;
-      req.query = Object.fromEntries(url.searchParams);
+      req.query = Object.fromEntries(url.searchParams as any);
     }
 
     next();
