@@ -15,6 +15,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
    <img src="https://img.shields.io/github/license/asos-craigmorten/opine" alt="Opine license" />
    <a href="https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
    <a href="http://hits.dwyl.com/asos-craigmorten/opine"><img src="http://hits.dwyl.com/asos-craigmorten/opine.svg" alt="Opine repository visit count" /></a>
+   <a href="https://nest.land/package/opine"><img src="https://nest.land/badge.svg" alt="Published on nest.land" /></a>
 </p>
 
 ---
@@ -33,7 +34,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import opine from "https://deno.land/x/opine@main/mod.ts";
+import { opine } from "https://deno.land/x/opine@main/mod.ts";
 
 const app = opine();
 
@@ -53,19 +54,25 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import opine from "https://deno.land/x/opine@main/mod.ts";
+import { opine } from "https://deno.land/x/opine@main/mod.ts";
 ```
 
 If you want to use a specific version of Opine, just modify the import url to contain the version:
 
 ```ts
-import opine from "https://deno.land/x/opine@0.3.0/mod.ts";
+import { opine } from "https://deno.land/x/opine@0.14.0/mod.ts";
 ```
 
 Or if you want to use a specific commit of Opine, just modify the import url to contain the commit hash:
 
 ```ts
-import opine from "https://deno.land/x/opine@c21f8d6/mod.ts";
+import { opine } from "https://deno.land/x/opine@c21f8d6/mod.ts";
+```
+
+Opine is also available on [nest.land](https://nest.land/package/opine), a package registry for Deno on the Blockchain.
+
+```ts
+import { opine } from "https://x.nest.land/opine@0.14.0/mod.ts";
 ```
 
 ## Features
