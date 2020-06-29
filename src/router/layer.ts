@@ -60,7 +60,7 @@ Layer.prototype.handle_error = function handle_error(
  * @param {NextFunction} next
  * @private
  */
-Layer.prototype.handle_request = function handle(
+Layer.prototype.handle_request = async function handle(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -73,7 +73,7 @@ Layer.prototype.handle_request = function handle(
   }
 
   try {
-    fn(req, res, next);
+    await fn(req, res, next);
   } catch (err) {
     next(err);
   }
