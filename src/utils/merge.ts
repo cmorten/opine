@@ -8,7 +8,7 @@
  */
 export function merge(a: any, b: any): any {
   if (a && b) {
-    for (var key in b) {
+    for (let key in b) {
       a[key] = b[key];
     }
   }

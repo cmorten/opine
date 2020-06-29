@@ -61,3 +61,17 @@ export async function it(
     await race;
   });
 }
+
+export const after = (count: number, done: Function) => {
+  let _count = 0;
+
+  return (err?: any) => {
+    _count++;
+
+    if (err) {
+      done(err);
+    } else if (_count >= count) {
+      done();
+    }
+  };
+};

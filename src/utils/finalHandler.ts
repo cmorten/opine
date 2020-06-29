@@ -229,7 +229,16 @@ function send(
   res.set("Content-Security-Policy", "default-src 'none'");
   res.set("X-Content-Type-Options", "nosniff");
 
-  res.send(body);
+  // standard headers
+  res.set("Content-Type", "text/html; charset=utf-8");
+
+  if (req.method !== "HEAD") {
+    res.body = body;
+  }
+
+  if (!res.written) {
+    req.respond(res);
+  }
 }
 
 /**

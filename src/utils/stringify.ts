@@ -17,7 +17,7 @@ export function stringify(
 ): string {
   // v8 checks arguments.length for optimizing simple call
   // https://bugs.chromium.org/p/v8/issues/detail?id=4730
-  var json = replacer || spaces
+  let json = replacer || spaces
     ? JSON.stringify(value, replacer, spaces)
     : JSON.stringify(value);
 
