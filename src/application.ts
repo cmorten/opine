@@ -62,8 +62,8 @@ app.init = function init(): void {
 app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
+  this.set("subdomain offset", 2);
   // TODO: query parser
-  // TODO: subdomain offset
   // TODO: trust proxy
 
   const self: Opine = this as Opine;

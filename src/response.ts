@@ -8,11 +8,9 @@ import {
   Status,
   STATUS_TEXT,
   extname,
-  basename,
   contentType,
   vary,
   encodeUrl,
-  fromFileUrl,
 } from "../deps.ts";
 import {
   Response as DenoResponse,
@@ -135,7 +133,7 @@ export class Response implements DenoResponse {
   ): Promise<this | void> {
     this.set(
       "Content-Disposition",
-      contentDisposition("attachment", basename(filename || path)),
+      contentDisposition("attachment", filename || path),
     );
 
     try {
@@ -377,7 +375,7 @@ export class Response implements DenoResponse {
     }
 
     const link = currentLink +
-      Object.entries(links).map(([field, rel]) => `<${field}>; rel="${rel}"`)
+      Object.entries(links).map(([rel, field]) => `<${field}>; rel="${rel}"`)
         .join(", ");
 
     return this.set("Link", link);
@@ -460,8 +458,13 @@ export class Response implements DenoResponse {
    * @return {Response} for chaining
    * @public
    */
-  send(body: ResponseBody = ""): this {
+  send(body: ResponseBody): this {
     let chunk: DenoResponseBody;
+    let isUndefined = body === undefined;
+
+    if (isUndefined || body === null) {
+      body = "";
+    }
 
     switch (typeof body) {
       case "string":
@@ -492,7 +495,8 @@ export class Response implements DenoResponse {
 
     if (
       !this.get("ETag") && (typeof chunk === "string" ||
-        chunk instanceof Uint8Array)
+        chunk instanceof Uint8Array) &&
+      !isUndefined
     ) {
       this.etag(chunk);
     }
@@ -536,11 +540,21 @@ export class Response implements DenoResponse {
    * @return {Promise<Response>}
    * @public
    */
-  async sendFile(path: string): Promise<this> {
-    path = path.startsWith("file:") ? fromFileUrl(path) : path;
-    const body = await Deno.readFile(path);
+  async sendFile(path: string): Promise<this | void> {
+    /**
+     * Not ideal but fromFileUrl() seems to URL encode the basename if
+     * contains spaces / special characters!
+     */
+    path = path.startsWith("file:") ? path.replace("file:", "") : path;
 
     const stats: Deno.FileInfo = await Deno.stat(path);
+
+    if (stats.isDirectory) {
+      return (this.req as any).next();
+    }
+
+    const body = await Deno.readFile(path);
+
     if (stats.mtime) {
       this.set("Last-Modified", stats.mtime.toUTCString());
     }
@@ -548,7 +562,9 @@ export class Response implements DenoResponse {
       this.etag(stats);
     }
 
-    this.type(extname(path));
+    if (!this.get("Content-Type")) {
+      this.type(extname(path));
+    }
 
     return this.send(body);
   }
@@ -648,7 +664,8 @@ export class Response implements DenoResponse {
    * @public
    */
   type(type: string): this {
-    this.headers.set("content-type", contentType(type) || "");
+    const ct = contentType(type) || "application/octet-stream";
+    this.headers.set("content-type", ct);
 
     return this;
   }

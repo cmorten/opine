@@ -19,7 +19,7 @@ jobs:
       - name: Use Deno v1.1.1
         uses: denolib/setup-deno@master
         with:
-          deno-version: 1.1.1
+          deno-version: 1.1.2
       - run: make typedoc
       - run: make ci
       - name: Publish Updated Type Docs

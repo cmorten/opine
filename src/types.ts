@@ -24,7 +24,13 @@ declare global {
 }
 
 export type DenoResponseBody = string | Uint8Array | Deno.Reader;
-export type ResponseBody = number | boolean | object | DenoResponseBody;
+export type ResponseBody =
+  | null
+  | undefined
+  | number
+  | boolean
+  | object
+  | DenoResponseBody;
 
 export interface Cookie extends DenoCookie {}
 
@@ -756,7 +762,7 @@ export interface Response<ResBody = any>
    *       });
    *     });
    */
-  sendFile(path: string): Promise<this>;
+  sendFile(path: string): Promise<this | void>;
 
   /**
    * Set the response HTTP status code to `statusCode` and send its string representation as the response body.

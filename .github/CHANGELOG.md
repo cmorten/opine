@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.14.0] - 29-06-2020
+
+- fix: several minor bugfixes.
+- test: add serious test coverage.
+- feat: bump Deno and std versions.
+
 ## [0.13.0] - 26-06-2020
 
 - feat: [#24] Object and array support for `res.set()` (#28).
