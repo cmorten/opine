@@ -225,6 +225,33 @@ describe("Router", function () {
         done,
       );
     });
+
+    it("should handle throwing inside async error handlers", function (done) {
+      const router = new Router();
+
+      router.use(async function (req: Request, res: Response, next: NextFunction) {
+        throw new Error("boom!");
+      });
+
+      router.use(
+        async function (err: any, req: Request, res: Response, next: NextFunction) {
+          throw new Error("oops");
+        },
+      );
+
+      router.use(
+        function (err: any, req: Request, res: Response, next: NextFunction) {
+          expect(err.message).toEqual("oops");
+          done();
+        },
+      );
+
+      router.handle(
+        { url: "/", method: "GET" } as Request,
+        {} as Response,
+        done,
+      );
+    });
   });
 
   describe("FQDN", function () {
