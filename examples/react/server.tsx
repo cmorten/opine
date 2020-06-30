@@ -1,0 +1,94 @@
+/**
+ * Run this example using:
+ * 
+ *    deno run --allow-net --allow-read --unstable ./examples/react/server.tsx
+ * 
+ *    if have the repo cloned locally OR
+ * 
+ *    deno run --allow-net --allow-read --unstable https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/react/server.tsx
+ * 
+ *    if you don't!
+ * 
+ */
+
+import { opine, serveStatic } from "../../mod.ts";
+import { join, dirname } from "../../deps.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.7.0/mod.ts";
+import React from "https://dev.jspm.io/react@16.13.1";
+import ReactDOMServer from "https://dev.jspm.io/react-dom@16.13.1/server";
+import { App } from "./components/App.tsx";
+
+/**
+ * Create our client bundle - you could split this out into
+ * a preprocessing step.
+ */
+const [diagnostics, js] = await Deno.bundle(
+  "./examples/react/client.tsx",
+  undefined,
+  { lib: ["dom", "dom.iterable"] },
+);
+
+if (diagnostics) {
+  console.log(diagnostics);
+}
+
+/**
+ * Create our Opine server.
+ */
+const app = opine();
+const __dirname = dirname(import.meta.url);
+
+// Register ejs as .html.
+app.engine(".html", renderFileToString);
+
+// Optional since opine defaults to CWD/views
+app.set("views", join(__dirname, "views"));
+
+// Path to our public directory
+app.use(serveStatic(join(__dirname, "public")));
+
+// Without this you would need to
+// supply the extension to res.render()
+// ex: res.render('main.html').
+app.set("view engine", "html");
+
+/**
+ * Implement the "doggos" API. In your apps you may wish to use
+ * a MVC pattern. See examples such as "multi-router" for how you
+ * can split your code into separate controllers.
+ */
+app.use("/api/v1/doggos", (req, res) => {
+  const count = parseInt(req.query.count);
+  const doggos = [...new Array(count)].map((_, index) => ({
+    id: index + 1,
+    alt: "A cute doggo",
+    src: `https://placedog.net/400/225?id=${index + 1}`,
+  }));
+
+  res.json(doggos);
+});
+
+/**
+ * Serve our client JS bundle.
+ */
+app.get("/scripts/client.js", async (req, res) => {
+  res.type("application/javascript").send(js);
+});
+
+/**
+ * Main route setup
+ */
+app.get("/", (req, res) => {
+  const app = <App isServer={true} />;
+  const content = (ReactDOMServer as any).renderToString(app);
+  const scripts = `<script type="module" src="/scripts/client.js"></script>`;
+
+  res.render("main", {
+    content,
+    scripts,
+    title: "React Example",
+  });
+});
+
+app.listen(3000);
+console.log("Opine started on port 3000");

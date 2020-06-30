@@ -1,0 +1,91 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font-size: 14px;
+  font-family: "Helvetica Nueue", "Lucida Grande", Arial, sans-serif;
+}
+
+.app_loading {
+  width: 100%;
+  padding: 20px 0;
+  font-size: 16px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title_header {
+  background: #eee;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.title_text {
+  font-size: 24px;
+}
+
+.list_section {
+  padding: 20px 0;
+}
+
+.list_list {
+  box-sizing: border-box;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 40px;
+  justify-content: center;
+}
+
+.list_tile {
+  flex: 0 0 25%;
+  max-width: 25%;
+  min-width: 225px;
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.list_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+  text-decoration: none;
+  color: #000;
+}
+
+.list_image_container {
+  position: relative;
+  font-size: 0;
+  display: block;
+}
+
+.list_image_container::before {
+  content: "";
+  display: block;
+  width: 100%;
+  position: relative;
+  padding-top: 56.3%;
+  box-sizing: border-box;
+}
+
+.list_image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.list_description {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
