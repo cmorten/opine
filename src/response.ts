@@ -428,7 +428,6 @@ export class Response implements DenoResponse {
     let address: string;
     let body: string = "";
     let status: Status;
-    let contentLength: string = "0";
 
     if (arguments.length === 0) {
       throw new TypeError("res.redirect: requires a location url");
@@ -469,12 +468,6 @@ export class Response implements DenoResponse {
 
     // Respond
     this.status = status;
-
-    if (body.length > 0) {
-      contentLength = new TextEncoder().encode(body).length + "";
-    }
-
-    this.set("content-length", contentLength);
 
     if (this.req.method === "HEAD") {
       this.end();

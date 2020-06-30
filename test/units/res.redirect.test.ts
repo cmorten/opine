@@ -1,5 +1,5 @@
 import opine from "../../mod.ts";
-import { describe, it, pick, omit } from "../utils.ts";
+import { describe, it, pick } from "../utils.ts";
 import {
   superdeno,
   expect,
@@ -14,7 +14,6 @@ type DeferredTestResult = Deferred<
     status?: number;
     location?: string | null;
     contentType?: string | null;
-    contentLength?: string | null;
     body: string | null;
   }
 >;
@@ -26,16 +25,13 @@ function createRedirectMiddleware(
   return function redirectMiddleware(req, res, next) {
     (res.redirect as any)(...redirectArgs);
 
-    let contentLength = null;
     // Does not support Deno.Reader.
     let body: string | null = null;
 
     if (typeof res.body === "string") {
       body = res.body;
-      contentLength = new TextEncoder().encode(body).length + "";
     } else if (res.body instanceof Uint8Array) {
       body = new TextDecoder().decode(res.body);
-      contentLength = res.body.length + "";
     }
 
     // It's not currently possible to not follow redirects in superdeno:
@@ -44,7 +40,6 @@ function createRedirectMiddleware(
       status: res.status,
       location: res.headers?.get("location"),
       contentType: res.headers?.get("content-type"),
-      contentLength,
       body: typeof body === "string" ? body : null,
     });
   };
@@ -240,7 +235,6 @@ describe("res", function () {
       expect(await output).toEqual({
         status: expectedStatus,
         location,
-        contentLength: "63",
         contentType: "text/html; charset=utf-8",
         body: expectedBody,
       });
@@ -265,7 +259,7 @@ describe("res", function () {
         .set("Accept", "text/html")
         .expect(200, { url: escapedLocation, query: {} }, done);
 
-      expect(omit(await output, ["contentLength"])).toEqual({
+      expect(await output).toEqual({
         status: 302,
         location: escapedLocation,
         contentType: "text/html; charset=utf-8",
@@ -291,7 +285,6 @@ describe("res", function () {
       expect(await output).toEqual({
         status: 302,
         location,
-        contentLength: "25",
         contentType: "text/plain; charset=utf-8",
         body: "Found. Redirecting to /to",
       });
@@ -311,7 +304,7 @@ describe("res", function () {
         .set("Accept", "text/plain, */*")
         .expect(200, done);
 
-      expect(omit(await output, ["contentLength"])).toEqual({
+      expect(await output).toEqual({
         status: 302,
         location: "/to?param=%3Cscript%3Ealert(%22hax%22);%3C/script%3E",
         contentType: "text/plain; charset=utf-8",
@@ -334,7 +327,7 @@ describe("res", function () {
         .set("Accept", "text/plain, */*")
         .expect(200, done);
 
-      expect(omit(await output, ["contentLength"])).toEqual({
+      expect(await output).toEqual({
         status: 301,
         location,
         contentType: "text/plain; charset=utf-8",
@@ -359,9 +352,8 @@ describe("res", function () {
 
       const resolvedOutput = await output;
 
-      expect(pick(resolvedOutput, ["status", "contentLength"])).toEqual({
+      expect(pick(resolvedOutput, ["status"])).toEqual({
         status: 301,
-        contentLength: "0",
       });
 
       expect(resolvedOutput.contentType == null).toBe(true);
