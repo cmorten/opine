@@ -1,4 +1,4 @@
-# ejs
+# react
 
 An example of how you can use Opine with React.
 
