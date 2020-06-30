@@ -12,10 +12,6 @@ Run this example using:
 deno run --allow-net --allow-read --unstable ./examples/react/server.tsx
 ```
 
-if have the repo cloned locally _OR_
+if have the repo cloned locally.
 
-```bash
-deno run --allow-net --allow-read --unstable https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/react/server.tsx
-```
-
-if you don't!
+Unfortunately template rendering is not currently supported for remote URLs so this cannot be run from the repo.
