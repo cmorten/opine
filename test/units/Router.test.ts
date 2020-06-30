@@ -229,12 +229,19 @@ describe("Router", function () {
     it("should handle throwing inside async error handlers", function (done) {
       const router = new Router();
 
-      router.use(async function (req: Request, res: Response, next: NextFunction) {
-        throw new Error("boom!");
-      });
+      router.use(
+        async function (req: Request, res: Response, next: NextFunction) {
+          throw new Error("boom!");
+        },
+      );
 
       router.use(
-        async function (err: any, req: Request, res: Response, next: NextFunction) {
+        async function (
+          err: any,
+          req: Request,
+          res: Response,
+          next: NextFunction,
+        ) {
           throw new Error("oops");
         },
       );
