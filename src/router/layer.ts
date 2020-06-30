@@ -32,7 +32,7 @@ export const Layer: any = function Layer(
  * @private
  */
 
-Layer.prototype.handle_error = function handle_error(
+Layer.prototype.handle_error = async function handle_error(
   error: any,
   req: Request,
   res: Response,
@@ -46,7 +46,7 @@ Layer.prototype.handle_error = function handle_error(
   }
 
   try {
-    fn(error, req, res, next);
+    await fn(error, req, res, next);
   } catch (err) {
     next(err);
   }
@@ -60,7 +60,7 @@ Layer.prototype.handle_error = function handle_error(
  * @param {NextFunction} next
  * @private
  */
-Layer.prototype.handle_request = function handle(
+Layer.prototype.handle_request = async function handle(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -73,7 +73,7 @@ Layer.prototype.handle_request = function handle(
   }
 
   try {
-    fn(req, res, next);
+    await fn(req, res, next);
   } catch (err) {
     next(err);
   }
