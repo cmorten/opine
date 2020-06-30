@@ -10,6 +10,7 @@ import {
   extname,
   contentType,
   vary,
+  escapeHtml,
   encodeUrl,
 } from "../deps.ts";
 import {
@@ -404,7 +405,76 @@ export class Response implements DenoResponse {
     return this.set("Location", encodeUrl(loc));
   }
 
-  // TODO: redirect() {}
+  /**
+ * Redirect to the given `url` with optional response `status`
+ * defaulting to `302`.
+ *
+ * The resulting `url` is determined by `res.location()`.
+ * 
+ * Examples:
+ *
+ *    res.redirect('/foo/bar');
+ *    res.redirect('http://example.com');
+ *    res.redirect(301, 'http://example.com');
+ *    res.redirect('../login'); // /blog/post/1 -> /blog/login
+ *
+ * @param {Status} statusCode
+ * @param {string} url
+ * @public
+ */
+  redirect(url: string): void;
+  redirect(statusCode: Status, url: string): void;
+  redirect() {
+    let address: string;
+    let body: string = "";
+    let status: Status;
+
+    if (arguments.length === 0) {
+      throw new TypeError("res.redirect: requires a location url");
+    } else if (arguments.length === 1) {
+      address = arguments[0] + "";
+      status = 302;
+    } else {
+      if (typeof arguments[0] !== "number" || Number.isNaN(arguments[0])) {
+        throw new TypeError(
+          "res.redirect: expected status code to be a valid number",
+        );
+      }
+
+      address = arguments[1] + "";
+      status = arguments[0];
+    }
+
+    // Set location header
+    address = this.location(address).get("Location");
+
+    // Support text/{plain,html} by default
+    this.format({
+      text: function _renderRedirectBody() {
+        body = `${STATUS_TEXT.get(status)}. Redirecting to ${address}`;
+      },
+
+      html: function _renderRedirectHtmlBoby() {
+        const u = escapeHtml(address);
+        body = `<p>${
+          STATUS_TEXT.get(status)
+        }. Redirecting to <a href="${u}">${u}</a></p>`;
+      },
+
+      default: function _renderDefaultRedirectBody() {
+        body = "";
+      },
+    });
+
+    // Respond
+    this.status = status;
+
+    if (this.req.method === "HEAD") {
+      this.end();
+    } else {
+      this.end(body);
+    }
+  }
 
   /**
    * Render `view` with the given `options` and optional callback `fn`.
