@@ -1,5 +1,12 @@
 # ChangeLog
 
+## [0.15.0] - 30-06-2020
+
+- [#34] Capture errors from async routes (#33).
+- fix: examples permission instructions.
+- fix: proxy example.
+- [#20] Add instructions for nest.land package registry (#35).
+
 ## [0.14.0] - 29-06-2020
 
 - fix: several minor bugfixes.
