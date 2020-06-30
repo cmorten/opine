@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.16.0] - 30-06-2020
+
+- [#22] Add res.redirect API (#36).
+- docs: add React example.
+
 ## [0.15.0] - 30-06-2020
 
 - [#34] Capture errors from async routes (#33).
