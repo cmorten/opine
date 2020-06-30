@@ -456,7 +456,7 @@ export class Response implements DenoResponse {
       },
 
       html: function _renderRedirectHtmlBoby() {
-        var u = escapeHtml(address);
+        const u = escapeHtml(address);
         body = `<p>${
           STATUS_TEXT.get(status)
         }. Redirecting to <a href="${u}">${u}</a></p>`;

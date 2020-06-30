@@ -1,6 +1,6 @@
 # redirect
 
-An example of how redirect using `res.redirect`.
+An example of how to redirect using `res.redirect`.
 
 ## How to run this example
 
