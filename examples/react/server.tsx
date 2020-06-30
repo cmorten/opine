@@ -3,10 +3,9 @@
  * 
  *    deno run --allow-net --allow-read --unstable ./examples/react/server.tsx
  * 
- * if have the repo cloned locally.
- * 
- * Unfortunately template rendering is not currently supported for remote URLs
- * so this cannot be run from the repo.
+ * if have the repo cloned locally. Unfortunately template rendering does not
+ * currently support remote URLs for views, so this example cannot be run directly
+ * from this repo.
  * 
  */
 
