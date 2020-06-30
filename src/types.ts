@@ -709,6 +709,26 @@ export interface Response<ResBody = any>
   location(url: string): this;
 
   /**
+  * Redirect to the given `url` with optional response `status`
+  * defaulting to `302`.
+  *
+  * The resulting `url` is determined by `res.location()`.
+  *
+  * Examples:
+  *
+  *    res.redirect('/foo/bar');
+  *    res.redirect('http://example.com');
+  *    res.redirect(301, 'http://example.com');
+  *    res.redirect('../login'); // /blog/post/1 -> /blog/login
+  *
+  * @param {Status} statusCode
+  * @param {string} url
+  * @public
+  */
+  redirect(url: string): void;
+  redirect(code: Status, url: string): void;
+
+  /**
    * Render `view` with the given `options` and optional callback `fn`.
    * When a callback function is given a response will _not_ be made
    * automatically, otherwise a response of _200_ and _text/html_ is given.

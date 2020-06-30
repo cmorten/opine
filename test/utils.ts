@@ -75,3 +75,40 @@ export const after = (count: number, done: Function) => {
     }
   };
 };
+
+/**
+ * Returns an object subset of `obj`, whose properties are in `keys`.
+ * @param obj 
+ * @param props 
+ */
+export function pick<
+  T extends Object,
+  K extends keyof T,
+>(obj: T, keys: K[]): Pick<T, K> {
+  const output = {} as Pick<T, K>;
+
+  for (const key of keys) {
+    output[key] = obj[key];
+  }
+
+  return output;
+}
+
+/**
+ * Returns an object subset of `obj`, whose properties are not in `keys`.
+ * @param obj 
+ * @param keys 
+ */
+export function omit<T extends Object, K extends keyof T>(
+  obj: T,
+  keys: K[],
+): Omit<T, K> {
+  const copy = Object.create(Object.getPrototypeOf(obj));
+  Object.defineProperties(copy, Object.getOwnPropertyDescriptors(obj));
+
+  for (const key of keys) {
+    delete copy[key];
+  }
+
+  return copy as Omit<T, K>;
+}
