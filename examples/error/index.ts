@@ -1,11 +1,11 @@
 /**
  * Run this example using:
  * 
- *    deno run --allow-net ./examples/error/index.ts
+ *    deno run --allow-net --allow-read ./examples/error/index.ts
  * 
  *    if have the repo cloned locally _OR_
  * 
- *    deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/error/index.ts
+ *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/error/index.ts
  * 
  *    if you don't!
  * 

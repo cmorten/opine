@@ -105,6 +105,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.response.html#req" class="tsd-kind-icon">req</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.response.html#send" class="tsd-kind-icon">send</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.response.html#statusmessage" class="tsd-kind-icon">status<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.response.html#written" class="tsd-kind-icon">written</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -141,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <a href="_types_.application.html" class="tsd-signature-type">Application</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L515">types.ts:515</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L521">types.ts:521</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -151,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#send" class="tsd-signature-type">Send</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L646">types.ts:646</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L657">types.ts:657</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +161,7 @@
 						</div>
 						<p>Examples:</p>
 						<pre><code><span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.json</span>(null);
-<span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.json</span>({ <span class="hljs-attribute">user</span>: <span class="hljs-string">&#x27;tj&#x27;</span> });
+<span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.json</span>({ <span class="hljs-attribute">user</span>: <span class="hljs-string">&#x27;deno&#x27;</span> });
 <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.setStatus</span>(<span class="hljs-number">500</span>)<span class="hljs-selector-class">.json</span>(<span class="hljs-string">&#x27;oh noes!&#x27;</span>);
 <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.setStatus</span>(<span class="hljs-number">404</span>)<span class="hljs-selector-class">.json</span>(<span class="hljs-built_in">`I don&#x27;t have that`</span>);</code></pre>
 					</div>
@@ -171,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">jsonp<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#send" class="tsd-signature-type">Send</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L658">types.ts:658</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L669">types.ts:669</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +181,7 @@
 						</div>
 						<p>Examples:</p>
 						<pre><code><span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.jsonp</span>(null);
-<span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.jsonp</span>({ <span class="hljs-attribute">user</span>: <span class="hljs-string">&#x27;tj&#x27;</span> });
+<span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.jsonp</span>({ <span class="hljs-attribute">user</span>: <span class="hljs-string">&#x27;deno&#x27;</span> });
 <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.setStatus</span>(<span class="hljs-number">500</span>)<span class="hljs-selector-class">.jsonp</span>(<span class="hljs-string">&#x27;oh noes!&#x27;</span>);
 <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.setStatus</span>(<span class="hljs-number">404</span>)<span class="hljs-selector-class">.jsonp</span>(<span class="hljs-built_in">`I don&#x27;t have that`</span>);</code></pre>
 					</div>
@@ -191,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">locals<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L519">types.ts:519</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L525">types.ts:525</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">req<span class="tsd-signature-symbol">:</span> <a href="_types_.request.html" class="tsd-signature-type">Request</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L517">types.ts:517</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L523">types.ts:523</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#send" class="tsd-signature-type">Send</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L727">types.ts:727</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L738">types.ts:738</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,9 +232,24 @@
 					<div class="tsd-signature tsd-kind-icon">status<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L521">types.ts:521</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L527">types.ts:527</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="written" class="tsd-anchor"></a>
+					<h3>written</h3>
+					<div class="tsd-signature tsd-kind-icon">written<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L532">types.ts:532</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Boolean signifying whether the request has already been responded to.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -248,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L530">types.ts:530</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L541">types.ts:541</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L535">types.ts:535</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L546">types.ts:546</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,7 +327,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L548">types.ts:548</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L559">types.ts:559</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L550">types.ts:550</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L561">types.ts:561</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -358,7 +374,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L545">types.ts:545</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L556">types.ts:556</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +406,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L559">types.ts:559</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L570">types.ts:570</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L560">types.ts:560</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L571">types.ts:571</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -438,7 +454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L576">types.ts:576</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L587">types.ts:587</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -459,7 +475,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L577">types.ts:577</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L588">types.ts:588</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -482,7 +498,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L631">types.ts:631</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L642">types.ts:642</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,7 +565,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L634">types.ts:634</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L645">types.ts:645</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -577,7 +593,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L670">types.ts:670</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L681">types.ts:681</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -610,7 +626,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L698">types.ts:698</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L709">types.ts:709</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -653,7 +669,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L710">types.ts:710</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L721">types.ts:721</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -706,7 +722,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L715">types.ts:715</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L726">types.ts:726</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -747,13 +763,13 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 					<a name="sendfile" class="tsd-anchor"></a>
 					<h3>send<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L754">types.ts:754</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L765">types.ts:765</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -785,7 +801,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -799,7 +815,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L766">types.ts:766</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L777">types.ts:777</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -833,7 +849,7 @@ res.setStatus(<span class="hljs-number">404</span>).<span class="hljs-keyword">e
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L780">types.ts:780</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L791">types.ts:791</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -862,7 +878,7 @@ res.<span class="hljs-builtin-name">set</span>({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L781">types.ts:781</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L792">types.ts:792</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -885,7 +901,7 @@ res.<span class="hljs-builtin-name">set</span>({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L786">types.ts:786</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L797">types.ts:797</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -913,7 +929,7 @@ res.<span class="hljs-builtin-name">set</span>({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L799">types.ts:799</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L810">types.ts:810</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -947,7 +963,7 @@ res.<span class="hljs-builtin-name">set</span>({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L808">types.ts:808</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L819">types.ts:819</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -977,7 +993,7 @@ res.<span class="hljs-builtin-name">set</span>({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/types.ts#L817">types.ts:817</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/types.ts#L828">types.ts:828</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1090,6 +1106,9 @@ res.<span class="hljs-builtin-name">set</span>({
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.response.html#statusmessage" class="tsd-kind-icon">status<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.response.html#written" class="tsd-kind-icon">written</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_types_.response.html#append" class="tsd-kind-icon">append</a>
@@ -1227,6 +1246,5 @@ res.<span class="hljs-builtin-name">set</span>({
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

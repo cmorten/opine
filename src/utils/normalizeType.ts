@@ -12,7 +12,7 @@ function acceptParams(str: string) {
   const parts = str.split(/ *; */);
   const ret = { value: parts[0], quality: 1, params: {} as any };
 
-  for (var i = 1; i < parts.length; ++i) {
+  for (let i = 1; i < parts.length; ++i) {
     const pms = parts[i].split(/ *= */);
 
     if ("q" === pms[0]) {
@@ -46,9 +46,9 @@ export const normalizeType = function (type: string): any {
  * @private
  */
 export const normalizeTypes = function (types: string[]): any[] {
-  var ret = [];
+  const ret = [];
 
-  for (var i = 0; i < types.length; ++i) {
+  for (let i = 0; i < types.length; ++i) {
     ret.push(normalizeType(types[i]));
   }
 

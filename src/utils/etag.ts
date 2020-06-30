@@ -55,7 +55,7 @@ function entitytag(entity: any): string {
   const hash = sha1.toString().substring(0, 27);
 
   // compute length of entity
-  var len = typeof entity === "string"
+  const len = typeof entity === "string"
     ? encoder.encode(entity).byteLength
     : entity.byteLength;
 

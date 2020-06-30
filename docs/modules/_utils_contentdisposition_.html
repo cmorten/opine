@@ -68,13 +68,233 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#disposition_type_regexp" class="tsd-kind-icon">DISPOSITION_<wbr>TYPE_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#encode_url_attr_char_regexp" class="tsd-kind-icon">ENCODE_<wbr>URL_<wbr>ATTR_<wbr>CHAR_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#ext_value_regexp" class="tsd-kind-icon">EXT_<wbr>VALUE_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#hex_escape_regexp" class="tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="_utils_contentdisposition_.html#hex_escape_replace_regexp" class="tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REPLACE_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#non_latin1_regexp" class="tsd-kind-icon">NON_<wbr>LATIN1_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#param_regexp" class="tsd-kind-icon">PARAM_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#qesc_regexp" class="tsd-kind-icon">QESC_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#quote_regexp" class="tsd-kind-icon">QUOTE_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="_utils_contentdisposition_.html#text_regexp" class="tsd-kind-icon">TEXT_<wbr>REGEXP</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="_utils_contentdisposition_.html#token_regexp" class="tsd-kind-icon">TOKEN_<wbr>REGEXP</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_utils_contentdisposition_.html#contentdisposition" class="tsd-kind-icon">content<wbr>Disposition</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#createparams" class="tsd-kind-icon">create<wbr>Params</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#format" class="tsd-kind-icon">format</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#getlatin1" class="tsd-kind-icon">get<wbr>Latin1</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#pencode" class="tsd-kind-icon">pencode</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#qstring" class="tsd-kind-icon">q<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_utils_contentdisposition_.html#ustring" class="tsd-kind-icon">u<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="disposition_type_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> DISPOSITION_<wbr>TYPE_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">DISPOSITION_<wbr>TYPE_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /^([!#$%&amp;&#x27;*+.0-9A-Z^_&#x60;a-z|~-]+)[\x09\x20]*(?:$|;)/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L134">utils/contentDisposition.ts:134</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp for constious RFC 6266 grammar</p>
+						</div>
+						<p>disposition-type = &quot;inline&quot; | &quot;attachment&quot; | disp-ext-type
+							disp-ext-type    = token
+							disposition-parm = filename-parm | disp-ext-parm
+							filename-parm    = &quot;filename&quot; &quot;=&quot; value
+							| &quot;filename*&quot; &quot;=&quot; ext-value
+							disp-ext-parm    = token &quot;=&quot; value
+							| ext-token &quot;=&quot; ext-value
+						ext-token        = &lt;the characters in token, followed by &quot;*&quot;&gt;</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="encode_url_attr_char_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> ENCODE_<wbr>URL_<wbr>ATTR_<wbr>CHAR_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">ENCODE_<wbr>URL_<wbr>ATTR_<wbr>CHAR_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /[\x00-\x20&quot;&#x27;()*,/:;&lt;&#x3D;&gt;?@[\\\]{}\x7f]/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L38">utils/contentDisposition.ts:38</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp to match non attr-char, <em>after</em> encodeURIComponent (i.e. not including &quot;%&quot;)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="ext_value_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> EXT_<wbr>VALUE_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">EXT_<wbr>VALUE_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /^([A-Za-z0-9!#$%&amp;+\-^_&#x60;{}~]+)&#x27;(?:[A-Za-z]{2,3}(?:-[A-Za-z]{3}){0,3}|[A-Za-z]{4,8}|)&#x27;((?:%[0-9A-Fa-f]{2}|[A-Za-z0-9!#$&amp;+.^_&#x60;|~-])+)$/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L118">utils/contentDisposition.ts:118</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp for constious RFC 5987 grammar</p>
+						</div>
+						<p>ext-value     = charset  &quot;&#39;&quot; [ language ] &quot;&#39;&quot; value-chars
+							charset       = &quot;UTF-8&quot; / &quot;ISO-8859-1&quot; / mime-charset
+							mime-charset  = 1<em>mime-charsetc
+								mime-charsetc = ALPHA / DIGIT
+								/ &quot;!&quot; / &quot;#&quot; / &quot;$&quot; / &quot;%&quot; / &quot;&amp;&quot;
+								/ &quot;+&quot; / &quot;-&quot; / &quot;^&quot; / &quot;_&quot; / &quot;`&quot;
+								/ &quot;{&quot; / &quot;}&quot; / &quot;~&quot;
+							language      = ( 2</em>3ALPHA [ extlang ] )
+							/ 4ALPHA
+							/ 5*8ALPHA
+							extlang       = *3( &quot;-&quot; 3ALPHA )
+							value-chars   = *( pct-encoded / attr-char )
+							pct-encoded   = &quot;%&quot; HEXDIG HEXDIG
+							attr-char     = ALPHA / DIGIT
+							/ &quot;!&quot; / &quot;#&quot; / &quot;$&quot; / &quot;&amp;&quot; / &quot;+&quot; / &quot;-&quot; / &quot;.&quot;
+						/ &quot;^&quot; / &quot;_&quot; / &quot;`&quot; / &quot;|&quot; / &quot;~&quot;</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="hex_escape_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> HEX_<wbr>ESCAPE_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /%[0-9A-Fa-f]{2}/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L44">utils/contentDisposition.ts:44</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp to match percent encoding escape.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="hex_escape_replace_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> HEX_<wbr>ESCAPE_<wbr>REPLACE_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REPLACE_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /%([0-9A-Fa-f]{2})/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L45">utils/contentDisposition.ts:45</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="non_latin1_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> NON_<wbr>LATIN1_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">NON_<wbr>LATIN1_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /[^\x20-\x7e\xa0-\xff]/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L51">utils/contentDisposition.ts:51</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp to match non-latin1 characters.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="param_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> PARAM_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">PARAM_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /;[\x09\x20]*([!#$%&amp;&#x27;*+.0-9A-Z^_&#x60;a-z|~-]+)[\x09\x20]*&#x3D;[\x09\x20]*(&quot;(?:[\x20!\x23-\x5b\x5d-\x7e\x80-\xff]|\\[\x20-\x7e])*&quot;|[!#$%&amp;&#x27;*+.0-9A-Z^_&#x60;a-z|~-]+)[\x09\x20]*/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L92">utils/contentDisposition.ts:92</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp for constious RFC 2616 grammar</p>
+						</div>
+						<p>parameter     = token &quot;=&quot; ( token | quoted-string )
+							token         = 1*<any CHAR except CTLs or separators>
+								separators    = &quot;(&quot; | &quot;)&quot; | &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;@&quot;
+								| &quot;,&quot; | &quot;;&quot; | &quot;:&quot; | &quot;&quot; | &lt;&quot;&gt;
+								| &quot;/&quot; | &quot;[&quot; | &quot;]&quot; | &quot;?&quot; | &quot;=&quot;
+								| &quot;{&quot; | &quot;}&quot; | SP | HT
+								quoted-string = ( &lt;&quot;&gt; <em>(qdtext | quoted-pair ) &lt;&quot;&gt; )
+									qdtext        = &lt;any TEXT except &lt;&quot;&gt;&gt;
+									quoted-pair   = &quot;&quot; CHAR
+									CHAR          = &lt;any US-ASCII character (octets 0 - 127)&gt;
+									TEXT          = &lt;any OCTET except CTLs, but including LWS&gt;
+								LWS           = [CRLF] 1</em>( SP | HT )
+								CRLF          = CR LF
+								CR            = &lt;US-ASCII CR, carriage return (13)&gt;
+								LF            = &lt;US-ASCII LF, linefeed (10)&gt;
+								SP            = &lt;US-ASCII SP, space (32)&gt;
+								HT            = &lt;US-ASCII HT, horizontal-tab (9)&gt;
+								CTL           = &lt;any US-ASCII control character (octets 0 - 31) and DEL (127)&gt;
+						OCTET         = &lt;any 8-bit sequence of data&gt;</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="qesc_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> QESC_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">QESC_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /\\([\u0000-\u007f])/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L60">utils/contentDisposition.ts:60</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp to match quoted-pair in RFC 2616</p>
+						</div>
+						<p>quoted-pair = &quot;&quot; CHAR
+						CHAR        = &lt;any US-ASCII character (octets 0 - 127)&gt;</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="quote_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> QUOTE_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">QUOTE_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /([\\&quot;])/g</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L66">utils/contentDisposition.ts:66</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RegExp to match chars that must be quoted-pair in RFC 2616</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="text_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TEXT_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">TEXT_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /^[\x20-\x7e\x80-\xff]+$/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L94">utils/contentDisposition.ts:94</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="token_regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /^[!#$%&amp;&#x27;*+.0-9A-Z^_&#x60;a-z|~-]+$/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L95">utils/contentDisposition.ts:95</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -89,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/96a05a4/src/utils/contentDisposition.ts#L12">utils/contentDisposition.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L279">utils/contentDisposition.ts:279</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -111,6 +331,182 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="createparams" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Params</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Params<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L156">utils/contentDisposition.ts:156</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create parameters object from filename and fallback.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filename: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="format" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> format</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">format<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>parameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L243">utils/contentDisposition.ts:243</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Format object to Content-Disposition header.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>parameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>parameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="getlatin1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Latin1</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Latin1<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L144">utils/contentDisposition.ts:144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get ISO-8859-1 version of string.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>val: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="pencode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> pencode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pencode<span class="tsd-signature-symbol">(</span>char<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L210">utils/contentDisposition.ts:210</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Percent encode a single character.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>char: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="qstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> q<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">q<wbr>String<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L197">utils/contentDisposition.ts:197</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Quote a string for HTTP.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>val: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="ustring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> u<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">u<wbr>String<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/fbb885e/src/utils/contentDisposition.ts#L224">utils/contentDisposition.ts:224</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Encode a Unicode string for HTTP (RFC 5987).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>val: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -126,8 +522,59 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#disposition_type_regexp" class="tsd-kind-icon">DISPOSITION_<wbr>TYPE_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#encode_url_attr_char_regexp" class="tsd-kind-icon">ENCODE_<wbr>URL_<wbr>ATTR_<wbr>CHAR_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#ext_value_regexp" class="tsd-kind-icon">EXT_<wbr>VALUE_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#hex_escape_regexp" class="tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#hex_escape_replace_regexp" class="tsd-kind-icon">HEX_<wbr>ESCAPE_<wbr>REPLACE_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#non_latin1_regexp" class="tsd-kind-icon">NON_<wbr>LATIN1_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#param_regexp" class="tsd-kind-icon">PARAM_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#qesc_regexp" class="tsd-kind-icon">QESC_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#quote_regexp" class="tsd-kind-icon">QUOTE_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#text_regexp" class="tsd-kind-icon">TEXT_<wbr>REGEXP</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#token_regexp" class="tsd-kind-icon">TOKEN_<wbr>REGEXP</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_utils_contentdisposition_.html#contentdisposition" class="tsd-kind-icon">content<wbr>Disposition</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#createparams" class="tsd-kind-icon">create<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#format" class="tsd-kind-icon">format</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#getlatin1" class="tsd-kind-icon">get<wbr>Latin1</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#pencode" class="tsd-kind-icon">pencode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#qstring" class="tsd-kind-icon">q<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_utils_contentdisposition_.html#ustring" class="tsd-kind-icon">u<wbr>String</a>
 					</li>
 				</ul>
 			</nav>
@@ -160,6 +607,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -57,14 +57,14 @@ export function pathToRegexp(
 ): RegExp {
   options = options || {};
   keys = keys || [];
-  var strict = options.strict;
-  var end = options.end !== false;
-  var flags = options.sensitive ? "" : "i";
-  var extraOffset = 0;
-  var keysOffset = keys.length;
-  var i = 0;
-  var name = 0;
-  var m;
+  const strict = options.strict;
+  const end = options.end !== false;
+  const flags = options.sensitive ? "" : "i";
+  let extraOffset = 0;
+  const keysOffset = keys.length;
+  let i = 0;
+  let name = 0;
+  let m;
 
   if (path instanceof RegExp) {
     while (m = MATCHING_GROUP_REGEXP.exec(path.source)) {
@@ -107,7 +107,7 @@ export function pathToRegexp(
             offset: offset + extraOffset,
           });
 
-          var result = "" +
+          const result = "" +
             (optional ? "" : slash) +
             "(?:" +
             format + (optional ? slash : "") + capture +
@@ -121,7 +121,7 @@ export function pathToRegexp(
         },
       )
       .replace(/\*/g, function (star, index) {
-        var len = keys.length;
+        let len = keys.length;
 
         while (len-- > keysOffset && keys[len].offset > index) {
           keys[len].offset += 3; // Replacement length minus asterisk length.
@@ -132,8 +132,8 @@ export function pathToRegexp(
 
   // This is a workaround for handling unnamed matching groups.
   while (m = MATCHING_GROUP_REGEXP.exec(path)) {
-    var escapeCount = 0;
-    var index = m.index;
+    let escapeCount = 0;
+    let index = m.index;
 
     while (path.charAt(--index) === "\\") {
       escapeCount++;

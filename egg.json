@@ -1,7 +1,7 @@
 {
     "name": "opine",
     "description": "Fast, minimalist web framework for Deno ported from ExpressJS.",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "repository": "https://github.com/asos-craigmorten/opine",
     "stable": true,
     "files": [
