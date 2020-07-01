@@ -68,7 +68,7 @@ app.use("/api/v1", v1);
  *       200:
  *         description: OK
  */
-app.use("/", function(req, res) {
+app.use("/", function (req, res) {
   res.send("Homepage");
 });
 
