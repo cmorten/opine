@@ -536,9 +536,15 @@ export interface Response<ResBody = any>
    * If the header is not already set, it creates the header with the specified value.
    * The value parameter can be a string or an array.
    *
+   * Example:
+   *
+   *    res.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
+   *    res.append('Warning', '199 Miscellaneous warning');
+   *    res.append("cache-control", ["public", "max-age=604800", "immutable"]);
+   *
    * Note: calling res.set() after res.append() will reset the previously-set header value.
    */
-  append(field: string, value: string): this;
+  append(field: string, value: string | string[]): this;
 
   /**
    * Set _Content-Disposition_ header to _attachment_ with optional `filename`.
