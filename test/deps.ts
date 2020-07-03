@@ -3,7 +3,7 @@ export {
   superdeno,
   IResponse as SuperDenoResponse,
   IRequest as SuperDenoRequest,
-} from "https://deno.land/x/superdeno@1.5.0/mod.ts";
+} from "https://deno.land/x/superdeno@1.5.1/mod.ts";
 export {
   deferred,
   Deferred,

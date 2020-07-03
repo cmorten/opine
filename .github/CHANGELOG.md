@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.17.0] - 30-06-2020
+
+- [#38] Array support for `res.append` (#23).
+- fix: update lockfile for breaking sub-dependency.
+
 ## [0.16.0] - 30-06-2020
 
 - [#22] Add res.redirect API (#36).
