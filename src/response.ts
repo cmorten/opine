@@ -36,22 +36,29 @@ export class Response implements DenoResponse {
   req!: Request;
   locals!: any;
 
-  // TODO: Supporting arrays.
   /**
    * Append additional header `field` with value `val`.
-   *
+   * Value can be either a `string` or an array of `string`.
+   * 
    * Example:
    *
    *    res.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
    *    res.append('Warning', '199 Miscellaneous warning');
-   *
+   *    res.append("cache-control", ["public", "max-age=604800", "immutable"]);
+   * 
    * @param {string} field
-   * @param {string} value
+   * @param {string|string[]} value
    * @return {Response} for chaining
    * @public
    */
-  append(field: string, value: string): this {
-    this.headers.append(field, value);
+  append(field: string, value: string | string[]): this {
+    if (Array.isArray(value)) {
+      for (let i = 0, len = value.length; i < len; i++) {
+        this.headers.append(field, value[i]);
+      }
+    } else {
+      this.headers.append(field, value);
+    }
 
     return this;
   }

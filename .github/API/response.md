@@ -53,12 +53,20 @@ app.use(function (req, res, next) {
 #### res.append(field [, value])
 
 Appends the specified `value` to the HTTP response header `field`. If the header is not already set, it creates the header with the specified string value.
+The value parameter can be a string or an array.
 
 Note: calling `res.set()` after `res.append()` will reset the previously-set header value.
 
 ```ts
 res.append("Set-Cookie", "foo=bar; Path=/; HttpOnly");
 res.append("Warning", "199 Miscellaneous warning");
+res.append(
+  "Link",
+  [
+    'https://www.google.com; rel="dns-prefetch"',
+    'https://www.youtube.com; rel="preconnect"',
+  ],
+);
 ```
 
 #### res.attachment([filename])

@@ -22,6 +22,45 @@ describe("res", function () {
         .expect("Link", "<http://localhost/>, <http://localhost:80/>", done);
     });
 
+    it("should accept array of values", function (done) {
+      const app = opine();
+
+      app.use(function (req, res, next) {
+        res.append(
+          "Link",
+          [
+            'https://www.google.com; rel="dns-prefetch"',
+            'https://www.youtube.com; rel="preconnect"',
+          ],
+        );
+
+        res.append("cache-control", ["public", "max-age=604800", "immutable"]);
+        res.end();
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(
+          "Link",
+          'https://www.google.com; rel="dns-prefetch", https://www.youtube.com; rel="preconnect"',
+        )
+        .expect("Cache-Control", "public, max-age=604800, immutable")
+        .expect(200, done);
+    });
+
+    it("should ignore empty arrays", function (done) {
+      const app = opine();
+
+      app.use(function (req, res, next) {
+        res.set("cache-control", "no-store").append("cache-control", []).end();
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect("Cache-Control", "no-store")
+        .expect(200, done);
+    });
+
     it("should get reset by res.set(field, val)", function (done) {
       const app = opine();
 
@@ -69,17 +108,32 @@ describe("res", function () {
 
       app.use(function (req, res) {
         res.append("Set-Cookie", "bar=baz");
-        res.end();
+        // `append` and `set` replace a `set-cookie` if they share the same cookie `key`.
+        res.append("Set-cookie", ["bar=bang", "curl=wget; Path=/"]);
+        res.append("Set-cookie", ["bar=bang", "express=js; Path=/"]);
+
+        // Holds the values of all the `set-cookie` headers sent.
+        const cookieVals = [];
+
+        for (const [key, val] of res.headers!) {
+          if (key.toLowerCase() === "set-cookie") {
+            cookieVals.push(val);
+          }
+        }
+
+        res.json({ cookies: cookieVals.sort() });
       });
 
       superdeno(app)
         .get("/")
-        .expect(function (res: any) {
-          expect(res.headers["set-cookie"]).toEqual(
-            "foo=bar; Path=/, bar=baz",
-          );
-        })
-        .expect(200, done);
+        .expect(200, {
+          cookies: [
+            "bar=bang",
+            "curl=wget; Path=/",
+            "express=js; Path=/",
+            "foo=bar; Path=/",
+          ],
+        }, done);
     });
   });
 });
