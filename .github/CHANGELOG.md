@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.18.0] - 06-07-2020
+
+- feat: upgrade Deno to `1.1.3`, std to `0.60.0` and latest of other deps.
+
 ## [0.17.0] - 30-06-2020
 
 - [#38] Array support for `res.append` (#23).
