@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.19.0] - 14-07-2020
+
+- [#42] Incorrect URL argument type (#43)
+
 ## [0.18.0] - 06-07-2020
 
 - feat: upgrade Deno to `1.1.3`, std to `0.60.0` and latest of other deps.
