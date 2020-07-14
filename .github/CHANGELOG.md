@@ -1,8 +1,12 @@
 # ChangeLog
 
+## [0.19.1] - 14-07-2020
+
+- chore: formatting fix.
+
 ## [0.19.0] - 14-07-2020
 
-- [#42] Incorrect URL argument type (#43)
+- [#42] Incorrect URL argument type (#43).
 
 ## [0.18.0] - 06-07-2020
 
