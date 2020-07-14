@@ -224,7 +224,7 @@ function createRedirectDirectoryListener(): Function {
     originalUrl.pathname = collapseLeadingSlashes(originalUrl.pathname + "/");
 
     // reformat the URL
-    const loc = encodeUrl(new URL(originalUrl).toString());
+    const loc = encodeUrl(new URL(originalUrl.pathname).toString());
     const doc = createHtmlDocument(
       "Redirecting",
       'Redirecting to <a href="' + escapeHtml(loc) + '">' +
