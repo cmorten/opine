@@ -232,6 +232,29 @@ app.engine = function engine(ext: string, fn: Function) {
 };
 
 // TODO: app.param()
+/**
+ * Proxy to `Router#param()` with one added api feature. The _name_ parameter
+ * can be an array of names.
+ *
+ * See the Router#param() docs for more details.
+ *
+ * @param {String|Array} name
+ * @param {Function} fn
+ * @return {app} for chaining
+ * @public
+ */
+
+app.param = function param(name, fn) {
+  this.lazyrouter();
+  if (Array.isArray(name)) {
+    for (var i = 0; i < name.length; i++) {
+      this.param(name[i], fn);
+    }
+    return this;
+  }
+  this._router.param(name, fn);
+  return this;
+};
 
 /**
  * Assign `setting` to `val`, or return `setting`'s value.
