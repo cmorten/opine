@@ -30,13 +30,13 @@ export { encoder } from "https://deno.land/std@0.61.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
-} from "https://deno.land/x/evt@1.7.13/mod.ts";
+} from "https://deno.land/x/evt@1.8.0/mod.ts";
 export {
   contentType,
   charset,
   lookup,
 } from "https://deno.land/x/media_types@v2.4.2/mod.ts";
-export { createError } from "https://deno.land/x/http_errors@2.0.0/mod.ts";
+export { createError } from "https://deno.land/x/http_errors@2.1.0/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@1.0.0/mod.ts";
 export {
   typeofrequest,
