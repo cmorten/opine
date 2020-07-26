@@ -254,8 +254,9 @@
     e.Vector.prototype.upsert = function (e, t, r) {
       this._magnitude = 0;
       var i = this.positionForIndex(e);
-      this.elements[i] == e ? this.elements[i + 1] = r(this.elements[i + 1], t)
-      : this.elements.splice(i, 0, e, t);
+      this.elements[i] == e
+        ? this.elements[i + 1] = r(this.elements[i + 1], t)
+        : this.elements.splice(i, 0, e, t);
     },
     e.Vector.prototype.magnitude = function () {
       if (this._magnitude) return this._magnitude;
@@ -385,8 +386,8 @@
               (u = w,
                 l = Q,
                 (a = x).test(r = i) ? r += "e" : u.test(r)
-                ? (o = g, r = r.replace(o, ""))
-                : l.test(r) && (r += "e"));
+                  ? (o = g, r = r.replace(o, ""))
+                  : l.test(r) && (r += "e"));
           }
           (o = k).test(r) && (r = (i = (I = o.exec(r))[1]) + "i");
           (o = S).test(r) &&
@@ -2096,7 +2097,7 @@ var typedoc,
               }),
               this.field.addEventListener("keydown", function (e) {
                 13 == e.keyCode || 27 == e.keyCode || 38 == e.keyCode ||
-                40 == e.keyCode
+                  40 == e.keyCode
                   ? (_this.preventPress = !0,
                     e.preventDefault(),
                     13 == e.keyCode
