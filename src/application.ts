@@ -231,7 +231,6 @@ app.engine = function engine(ext: string, fn: Function) {
   return this;
 };
 
-// TODO: app.param()
 /**
  * Proxy to `Router#param()` with one added api feature. The _name_ parameter
  * can be an array of names.

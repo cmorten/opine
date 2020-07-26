@@ -79,9 +79,8 @@ export const Router: RouterConstructor = function (options: any = {}): any {
  */
 
 Router.param = function param(name, fn) {
- 
   // param logic
-  if (typeof name === 'function') {
+  if (typeof name === "function") {
     // deprecate('router.param(fn): Refactor to use path params');
     this._params.push(name);
     return;
@@ -92,7 +91,7 @@ Router.param = function param(name, fn) {
   var len = params.length;
   var ret;
 
-  if (name[0] === ':') {
+  if (name[0] === ":") {
     // deprecate('router.param(' + JSON.stringify(name) + ', fn): Use router.param(' + JSON.stringify(name.substr(1)) + ', fn) instead');
     name = name.substr(1);
   }
@@ -105,10 +104,10 @@ Router.param = function param(name, fn) {
 
   // ensure we end up with a
   // middleware function
-  if ('function' !== typeof fn) {
-    throw new Error('invalid param() call for ' + name + ', got ' + fn);
+  if ("function" !== typeof fn) {
+    throw new Error("invalid param() call for " + name + ", got " + fn);
   }
-  
+
   (this.params[name] = this.params[name] || []).push(fn);
   return this;
 };
