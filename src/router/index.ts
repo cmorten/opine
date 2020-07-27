@@ -71,28 +71,23 @@ export const Router: RouterConstructor = function (options: any = {}): any {
  *    });
  *  });
  *
- * @param {String} name
+ * @param {String|Array} name
  * @param {Function} fn
  * @return {app} for chaining
  * @public
  */
 
 Router.param = function param(name, fn) {
-  // param logic
-  if (typeof name === "function") {
-    // deprecate('router.param(fn): Refactor to use path params');
-    this._params.push(name);
-    return;
-  }
-
   // apply param functions
   var params = this._params;
   var len = params.length;
   var ret;
 
-  if (name[0] === ":") {
-    // deprecate('router.param(' + JSON.stringify(name) + ', fn): Use router.param(' + JSON.stringify(name.substr(1)) + ', fn) instead');
-    name = name.substr(1);
+  // ensure param `name` is a string
+  if (typeof name !== "string") {
+    throw new Error(
+      "invalid param() call for " + name + ", value must be a string",
+    );
   }
 
   for (var i = 0; i < len; ++i) {

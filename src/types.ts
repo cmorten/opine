@@ -171,7 +171,7 @@ export interface IRouter {
    * @private
    */
   handle(req: Request, res: Response, next?: NextFunction): void;
-  param(name: any, fn: RequestParamHandler): void;
+  param(name: string, fn: RequestParamHandler): void;
 
   /**
    * @private
@@ -914,7 +914,7 @@ export interface Application extends IRouter, Opine.Application {
    */
   set(setting: string, value?: any): this;
   get: ((setting: string) => any) & IRouterMatcher<this>;
-  param(name: any, fn: RequestParamHandler): this;
+  param(name: string | string[], fn: RequestParamHandler): this;
 
   /**
    * Return the app's absolute pathname

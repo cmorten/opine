@@ -1,1 +1,5 @@
-future: true\nencoding: "UTF-8"\ninclude:\n  - "_*_.html"\n  - "_*_.*.html"
+future: true
+encoding: "UTF-8"
+include:
+  - "_*_.html"
+  - "_*_.*.html"
