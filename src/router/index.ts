@@ -43,7 +43,6 @@ export const Router: RouterConstructor = function (options: any = {}): any {
   return router as IRouter;
 } as any;
 
-// TODO: Router.param
 /**
  * Map the given param placeholder `name`(s) to the given callback.
  *
