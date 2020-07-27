@@ -39,7 +39,7 @@ const users = [
 ];
 
 app.get("/", (req, res) => {
-  res.render("users", {
+  res.set("cache-control", "no-store").render("users", {
     users,
     title: "EJS example",
     header: "Some users",

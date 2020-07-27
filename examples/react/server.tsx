@@ -81,7 +81,7 @@ app.get("/", (req, res) => {
   const content = (ReactDOMServer as any).renderToString(app);
   const scripts = `<script type="module" src="/scripts/client.js"></script>`;
 
-  res.render("main", {
+  res.set("cache-control", "no-store").render("main", {
     content,
     scripts,
     title: "React Example",
