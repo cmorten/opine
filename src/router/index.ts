@@ -71,7 +71,7 @@ export const Router: RouterConstructor = function (options: any = {}): any {
  *    });
  *  });
  *
- * @param {String|Array} name
+ * @param {String} name
  * @param {Function} fn
  * @return {app} for chaining
  * @public
