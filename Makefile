@@ -1,5 +1,7 @@
 .PHONY: benchmark build ci deps doc fmt fmt-check lock test typedoc
 
+FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
+
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
 	@./benchmarks/run.sh 5 ./benchmarks/middleware.ts
@@ -26,10 +28,10 @@ doc:
 	@deno doc ./mod.ts
 
 fmt:
-	@deno fmt ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
+	@deno fmt $(FILES_TO_FORMAT)
 
 fmt-check:
-	@deno fmt --check
+	@deno fmt --check $(FILES_TO_FORMAT)
 
 lock:
 	@deno run --lock=lock.json --lock-write --reload mod.ts
