@@ -6,16 +6,16 @@ export {
   Server,
   ServerRequest,
   Response,
-} from "https://deno.land/std@0.61.0/http/server.ts";
+} from "https://deno.land/std@0.62.0/http/server.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.61.0/http/http_status.ts";
+} from "https://deno.land/std@0.62.0/http/http_status.ts";
 export {
   setCookie,
   Cookie,
   deleteCookie,
-} from "https://deno.land/std@0.61.0/http/cookie.ts";
+} from "https://deno.land/std@0.62.0/http/cookie.ts";
 export {
   extname,
   fromFileUrl,
@@ -23,10 +23,10 @@ export {
   join,
   dirname,
   resolve,
-} from "https://deno.land/std@0.61.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.61.0/node/timers.ts";
-export { Sha1 } from "https://deno.land/std@0.61.0/hash/sha1.ts";
-export { encoder } from "https://deno.land/std@0.61.0/encoding/utf8.ts";
+} from "https://deno.land/std@0.62.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.62.0/node/timers.ts";
+export { Sha1 } from "https://deno.land/std@0.62.0/hash/sha1.ts";
+export { encoder } from "https://deno.land/std@0.62.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
@@ -35,7 +35,7 @@ export {
   contentType,
   charset,
   lookup,
-} from "https://deno.land/x/media_types@v2.4.2/mod.ts";
+} from "https://deno.land/x/media_types@v2.4.3/mod.ts";
 export { createError } from "https://deno.land/x/http_errors@2.1.0/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@1.0.0/mod.ts";
 export {
