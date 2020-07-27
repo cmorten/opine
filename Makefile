@@ -26,7 +26,7 @@ doc:
 	@deno doc ./mod.ts
 
 fmt:
-	@deno fmt
+	@deno fmt ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
 
 fmt-check:
 	@deno fmt --check
