@@ -12,7 +12,7 @@
  */
 
 import { opine, serveStatic } from "../../mod.ts";
-import { renderFileToString } from "https://deno.land/x/dejs@0.7.0/mod.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.8.0/mod.ts";
 import { join, dirname } from "../../deps.ts";
 
 const app = opine();
@@ -39,7 +39,7 @@ const users = [
 ];
 
 app.get("/", (req, res) => {
-  res.render("users", {
+  res.set("cache-control", "no-store").render("users", {
     users,
     title: "EJS example",
     header: "Some users",
