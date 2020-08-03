@@ -17,9 +17,9 @@ jobs:
       - name: Install deps
         run: make deps
       - name: Use Deno v1.1.1
-        uses: denolib/setup-deno@master
+        uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.1.3
+          deno-version: 1.2.2
       - run: make typedoc
       - run: make ci
       - name: Publish Updated Type Docs

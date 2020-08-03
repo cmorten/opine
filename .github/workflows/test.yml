@@ -12,12 +12,12 @@ jobs:
 
     strategy:
       matrix:
-        deno-version: [1.2.1]
+        deno-version: [1.2.2]
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Deno ${{ matrix.deno-version }}
-        uses: denolib/setup-deno@master
+        uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno-version }}
       - run: make ci
