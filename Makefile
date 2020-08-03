@@ -1,4 +1,4 @@
-.PHONY: benchmark build ci deps doc fmt fmt-check lock test typedoc
+.PHONY: benchmark build ci deps doc fmt fmt-check lint lock test typedoc
 
 FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
 
@@ -32,6 +32,9 @@ fmt:
 
 fmt-check:
 	@deno fmt --check $(FILES_TO_FORMAT)
+
+lint:
+	@deno lint --unstable
 
 lock:
 	@deno run --lock=lock.json --lock-write --reload mod.ts

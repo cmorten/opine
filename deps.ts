@@ -6,16 +6,16 @@ export {
   Server,
   ServerRequest,
   Response,
-} from "https://deno.land/std@0.62.0/http/server.ts";
+} from "https://deno.land/std@0.63.0/http/server.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.62.0/http/http_status.ts";
+} from "https://deno.land/std@0.63.0/http/http_status.ts";
 export {
   setCookie,
   Cookie,
   deleteCookie,
-} from "https://deno.land/std@0.62.0/http/cookie.ts";
+} from "https://deno.land/std@0.63.0/http/cookie.ts";
 export {
   extname,
   fromFileUrl,
@@ -23,10 +23,10 @@ export {
   join,
   dirname,
   resolve,
-} from "https://deno.land/std@0.62.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.62.0/node/timers.ts";
-export { Sha1 } from "https://deno.land/std@0.62.0/hash/sha1.ts";
-export { encoder } from "https://deno.land/std@0.62.0/encoding/utf8.ts";
+} from "https://deno.land/std@0.63.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.63.0/node/timers.ts";
+export { Sha1 } from "https://deno.land/std@0.63.0/hash/sha1.ts";
+export { encoder } from "https://deno.land/std@0.63.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
@@ -43,6 +43,6 @@ export {
   hasBody,
 } from "https://deno.land/x/type_is@1.0.1/mod.ts";
 export { isIP } from "https://deno.land/x/isIP@1.0.0/mod.ts";
-export { vary } from "https://deno.land/x/vary@dc17535/mod.ts";
+export { vary } from "https://deno.land/x/vary@1.0.0/mod.ts";
 export { escapeHtml } from "https://deno.land/x/escape_html@1.0.0/mod.ts";
 export { encodeUrl } from "https://deno.land/x/encodeurl@1.0.0/mod.ts";

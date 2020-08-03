@@ -1,5 +1,12 @@
 # ChangeLog
 
+## [0.20.0] - 03-08-2020
+
+- chore: upgrade supported Deno and std module versions to `1.2.2` and `0.63.0`.
+- chore: fix modules to tagged versions as [commits and branches are no longer supported by Deno registry](https://deno.land/posts/registry2).
+- [#21] Add app param API (#46)
+- [#44] react and dejs examples not working (#47)
+
 ## [0.19.1] - 14-07-2020
 
 - chore: formatting fix.
