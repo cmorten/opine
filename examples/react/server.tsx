@@ -11,7 +11,7 @@
 
 import { opine, serveStatic } from "../../mod.ts";
 import { join, dirname } from "../../deps.ts";
-import { renderFileToString } from "https://deno.land/x/dejs@0.7.0/mod.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.8.0/mod.ts";
 import React from "https://dev.jspm.io/react@16.13.1";
 import ReactDOMServer from "https://dev.jspm.io/react-dom@16.13.1/server";
 import { App } from "./components/App.tsx";
@@ -81,7 +81,7 @@ app.get("/", (req, res) => {
   const content = (ReactDOMServer as any).renderToString(app);
   const scripts = `<script type="module" src="/scripts/client.js"></script>`;
 
-  res.render("main", {
+  res.set("cache-control", "no-store").render("main", {
     content,
     scripts,
     title: "React Example",
