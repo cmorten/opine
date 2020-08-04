@@ -59,4 +59,64 @@ describe("bodyParser: text", () => {
       done();
     });
   });
+
+  describe('with inflate option', function () {
+    describe('when false', function () {
+      it('should not accept content-encoding', (done) => {
+        // Default inflate value is false
+        const req: any = {
+          body: new Deno.Buffer(encoder.encode("H4sIAAAAAAAA//NIzcnJV3BJzctXBACoAE06CwAAAA==")),
+          headers: textHeaders,
+        };
+        req.headers.set('Content-Encoding', 'gzip')
+        const parser = text();
+
+        parser(req, {} as any, (err?: any) => {
+          if (err) throw err;
+          expect(req.parsedBody).toEqual("H4sIAAAAAAAA//NIzcnJV3BJzctXBACoAE06CwAAAA==");
+          done();
+        });
+      })
+    })
+
+    describe('when true', function () {
+      it('should accept content-encoding',(done) => {
+        const req: any = {
+          body: new Deno.Buffer(encoder.encode(mockText)),
+          headers: textHeaders,
+          options: {
+            inflate: true
+          }
+        };
+        req.headers.set('Content-Encoding', 'gzip')
+        const parser = text();
+
+        parser(req, {} as any, (err?: any) => {
+          if (err) throw err;
+          expect(req.parsedBody).toEqual(mockText);
+          done();
+        });
+      })
+    })
+  })
+
+  describe('encoding', function () {
+    it('should parse without encoding', function (done) {
+    })
+
+    it('should support identity encoding', function (done) {
+    })
+
+    it('should support gzip encoding', function (done) {
+    })
+
+    it('should support deflate encoding', function (done) {
+    })
+
+    it('should be case-insensitive', function (done) {
+    })
+
+    it('should 415 on unknown encoding', function (done) {
+    })
+  })
 });
