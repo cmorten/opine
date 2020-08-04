@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.20.1] - 04-08-2020
+
+- chore: fix eggs link command in workflow
+
 ## [0.20.0] - 03-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.2.2` and `0.63.0`.
