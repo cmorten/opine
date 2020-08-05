@@ -110,9 +110,7 @@ The parameters of the callback function are:
 - The value of the `name` parameter.
 - The name of the parameter.
 
-<div class="doc-box doc-info" markdown="1">
-Unlike `app.param()`, `router.param()` does not accept an array of route parameters.
-</div>
+> Unlike `app.param()`, `router.param()` does not accept an array of route parameters.
 
 For example, when `:user` is present in a route path, you may map user loading logic to automatically provide `res.locals.user` to the route, or perform validations on the parameter input.
 
