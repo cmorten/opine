@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.20.2] - 05-08-2020
+
+- docs: remove reference to importing commit or branch from readme as not supported by Deno registry v2.
+- fix: use fixed version of opine-http-proxy in examples.
+
 ## [0.20.1] - 04-08-2020
 
 - chore: fix eggs link command in workflow

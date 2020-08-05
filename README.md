@@ -34,7 +34,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@main/mod.ts";
+import { opine } from "https://deno.land/x/opine@0.20.2/mod.ts";
 
 const app = opine();
 
@@ -54,25 +54,13 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@main/mod.ts";
-```
-
-If you want to use a specific version of Opine, just modify the import url to contain the version:
-
-```ts
-import { opine } from "https://deno.land/x/opine@0.14.0/mod.ts";
-```
-
-Or if you want to use a specific commit of Opine, just modify the import url to contain the commit hash:
-
-```ts
-import { opine } from "https://deno.land/x/opine@c21f8d6/mod.ts";
+import { opine } from "https://deno.land/x/opine@0.20.2/mod.ts";
 ```
 
 Opine is also available on [nest.land](https://nest.land/package/opine), a package registry for Deno on the Blockchain.
 
 ```ts
-import { opine } from "https://x.nest.land/opine@0.14.0/mod.ts";
+import { opine } from "https://x.nest.land/opine@0.20.2/mod.ts";
 ```
 
 ## Features
@@ -91,7 +79,7 @@ And more to come as we achieve feature parity with [ExpressJS](https://github.co
 ## Documentation
 
 - [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) - usually the best place when getting started ✨
-- ~[Opine Type Docs](https://asos-craigmorten.github.io/opine/)~ - Unavailable while awaiting GitHub's support of alternatively named default branches.
+- [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
 - [License](https://github.com/asos-craigmorten/opine/blob/main/LICENSE.md)
