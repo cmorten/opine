@@ -16,7 +16,7 @@ jobs:
           node-version: 12
       - name: Install deps
         run: make deps
-      - name: Use Deno v1.1.1
+      - name: Use Deno v1.2.2
         uses: denolib/setup-deno@v2
         with:
           deno-version: 1.2.2
