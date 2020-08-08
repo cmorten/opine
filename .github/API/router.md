@@ -98,6 +98,67 @@ router.get(/^\/commits\/(\w+)(?:\.\.(\w+))?$/, function (req, res) {
 });
 ```
 
+#### router.param(name, callback)
+
+Adds callback triggers to route parameters, where `name` is the name of the parameter and `callback` is the callback function.
+
+The parameters of the callback function are:
+
+- `req`, the request object.
+- `res`, the response object.
+- `next`, indicating the next middleware function.
+- The value of the `name` parameter.
+- The name of the parameter.
+
+> Unlike `app.param()`, `router.param()` does not accept an array of route parameters.
+
+For example, when `:user` is present in a route path, you may map user loading logic to automatically provide `res.locals.user` to the route, or perform validations on the parameter input.
+
+```ts
+router.param('user', function (req, res, next, id) {
+  // try to get the user details from the User model and attach it to the request object
+  User.find(id, function (err, user) {
+    if (err) {
+      next(err)
+    } else if (user) {
+      res.locals.user = user
+      next()
+    } else {
+      next(new Error('failed to load user'))
+    }
+  })
+})
+```
+
+Param callback functions are local to the router on which they are defined. They are not inherited by mounted apps or routers. Hence, param callbacks defined on `router` will be triggered only by route parameters defined on `router` routes.
+
+A param callback will be called only once in a request-response cycle, even if the parameter is matched in multiple routes, as shown in the following examples.
+
+```ts
+router.param('id', function (req, res, next, id) {
+  console.log('CALLED ONLY ONCE')
+  next()
+})
+
+router.get('/user/:id', function (req, res, next) {
+  console.log('although this matches')
+  next()
+})
+
+router.get('/user/:id', function (req, res) {
+  console.log('and this matches too')
+  res.end()
+})
+```
+
+On `GET /user/42`, the following is printed:
+
+```sh
+CALLED ONLY ONCE
+although this matches
+and this matches too
+```
+
 #### router.route(path)
 
 Returns an instance of a single route which you can then use to handle HTTP verbs with optional middleware. Use `router.route()` to avoid duplicate route naming and thus typing errors.
