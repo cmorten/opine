@@ -114,7 +114,7 @@ To run the [examples](./examples), you have two choices:
    Then run the example you want:
 
    ```bash
-   deno --allow-net --allow-read ./example/hello-world/index.ts
+   deno run --allow-net --allow-read ./examples/hello-world/index.ts
    ```
 
 All the [examples](./examples) contain example commands in their READMEs to help get you started for either of the above methods.
