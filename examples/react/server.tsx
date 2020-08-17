@@ -12,6 +12,7 @@
 import { opine, serveStatic } from "../../mod.ts";
 import { join, dirname } from "../../deps.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.8.0/mod.ts";
+// @deno-types="https://raw.githubusercontent.com/Soremwar/deno_types/4a50660/react/v16.13.1/react.d.ts"
 import React from "https://dev.jspm.io/react@16.13.1";
 import ReactDOMServer from "https://dev.jspm.io/react-dom@16.13.1/server";
 import { App } from "./components/App.tsx";
@@ -23,7 +24,7 @@ import { App } from "./components/App.tsx";
 const [diagnostics, js] = await Deno.bundle(
   "./examples/react/client.tsx",
   undefined,
-  { lib: ["dom", "dom.iterable"] },
+  { lib: ["dom", "dom.iterable", "esnext"] },
 );
 
 if (diagnostics) {
