@@ -1,5 +1,15 @@
 # ChangeLog
 
+## [0.21.0] - 17-08-2020
+
+- chore: upgrade supported Deno and std module versions to `1.3.0` and `0.65.0`.
+- chore: upgrade deps with non-breaking minor / patch upgrades available.
+- docs: remove references to importing by branch name.
+- fix: React SSR example types after removal from deno.land/x
+- [NO-ISSUE] Fixed typo in readme example (#57)
+- [#50] Add app param docs (#55)
+- chore: fix workflow step name
+
 ## [0.20.2] - 05-08-2020
 
 - docs: remove reference to importing commit or branch from readme as not supported by Deno registry v2.

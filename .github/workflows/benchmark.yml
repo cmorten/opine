@@ -21,7 +21,7 @@ jobs:
       - name: Use Deno ${{ matrix.deno-version }}
         uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.2.2
+          deno-version: 1.3.0
       - name: Run Benchmark Tests
         run: |
           mkdir -p artifacts          

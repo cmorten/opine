@@ -1,6 +1,6 @@
 import { opine } from "../../mod.ts";
 import { describe, it } from "../utils.ts";
-import { expect, superdeno } from "../deps.ts";
+import { expect } from "../deps.ts";
 import { join, dirname, fromFileUrl } from "../../deps.ts";
 import { tmpl } from "../support/tmpl.ts";
 
