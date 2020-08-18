@@ -107,7 +107,16 @@ export function serveStatic(root: string, options: any = {}): Handler {
       path = "";
     }
 
-    const fullPath = join(rootPath, path);
+    let fullPath: string;
+    try {
+      fullPath = decodeURIComponent(join(rootPath, path));
+    } catch (err) {
+      if (forwardError) {
+        return next(createError(400));
+      }
+
+      return next();
+    }
 
     let stat: Deno.FileInfo;
     try {
@@ -208,7 +217,7 @@ function createRedirectDirectoryListener(): Function {
     forwardError: boolean,
     fullPath: string,
   ): void {
-    if (fullPath.endsWith("/")) {
+    if (fullPath.endsWith("/") || fullPath.endsWith("\\")) {
       if (forwardError) {
         return next(createError(404));
       }
@@ -217,14 +226,13 @@ function createRedirectDirectoryListener(): Function {
     }
 
     // get original URL
-    const originalUrl = original(this.req) as ParsedURL;
+    const originalUrl = original(req) as ParsedURL;
 
     // append trailing slash
-    originalUrl.path = null;
     originalUrl.pathname = collapseLeadingSlashes(originalUrl.pathname + "/");
 
     // reformat the URL
-    const loc = encodeUrl(new URL(originalUrl.pathname).toString());
+    const loc = encodeUrl(originalUrl.pathname);
     const doc = createHtmlDocument(
       "Redirecting",
       'Redirecting to <a href="' + escapeHtml(loc) + '">' +
