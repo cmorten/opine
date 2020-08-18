@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.21.1] - 18-08-2020
+
+- [#58] Windows serveStatic file path handling fix (#59)
+
 ## [0.21.0] - 17-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.3.0` and `0.65.0`.
