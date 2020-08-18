@@ -75,7 +75,6 @@ export function serveStatic(root: string, options: any = {}): Handler {
 
   // setup options for send
   const rootPath = root.startsWith("file:") ? fromFileUrl(root) : root;
-  console.log({ rootPath });
 
   // construct directory listener
   const onDirectory = redirect
@@ -101,22 +100,17 @@ export function serveStatic(root: string, options: any = {}): Handler {
 
     const forwardError = !fallthrough;
     const originalUrl = original(req) as ParsedURL;
-    console.log({ originalUrl });
     let path = (parseUrl(req) as ParsedURL).pathname;
-    console.log({ path });
 
     // make sure redirect occurs at mount
     if (path === "/" && originalUrl.pathname.substr(-1) !== "/") {
       path = "";
     }
-    console.log({ path });
 
     let fullPath: string;
     try {
       fullPath = decodeURIComponent(join(rootPath, path));
-      console.log({ fullPath });
     } catch (err) {
-      console.log("fullPath", { err });
       if (forwardError) {
         return next(createError(400));
       }
@@ -127,9 +121,7 @@ export function serveStatic(root: string, options: any = {}): Handler {
     let stat: Deno.FileInfo;
     try {
       stat = await Deno.stat(fullPath);
-      console.log({ stat });
     } catch (err) {
-      console.log("stat", { err });
       if (forwardError) {
         return next(err);
       }
@@ -225,7 +217,6 @@ function createRedirectDirectoryListener(): Function {
     forwardError: boolean,
     fullPath: string,
   ): void {
-    console.log("redirect", { fullPath, forwardError });
     if (fullPath.endsWith("/") || fullPath.endsWith("\\")) {
       if (forwardError) {
         return next(createError(404));
@@ -236,14 +227,12 @@ function createRedirectDirectoryListener(): Function {
 
     // get original URL
     const originalUrl = original(req) as ParsedURL;
-    console.log("redirect", { originalUrl });
 
     // append trailing slash
     originalUrl.pathname = collapseLeadingSlashes(originalUrl.pathname + "/");
 
     // reformat the URL
     const loc = encodeUrl(originalUrl.pathname);
-    console.log("redirect", { loc });
     const doc = createHtmlDocument(
       "Redirecting",
       'Redirecting to <a href="' + escapeHtml(loc) + '">' +
