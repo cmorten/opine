@@ -34,7 +34,9 @@ describe("res", function () {
     it("should transfer a file with special characters in string (provided the path segment is passed through encodeURIComponent first)", function (
       done,
     ) {
-      const app = createApp(join(fixtures, encodeURIComponent("% of dogs.txt")));
+      const app = createApp(
+        join(fixtures, encodeURIComponent("% of dogs.txt")),
+      );
 
       superdeno(app)
         .get("/")
