@@ -533,12 +533,10 @@ describe("res", function () {
         const app = opine();
 
         app.set("etag", function (body: any) {
-          console.log("etag fn");
           return undefined;
         });
 
         app.use(function (req, res) {
-          console.log("middleware, sending...")
           res.send("hello, world!");
         });
 

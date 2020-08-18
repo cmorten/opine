@@ -536,7 +536,6 @@ export class Response implements DenoResponse {
    * @public
    */
   send(body: ResponseBody): this {
-    console.log("send()");
     let chunk: DenoResponseBody;
     let isUndefined = body === undefined;
 
@@ -576,7 +575,6 @@ export class Response implements DenoResponse {
         chunk instanceof Uint8Array) &&
       !isUndefined
     ) {
-      console.log("etag()");
       this.etag(chunk);
     }
 

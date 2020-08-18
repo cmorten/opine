@@ -7,13 +7,19 @@ import { Request, Response, NextFunction } from "../../src/types.ts";
 const __dirname = dirname(import.meta.url);
 const fixtures = join(__dirname, "../fixtures");
 
+console.log({ __dirname, fixtures });
+
 function createApp(path: string) {
+  console.log("createApp", { path });
   const app = opine();
 
   app.use(async function (req, res, next) {
     try {
+      console.log("createApp: sending file");
       await res.sendFile(path);
+      console.log("createApp: file sent");
     } catch (err) {
+      console.log("createApp: there was an error", { err });
       next(err);
     }
   });
