@@ -225,6 +225,7 @@ function createRedirectDirectoryListener(): Function {
     forwardError: boolean,
     fullPath: string,
   ): void {
+    console.log("redirect", { fullPath, forwardError });
     if (fullPath.endsWith("/")) {
       if (forwardError) {
         return next(createError(404));
@@ -235,12 +236,14 @@ function createRedirectDirectoryListener(): Function {
 
     // get original URL
     const originalUrl = original(req) as ParsedURL;
+    console.log("redirect", { originalUrl });
 
     // append trailing slash
     originalUrl.pathname = collapseLeadingSlashes(originalUrl.pathname + "/");
 
     // reformat the URL
     const loc = encodeUrl(originalUrl.pathname);
+    console.log("redirect", { loc });
     const doc = createHtmlDocument(
       "Redirecting",
       'Redirecting to <a href="' + escapeHtml(loc) + '">' +
