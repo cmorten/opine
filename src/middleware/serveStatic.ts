@@ -226,7 +226,7 @@ function createRedirectDirectoryListener(): Function {
     fullPath: string,
   ): void {
     console.log("redirect", { fullPath, forwardError });
-    if (fullPath.endsWith("/")) {
+    if (fullPath.endsWith("/") || fullPath.endsWith("\\")) {
       if (forwardError) {
         return next(createError(404));
       }
