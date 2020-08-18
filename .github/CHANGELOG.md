@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.21.2] - 18-08-2020
+
+- [#58] Broken redirect directory listener (#60)
+
 ## [0.21.1] - 18-08-2020
 
 - [#58] Windows serveStatic file path handling fix (#59)
