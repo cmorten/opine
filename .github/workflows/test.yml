@@ -7,17 +7,32 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  test:
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest]
         deno-version: [1.3.0]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Deno ${{ matrix.deno-version }}
-        uses: denolib/setup-deno@v2
+      - uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno-version }}
       - run: make ci
+  test-win:
+    strategy:
+      matrix:
+        os: [windows-latest]
+        deno-version: [1.3.0]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - run: make build
+      - run: make test

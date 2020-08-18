@@ -10,20 +10,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install deps
-        run: make deps
-      - name: Use Deno v1.3.0
-        uses: denolib/setup-deno@v2
+      - run: make deps
+      - uses: denolib/setup-deno@v2
         with:
           deno-version: 1.3.0
       - run: make typedoc
       - run: make ci
-      - name: Publish Updated Type Docs
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: publish typedocs
           push_options: --force

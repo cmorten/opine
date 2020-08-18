@@ -180,6 +180,8 @@ try {
 }
 ```
 
+> **Note:** If providing a file URL to `res.download` as the `path` argument, path segments should first be URL encoded to ensure correct behaviour.
+
 #### async res.end([data])
 
 Ends the response process. This method actually just wraps the a method from the Deno standard http module, specifically the [respond() method of http.ServerRequest](https://doc.deno.land/https/deno.land/std/http/mod.ts#ServerRequest).
@@ -489,6 +491,8 @@ app.get("/user/:uid/photos/:file", function (req, res) {
   });
 });
 ```
+
+> **Note:** If providing a file URL to `res.sendFile` as the `path` argument, path segments should first be URL encoded to ensure correct behaviour.
 
 #### res.sendStatus(statusCode)
 

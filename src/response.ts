@@ -12,6 +12,7 @@ import {
   vary,
   escapeHtml,
   encodeUrl,
+  fromFileUrl,
 } from "../deps.ts";
 import {
   Response as DenoResponse,
@@ -618,11 +619,7 @@ export class Response implements DenoResponse {
    * @public
    */
   async sendFile(path: string): Promise<this | void> {
-    /**
-     * Not ideal but fromFileUrl() seems to URL encode the basename if
-     * contains spaces / special characters!
-     */
-    path = path.startsWith("file:") ? path.replace("file:", "") : path;
+    path = path.startsWith("file:") ? fromFileUrl(path) : path;
 
     const stats: Deno.FileInfo = await Deno.stat(path);
 
