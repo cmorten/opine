@@ -117,7 +117,7 @@ describe("app", function () {
       const app = opine();
 
       app.param("user", function (req, res, next, user) {
-        req.params.user = "loki";
+        req.params.user = "deno";
         next();
       });
 
@@ -130,7 +130,7 @@ describe("app", function () {
 
       superdeno(app)
         .get("/bob")
-        .expect("loki", done);
+        .expect("deno", done);
     });
 
     it("should not invoke without route handler", function (done) {
