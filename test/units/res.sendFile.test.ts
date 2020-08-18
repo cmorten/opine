@@ -7,19 +7,13 @@ import { Request, Response, NextFunction } from "../../src/types.ts";
 const __dirname = dirname(import.meta.url);
 const fixtures = join(__dirname, "../fixtures");
 
-console.log({ __dirname, fixtures });
-
 function createApp(path: string) {
-  console.log("createApp", { path });
   const app = opine();
 
   app.use(async function (req, res, next) {
     try {
-      console.log("createApp: sending file");
       await res.sendFile(path);
-      console.log("createApp: file sent");
     } catch (err) {
-      console.log("createApp: there was an error", { err });
       next(err);
     }
   });
@@ -37,10 +31,10 @@ describe("res", function () {
         .expect(200, "deno", done);
     });
 
-    it("should transfer a file with special characters in string", function (
+    it("should transfer a file with special characters in string (provided the path segment is passed through encodeURIComponent first)", function (
       done,
     ) {
-      const app = createApp(join(fixtures, "% of dogs.txt"));
+      const app = createApp(join(fixtures, encodeURIComponent("% of dogs.txt")));
 
       superdeno(app)
         .get("/")
