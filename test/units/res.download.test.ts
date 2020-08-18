@@ -47,11 +47,11 @@ describe("res", function () {
             return next(new Error("expected error"));
           }
 
-          res.send("got " + err.message);
+          res.send(err.message);
         }
       });
 
-      superdeno(app).get("/").expect(200, /No such file or directory/, done);
+      superdeno(app).get("/").expect(200, /(No such file or directory|The system cannot find the file specified)/, done);
     });
 
     it("should remove Content-Disposition", function (done) {
