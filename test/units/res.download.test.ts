@@ -51,7 +51,11 @@ describe("res", function () {
         }
       });
 
-      superdeno(app).get("/").expect(200, /(No such file or directory|The system cannot find the file specified)/, done);
+      superdeno(app).get("/").expect(
+        200,
+        /(No such file or directory|The system cannot find the file specified)/,
+        done,
+      );
     });
 
     it("should remove Content-Disposition", function (done) {
