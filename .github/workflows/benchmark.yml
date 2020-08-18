@@ -7,8 +7,7 @@ jobs:
   benchmark:
     runs-on: ubuntu-latest
     steps:
-      - name: Install wrk package
-        run: |
+      - run: |
           curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install build-essential libssl-dev git -y
@@ -18,12 +17,10 @@ jobs:
           # move the executable to somewhere in your PATH, ex:
           sudo cp wrk /usr/local/bin
       - uses: actions/checkout@v2
-      - name: Use Deno ${{ matrix.deno-version }}
-        uses: denolib/setup-deno@v2
+      - uses: denolib/setup-deno@v2
         with:
           deno-version: 1.3.0
-      - name: Run Benchmark Tests
-        run: |
+      - run: |
           mkdir -p artifacts          
           cat > artifacts/message.md <<EOF
           # Benchmark results
@@ -36,8 +33,7 @@ jobs:
 
           </details>
           EOF
-      - name: Save PR message as artifact
-        uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v1
         with:
           name: pr_message
           path: artifacts
