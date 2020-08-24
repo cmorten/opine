@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.21.3] - 24-08-2020
+
+- chore: upgrade supported Deno and std module versions to `1.3.1` and `0.66.0`.
+- chore: upgrade superdeno for Deno 1.3.1 bugfix.
+- test: null responses are now exposed as null in superdeno (not empty strings).
+
 ## [0.21.2] - 18-08-2020
 
 - [#58] Broken redirect directory listener (#60)

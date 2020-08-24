@@ -242,7 +242,7 @@ describe("res", function () {
         .expect("Content-Length", "0")
         .expect(shouldNotHaveHeader("Content-Type"))
         .expect(shouldNotHaveHeader("Transfer-Encoding"))
-        .expect(204, "", done);
+        .expect(204, null, done);
     });
   });
 
@@ -261,7 +261,7 @@ describe("res", function () {
         .expect("Content-Length", "0")
         .expect(shouldNotHaveHeader("Content-Type"))
         .expect(shouldNotHaveHeader("Transfer-Encoding"))
-        .expect(304, "", done);
+        .expect(304, null, done);
     });
   });
 
