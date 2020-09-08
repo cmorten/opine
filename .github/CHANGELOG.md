@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.21.4] - 08-09-2020
+
+- [#62] Remove scripts to run examples remotely where invalid (#63)
+
 ## [0.21.3] - 24-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.3.1` and `0.66.0`.
