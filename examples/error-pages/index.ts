@@ -3,11 +3,7 @@
  * 
  *    deno run --allow-net --allow-read --allow-env ./examples/error-pages/index.ts
  * 
- *    if have the repo cloned locally OR
- * 
- *    deno run --allow-net --allow-read --allow-env https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/error-pages/index.ts
- * 
- *    if you don't!
+ * after cloning the repo locally.
  * 
  * To turn off verbose errors, set `DENO_ENV=production`. For example:
  * 
