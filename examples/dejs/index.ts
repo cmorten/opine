@@ -3,11 +3,7 @@
  * 
  *    deno run --allow-net --allow-read ./examples/dejs/index.ts
  * 
- *    if have the repo cloned locally OR
- * 
- *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/dejs/index.ts
- * 
- *    if you don't!
+ * after cloning the repo locally.
  * 
  */
 
