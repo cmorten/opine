@@ -1,0 +1,9 @@
+<h1>Users</h1>
+<ul id="users">
+  <% it.users.forEach(function(user){ %>
+    <% /* Note that we can simply put the HTML tags inside the string,
+          rather than escaping them with &lt; and &gt;
+          This is because Eta automatically escapes interpolations */ %>
+    <li><%= user.name %> <%= "<" + user.email + ">" %></li>
+  <% }) %>
+</ul>

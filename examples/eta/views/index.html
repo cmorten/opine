@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%~ E.includeFile("header.html", {title: it.title}) %>
+  </head>
+  <body>
+    <div id="content">
+      <%~ E.includeFile("users.html", it) %>
+    </div>
+    <%~ E.includeFile("footer.html") %>
+  </body>
+</html>
