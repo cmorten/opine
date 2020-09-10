@@ -3,14 +3,7 @@
  * 
  *    deno run --allow-net --allow-read --unstable ./examples/eta/index.ts
  * 
- * if you have the repo cloned locally OR
- * 
- *    deno run --allow-net --allow-read --unstable https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/eta/index.ts
- * 
- * if you don't!
- * 
  *    Note: you have to use --unstable because Eta uses the std 'fs' module (which requires --unstable)
- * 
  */
 
 import { opine, serveStatic } from "../../mod.ts";
