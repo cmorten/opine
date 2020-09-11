@@ -7,7 +7,7 @@
  */
 
 import { opine, serveStatic } from "../../mod.ts";
-import { renderFile } from "https://deno.land/x/eta@v1.5.0/mod.ts";
+import { renderFile } from "https://deno.land/x/eta@v1.6.0/mod.ts";
 import { join, dirname } from "../../deps.ts";
 
 const app = opine();
