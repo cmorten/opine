@@ -1,5 +1,5 @@
 import { charset } from "../../../deps.ts";
-import { Request } from "../../types.ts";
+import type { Request } from "../../types.ts";
 
 /**
  * Get the charset of a request.

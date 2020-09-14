@@ -29,7 +29,7 @@
  * 
  */
 
-import { Request } from "../../types.ts";
+import type { Request } from "../../types.ts";
 import { typeofrequest } from "../../../deps.ts";
 
 /**

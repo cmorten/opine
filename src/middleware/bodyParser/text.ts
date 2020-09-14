@@ -31,7 +31,7 @@
 
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
-import { Request, Response, NextFunction } from "../../types.ts";
+import type { Request, Response, NextFunction } from "../../types.ts";
 import { hasBody } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 

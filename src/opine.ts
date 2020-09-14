@@ -3,7 +3,7 @@ import { request } from "./request.ts";
 import { Response as ServerResponse } from "./response.ts";
 import { mergeDescriptors } from "./utils/mergeDescriptors.ts";
 import { EventEmitter, getEvent } from "../deps.ts";
-import {
+import type {
   Opine,
   Request,
   Response,

@@ -15,7 +15,7 @@ import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
 import { merge } from "./utils/merge.ts";
 import { View } from "./view.ts";
-import {
+import type {
   Request,
   Response,
   NextFunction,

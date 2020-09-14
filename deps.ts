@@ -1,10 +1,12 @@
 export {
   serve,
   serveTLS,
-  HTTPSOptions,
-  HTTPOptions,
   Server,
   ServerRequest,
+} from "https://deno.land/std@0.68.0/http/server.ts";
+export type {
+  HTTPSOptions,
+  HTTPOptions,
   Response,
 } from "https://deno.land/std@0.68.0/http/server.ts";
 export {
@@ -13,9 +15,9 @@ export {
 } from "https://deno.land/std@0.68.0/http/http_status.ts";
 export {
   setCookie,
-  Cookie,
   deleteCookie,
 } from "https://deno.land/std@0.68.0/http/cookie.ts";
+export type { Cookie } from "https://deno.land/std@0.68.0/http/cookie.ts";
 export {
   extname,
   fromFileUrl,

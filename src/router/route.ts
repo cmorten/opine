@@ -1,6 +1,6 @@
 import { Layer } from "./layer.ts";
 import { methods } from "../methods.ts";
-import { Request, Response, NextFunction } from "../types.ts";
+import type { Request, Response, NextFunction } from "../types.ts";
 
 /**
  * Initialize `Route` with the given `path`.
