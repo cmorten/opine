@@ -619,19 +619,19 @@ If `name` is an array, the `callback` trigger is registered for each parameter d
 For example, when `:user` is present in a route path, you may map user loading logic to automatically provide `res.locals.user` to the route/middleware, or perform validations on the parameter input.
 
 ```ts
-app.param('user', function (req, res, next, id) {
+app.param("user", function (req, res, next, id) {
   // try to get the user details from the User model and attach it to the request object
   User.find(id, function (err, user) {
     if (err) {
-      next(err)
+      next(err);
     } else if (user) {
-      res.locals.user = user
-      next()
+      res.locals.user = user;
+      next();
     } else {
-      next(new Error('failed to load user'))
+      next(new Error("failed to load user"));
     }
-  })
-})
+  });
+});
 ```
 
 Param callback functions are local to the router on which they are defined. They are not inherited by mounted apps or routers. Hence, param callbacks defined on `app` will be triggered only by route parameters defined on `app` routes.
@@ -639,20 +639,20 @@ Param callback functions are local to the router on which they are defined. They
 All param callbacks will be called before any handler of any route in which the param occurs, and they will each be called only once in a request-response cycle, even if the parameter is matched in multiple routes, as shown in the following examples.
 
 ```ts
-app.param('id', function (req, res, next, id) {
-  console.log('CALLED ONLY ONCE')
-  next()
-})
+app.param("id", function (req, res, next, id) {
+  console.log("CALLED ONLY ONCE");
+  next();
+});
 
-app.get('/user/:id', function (req, res, next) {
-  console.log('although this matches')
-  next()
-})
+app.get("/user/:id", function (req, res, next) {
+  console.log("although this matches");
+  next();
+});
 
-app.get('/user/:id', function (req, res) {
-  console.log('and this matches too')
-  res.end()
-})
+app.get("/user/:id", function (req, res) {
+  console.log("and this matches too");
+  res.end();
+});
 ```
 
 On `GET /user/42`, the following is printed:
@@ -664,20 +664,20 @@ and this matches too
 ```
 
 ```ts
-app.param(['id', 'page'], function (req, res, next, value) {
-  console.log('CALLED ONLY ONCE with', value)
-  next()
-})
+app.param(["id", "page"], function (req, res, next, value) {
+  console.log("CALLED ONLY ONCE with", value);
+  next();
+});
 
-app.get('/user/:id/:page', function (req, res, next) {
-  console.log('although this matches')
-  next()
-})
+app.get("/user/:id/:page", function (req, res, next) {
+  console.log("although this matches");
+  next();
+});
 
-app.get('/user/:id/:page', function (req, res) {
-  console.log('and this matches too')
-  res.end()
-})
+app.get("/user/:id/:page", function (req, res) {
+  console.log("and this matches too");
+  res.end();
+});
 ```
 
 On `GET /user/42/3`, the following is printed:
