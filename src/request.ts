@@ -2,7 +2,7 @@ import { ServerRequest, Accepts, typeofrequest, isIP } from "../deps.ts";
 import { defineGetter } from "./utils/defineGetter.ts";
 import { fresh } from "./utils/fresh.ts";
 import { parseUrl } from "./utils/parseUrl.ts";
-import { Request, Response } from "../src/types.ts";
+import type { Request, Response } from "../src/types.ts";
 
 /**
  * Request prototype.

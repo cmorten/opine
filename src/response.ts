@@ -14,7 +14,7 @@ import {
   encodeUrl,
   fromFileUrl,
 } from "../deps.ts";
-import {
+import type {
   Response as DenoResponse,
   ResponseBody,
   Request,

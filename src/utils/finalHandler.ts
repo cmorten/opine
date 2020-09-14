@@ -30,7 +30,7 @@
 
 import { parseUrl } from "./parseUrl.ts";
 import { STATUS_TEXT, Status, escapeHtml } from "../../deps.ts";
-import { Request, Response, NextFunction, ParsedURL } from "../types.ts";
+import type { Request, Response, NextFunction, ParsedURL } from "../types.ts";
 
 const DOUBLE_SPACE_REGEXP = /\x20{2}/g;
 const NEWLINE_REGEXP = /\n/g;

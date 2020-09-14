@@ -4,7 +4,7 @@ import { Layer } from "./layer.ts";
 import { merge } from "../utils/merge.ts";
 import { parseUrl } from "../utils/parseUrl.ts";
 import { methods } from "../methods.ts";
-import {
+import type {
   Response,
   Request,
   NextFunction,

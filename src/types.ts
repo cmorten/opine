@@ -4,7 +4,7 @@
 // TODO: consider integrating these types into the app files themselves
 // rather than having a separate file.
 
-import {
+import type {
   ServerRequest as DenoServerRequest,
   Response as DenoServerResponse,
   Server,

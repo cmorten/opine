@@ -39,7 +39,7 @@ import {
   encodeUrl,
 } from "../../deps.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
-import {
+import type {
   Response,
   Request,
   NextFunction,

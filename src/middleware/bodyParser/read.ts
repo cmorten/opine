@@ -29,7 +29,7 @@
  * 
  */
 
-import { Request, Response, NextFunction } from "../../types.ts";
+import type { Request, Response, NextFunction } from "../../types.ts";
 import { createError } from "../../../deps.ts";
 
 const decoder = new TextDecoder();
