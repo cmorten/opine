@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.21.6] - 15-09-2020
+
+- (fix) deno 1.4.0 : export type (#67)
+
 ## [0.21.5] - 12-09-2020
 
 - [#61] Add an example of using the Eta template engine (#65)
