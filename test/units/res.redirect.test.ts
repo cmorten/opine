@@ -7,7 +7,7 @@ import {
   deferred,
   Deferred,
 } from "../deps.ts";
-import { Response, Request, Handler } from "../../src/types.ts";
+import type { Response, Request, Handler } from "../../src/types.ts";
 
 type DeferredTestResult = Deferred<
   {

@@ -13,7 +13,7 @@
 
 import { opine } from "../../mod.ts";
 import { users } from "./db.ts";
-import { Request, Response } from "../../src/types.ts";
+import type { Request, Response } from "../../src/types.ts";
 
 const app = opine();
 

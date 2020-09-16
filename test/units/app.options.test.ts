@@ -1,7 +1,7 @@
 import { opine, Router } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
-import { Request, Response, NextFunction } from "../../src/types.ts";
+import type { Request, Response, NextFunction } from "../../src/types.ts";
 
 describe("OPTIONS", function () {
   it("should default to the routes defined", function (done) {

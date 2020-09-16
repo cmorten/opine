@@ -388,9 +388,7 @@
               l = 0;
             u < i && l < s;
           ) {
-            (o = r[u]) < (a = n[l])
-              ? u += 2
-              : o > a
+            (o = r[u]) < (a = n[l]) ? u += 2 : o > a
               ? l += 2
               : o == a && (t += r[u + 1] * n[l + 1], u += 2, l += 2);
           }
@@ -412,119 +410,119 @@
         C.Vector.prototype.toJSON = function () {
           return this.elements;
         },
-        C.stemmer =
-          (o = {
-            ational: "ate",
-            tional: "tion",
-            enci: "ence",
-            anci: "ance",
-            izer: "ize",
-            bli: "ble",
-            alli: "al",
-            entli: "ent",
-            eli: "e",
-            ousli: "ous",
-            ization: "ize",
-            ation: "ate",
-            ator: "ate",
-            alism: "al",
-            iveness: "ive",
-            fulness: "ful",
-            ousness: "ous",
-            aliti: "al",
-            iviti: "ive",
-            biliti: "ble",
-            logi: "log",
+        C.stemmer = (o = {
+          ational: "ate",
+          tional: "tion",
+          enci: "ence",
+          anci: "ance",
+          izer: "ize",
+          bli: "ble",
+          alli: "al",
+          entli: "ent",
+          eli: "e",
+          ousli: "ous",
+          ization: "ize",
+          ation: "ate",
+          ator: "ate",
+          alism: "al",
+          iveness: "ive",
+          fulness: "ful",
+          ousness: "ous",
+          aliti: "al",
+          iviti: "ive",
+          biliti: "ble",
+          logi: "log",
+        },
+          a = {
+            icate: "ic",
+            ative: "",
+            alize: "al",
+            iciti: "ic",
+            ical: "ic",
+            ful: "",
+            ness: "",
           },
-            a = {
-              icate: "ic",
-              ative: "",
-              alize: "al",
-              iciti: "ic",
-              ical: "ic",
-              ful: "",
-              ness: "",
-            },
-            u = "[aeiouy]",
-            l = "[^aeiou][^aeiouy]*",
-            c = new RegExp(
-              "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*",
-            ),
-            h = new RegExp(
-              "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*[aeiouy][aeiou]*[^aeiou][^aeiouy]*",
-            ),
-            d = new RegExp(
-              "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*([aeiouy][aeiou]*)?$",
-            ),
-            f = new RegExp("^([^aeiou][^aeiouy]*)?[aeiouy]"),
-            p = /^(.+?)(ss|i)es$/,
-            y = /^(.+?)([^s])s$/,
-            m = /^(.+?)eed$/,
-            v = /^(.+?)(ed|ing)$/,
-            g = /.$/,
-            x = /(at|bl|iz)$/,
-            w = new RegExp("([^aeiouylsz])\\1$"),
-            L = new RegExp("^" + l + u + "[^aeiouwxy]$"),
-            E = /^(.+?[^aeiou])y$/,
-            b =
-              /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/,
-            S = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/,
-            k =
-              /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,
-            Q = /^(.+?)(s|t)(ion)$/,
-            O = /^(.+?)e$/,
-            P = /ll$/,
-            T = new RegExp("^" + l + u + "[^aeiouwxy]$"),
-            _ = function (e) {
-              var t, r, n, i, s, u, l;
-              if (e.length < 3)return e;
-              if (
-                "y" == (n = e.substr(0, 1)) &&
-                (e = n.toUpperCase() + e.substr(1)),
-                  s = y,
-                  (i = p).test(e) ? e = e.replace(i, "$1$2")
-                  : s.test(e) && (e = e.replace(s, "$1$2")),
-                  s = v,
-                  (i = m).test(e)
-              ) {
-                var _ = i.exec(e);
-                (i = c).test(_[1]) && (i = g, e = e.replace(i, ""));
-              } else {
-                s.test(e) &&
-                  (t = (_ = s.exec(e))[1],
-                    (s = f).test(t) && (u = w,
-                      l = L,
-                      (s = x).test(e = t) ? e += "e" : u.test(e)
-                        ? (i = g, e = e.replace(i, ""))
-                        : l.test(e) && (e += "e")));
-              }
-              return (i = E).test(e) && (e = (t = (_ = i.exec(e))[1]) + "i"),
-                (i = b).test(e) &&
-                (t = (_ = i.exec(e))[1],
-                  r = _[2],
-                  (i = c).test(t) && (e = t + o[r])),
-                (i = S).test(e) &&
-                (t = (_ = i.exec(e))[1],
-                  r = _[2],
-                  (i = c).test(t) && (e = t + a[r])),
-                s = Q,
-                (i = k).test(e)
-                  ? (t = (_ = i.exec(e))[1], (i = h).test(t) && (e = t))
-                  : s.test(e) &&
-                    (t = (_ = s.exec(e))[1] + _[2], (s = h).test(t) && (e = t)),
-                (i = O).test(e) &&
-                (t = (_ = i.exec(e))[1],
-                  s = d,
-                  u = T,
-                  ((i = h).test(t) || s.test(t) && !u.test(t)) && (e = t)),
-                s = h,
-                (i = P).test(e) && s.test(e) && (i = g, e = e.replace(i, "")),
-                "y" == n && (e = n.toLowerCase() + e.substr(1)),
-                e;
-            },
-            function (e) {
-              return e.update(_);
-            }),
+          u = "[aeiouy]",
+          l = "[^aeiou][^aeiouy]*",
+          c = new RegExp(
+            "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*",
+          ),
+          h = new RegExp(
+            "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*[aeiouy][aeiou]*[^aeiou][^aeiouy]*",
+          ),
+          d = new RegExp(
+            "^([^aeiou][^aeiouy]*)?[aeiouy][aeiou]*[^aeiou][^aeiouy]*([aeiouy][aeiou]*)?$",
+          ),
+          f = new RegExp("^([^aeiou][^aeiouy]*)?[aeiouy]"),
+          p = /^(.+?)(ss|i)es$/,
+          y = /^(.+?)([^s])s$/,
+          m = /^(.+?)eed$/,
+          v = /^(.+?)(ed|ing)$/,
+          g = /.$/,
+          x = /(at|bl|iz)$/,
+          w = new RegExp("([^aeiouylsz])\\1$"),
+          L = new RegExp("^" + l + u + "[^aeiouwxy]$"),
+          E = /^(.+?[^aeiou])y$/,
+          b =
+            /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/,
+          S = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/,
+          k =
+            /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,
+          Q = /^(.+?)(s|t)(ion)$/,
+          O = /^(.+?)e$/,
+          P = /ll$/,
+          T = new RegExp("^" + l + u + "[^aeiouwxy]$"),
+          _ = function (e) {
+            var t, r, n, i, s, u, l;
+            if (e.length < 3)return e;
+            if (
+              "y" == (n = e.substr(0, 1)) &&
+              (e = n.toUpperCase() + e.substr(1)),
+                s = y,
+                (i = p).test(e) ? e = e.replace(i, "$1$2")
+                : s.test(e) && (e = e.replace(s, "$1$2")),
+                s = v,
+                (i = m).test(e)
+            ) {
+              var _ = i.exec(e);
+              (i = c).test(_[1]) && (i = g, e = e.replace(i, ""));
+            } else {
+              s.test(e) &&
+                (t = (_ = s.exec(e))[1],
+                  (s = f).test(t) &&
+                  (u = w,
+                    l = L,
+                    (s = x).test(e = t) ? e += "e" : u.test(e)
+                      ? (i = g, e = e.replace(i, ""))
+                      : l.test(e) && (e += "e")));
+            }
+            return (i = E).test(e) && (e = (t = (_ = i.exec(e))[1]) + "i"),
+              (i = b).test(e) &&
+              (t = (_ = i.exec(e))[1],
+                r = _[2],
+                (i = c).test(t) && (e = t + o[r])),
+              (i = S).test(e) &&
+              (t = (_ = i.exec(e))[1],
+                r = _[2],
+                (i = c).test(t) && (e = t + a[r])),
+              s = Q,
+              (i = k).test(e)
+                ? (t = (_ = i.exec(e))[1], (i = h).test(t) && (e = t))
+                : s.test(e) &&
+                  (t = (_ = s.exec(e))[1] + _[2], (s = h).test(t) && (e = t)),
+              (i = O).test(e) &&
+              (t = (_ = i.exec(e))[1],
+                s = d,
+                u = T,
+                ((i = h).test(t) || s.test(t) && !u.test(t)) && (e = t)),
+              s = h,
+              (i = P).test(e) && s.test(e) && (i = g, e = e.replace(i, "")),
+              "y" == n && (e = n.toLowerCase() + e.substr(1)),
+              e;
+          },
+          function (e) {
+            return e.update(_);
+          }),
         C.Pipeline.registerFunction(C.stemmer, "stemmer"),
         C.generateStopWordFilter = function (e) {
           var t = e.reduce(
@@ -678,7 +676,9 @@
         C.TokenSet._nextId = 1,
         C.TokenSet.fromArray = function (e) {
           for (
-            var t = new C.TokenSet.Builder(), r = 0, n = e.length; r < n; r++
+            var t = new C.TokenSet.Builder(), r = 0, n = e.length;
+            r < n;
+            r++
           ) {
             t.insert(e[r]);
           }
@@ -770,7 +770,9 @@
         },
         C.TokenSet.fromString = function (e) {
           for (
-            var t = new C.TokenSet(), r = t, n = 0, i = e.length; n < i; n++
+            var t = new C.TokenSet(), r = t, n = 0, i = e.length;
+            n < i;
+            n++
           ) {
             var s = e[n], o = n == i - 1;
             if ("*" == s) t.edges[s] = t, t.final = o;
@@ -953,8 +955,9 @@
                     ) {
                       for (var S = 0; S < L.length; S++) {
                         var k, Q = L[S], O = new C.FieldRef(Q, R), P = w[Q];
-                        void 0 === (k = r[O]) ? r[O] = new C.MatchData(v, R, P)
-                        : k.add(v, R, P);
+                        void 0 === (k = r[O])
+                          ? r[O] = new C.MatchData(v, R, P)
+                          : k.add(v, R, P);
                       }
                       i[E] = !0;
                     }
@@ -966,8 +969,10 @@
               }
             }
             if (u.presence === C.Query.presence.REQUIRED) {
-              for (y = 0; y < u.fields.length; y++) {s[R = u.fields[y]] = s[R]
-                  .intersect(c);}
+              for (y = 0; y < u.fields.length; y++) {
+                s[R = u.fields[y]] = s[R]
+                  .intersect(c);
+              }
             }
           }
           var T = C.Set.complete, _ = C.Set.empty;
@@ -1786,9 +1791,8 @@
             this.hasFocus != e &&
               (this.hasFocus = e,
                 this.el.classList.toggle("has-focus"),
-                e
-                  ? (this.setQuery(""), this.field.value = "")
-                  : this.field.value = this.query);
+                e ? (this.setQuery(""), this.field.value = "")
+                : this.field.value = this.query);
           },
           t.prototype.setQuery = function (e) {
             this.query = e.trim(), this.updateResults();
@@ -1834,14 +1838,12 @@
               this.field.addEventListener(
                 "focusout",
                 (function () {
-                  e.resultClicked
-                    ? e.resultClicked = !1
-                    : setTimeout(
-                      (function () {
-                        return e.setHasFocus(!1);
-                      }),
-                      100,
-                    );
+                  e.resultClicked ? e.resultClicked = !1 : setTimeout(
+                    (function () {
+                      return e.setHasFocus(!1);
+                    }),
+                    100,
+                  );
                 }),
               ),
               this.field.addEventListener(
@@ -1900,7 +1902,7 @@
             }
           },
           e.prototype.dispatchEvent = function (e) {
-            if (!(e.type in this.listeners)) return !0;
+            if (!(e.type in this.listeners))return !0;
             for (
               var t = this.listeners[e.type].slice(), r = 0, n = t.length;
               r < n;
@@ -1929,8 +1931,10 @@
                 e.__proto__ = t;
               } ||
             function (e, t) {
-              for (var r in t) {Object.prototype.hasOwnProperty.call(t, r) &&
-                  (e[r] = t[r]);}
+              for (var r in t) {
+                Object.prototype.hasOwnProperty.call(t, r) &&
+                  (e[r] = t[r]);
+              }
             })(t, r);
         };
         return function (t, r) {
@@ -2023,8 +2027,10 @@
                 e.__proto__ = t;
               } ||
             function (e, t) {
-              for (var r in t) {Object.prototype.hasOwnProperty.call(t, r) &&
-                  (e[r] = t[r]);}
+              for (var r in t) {
+                Object.prototype.hasOwnProperty.call(t, r) &&
+                  (e[r] = t[r]);
+              }
             })(t, r);
         };
         return function (t, r) {
@@ -2120,8 +2126,10 @@
                 e.__proto__ = t;
               } ||
             function (e, t) {
-              for (var r in t) {Object.prototype.hasOwnProperty.call(t, r) &&
-                  (e[r] = t[r]);}
+              for (var r in t) {
+                Object.prototype.hasOwnProperty.call(t, r) &&
+                  (e[r] = t[r]);
+              }
             })(t, r);
         };
         return function (t, r) {

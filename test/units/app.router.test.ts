@@ -2,7 +2,7 @@ import { opine, Router } from "../../mod.ts";
 import { superdeno, expect } from "../deps.ts";
 import { describe, it, after } from "../utils.ts";
 import { methods } from "../../src/methods.ts";
-import { Request, Response, NextFunction } from "../../src/types.ts";
+import type { Request, Response, NextFunction } from "../../src/types.ts";
 
 describe("app.router", function () {
   it("should restore req.params after leaving router", function (done) {
