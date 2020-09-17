@@ -255,11 +255,12 @@ export class Response implements DenoResponse {
 
     const { default: fn, ...rest } = obj;
     const keys = Object.keys(rest);
-    const key = keys.length > 0 ? req.accepts(keys) : false;
+    const accepts = keys.length > 0 ? req.accepts(keys) : false;
 
     this.vary("Accept");
 
-    if (key) {
+    if (accepts) {
+      const key = Array.isArray(accepts) ? accepts[0] : accepts;
       this.set("Content-Type", normalizeType(key).value);
       obj[key](req, this, next);
     } else if (fn) {

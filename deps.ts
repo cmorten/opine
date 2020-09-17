@@ -39,7 +39,7 @@ export {
   lookup,
 } from "https://deno.land/x/media_types@v2.4.7/mod.ts";
 export { createError } from "https://deno.land/x/http_errors@2.1.0/mod.ts";
-export { Accepts } from "https://deno.land/x/accepts@1.0.0/mod.ts";
+export { Accepts } from "https://deno.land/x/accepts@2.1.0/mod.ts";
 export {
   typeofrequest,
   hasBody,

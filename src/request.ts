@@ -51,67 +51,64 @@ export const request: Request = Object.create(ServerRequest.prototype);
  *     // => "json"
  *
  * @param {string|string[]} type
- * @return {string|undefined}
+ * @return {string|string[]|false}
  * @public
  */
-request.accepts = function (this: Request, ...args: any[]) {
-  if (args.length === 1 && Array.isArray(args[0])) {
-    args = args[0];
-  }
+request.accepts = function (this: Request, ...args: [string[]] | string[]) {
   const accept = new Accepts(this.headers);
 
-  return accept.types.apply(accept, [args])[0];
+  return accept.types.call(accept, args.flat(1));
 };
 
 /**
  * Check if the given `charset`s are acceptable,
  * otherwise you should respond with 406 "Not Acceptable".
  *
- * @param {String} ...charset
- * @return {String|undefined}
+ * @param {string|string[]} ...charset
+ * @return {string|string[]|false}
  * @public
  */
-request.acceptsCharsets = function (this: Request, ...args: any[]) {
-  if (args.length === 1 && Array.isArray(args[0])) {
-    args = args[0];
-  }
+request.acceptsCharsets = function (
+  this: Request,
+  ...args: [string[]] | string[]
+) {
   const accept = new Accepts(this.headers);
 
-  return accept.charsets.apply(accept, [args])[0];
+  return accept.charsets.call(accept, args.flat(1));
 };
 
 /**
  * Check if the given `encoding`s are accepted.
  *
- * @param {String} ...encoding
- * @return {String|undefined}
+ * @param {string|string[]} ...encoding
+ * @return {string|string[]|false}
  * @public
  */
 
-request.acceptsEncodings = function (this: Request, ...args: any[]) {
-  if (args.length === 1 && Array.isArray(args[0])) {
-    args = args[0];
-  }
+request.acceptsEncodings = function (
+  this: Request,
+  ...args: [string[]] | string[]
+) {
   const accept = new Accepts(this.headers);
 
-  return accept.encodings.apply(accept, [args])[0];
+  return accept.encodings.call(accept, args.flat(1));
 };
 
 /**
  * Check if the given `lang`s are acceptable,
  * otherwise you should respond with 406 "Not Acceptable".
  *
- * @param {String} ...lang
- * @return {String|undefined}
+ * @param {string|string[]} ...lang
+ * @return {string|string[]|false}
  * @public
  */
-request.acceptsLanguages = function (this: Request, ...args: any[]) {
-  if (args.length === 1 && Array.isArray(args[0])) {
-    args = args[0];
-  }
+request.acceptsLanguages = function (
+  this: Request,
+  ...args: [string[]] | string[]
+) {
   const accept = new Accepts(this.headers);
 
-  return accept.languages.apply(accept, [args])[0];
+  return accept.languages.call(accept, args.flat(1));
 };
 
 /**
