@@ -2,7 +2,7 @@ import { opine } from "../../mod.ts";
 import { describe, it } from "../utils.ts";
 import { expect, superdeno } from "../deps.ts";
 import { join, dirname } from "../../deps.ts";
-import { Request, Response, NextFunction } from "../../src/types.ts";
+import type { Request, Response, NextFunction } from "../../src/types.ts";
 
 const __dirname = dirname(import.meta.url);
 const fixtures = join(__dirname, "../fixtures");

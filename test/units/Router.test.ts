@@ -2,7 +2,7 @@ import { Router } from "../../mod.ts";
 import { expect } from "../deps.ts";
 import { methods } from "../../src/methods.ts";
 import { describe, it } from "../utils.ts";
-import { Request, Response, NextFunction } from "../../src/types.ts";
+import type { Request, Response, NextFunction } from "../../src/types.ts";
 
 describe("Router", function () {
   it("should return a function with router methods", function () {

@@ -1,7 +1,12 @@
 import { Route } from "../../mod.ts";
 import { expect } from "../deps.ts";
 import { describe, it } from "../utils.ts";
-import { IRoute, Request, Response, NextFunction } from "../../src/types.ts";
+import type {
+  IRoute,
+  Request,
+  Response,
+  NextFunction,
+} from "../../src/types.ts";
 import { methods } from "../../src/methods.ts";
 
 describe("Route", function () {

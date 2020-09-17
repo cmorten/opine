@@ -2,7 +2,7 @@ import { opine } from "../../mod.ts";
 import { describe, it } from "../utils.ts";
 import { expect, superdeno } from "../deps.ts";
 import { methods } from "../../src/methods.ts";
-import { Request, Response } from "../../src/types.ts";
+import type { Request, Response } from "../../src/types.ts";
 
 const shouldNotHaveHeader = (field: string) =>
   (res: any) => {

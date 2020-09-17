@@ -312,10 +312,10 @@ export interface Request<
    *     req.accepts('html, json');
    *     // => "json"
    */
-  accepts(): string | undefined;
-  accepts(type: string): string | undefined;
-  accepts(type: string[]): string | undefined;
-  accepts(...type: string[]): string | undefined;
+  accepts(): string | string[] | false;
+  accepts(type: string): string | string[] | false;
+  accepts(type: string[]): string | string[] | false;
+  accepts(...type: string[]): string | string[] | false;
 
   /**
    * Returns the first accepted charset of the specified character sets,
@@ -324,10 +324,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsCharsets(): string | undefined;
-  acceptsCharsets(charset: string): string | undefined;
-  acceptsCharsets(charset: string[]): string | undefined;
-  acceptsCharsets(...charset: string[]): string | undefined;
+  acceptsCharsets(): string | string[] | false;
+  acceptsCharsets(charset: string): string | string[] | false;
+  acceptsCharsets(charset: string[]): string | string[] | false;
+  acceptsCharsets(...charset: string[]): string | string[] | false;
 
   /**
    * Returns the first accepted encoding of the specified encodings,
@@ -336,10 +336,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsEncodings(): string | undefined;
-  acceptsEncodings(encoding: string): string | undefined;
-  acceptsEncodings(encoding: string[]): string | undefined;
-  acceptsEncodings(...encoding: string[]): string | undefined;
+  acceptsEncodings(): string | string[] | false;
+  acceptsEncodings(encoding: string): string | string[] | false;
+  acceptsEncodings(encoding: string[]): string | string[] | false;
+  acceptsEncodings(...encoding: string[]): string | string[] | false;
 
   /**
    * Returns the first accepted language of the specified languages,
@@ -348,10 +348,10 @@ export interface Request<
    *
    * For more information, or if you have issues or concerns, see accepts.
    */
-  acceptsLanguages(): string | undefined;
-  acceptsLanguages(lang: string): string | undefined;
-  acceptsLanguages(lang: string[]): string | undefined;
-  acceptsLanguages(...lang: string[]): string | undefined;
+  acceptsLanguages(): string | string[] | false;
+  acceptsLanguages(lang: string): string | string[] | false;
+  acceptsLanguages(lang: string[]): string | string[] | false;
+  acceptsLanguages(...lang: string[]): string | string[] | false;
 
   /**
    * Return request header.
