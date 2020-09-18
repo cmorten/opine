@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%~ includeFile("header.html", {title: it.title}) %>
-  </head>
-  <body>
-    <div id="content">
-      <%~ includeFile("users.html", it) %>
-    </div>
-    <%~ includeFile("footer.html") %>
-  </body>
-</html>
+<% layout('./layout.html') %>
+
+<div id="content">
+  <%~ includeFile("users.html", it) %>
+</div>
+<%~ includeFile("footer.html") %>
