@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.4.0
+          deno-version: 1.4.1
       - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.2.1/mod.ts
       - run: |
           export PATH="/home/runner/.deno/bin:$PATH"

@@ -16,7 +16,7 @@ jobs:
       - run: make deps
       - uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.4.0
+          deno-version: 1.4.1
       - run: make typedoc
       - run: make ci
       - uses: stefanzweifel/git-auto-commit-action@v4

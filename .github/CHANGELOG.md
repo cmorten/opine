@@ -2,7 +2,7 @@
 
 ## [0.22.0] - 17-09-2020
 
-- [#69] Upgrade Opine to support Deno 1.4.0 and std 0.69.0 (#70)
+- [#69] Upgrade Opine to support Deno 1.4.0 and std 0.70.0 (#70)
 
 ## [0.21.6] - 15-09-2020
 
