@@ -34,15 +34,20 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
+
 import { Application, opine, Request, Response } from "https://deno.land/x/opine/mod.ts"
+import { opineCors } from "https://deno.land/x/cors/mod.ts";
 
 const app: Application = opine()
+
+app.use(opineCors()) // only if you need cors enabled
 
 app.use((req: Request, res: Response): any => {
     res.send("Hello World")
 })
 
 app.listen(3000)
+
 ```
 
 ## Installation
