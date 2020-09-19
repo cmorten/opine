@@ -42,9 +42,9 @@ const app: Application = opine()
 
 app.use(opineCors()) // only if you need cors enabled
 
-app.use((req: Request, res: Response): any => {
-    res.send("Hello World")
-})
+app.get("/", function (req: Request, res: Response): any {
+  res.send("Hello World");
+});
 
 app.listen(3000)
 
