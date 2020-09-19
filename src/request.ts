@@ -1,8 +1,20 @@
-import { ServerRequest, Accepts, typeofrequest, isIP } from "../deps.ts";
+import {
+  ServerRequest,
+  Accepts,
+  typeofrequest,
+  isIP,
+  parseRange,
+} from "../deps.ts";
 import { defineGetter } from "./utils/defineGetter.ts";
 import { fresh } from "./utils/fresh.ts";
 import { parseUrl } from "./utils/parseUrl.ts";
-import type { Request, Response } from "../src/types.ts";
+import type {
+  Request,
+  Response,
+  RangeParserOptions,
+  RangeParserRanges,
+  RangeParserResult,
+} from "../src/types.ts";
 
 /**
  * Request prototype.
@@ -147,7 +159,42 @@ request.get = function get(name: string): string | undefined {
   }
 };
 
-// TODO: req.range()
+/**
+ * Parse Range header field, capping to the given `size`.
+ *
+ * Unspecified ranges such as "0-" require knowledge of your resource length. In
+ * the case of a byte range this is of course the total number of bytes. If the
+ * Range header field is not given `undefined` is returned, `-1` when unsatisfiable,
+ * and `-2` when syntactically invalid.
+ *
+ * When ranges are returned, the array has a "type" property which is the type of
+ * range that is required (most commonly, "bytes"). Each array element is an object
+ * with a "start" and "end" property for the portion of the range.
+ *
+ * The "combine" option can be set to `true` and overlapping & adjacent ranges
+ * will be combined into a single range.
+ *
+ * NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
+ * should respond with 4 users when available, not 3.
+ *
+ * @param {number} size
+ * @param {object} [options]
+ * @param {boolean} [options.combine=false]
+ * @return {number|number[]|undefined}
+ * @public
+ */
+request.range = function range(
+  size: number,
+  options?: RangeParserOptions,
+): RangeParserRanges | RangeParserResult | undefined {
+  const range = this.get("Range");
+
+  if (!range) return;
+
+  return parseRange(size, range, options) as
+    | RangeParserRanges
+    | RangeParserResult;
+};
 
 /**
  * Check if the incoming request contains the "Content-Type"

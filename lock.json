@@ -1,4 +1,6 @@
 {
+  "https://cdn.skypack.dev/-/range-parser@v1.2.1-bLIJpG3lsMxenZULthAx/dist=es2020/range-parser.js": "bac18367ddab293440b03816eb7aae3ac9d2da01e351da5ecebbcb0e7950475c",
+  "https://cdn.skypack.dev/range-parser@1.2.1": "c92c00f1de422adefede12b3566941f44b327787abd0b2c9cd76fbe5a4fa5b81",
   "https://deno.land/std@0.69.0/_util/assert.ts": "e1f76e77c5ccb5a8e0dbbbe6cce3a56d2556c8cb5a9a8802fc9565af72462149",
   "https://deno.land/std@0.69.0/async/deferred.ts": "ac95025f46580cf5197928ba90995d87f26e202c19ad961bc4e3177310894cdc",
   "https://deno.land/std@0.69.0/async/delay.ts": "35957d585a6e3dd87706858fb1d6b551cb278271b03f52c5a2cb70e65e00c26a",
