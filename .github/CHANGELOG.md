@@ -1,8 +1,12 @@
 # ChangeLog
 
+## [0.22.2] - 19-09-2020
+
+- chore: upgrade to eggs@0.2.2 in CI
+
 ## [0.22.1] - 19-09-2020
 
-- Upgrade Opine to support Deno 1.4.1 and std 0.70.0
+- feat: upgrade Opine to support Deno 1.4.1 and std 0.70.0
 
 ## [0.22.0] - 17-09-2020
 
