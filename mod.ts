@@ -3,6 +3,7 @@ export {
   opine,
   response,
 } from "./src/opine.ts";
+export * from "./src/types.ts"
 export { app as application } from "./src/application.ts";
 export { methods } from "./src/methods.ts";
 export { request } from "./src/request.ts";
