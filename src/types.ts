@@ -257,6 +257,29 @@ export type ParsedURL = URL & {
   _raw?: string | null;
 };
 
+export interface RangeParserRange {
+  start: number;
+  end: number;
+}
+
+export interface RangeParserRanges extends Array<RangeParserRange> {
+  type: string;
+}
+
+export interface RangeParserOptions {
+  /**
+   * The "combine" option can be set to `true` and overlapping & adjacent ranges
+   * will be combined into a single range.
+   */
+  combine?: boolean;
+}
+
+export type RangeParserResultUnsatisfiable = -1;
+export type RangeParserResultInvalid = -2;
+export type RangeParserResult =
+  | RangeParserResultUnsatisfiable
+  | RangeParserResultInvalid;
+
 /**
  * @param P  For most requests, this should be `ParamsDictionary`, but if you're
  * using this in a route handler for a route that uses a `RegExp` or a wildcard
@@ -372,6 +395,24 @@ export interface Request<
    */
   get: (name: string) => string | undefined;
   param: (name: string, defaultValue?: string) => string | undefined;
+
+  /**
+   * Parse Range header field, capping to the given `size`.
+   *
+   * Unspecified ranges such as "0-" require knowledge of your resource length. In
+   * the case of a byte range this is of course the total number of bytes.
+   * If the Range header field is not given `undefined` is returned.
+   * If the Range header field is given, return value is a result of range-parser.
+   * See more ./types/range-parser/index.d.ts
+   *
+   * NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
+   * should respond with 4 users when available, not 3.
+   *
+   */
+  range(
+    size: number,
+    options?: RangeParserOptions,
+  ): RangeParserRanges | RangeParserResult | undefined;
 
   /**
    * Check if the incoming request contains the "Content-Type"
