@@ -13,6 +13,7 @@ import { init } from "./middleware/init.ts";
 import { query } from "./middleware/query.ts";
 import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
+import { compileQueryParser } from "./utils/compileQueryParser.ts";
 import { merge } from "./utils/merge.ts";
 import { View } from "./view.ts";
 import type {
@@ -62,8 +63,8 @@ app.init = function init(): void {
 app.defaultConfiguration = function defaultConfiguration(): void {
   this.enable("x-powered-by");
   this.set("etag", "weak");
+  this.set("query parser", "extended");
   this.set("subdomain offset", 2);
-  // TODO: query parser
   // TODO: trust proxy
 
   const self: Opine = this as Opine;
@@ -107,8 +108,8 @@ app.lazyrouter = function lazyrouter(): void {
       caseSensitive: this.enabled("case sensitive routing"),
       strict: this.enabled("strict routing"),
     });
-    // TODO: query parser
-    this._router.use(query());
+
+    this._router.use(query(this.get("query parser fn")));
     this._router.use(init(this as Opine));
   }
 };
@@ -281,6 +282,9 @@ app.set = function set(setting: string, value?: any): Application {
   switch (setting) {
     case "etag":
       this.set("etag fn", compileETag(value));
+      break;
+    case "query parser":
+      this.set("query parser fn", compileQueryParser(value));
       break;
   }
 
