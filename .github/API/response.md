@@ -137,7 +137,7 @@ res
 
 ### res.cookie(name, value, options)
 
-Sets a cookie using `name`, `value` and an optional configuration object whose
+Sets a cookie using `name`, `value` and an optional configuration object whose 
 type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
 
 
@@ -155,13 +155,14 @@ res
 
 #### res.clearCookie(name, options)
 
-Clears the cookie specified by `name`.
+Clears the cookie specified by `name` and an optional configuration object whose 
+type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
 
 ```ts
 
-const cookieOptions = { domain: "google.com" };
+const cookieOptions = { domain: "google.com", path: "/search" };
 
-res.cookie("myCookie", value: "val", cookieOptions);
+res.cookie("myCookie", "val", cookieOptions);
 res.clearCookie("myCookie", cookieOptions);
 ```
 

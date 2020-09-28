@@ -1,4 +1,4 @@
-import type { Cookie } from "https://deno.land/std@0.70.0/http/cookie.ts";
+import type { Cookie } from "../../deps.ts";
 
 /**
  * Returns `true` if the input has type `{ name: string }`. 
