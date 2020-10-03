@@ -5,9 +5,9 @@ import { merge } from "../utils/merge.ts";
 import { parseUrl } from "../utils/parseUrl.ts";
 import { methods } from "../methods.ts";
 import type {
-  Response,
-  Request,
   NextFunction,
+  Request,
+  Response,
   Router as IRouter,
   RouterConstructor,
 } from "../types.ts";

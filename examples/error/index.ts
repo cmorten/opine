@@ -12,7 +12,7 @@
  */
 
 import opine from "../../mod.ts";
-import type { Response, Request, NextFunction } from "../../src/types.ts";
+import type { NextFunction, Request, Response } from "../../src/types.ts";
 
 const app = opine();
 

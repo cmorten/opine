@@ -1,11 +1,11 @@
 import {
-  serve,
-  serveTLS,
-  HTTPSOptions,
-  HTTPOptions,
-  Server,
-  resolve,
   fromFileUrl,
+  HTTPOptions,
+  HTTPSOptions,
+  resolve,
+  serve,
+  Server,
+  serveTLS,
 } from "../deps.ts";
 import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";
@@ -17,13 +17,13 @@ import { compileQueryParser } from "./utils/compileQueryParser.ts";
 import { merge } from "./utils/merge.ts";
 import { View } from "./view.ts";
 import type {
+  Application,
+  IRoute,
+  NextFunction,
+  Opine,
+  PathParams,
   Request,
   Response,
-  NextFunction,
-  Application,
-  PathParams,
-  IRoute,
-  Opine,
 } from "../src/types.ts";
 
 const create = Object.create;

@@ -11,7 +11,7 @@
  * 
  */
 
-import { opine, json } from "../../mod.ts";
+import { json, opine } from "../../mod.ts";
 
 const app = opine();
 

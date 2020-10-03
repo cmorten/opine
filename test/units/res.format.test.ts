@@ -1,11 +1,11 @@
 import { opine, Router } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
-import { describe, it, after } from "../utils.ts";
+import { after, describe, it } from "../utils.ts";
 import type {
-  Request,
-  Response,
   NextFunction,
   Opine,
+  Request,
+  Response,
 } from "../../src/types.ts";
 
 const app1 = opine();

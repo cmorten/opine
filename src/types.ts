@@ -5,13 +5,13 @@
 // rather than having a separate file.
 
 import type {
-  ServerRequest as DenoServerRequest,
-  Response as DenoServerResponse,
-  Server,
+  Cookie as DenoCookie,
   HTTPOptions,
   HTTPSOptions,
+  Response as DenoServerResponse,
+  Server,
+  ServerRequest as DenoServerRequest,
   Status,
-  Cookie as DenoCookie,
 } from "../deps.ts";
 
 declare global {

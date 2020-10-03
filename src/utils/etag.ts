@@ -28,7 +28,7 @@
  * 
  */
 
-import { Sha1, encoder } from "../../deps.ts";
+import { encoder, Sha1 } from "../../deps.ts";
 
 /**s
  * Generate an entity tag.

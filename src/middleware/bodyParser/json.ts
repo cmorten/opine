@@ -33,7 +33,7 @@ import { createError, hasBody } from "../../../deps.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { typeChecker } from "./typeChecker.ts";
-import type { Request, Response, NextFunction } from "../../types.ts";
+import type { NextFunction, Request, Response } from "../../types.ts";
 
 /**
  * RegExp to match the first non-space in a string.

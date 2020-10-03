@@ -1,10 +1,10 @@
 import {
-  extname,
-  resolve,
-  dirname,
   basename,
-  join,
+  dirname,
+  extname,
   fromFileUrl,
+  join,
+  resolve,
 } from "../deps.ts";
 
 /**

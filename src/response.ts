@@ -6,26 +6,26 @@ import {
   hasCookieRequiredProperties,
 } from "./utils/cookies.ts";
 import {
-  setCookie,
+  contentType,
   Cookie,
+  encodeUrl,
+  escapeHtml,
+  extname,
+  fromFileUrl,
+  setCookie,
   Status,
   STATUS_TEXT,
-  extname,
-  contentType,
   vary,
-  escapeHtml,
-  encodeUrl,
-  fromFileUrl,
 } from "../deps.ts";
 import type {
-  Response as DenoResponse,
-  ResponseBody,
-  Request,
   Application,
-  DenoResponseBody,
-  NextFunction,
   CookieOptions,
   CookieWithOptionalValue,
+  DenoResponseBody,
+  NextFunction,
+  Request,
+  Response as DenoResponse,
+  ResponseBody,
 } from "../src/types.ts";
 
 /**

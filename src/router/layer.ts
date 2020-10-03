@@ -1,5 +1,5 @@
 import { pathToRegexp } from "../utils/pathToRegex.ts";
-import type { Request, Response, NextFunction } from "../types.ts";
+import type { NextFunction, Request, Response } from "../types.ts";
 
 export const Layer: any = function Layer(
   this: any,

@@ -29,7 +29,7 @@
  * 
  */
 
-import type { Request, ParsedURL } from "../types.ts";
+import type { ParsedURL, Request } from "../types.ts";
 
 /**
  * Parse the `req` url with memoization.
