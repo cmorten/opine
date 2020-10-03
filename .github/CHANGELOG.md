@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.23.1] - 03-10-2020
+
+- revert(ci): downgrade to eggs@0.2.2 in CI
+
 ## [0.23.0] - 03-10-2020
 
 - [#73] Implement req.range() API (#78)
