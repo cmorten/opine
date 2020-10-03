@@ -1,7 +1,7 @@
 import opine from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
-import { describe, it, after } from "../utils.ts";
-import type { Request, Response, NextFunction } from "../../src/types.ts";
+import { after, describe, it } from "../utils.ts";
+import type { NextFunction, Request, Response } from "../../src/types.ts";
 
 describe("app", function () {
   it('should emit "mount" when mounted', function (done) {

@@ -1,10 +1,5 @@
 import opine from "../mod.ts";
-import {
-  Application,
-  Request,
-  Response,
-  NextFunction,
-} from "../src/types.ts";
+import { Application, NextFunction, Request, Response } from "../src/types.ts";
 
 const app: Application = opine();
 

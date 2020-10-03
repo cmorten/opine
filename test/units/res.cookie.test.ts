@@ -17,6 +17,32 @@ describe("res", function () {
         .expect(200, done);
     });
 
+    it("should raise an exception if no arg is provided", function (done) {
+      const app = opine();
+
+      app.use(function (req, res) {
+        (res as any).cookie().end();
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(500, done);
+    });
+
+    it("should raise an expection if args provided are not valid", function (
+      done,
+    ) {
+      const app = opine();
+
+      app.use(function (req, res) {
+        (res as any).cookie({}).end();
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(500, done);
+    });
+
     it("should allow multiple calls", function (done) {
       const app = opine();
 
@@ -43,9 +69,7 @@ describe("res", function () {
       const app = opine();
 
       app.use(function (req, res) {
-        res.cookie(
-          { name: "name", value: "deno", httpOnly: true, secure: true },
-        );
+        res.cookie("name", "deno", { httpOnly: true, secure: true });
         res.end();
       });
 
@@ -60,7 +84,7 @@ describe("res", function () {
         const app = opine();
 
         app.use(function (req, res) {
-          res.cookie({ name: "name", value: "deno", maxAge: 1000 });
+          res.cookie("name", "deno", { maxAge: 1000 });
           res.end();
         });
 

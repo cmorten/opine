@@ -135,16 +135,37 @@ res
   .redirect(301, "/admin");
 ```
 
-#### res.clearCookie(name)
+### res.cookie(name, value, options)
 
-Clears the cookie specified by `name`.
+Sets a cookie using `name`, `value` and an optional configuration object whose 
+type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
+
 
 ```ts
-res.cookie({ name: "myCookie" });
-res.clearCookie("myCookie");
+res
+  .setStatus(201)
+  .cookie("tasty_cookie", "yummy", {
+    secure: true,
+    httpOnly: true,
+    maxAge: 86400 // cookie will be removed after 24 hours
+  })
+  .cookie("burnt_cookie", "cookieValue")
+  .redirect(301, "/admin");
 ```
 
-> All `res.cookie()` does is call Deno's [http.delCookie](https://doc.deno.land/https/deno.land/std/http/mod.ts#delCookie) method to set the cookie value to an empty string and the `expires` value to `new Date(0)`. It does not currently supported scoping deletion to a particular path.
+#### res.clearCookie(name, options)
+
+Clears the cookie specified by `name` and an optional configuration object whose 
+type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
+
+```ts
+
+const cookieOptions = { domain: "google.com", path: "/search" };
+
+res.cookie("myCookie", "val", cookieOptions);
+res.clearCookie("myCookie", cookieOptions);
+```
+
 
 #### res.clearCookie(cookie)
 

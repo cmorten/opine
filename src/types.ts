@@ -5,13 +5,13 @@
 // rather than having a separate file.
 
 import type {
-  ServerRequest as DenoServerRequest,
-  Response as DenoServerResponse,
-  Server,
+  Cookie as DenoCookie,
   HTTPOptions,
   HTTPSOptions,
+  Response as DenoServerResponse,
+  Server,
+  ServerRequest as DenoServerRequest,
   Status,
-  Cookie as DenoCookie,
 } from "../deps.ts";
 
 declare global {
@@ -85,6 +85,12 @@ export type RequestHandlerParams<
   | RequestHandler<P, ResBody, ReqQuery>
   | ErrorRequestHandler<P, ResBody, ReqQuery>
   | Array<RequestHandler<P> | ErrorRequestHandler<P>>;
+
+export type CookieWithOptionalValue = Omit<Cookie, "value"> & {
+  value?: Cookie["value"];
+};
+
+export type CookieOptions = Omit<Cookie, "name" | "value">;
 
 export interface IRouterMatcher<
   T,
@@ -602,12 +608,16 @@ export interface Response<ResBody = any>
    *    // "Remember Me" for 15 minutes
    *    res.cookie({ name: "rememberme", value: "1", expires: new Date(Date.now() + 900000), httpOnly: true });
    */
-  cookie(cookie: Cookie): this;
+  cookie(cookie: DenoCookie): this;
+  cookie(name: string, value: string, options?: CookieOptions): this;
 
   /** Clear cookie by `name`. */
-  clearCookie(cookie: string): this;
+  clearCookie(
+    name: string,
+    options?: CookieOptions,
+  ): this;
   /** Clear the provided cookie. */
-  clearCookie(cookie: Cookie): this;
+  clearCookie(cookie: CookieWithOptionalValue): this;
 
   /**
    * Transfer the file at the given `path` as an attachment.

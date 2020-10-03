@@ -1,8 +1,8 @@
 import type {
-  Request,
-  Response,
   NextFunction,
   Opine,
+  Request,
+  Response,
 } from "../../src/types.ts";
 
 const create = Object.create;

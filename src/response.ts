@@ -2,25 +2,30 @@ import { contentDisposition } from "./utils/contentDisposition.ts";
 import { stringify } from "./utils/stringify.ts";
 import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
 import {
-  setCookie,
+  hasCookieNameProperty,
+  hasCookieRequiredProperties,
+} from "./utils/cookies.ts";
+import {
+  contentType,
   Cookie,
-  deleteCookie,
+  encodeUrl,
+  escapeHtml,
+  extname,
+  fromFileUrl,
+  setCookie,
   Status,
   STATUS_TEXT,
-  extname,
-  contentType,
   vary,
-  escapeHtml,
-  encodeUrl,
-  fromFileUrl,
 } from "../deps.ts";
 import type {
-  Response as DenoResponse,
-  ResponseBody,
-  Request,
   Application,
+  CookieOptions,
+  CookieWithOptionalValue,
   DenoResponseBody,
   NextFunction,
+  Request,
+  Response as DenoResponse,
+  ResponseBody,
 } from "../src/types.ts";
 
 /**
@@ -94,7 +99,26 @@ export class Response implements DenoResponse {
    * @return {Response} for chaining
    * @public
    */
-  cookie(cookie: Cookie): this {
+  cookie(name: string, value: string, options: CookieOptions): this;
+  cookie(cookie: Cookie): this;
+  cookie(nameOrCookie: unknown): this {
+    let cookie: Cookie;
+
+    if (typeof nameOrCookie === "string") {
+      cookie = {
+        ...arguments[2],
+        name: nameOrCookie,
+        value: arguments[1] ?? "",
+      };
+    } else if (hasCookieRequiredProperties(nameOrCookie)) {
+      cookie = nameOrCookie;
+    } else {
+      throw new TypeError(
+        "response.cookie, args provided do not match one of the supported signatures: " +
+          Array.prototype.join.call(arguments, ", "),
+      );
+    }
+
     if (cookie.path == null) {
       cookie.path = "/";
     }
@@ -104,17 +128,40 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: back-compat support for Express signature.
   /**
    * Clear a cookie.
    *
-   * @param {string|Cookie} cookie
+   * @param {string|CookieWithOptionalValue} cookie
    * @return {Response} for chaining
    * @public
    */
-  clearCookie(cookie: string | Cookie): this {
-    const cookieName = typeof cookie === "string" ? cookie : cookie.name;
-    deleteCookie(this, cookieName);
+  clearCookie(cookie: CookieWithOptionalValue): this;
+  clearCookie(name: string, options?: CookieOptions): this;
+  clearCookie(nameOrCookie: unknown): this {
+    if (typeof nameOrCookie === "string") {
+      setCookie(
+        this,
+        {
+          path: "/",
+          ...arguments[1],
+          value: "",
+          expires: new Date(0),
+          name: nameOrCookie,
+        },
+      );
+    } else if (hasCookieNameProperty(nameOrCookie)) {
+      setCookie(this, {
+        path: "/",
+        ...nameOrCookie,
+        value: "",
+        expires: new Date(0),
+      });
+    } else {
+      throw new TypeError(
+        "res.clearCookie, args provided do not match one of the supported signatures: " +
+          Array.prototype.join.call(arguments, ", "),
+      );
+    }
 
     return this;
   }

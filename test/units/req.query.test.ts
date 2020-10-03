@@ -1,5 +1,5 @@
 import { opine } from "../../mod.ts";
-import { superdeno, expect } from "../deps.ts";
+import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 function createApp(setting?: any) {

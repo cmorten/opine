@@ -32,19 +32,19 @@
  */
 
 import {
-  join,
-  fromFileUrl,
   createError,
-  escapeHtml,
   encodeUrl,
+  escapeHtml,
+  fromFileUrl,
+  join,
 } from "../../deps.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
 import type {
-  Response,
-  Request,
-  NextFunction,
   Handler,
+  NextFunction,
   ParsedURL,
+  Request,
+  Response,
 } from "../types.ts";
 
 // TODO: header options, and various other error handling, see:

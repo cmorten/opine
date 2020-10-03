@@ -3,12 +3,7 @@ import { request } from "./request.ts";
 import { Response as ServerResponse } from "./response.ts";
 import { mergeDescriptors } from "./utils/mergeDescriptors.ts";
 import { EventEmitter, getEvent } from "../deps.ts";
-import type {
-  Opine,
-  Request,
-  Response,
-  NextFunction,
-} from "./types.ts";
+import type { NextFunction, Opine, Request, Response } from "./types.ts";
 
 /**
  * Response prototype.

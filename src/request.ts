@@ -1,19 +1,19 @@
 import {
-  ServerRequest,
   Accepts,
-  typeofrequest,
   isIP,
   parseRange,
+  ServerRequest,
+  typeofrequest,
 } from "../deps.ts";
 import { defineGetter } from "./utils/defineGetter.ts";
 import { fresh } from "./utils/fresh.ts";
 import { parseUrl } from "./utils/parseUrl.ts";
 import type {
-  Request,
-  Response,
   RangeParserOptions,
   RangeParserRanges,
   RangeParserResult,
+  Request,
+  Response,
 } from "../src/types.ts";
 
 /**

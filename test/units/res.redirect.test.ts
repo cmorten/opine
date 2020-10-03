@@ -1,13 +1,8 @@
 import opine from "../../mod.ts";
 import { describe, it, pick } from "../utils.ts";
-import {
-  superdeno,
-  expect,
-  SuperDenoResponse,
-  deferred,
-  Deferred,
-} from "../deps.ts";
-import type { Response, Request, Handler } from "../../src/types.ts";
+import { Deferred, deferred, expect, superdeno } from "../deps.ts";
+import type { SuperDenoResponse } from "../deps.ts";
+import type { Handler, Request, Response } from "../../src/types.ts";
 
 type DeferredTestResult = Deferred<
   {

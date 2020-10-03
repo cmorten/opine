@@ -8,7 +8,7 @@
 
 import { opine, serveStatic } from "../../mod.ts";
 import { renderFile } from "https://deno.land/x/eta@v1.9.0/mod.ts";
-import { join, dirname } from "../../deps.ts";
+import { dirname, join } from "../../deps.ts";
 
 const app = opine();
 const __dirname = dirname(import.meta.url);

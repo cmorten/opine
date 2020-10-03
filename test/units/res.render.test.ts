@@ -1,7 +1,7 @@
 import opine from "../../mod.ts";
 import { describe, it } from "../utils.ts";
 import { superdeno } from "../deps.ts";
-import { join, dirname } from "../../deps.ts";
+import { dirname, join } from "../../deps.ts";
 import { tmpl } from "../support/tmpl.ts";
 
 const __dirname = dirname(import.meta.url);

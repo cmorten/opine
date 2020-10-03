@@ -1,7 +1,7 @@
 import { qs } from "../../deps.ts";
 import { parseUrl } from "../utils/parseUrl.ts";
 import { merge } from "../utils/merge.ts";
-import type { Request, Response, NextFunction } from "../types.ts";
+import type { NextFunction, Request, Response } from "../types.ts";
 
 /**
  * Exposes a query object containing the querystring

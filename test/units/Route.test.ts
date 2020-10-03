@@ -3,9 +3,9 @@ import { expect } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 import type {
   IRoute,
+  NextFunction,
   Request,
   Response,
-  NextFunction,
 } from "../../src/types.ts";
 import { methods } from "../../src/methods.ts";
 
