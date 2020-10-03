@@ -1,5 +1,6 @@
 import { opine } from "../../mod.ts";
-import { superdeno, SuperDenoResponse, expect } from "../deps.ts";
+import { expect, superdeno } from "../deps.ts";
+import type { SuperDenoResponse } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 describe("res", function () {
