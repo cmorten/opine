@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [0.23.0] - 03-10-2020
+
+- [#73] Implement req.range() API (#78)
+- [#71] Query parser setting support (#79)
+- [#74] res.cookie & res.clearCookie express style overloads (#80)
+- feat(deps): upgrade to Deno 1.4.4, std 0.73.0 and few other dep upgrades
+- chore(ci): upgrade to eggs@0.2.3 in CI
+
 ## [0.22.2] - 19-09-2020
 
 - chore: upgrade to eggs@0.2.2 in CI
