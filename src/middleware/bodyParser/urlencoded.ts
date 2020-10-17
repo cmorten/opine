@@ -33,7 +33,7 @@ import { createError } from "../../../deps.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import type { NextFunction, Request, Response } from "../../types.ts";
-import { hasBody } from "../../../deps.ts";
+import { hasBody, qs } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
 /**
@@ -44,6 +44,7 @@ import { typeChecker } from "./typeChecker.ts";
  * @public
  */
 export function urlencoded(options: any = {}) {
+  const extended = options.extended !== false;
   const inflate = options.inflate !== false;
   const type = options.type || "application/x-www-form-urlencoded";
   const verify = options.verify || false;
@@ -52,16 +53,13 @@ export function urlencoded(options: any = {}) {
     throw new TypeError("option verify must be function");
   }
 
+  const queryParse = extended ? extendedParser(options) : simpleParser(options);
+
   // create the appropriate type checking function
   const shouldParse = typeof type !== "function" ? typeChecker(type) : type;
 
-  function parse(buf: string) {
-    return buf.length
-      ? Object.fromEntries(
-        new URLSearchParams(decodeURIComponent(buf.replace(/\+/g, " ")))
-          .entries(),
-      )
-      : {};
+  function parse(body: string) {
+    return body.length ? queryParse(body) : {};
   }
 
   return function urlencodedParser(
@@ -115,4 +113,101 @@ export function urlencoded(options: any = {}) {
       verify: verify,
     });
   };
+}
+
+/**
+ * Get the simple query parser.
+ *
+ * @param {object} options
+ * @private
+ */
+function simpleParser(options: any) {
+  let parameterLimit = options.parameterLimit !== undefined
+    ? options.parameterLimit
+    : 1000;
+
+  if (isNaN(parameterLimit) || parameterLimit < 1) {
+    throw new TypeError("option parameterLimit must be a positive number");
+  }
+
+  if (isFinite(parameterLimit)) {
+    parameterLimit = parameterLimit | 0;
+  }
+
+  return function queryParse(body: string) {
+    const paramCount = parameterCount(body, parameterLimit);
+
+    if (paramCount === undefined) {
+      throw createError(413, "too many parameters", {
+        type: "parameters.too.many",
+      });
+    }
+
+    return Object.fromEntries(
+      new URLSearchParams(decodeURIComponent(body.replace(/\+/g, " ")))
+        .entries(),
+    );
+  };
+}
+
+/**
+ * Get the extended query parser.
+ *
+ * @param {object} options
+ * @private
+ */
+function extendedParser(options: any) {
+  let parameterLimit = options.parameterLimit !== undefined
+    ? options.parameterLimit
+    : 1000;
+
+  if (isNaN(parameterLimit) || parameterLimit < 1) {
+    throw new TypeError("option parameterLimit must be a positive number");
+  }
+
+  if (isFinite(parameterLimit)) {
+    parameterLimit = parameterLimit | 0;
+  }
+
+  return function queryParse(body: string) {
+    const paramCount = parameterCount(body, parameterLimit);
+
+    if (paramCount === undefined) {
+      throw createError(413, "too many parameters", {
+        type: "parameters.too.many",
+      });
+    }
+
+    const arrayLimit = Math.max(100, paramCount);
+
+    return qs.parse(body, {
+      allowPrototypes: true,
+      arrayLimit,
+      depth: Infinity,
+      parameterLimit,
+    });
+  };
+}
+
+/**
+ * Count the number of parameters, stopping once limit reached
+ *
+ * @param {string} body
+ * @param {number} limit
+ * @private
+ */
+function parameterCount(body: string, limit: number) {
+  let count = 0;
+  let index = 0;
+
+  while ((index = body.indexOf("&", index)) !== -1) {
+    count++;
+    index++;
+
+    if (count === limit) {
+      return undefined;
+    }
+  }
+
+  return count;
 }
