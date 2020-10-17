@@ -68,53 +68,34 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="_middleware_bodyparser_read_.html#decoder" class="tsd-kind-icon">decoder</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_middleware_bodyparser_read_.html#getbodyreader" class="tsd-kind-icon">get<wbr>Body<wbr>Reader</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_middleware_bodyparser_read_.html#decodecontent" class="tsd-kind-icon">decode<wbr>Content</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private"><a href="_middleware_bodyparser_read_.html#read" class="tsd-kind-icon">read</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-					<a name="decoder" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decoder</h3>
-					<div class="tsd-signature tsd-kind-icon">decoder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TextDecoder</span><span class="tsd-signature-symbol"> = new TextDecoder()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/81b850c/src/middleware/bodyParser/read.ts#L35">home/runner/work/opine/opine/src/middleware/bodyParser/read.ts:35</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-					<a name="getbodyreader" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Body<wbr>Reader</h3>
+					<a name="decodecontent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> decode<wbr>Content</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Body<wbr>Reader<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, inflate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">decode<wbr>Content<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, inflate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/81b850c/src/middleware/bodyParser/read.ts#L106">home/runner/work/opine/opine/src/middleware/bodyParser/read.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/7ce2fe6/src/middleware/bodyParser/read.ts#L110">home/runner/work/opine/opine/src/middleware/bodyParser/read.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the content stream of the request.</p>
+									<p>Get the decoded content of the request.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -126,7 +107,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> inflate: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -134,13 +115,13 @@
 					<a name="read" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> read</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, res<span class="tsd-signature-symbol">: </span><a href="../classes/_response_.response.html" class="tsd-signature-type">Response</a>, next<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a>, parse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.request.html" class="tsd-signature-type">Request</a>, res<span class="tsd-signature-symbol">: </span><a href="../classes/_response_.response.html" class="tsd-signature-type">Response</a>, next<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a>, parse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/81b850c/src/middleware/bodyParser/read.ts#L47">home/runner/work/opine/opine/src/middleware/bodyParser/read.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/7ce2fe6/src/middleware/bodyParser/read.ts#L49">home/runner/work/opine/opine/src/middleware/bodyParser/read.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -166,7 +147,7 @@
 									<h5>options: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -185,11 +166,8 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_middleware_bodyparser_read_.html#decoder" class="tsd-kind-icon">decoder</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
-						<a href="_middleware_bodyparser_read_.html#getbodyreader" class="tsd-kind-icon">get<wbr>Body<wbr>Reader</a>
+						<a href="_middleware_bodyparser_read_.html#decodecontent" class="tsd-kind-icon">decode<wbr>Content</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private">
 						<a href="_middleware_bodyparser_read_.html#read" class="tsd-kind-icon">read</a>
