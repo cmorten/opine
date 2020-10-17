@@ -2,7 +2,7 @@
 
 Example of how to use Opine's template engine and rendering capabilities with the `eta` template engine.
 
-View Eta's documentation at https://eta.js.org
+View Eta's documentation at <https://eta.js.org>
 
 ## How to run this example
 
