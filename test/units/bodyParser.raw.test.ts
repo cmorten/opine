@@ -27,8 +27,9 @@ describe("bodyParser: raw", () => {
   });
 
   it("should handle requests with encoded raw bodies", (done) => {
+    const encodedText = encoder.encode(mockText);
     const req: any = {
-      body: new Deno.Buffer(encoder.encode(mockText)),
+      body: new Deno.Buffer(encodedText),
       headers: octetHeaders,
     };
     req.headers.set("Content-Length", "1");
@@ -36,7 +37,7 @@ describe("bodyParser: raw", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(mockText);
+      expect(req.parsedBody).toEqual(encodedText);
       done();
     });
   });

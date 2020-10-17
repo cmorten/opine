@@ -99,8 +99,9 @@ export function json(options: any = {}) {
     res: Response,
     next: NextFunction,
   ) {
-    if ((req as any)._isParsed) {
+    if (req._parsedBody) {
       next();
+
       return;
     }
 
@@ -111,12 +112,14 @@ export function json(options: any = {}) {
     ) {
       req.parsedBody = {};
       next();
+
       return;
     }
 
     // determine if request should be parsed
     if (!shouldParse(req)) {
       next();
+
       return;
     }
 
@@ -129,6 +132,7 @@ export function json(options: any = {}) {
           'unsupported charset "' + charset.toUpperCase() + '"',
         ),
       );
+
       return;
     }
 
