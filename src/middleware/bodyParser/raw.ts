@@ -58,8 +58,9 @@ export function raw(options: any = {}) {
   }
 
   return function rawParser(req: Request, res: Response, next: NextFunction) {
-    if ((req as any)._isParsed) {
+    if (req._parsedBody) {
       next();
+
       return;
     }
 
@@ -70,12 +71,14 @@ export function raw(options: any = {}) {
     ) {
       req.parsedBody = "";
       next();
+
       return;
     }
 
     // determine if request should be parsed
     if (!shouldParse(req)) {
       next();
+
       return;
     }
 

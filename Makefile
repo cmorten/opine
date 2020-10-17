@@ -14,7 +14,7 @@ benchmark:
 	@echo
 
 build:
-	@deno run --lock=lock.json --reload mod.ts
+	@deno run --allow-net="deno.land" --lock=lock.json --reload mod.ts
 
 ci:
 	@make fmt-check
@@ -37,7 +37,7 @@ lint:
 	@deno lint --unstable
 
 lock:
-	@deno run --lock=lock.json --lock-write --reload mod.ts
+	@deno run --allow-net="deno.land" --lock=lock.json --lock-write --reload mod.ts
 
 test:
 	@deno test --allow-net --allow-read ./test/units/

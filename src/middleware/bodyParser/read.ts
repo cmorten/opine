@@ -30,9 +30,11 @@
  */
 
 import type { NextFunction, Request, Response } from "../../types.ts";
-import { createError } from "../../../deps.ts";
-
-const decoder = new TextDecoder();
+import {
+  createError,
+  gunzip as createGunzip,
+  inflate as createInflate,
+} from "../../../deps.ts";
 
 /**
  * Read a request into a buffer and parse.
@@ -51,44 +53,46 @@ export async function read(
   parse: Function,
   options: any,
 ) {
-  // flag as parsed
-  (req as any)._isParsed = true;
+  req._parsedBody = true;
 
-  // read options
+  const encoding: string = options.encoding;
   const verify = options.verify;
-  const encoding = options.encoding !== null ? options.encoding : null;
 
-  // get the content stream
-  let reader: Deno.Reader;
+  let raw: Uint8Array;
   try {
-    reader = getBodyReader(req, options.inflate);
+    raw = await decodeContent(req, options.inflate);
   } catch (err) {
-    return next(err);
+    next(err);
+
+    return;
   }
 
-  let body;
-  try {
-    const raw = await Deno.readAll(reader);
-    body = decoder.decode(raw);
-  } catch (err) {
-    next(createError(400, err));
-  }
-
-  // verify
   if (verify) {
     try {
-      verify(req, res, body, encoding);
+      verify(req, res, raw, encoding);
     } catch (err) {
-      next(createError(403, err));
+      next(createError(403, err, {
+        body: raw,
+        type: err.type ?? "entity.verify.failed",
+      }));
+
       return;
     }
   }
 
-  // parse
+  let str;
   try {
-    req.parsedBody = parse(body);
+    str = typeof raw !== "string" && encoding !== null
+      ? new TextDecoder(encoding).decode(raw)
+      : raw;
+
+    req.parsedBody = parse(str);
   } catch (err) {
-    next(createError(400, err));
+    next(createError(400, err, {
+      body: str ?? raw,
+      type: err.type ?? "entity.parse.failed",
+    }));
+
     return;
   }
 
@@ -96,34 +100,45 @@ export async function read(
 }
 
 /**
- * Get the content stream of the request.
+ * Get the decoded content of the request.
  *
  * @param {object} req
  * @param {boolean} [inflate=true]
- * @return {object}
+ * @return {Promise<Uint8Array>}
  * @private
  */
-function getBodyReader(req: Request, inflate: boolean = true) {
+async function decodeContent(
+  req: Request,
+  inflate: boolean = true,
+): Promise<Uint8Array> {
   const encoding = (req.headers.get("content-encoding") || "identity")
     .toLowerCase();
 
   if (inflate === false && encoding !== "identity") {
-    throw createError(
-      415,
-      'unsupported content encoding "' + encoding + '"',
-    );
+    throw createError(415, `unsupported content encoding "${encoding}"`, {
+      encoding: encoding,
+      type: "encoding.unsupported",
+    });
   }
 
-  // TODO: support deflate and gzip encoding.
+  let raw;
+  try {
+    raw = await Deno.readAll(req.body);
+  } catch (err) {
+    throw createError(400, err);
+  }
+
   switch (encoding) {
-    case "identity":
-      return req.body;
     case "deflate":
+      return createInflate(raw);
     case "gzip":
+      return createGunzip(raw);
+    case "identity":
+      return raw;
     default:
-      throw createError(
-        415,
-        'unsupported content encoding "' + encoding + '"',
-      );
+      throw createError(415, `unsupported content encoding "${encoding}"`, {
+        encoding: encoding,
+        type: "encoding.unsupported",
+      });
   }
 }

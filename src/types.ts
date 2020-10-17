@@ -537,6 +537,13 @@ export interface Request<
   next?: NextFunction;
 
   /**
+   * After body parsers, Request will contain _parsedBody boolean property
+   * dictating that the body has been parsed.
+   * See: opine/src/middleware/bodyParser/
+   */
+  _parsedBody?: boolean;
+
+  /**
    * After body parsers, Request will contain parsedBody property
    * containing the parsed body.
    * See: opine/src/middleware/bodyParser/

@@ -69,8 +69,10 @@ export function urlencoded(options: any = {}) {
     res: Response,
     next: NextFunction,
   ) {
-    if ((req as any)._isParsed) {
-      return next();
+    if (req._parsedBody) {
+      next();
+
+      return;
     }
 
     // skip requests without bodies
@@ -81,23 +83,29 @@ export function urlencoded(options: any = {}) {
       (req as any).parsedBody = Object.fromEntries(
         new URLSearchParams().entries(),
       );
-      return next();
+      next();
+
+      return;
     }
 
     // determine if request should be parsed
     if (!shouldParse(req)) {
-      return next();
+      next();
+
+      return;
     }
 
     // assert charset
     const charset = getCharset(req) || "utf-8";
     if (charset !== "utf-8") {
-      return next(
+      next(
         createError(
           415,
           'unsupported charset "' + charset.toUpperCase() + '"',
         ),
       );
+
+      return;
     }
 
     // read
