@@ -11,7 +11,7 @@ A router behaves like middleware itself, so you can use it as an argument to [ap
 Opine has a top-level named function export `Router()` that creates a new `router` object.
 
 ```ts
-import { Router } from "https://deno.land/x/opine@0.23.1/mod.ts";
+import { Router } from "https://deno.land/x/opine@0.24.0/mod.ts";
 
 const router = Router(options);
 ```
@@ -210,7 +210,7 @@ This method is similar to [app.use()](./application#appusepath-callback--callbac
 Middleware is like a plumbing pipe: requests start at the first middleware function defined and work their way "down" the middleware stack processing for each path they match.
 
 ```ts
-import opine, { Router } from "https://deno.land/x/opine@0.23.1/mod.ts";
+import opine, { Router } from "https://deno.land/x/opine@0.24.0/mod.ts";
 
 const app = opine();
 const router = Router();

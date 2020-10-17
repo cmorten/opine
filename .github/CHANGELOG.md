@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.24.0] - 17-10-2020
+
+- [#52] Support gzip and deflate content-encoding (#81)
+- [#56] Add cors example (#82)
+- [#25] Implement MVC example (#83)
+
 ## [0.23.1] - 03-10-2020
 
 - revert(ci): downgrade to eggs@0.2.2 in CI
