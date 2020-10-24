@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.25.0] - 24-10-2020
+
+- [#72] Implement trust proxy setting (#84)
+
 ## [0.24.0] - 17-10-2020
 
 - [#52] Support gzip and deflate content-encoding (#81)
