@@ -9,7 +9,6 @@ import { send, sendError } from "./utils/send.ts";
 import {
   contentType,
   Cookie,
-  createError,
   encodeUrl,
   escapeHtml,
   extname,
@@ -45,6 +44,19 @@ export class Response implements DenoResponse {
   app!: Application;
   req!: Request;
   locals!: any;
+
+  #resources: number[] = [];
+
+  /**
+   * Add a resource ID to the list of resources to be
+   * closed after the .end() method has been called.
+   * 
+   * @param {number} rid Resource ID
+   * @public
+   */
+  addResource(rid: number): void {
+    this.#resources.push(rid);
+  }
 
   /**
    * Append additional header `field` with value `val`.
@@ -239,6 +251,10 @@ export class Response implements DenoResponse {
 
     this.written = true;
     await this.req.respond(this);
+
+    for (const rid of this.#resources) {
+      Deno.close(rid);
+    }
   }
 
   /**

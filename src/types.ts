@@ -602,6 +602,12 @@ export interface Response<ResBody = any>
   written: Boolean;
 
   /**
+   * Add a resource ID to the list of resources to be
+   * closed after the .end() method has been called.
+   */
+  addResource(rid: number): void;
+
+  /**
    * Appends the specified value to the HTTP response header field.
    * If the header is not already set, it creates the header with the specified value.
    * The value parameter can be a string or an array.

@@ -100,7 +100,7 @@ export function fresh(reqHeaders: any, resHeaders: any): boolean {
  * @returns {number}
  * @private
  */
-function parseHttpDate(date: any): number {
+export function parseHttpDate(date: any): number {
   const timestamp = date && Date.parse(date);
 
   return typeof timestamp === "number" ? timestamp : NaN;
@@ -112,7 +112,7 @@ function parseHttpDate(date: any): number {
  * @param {string} str
  * @private
  */
-function parseTokenList(str: string): any[] {
+export function parseTokenList(str: string): any[] {
   const list = [];
   let start = 0;
   let end = 0;

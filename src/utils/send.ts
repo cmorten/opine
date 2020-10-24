@@ -1,3 +1,34 @@
+/**
+ * Heavily inspired by send (https://github.com/pillarjs/send/tree/0.17.1)
+ * 
+ * send is licensed as follows:
+ * 
+ * (The MIT License)
+ * 
+ * Copyright (c) 2012 TJ Holowaychuk
+ * Copyright (c) 2014-2016 Douglas Christopher Wilson
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * 'Software'), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ */
+
 import {
   createError,
   extname,
@@ -7,7 +38,14 @@ import {
   resolve,
   sep,
 } from "../../deps.ts";
-import type { Response } from "../types.ts";
+import type { Request, Response } from "../types.ts";
+import { parseHttpDate, parseTokenList } from "./fresh.ts";
+
+/**
+ * Regular expression for identifying a bytes Range header.
+ * @private
+ */
+const BYTES_RANGE_REGEXP = /^ *bytes=/;
 
 /**
  * Maximum value allowed for the max age.
@@ -75,6 +113,119 @@ function hasTrailingSlash(path: string): boolean {
 }
 
 /**
+ * Check if this is a conditional GET request.
+ *
+ * @return {boolean}
+ * @private
+ */
+function isConditionalGET(req: Request): boolean {
+  return Boolean(
+    req.headers.get("if-match") ||
+      req.headers.get("if-unmodified-since") ||
+      req.headers.get("if-none-match") ||
+      req.headers.get("if-modified-since"),
+  );
+}
+
+/**
+ * Check if the request preconditions failed.
+ *
+ * @return {boolean}
+ * @private
+ */
+function isPreconditionFailure(req: Request, res: Response): boolean {
+  // if-match
+  const match = req.headers.get("if-match");
+
+  if (match) {
+    const etag = res.get("ETag");
+
+    return !etag ||
+      (match !== "*" && parseTokenList(match).every(function (match) {
+        return match !== etag && match !== "W/" + etag && "W/" + match !== etag;
+      }));
+  }
+
+  // if-unmodified-since
+  const unmodifiedSince = parseHttpDate(req.get("if-unmodified-since"));
+
+  if (!isNaN(unmodifiedSince)) {
+    const lastModified = parseHttpDate(res.get("Last-Modified"));
+
+    return isNaN(lastModified) || lastModified > unmodifiedSince;
+  }
+
+  return false;
+}
+
+/**
+ * Create a Content-Range header.
+ *
+ * @param {string} type
+ * @param {number} size
+ * @param {array} [range]
+ * @private
+ */
+
+function contentRange(type: string, size: number, range?: any): string {
+  return type + " " + (range ? range.start + "-" + range.end : "*") + "/" +
+    size;
+}
+
+/**
+ * Strip content-* header fields.
+ *
+ * @private
+ */
+function removeContentHeaderFields(res: Response): void {
+  const headers: string[] = Array.from(res.headers?.keys() ?? []);
+
+  for (const header of headers) {
+    if (header.substr(0, 8) === "content-" && header !== "content-location") {
+      res.unset(header);
+    }
+  }
+}
+
+/**
+ * Check if the request is cacheable, aka
+ * responded with 2xx or 304 (see RFC 2616 section 14.2{5,6}).
+ *
+ * @return {boolean}
+ * @private
+ */
+function isCachable(statusCode: number): boolean {
+  return (statusCode >= 200 && statusCode < 300) ||
+    statusCode === 304;
+}
+
+/**
+ * Check if the range is fresh.
+ *
+ * @return {boolean}
+ * @private
+ */
+function isRangeFresh(req: Request, res: Response): boolean {
+  const ifRange = req.get("if-range");
+
+  if (!ifRange) {
+    return true;
+  }
+
+  // if-range as etag
+  if (ifRange.indexOf('"') !== -1) {
+    const etag = res.get("ETag");
+
+    return Boolean(etag && ifRange.indexOf(etag) !== -1);
+  }
+
+  // if-range as modified date
+  const lastModified = res.get("Last-Modified");
+
+  return parseHttpDate(lastModified) <= parseHttpDate(ifRange);
+}
+
+/**
  * Collapse all leading slashes into a single slash
  *
  * @param {string} str
@@ -114,6 +265,10 @@ function clearHeaders(res: Response) {
 export function sendError(res: Response, error?: Error): void {
   clearHeaders(res);
 
+  if ((error as any)?.headers) {
+    res.set((error as any).headers);
+  }
+
   if (!error) {
     throw createError(
       404,
@@ -133,11 +288,19 @@ export function sendError(res: Response, error?: Error): void {
   );
 }
 
+/**
+ * Transfer the file at `path`.
+ * 
+ * @param {object} res 
+ * @param {string} path 
+ * @param {object} options 
+ * @param {object} stat 
+ */
 async function _send(
   res: Response,
   path: string,
   options: any,
-  stats: Deno.FileInfo,
+  stat: Deno.FileInfo,
 ) {
   if (res.written) {
     sendError(res, createError(500, "Response already written"));
@@ -163,25 +326,104 @@ async function _send(
 
   const lastModified = Boolean(options.lastModified ?? true);
 
-  if (lastModified && !res.get("Last-Modified") && stats.mtime) {
-    res.set("Last-Modified", stats.mtime.toUTCString());
+  if (lastModified && !res.get("Last-Modified") && stat.mtime) {
+    res.set("Last-Modified", stat.mtime.toUTCString());
   }
 
   const etag = Boolean(options.etag ?? true);
 
   if (etag && !res.get("ETag")) {
-    res.etag(stats);
+    res.etag(stat);
   }
 
   if (!res.get("Content-Type")) {
     res.type(extname(path));
   }
 
-  // TODO: stream response
-  // TODO: support Accept-Ranges and Content-Range
-  const body = await Deno.readFile(path);
+  const acceptRanges = Boolean(options.acceptRanges ?? true);
 
-  return await res.send(body);
+  if (acceptRanges && !res.get("Accept-Ranges")) {
+    res.set("Accept-Ranges", "bytes");
+  }
+
+  const req = res.req as Request;
+
+  // Conditional GET support
+  if (isConditionalGET(req)) {
+    if (isPreconditionFailure(req, res)) {
+      return sendError(res, createError(412));
+    }
+
+    if (isCachable(res.status as number) && req.fresh) {
+      removeContentHeaderFields(res);
+      res.status = 304;
+
+      return await res.end();
+    }
+  }
+
+  // Adjust len to start/end options
+  let offset: number = options.start ?? 0;
+  let len: number = stat.size;
+  len = Math.max(0, len - offset);
+
+  if (options.end !== undefined) {
+    const bytes = options.end - offset + 1;
+
+    if (len > bytes) {
+      len = bytes;
+    }
+  }
+
+  const rangeHeader = req.headers.get("range") as string;
+
+  // Range support
+  if (acceptRanges && BYTES_RANGE_REGEXP.test(rangeHeader)) {
+    // parse
+    let range = req.range(len, {
+      combine: true,
+    });
+
+    // If-Range support
+    if (!isRangeFresh(req, res)) {
+      range = -2;
+    }
+
+    // unsatisfiable
+    if (range === -1) {
+      // Content-Range
+      res.set("Content-Range", contentRange("bytes", len));
+
+      // 416 Requested Range Not Satisfiable
+      return sendError(
+        res,
+        createError(416, undefined, {
+          headers: { "Content-Range": res.get("Content-Range") },
+        }),
+      );
+    }
+
+    // Valid (syntactically invalid/multiple ranges are treated as a regular response)
+    if (range !== -2 && range?.length === 1) {
+      // Content-Range
+      res.setStatus(206);
+      res.set("Content-Range", contentRange("bytes", len, range[0]));
+
+      // adjust for requested range
+      offset += range[0].start;
+      len = range[0].end - range[0].start + 1;
+    }
+  }
+
+  // Set read options
+  const file = await Deno.open(path, { read: true });
+  res.addResource(file.rid);
+  await file.seek(offset, Deno.SeekMode.Start);
+
+  // content-length
+  res.set("Content-Length", len + "");
+
+  return await res.send(file);
 }
 
 async function sendIndex(
@@ -196,10 +438,10 @@ async function sendIndex(
     const pathUsingIndex = join(path, i);
 
     try {
-      const stats = await Deno.stat(pathUsingIndex);
+      const stat = await Deno.stat(pathUsingIndex);
 
-      if (!stats.isDirectory) {
-        return await _send(res, pathUsingIndex, options, stats);
+      if (!stat.isDirectory) {
+        return await _send(res, pathUsingIndex, options, stat);
       }
     } catch (err) {
       error = err;
@@ -224,10 +466,10 @@ async function sendExtension(
     const pathUsingExtension = `${path}.${extension}`;
 
     try {
-      const stats = await Deno.stat(pathUsingExtension);
+      const stat = await Deno.stat(pathUsingExtension);
 
-      if (!stats.isDirectory) {
-        return await _send(res, pathUsingExtension, options, stats);
+      if (!stat.isDirectory) {
+        return await _send(res, pathUsingExtension, options, stat);
       }
     } catch (err) {
       error = err;
@@ -243,10 +485,10 @@ async function sendFile(
   options: any,
 ) {
   try {
-    const stats = await Deno.stat(path);
+    const stat = await Deno.stat(path);
 
-    if (!stats.isDirectory) {
-      return await _send(res, path, options, stats);
+    if (!stat.isDirectory) {
+      return await _send(res, path, options, stat);
     }
 
     if (hasTrailingSlash(path)) {
