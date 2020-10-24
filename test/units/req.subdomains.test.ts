@@ -75,6 +75,22 @@ describe("req", function () {
       });
     });
 
+    describe("with trusted X-Forwarded-Host", function () {
+      it("should return an array", function (done) {
+        const app = opine();
+
+        app.set("trust proxy", true);
+        app.use(function (req, res) {
+          res.send(req.subdomains);
+        });
+
+        superdeno(app)
+          .get("/")
+          .set("X-Forwarded-Host", "opine.denoland.example.com")
+          .expect(200, ["denoland", "opine"], done);
+      });
+    });
+
     describe("when subdomain offset is set", function () {
       describe("when subdomain offset is zero", function () {
         it("should return an array with the whole domain", function (done) {

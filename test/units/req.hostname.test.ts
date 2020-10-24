@@ -69,121 +69,121 @@ describe("req", function () {
         .expect("[::1]", done);
     });
 
-    // describe('when "trust proxy" is enabled', function () {
-    //   it("should respect X-Forwarded-Host", function (done) {
-    //     const app = opine();
+    describe('when "trust proxy" is enabled', function () {
+      it("should respect X-Forwarded-Host", function (done) {
+        const app = opine();
 
-    //     app.enable("trust proxy");
+        app.enable("trust proxy");
 
-    //     app.use(function (req, res) {
-    //       res.end(req.hostname);
-    //     });
+        app.use(function (req, res) {
+          res.end(req.hostname);
+        });
 
-    //     superdeno(app)
-    //       .get("/")
-    //       .set("Host", "localhost")
-    //       .set("X-Forwarded-Host", "example.com:3000")
-    //       .expect("example.com", done);
-    //   });
+        superdeno(app)
+          .get("/")
+          .set("Host", "localhost")
+          .set("X-Forwarded-Host", "example.com:3000")
+          .expect("example.com", done);
+      });
 
-    //   it("should ignore X-Forwarded-Host if socket addr not trusted", function (
-    //     done,
-    //   ) {
-    //     const app = opine();
+      it("should ignore X-Forwarded-Host if socket addr not trusted", function (
+        done,
+      ) {
+        const app = opine();
 
-    //     app.set("trust proxy", "10.0.0.1");
+        app.set("trust proxy", "10.0.0.1");
 
-    //     app.use(function (req, res) {
-    //       res.end(req.hostname);
-    //     });
+        app.use(function (req, res) {
+          res.end(req.hostname);
+        });
 
-    //     superdeno(app)
-    //       .get("/")
-    //       .set("Host", "localhost")
-    //       .set("X-Forwarded-Host", "example.com")
-    //       .expect("localhost", done);
-    //   });
+        superdeno(app)
+          .get("/")
+          .set("Host", "localhost")
+          .set("X-Forwarded-Host", "example.com")
+          .expect("localhost", done);
+      });
 
-    //   it("should default to Host", function (done) {
-    //     const app = opine();
+      it("should default to Host", function (done) {
+        const app = opine();
 
-    //     app.enable("trust proxy");
+        app.enable("trust proxy");
 
-    //     app.use(function (req, res) {
-    //       res.end(req.hostname);
-    //     });
+        app.use(function (req, res) {
+          res.end(req.hostname);
+        });
 
-    //     superdeno(app)
-    //       .get("/")
-    //       .set("Host", "example.com")
-    //       .expect("example.com", done);
-    //   });
+        superdeno(app)
+          .get("/")
+          .set("Host", "example.com")
+          .expect("example.com", done);
+      });
 
-    //   describe("when multiple X-Forwarded-Host", function () {
-    //     it("should use the first value", function (done) {
-    //       const app = opine();
+      describe("when multiple X-Forwarded-Host", function () {
+        it("should use the first value", function (done) {
+          const app = opine();
 
-    //       app.enable("trust proxy");
+          app.enable("trust proxy");
 
-    //       app.use(function (req, res) {
-    //         res.send(req.hostname);
-    //       });
+          app.use(function (req, res) {
+            res.send(req.hostname);
+          });
 
-    //       superdeno(app)
-    //         .get("/")
-    //         .set("Host", "localhost")
-    //         .set("X-Forwarded-Host", "example.com, foobar.com")
-    //         .expect(200, "example.com", done);
-    //     });
+          superdeno(app)
+            .get("/")
+            .set("Host", "localhost")
+            .set("X-Forwarded-Host", "example.com, foobar.com")
+            .expect(200, "example.com", done);
+        });
 
-    //     it("should remove OWS around comma", function (done) {
-    //       const app = opine();
+        it("should remove OWS around comma", function (done) {
+          const app = opine();
 
-    //       app.enable("trust proxy");
+          app.enable("trust proxy");
 
-    //       app.use(function (req, res) {
-    //         res.send(req.hostname);
-    //       });
+          app.use(function (req, res) {
+            res.send(req.hostname);
+          });
 
-    //       superdeno(app)
-    //         .get("/")
-    //         .set("Host", "localhost")
-    //         .set("X-Forwarded-Host", "example.com , foobar.com")
-    //         .expect(200, "example.com", done);
-    //     });
+          superdeno(app)
+            .get("/")
+            .set("Host", "localhost")
+            .set("X-Forwarded-Host", "example.com , foobar.com")
+            .expect(200, "example.com", done);
+        });
 
-    //     it("should strip port number", function (done) {
-    //       const app = opine();
+        it("should strip port number", function (done) {
+          const app = opine();
 
-    //       app.enable("trust proxy");
+          app.enable("trust proxy");
 
-    //       app.use(function (req, res) {
-    //         res.send(req.hostname);
-    //       });
+          app.use(function (req, res) {
+            res.send(req.hostname);
+          });
 
-    //       superdeno(app)
-    //         .get("/")
-    //         .set("Host", "localhost")
-    //         .set("X-Forwarded-Host", "example.com:8080 , foobar.com:8888")
-    //         .expect(200, "example.com", done);
-    //     });
-    //   });
-    // });
+          superdeno(app)
+            .get("/")
+            .set("Host", "localhost")
+            .set("X-Forwarded-Host", "example.com:8080 , foobar.com:8888")
+            .expect(200, "example.com", done);
+        });
+      });
+    });
 
-    // describe('when "trust proxy" is disabled', function () {
-    //   it("should ignore X-Forwarded-Host", function (done) {
-    //     const app = opine();
+    describe('when "trust proxy" is disabled', function () {
+      it("should ignore X-Forwarded-Host", function (done) {
+        const app = opine();
 
-    //     app.use(function (req, res) {
-    //       res.end(req.hostname);
-    //     });
+        app.use(function (req, res) {
+          res.end(req.hostname);
+        });
 
-    //     superdeno(app)
-    //       .get("/")
-    //       .set("Host", "localhost")
-    //       .set("X-Forwarded-Host", "evil")
-    //       .expect("localhost", done);
-    //   });
-    // });
+        superdeno(app)
+          .get("/")
+          .set("Host", "localhost")
+          .set("X-Forwarded-Host", "evil")
+          .expect("localhost", done);
+      });
+    });
   });
 });

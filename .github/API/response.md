@@ -60,13 +60,10 @@ Note: calling `res.set()` after `res.append()` will reset the previously-set hea
 ```ts
 res.append("Set-Cookie", "foo=bar; Path=/; HttpOnly");
 res.append("Warning", "199 Miscellaneous warning");
-res.append(
-  "Link",
-  [
-    'https://www.google.com; rel="dns-prefetch"',
-    'https://www.youtube.com; rel="preconnect"',
-  ],
-);
+res.append("Link", [
+  'https://www.google.com; rel="dns-prefetch"',
+  'https://www.youtube.com; rel="preconnect"',
+]);
 ```
 
 #### res.attachment([filename])
@@ -137,9 +134,8 @@ res
 
 ### res.cookie(name, value, options)
 
-Sets a cookie using `name`, `value` and an optional configuration object whose 
+Sets a cookie using `name`, `value` and an optional configuration object whose
 type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
-
 
 ```ts
 res
@@ -147,7 +143,7 @@ res
   .cookie("tasty_cookie", "yummy", {
     secure: true,
     httpOnly: true,
-    maxAge: 86400 // cookie will be removed after 24 hours
+    maxAge: 86400, // cookie will be removed after 24 hours
   })
   .cookie("burnt_cookie", "cookieValue")
   .redirect(301, "/admin");
@@ -155,17 +151,15 @@ res
 
 #### res.clearCookie(name, options)
 
-Clears the cookie specified by `name` and an optional configuration object whose 
+Clears the cookie specified by `name` and an optional configuration object whose
 type is [Cookie interface](https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie) without `name` and `value`.
 
 ```ts
-
 const cookieOptions = { domain: "google.com", path: "/search" };
 
 res.cookie("myCookie", "val", cookieOptions);
 res.clearCookie("myCookie", cookieOptions);
 ```
-
 
 #### res.clearCookie(cookie)
 
@@ -371,30 +365,32 @@ Redirects to the URL derived from the specified `path`, with specified `status`,
 that corresponds to an [HTTP status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) .
 If not specified, `status` defaults to "302 "Found".
 
-```typescript
-res.redirect('/foo/bar')
-res.redirect('http://example.com')
-res.redirect(301, 'http://example.com')
+```ts
+res.redirect("/foo/bar");
+res.redirect("http://example.com");
+res.redirect(301, "http://example.com");
 ```
+
 Redirects can be a fully-qualified URL for redirecting to a different site:
 
-```typescript
-res.redirect('http://google.com')
+```ts
+res.redirect("http://google.com");
 ```
+
 Redirects can be relative to the root of the host name. For example, if the
 application is on `http://example.com/admin/post/new`, the following
 would redirect to the URL `http://example.com/admin`:
 
-```typescript
-res.redirect('/admin')
+```ts
+res.redirect("/admin");
 ```
 
 Redirects can be relative to the current URL. For example,
 from `http://example.com/blog/admin/` (notice the trailing slash), the following
 would redirect to the URL `http://example.com/blog/admin/post/new`.
 
-```typescript
-res.redirect('post/new')
+```ts
+res.redirect("post/new");
 ```
 
 Redirecting to `post/new` from `http://example.com/blog/admin` (no trailing slash),
@@ -407,15 +403,15 @@ Path-relative redirects are also possible. If you were on
 `http://example.com/admin/post/new`, the following would redirect to
 `http://example.com/admin/post`:
 
-```typescript
-res.redirect('..')
+```ts
+res.redirect("..");
 ```
 
 A `back` redirection redirects the request back to the [referer](http://en.wikipedia.org/wiki/HTTP_referer),
 defaulting to `/` when the referer is missing.
 
-```typescript
-res.redirect('back')
+```ts
+res.redirect("back");
 ```
 
 #### res.render(view [, locals][, callback])

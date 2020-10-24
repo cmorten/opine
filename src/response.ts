@@ -86,7 +86,6 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: back-compat support for Express signature.
   /**
    * Set a cookie. Sets the cookie path to "/" if not defined.
    *

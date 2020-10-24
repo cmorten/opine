@@ -136,11 +136,32 @@ console.dir(req.fresh);
 
 Contains the hostname derived from the `Host` HTTP header.
 
+When the [`trust proxy` setting](./application.md#options-for-trust-proxy-setting) does not evaluate to `false`, this property will instead get the value from the `X-Forwarded-Host` header field. This header can be set by the client or by the proxy.
+
+If there is more than one `X-Forwarded-Host` header in the request, the value of the first header is used. This includes a single header with comma-separated values, in which the first value is used.
+
 ```ts
 // Host: "example.com:3000"
 console.dir(req.hostname);
 // => 'example.com'
 ```
+
+#### req.ip
+
+Contains the remote IP address of the request.
+
+When the [`trust proxy` setting](./application.md#options-for-trust-proxy-setting) does not evaluate to `false`, the value of this property is derived from the left-most entry in the `X-Forwarded-For` header. This header can be set by the client or by the proxy.
+
+```ts
+console.dir(req.ip)
+// => '127.0.0.1'
+```
+
+#### req.ips
+
+When the [`trust proxy` setting](./application.md#options-for-trust-proxy-setting) does not evaluate to `false`, this property contains an array of IP addresses specified in the `X-Forwarded-For` request header. Otherwise, it contains an empty array. This header can be set by the client or by the proxy.
+
+For example, if `X-Forwarded-For` is `client, proxy1, proxy2`, `req.ips` would be `["client", "proxy1", "proxy2"]`, where `proxy2` is the furthest downstream.
 
 #### req.method
 
@@ -208,6 +229,8 @@ console.dir(req.path);
 
 Contains the request protocol string: either `http` or (for TLS requests) `https`.
 
+When the [`trust proxy` setting](./application.md#options-for-trust-proxy-setting) does not evaluate to `false`, this property will use the value of the `X-Forwarded-Proto` header field if present. This header can be set by the client or by the proxy.
+
 ```ts
 console.dir(req.protocol);
 // => 'http'
@@ -269,7 +292,7 @@ Example output from the previous snippet:
 
 A Boolean property that is true if a TLS connection is established. Equivalent to:
 
-```js
+```ts
 console.dir(req.protocol === "https");
 // => true
 ```
@@ -293,15 +316,13 @@ console.dir(req.subdomains);
 // => ['dinosaurs', 'deno']
 ```
 
-The application property `subdomain offset`, which defaults to 2, is used for determining the
-beginning of the subdomain segments. To change this behavior, change its value
-using [app.set](/{{ page.lang }}/4x/api.html#app.set).
+The application property `subdomain offset`, which defaults to 2, is used for determining the beginning of the subdomain segments. To change this behavior, change its value using [app.set](./application.md#appsetname-value).
 
 #### req.xhr
 
 A Boolean property that is `true` if the request's `X-Requested-With` header field is "XMLHttpRequest", indicating that the request was issued by a client library such as jQuery.
 
-```js
+```ts
 console.dir(req.xhr);
 // => true
 ```
@@ -370,7 +391,7 @@ req.get("Something");
 
 Returns the matching content type if the incoming request's "Content-Type" HTTP header field matches the MIME type specified by the `type` parameter. If the request has no body, returns `null`. Returns `false` otherwise.
 
-```js
+```ts
 // With Content-Type: text/html; charset=utf-8
 req.is("html");
 // => 'html'

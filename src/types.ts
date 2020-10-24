@@ -1,9 +1,6 @@
 // Type definitions for Opine.
 // Definitions by: Craig Morten <https://github.com/asos-craigmorten>
 
-// TODO: consider integrating these types into the app files themselves
-// rather than having a separate file.
-
 import type {
   Cookie as DenoCookie,
   HTTPOptions,
@@ -459,6 +456,23 @@ export interface Request<
    *    req.protocol == 'https'
    */
   secure: boolean;
+
+  /**
+   * Return the remote address, or when
+   * "trust proxy" is `true` return
+   * the upstream addr.
+   */
+  ip: string;
+
+  /**
+   * When "trust proxy" is `true`, parse
+   * the "X-Forwarded-For" ip address list.
+   *
+   * For example if the value were "client, proxy1, proxy2"
+   * you would receive the array `["client", "proxy1", "proxy2"]`
+   * where "proxy2" is the furthest down-stream.
+   */
+  ips: string[];
 
   /**
    * Return subdomains as an array.
