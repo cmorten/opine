@@ -1,3 +1,5 @@
+import { expect } from "./deps.ts";
+
 /**
  * Test timeout.
  */
@@ -112,3 +114,21 @@ export function omit<T extends Object, K extends keyof T>(
 
   return copy as Omit<T, K>;
 }
+
+export const shouldNotHaveHeader = (field: string) =>
+  (res: any) => {
+    expect(res.header[field.toLowerCase()]).toBeFalsy();
+  };
+
+export const shouldHaveBody = (buf: any) =>
+  (res: any) => {
+    const body = res.body || res.text;
+    expect(body).toBeTruthy();
+    expect(body.toString("hex")).toEqual(buf.toString("hex"));
+  };
+
+export const shouldNotHaveBody = () =>
+  (res: any) => {
+    expect(res.text === "" || res.text === undefined || res.text === null)
+      .toBeTruthy();
+  };

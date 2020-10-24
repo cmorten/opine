@@ -289,6 +289,52 @@ export function sendError(res: Response, error?: Error): void {
 }
 
 /**
+ * Sets the read offset of the provided file and returns a
+ * Deno.Reader to read the file from the offset until the
+ * provided contentLength;
+ * 
+ * @param {Deno.File} file
+ * @param {number} offset
+ * @param {number} contentLength
+ * @returns {Deno.Reader} reader
+ * @private
+ */
+async function offsetFileReader(
+  file: Deno.File,
+  offset: number,
+  contentLength: number,
+): Promise<Deno.Reader> {
+  let totalRead = 0;
+  let finished = false;
+
+  await file.seek(offset, Deno.SeekMode.Start);
+
+  async function read(buf: Uint8Array): Promise<number | null> {
+    if (finished) return null;
+
+    let result: number | null;
+    const remaining = contentLength - totalRead;
+
+    if (remaining >= buf.byteLength) {
+      result = await file.read(buf);
+    } else {
+      const readBuf = buf.subarray(0, remaining);
+      result = await file.read(readBuf);
+    }
+
+    if (result !== null) {
+      totalRead += result;
+    }
+
+    finished = totalRead === contentLength;
+
+    return result;
+  }
+
+  return { read };
+}
+
+/**
  * Transfer the file at `path`.
  * 
  * @param {object} res 
@@ -297,13 +343,14 @@ export function sendError(res: Response, error?: Error): void {
  * @param {object} stat 
  */
 async function _send(
+  req: Request,
   res: Response,
   path: string,
   options: any,
   stat: Deno.FileInfo,
 ) {
   if (res.written) {
-    sendError(res, createError(500, "Response already written"));
+    return sendError(res, createError(500, "Response already written"));
   }
 
   const cacheControl = Boolean(options.cacheControl ?? true);
@@ -345,8 +392,6 @@ async function _send(
   if (acceptRanges && !res.get("Accept-Ranges")) {
     res.set("Accept-Ranges", "bytes");
   }
-
-  const req = res.req as Request;
 
   // Conditional GET support
   if (isConditionalGET(req)) {
@@ -403,7 +448,7 @@ async function _send(
       );
     }
 
-    // Valid (syntactically invalid/multiple ranges are treated as a regular response)
+    // Valid (syntactically invalid / multiple ranges are treated as a regular response)
     if (range !== -2 && range?.length === 1) {
       // Content-Range
       res.setStatus(206);
@@ -418,15 +463,15 @@ async function _send(
   // Set read options
   const file = await Deno.open(path, { read: true });
   res.addResource(file.rid);
-  await file.seek(offset, Deno.SeekMode.Start);
 
   // content-length
   res.set("Content-Length", len + "");
 
-  return await res.send(file);
+  return await res.send(await offsetFileReader(file, offset, len));
 }
 
 async function sendIndex(
+  req: Request,
   res: Response,
   path: string,
   options: any,
@@ -441,7 +486,9 @@ async function sendIndex(
       const stat = await Deno.stat(pathUsingIndex);
 
       if (!stat.isDirectory) {
-        return await _send(res, pathUsingIndex, options, stat);
+        return await _send(req, res, pathUsingIndex, options, stat);
+      } else if (options.onDirectory) {
+        return options.onDirectory();
       }
     } catch (err) {
       error = err;
@@ -452,6 +499,7 @@ async function sendIndex(
 }
 
 async function sendExtension(
+  req: Request,
   res: Response,
   path: string,
   options: any,
@@ -469,7 +517,9 @@ async function sendExtension(
       const stat = await Deno.stat(pathUsingExtension);
 
       if (!stat.isDirectory) {
-        return await _send(res, pathUsingExtension, options, stat);
+        return await _send(req, res, pathUsingExtension, options, stat);
+      } else if (options.onDirectory) {
+        return options.onDirectory();
       }
     } catch (err) {
       error = err;
@@ -480,6 +530,7 @@ async function sendExtension(
 }
 
 async function sendFile(
+  req: Request,
   res: Response,
   path: string,
   options: any,
@@ -488,7 +539,9 @@ async function sendFile(
     const stat = await Deno.stat(path);
 
     if (!stat.isDirectory) {
-      return await _send(res, path, options, stat);
+      return await _send(req, res, path, options, stat);
+    } else if (options.onDirectory) {
+      return options.onDirectory();
     }
 
     if (hasTrailingSlash(path)) {
@@ -505,26 +558,55 @@ async function sendFile(
       err.message === ENOENT && !extname(path) &&
       path[path.length - 1] !== sep
     ) {
-      return await sendExtension(res, path, options);
+      return await sendExtension(req, res, path, options);
     }
 
     return sendError(res, err);
   }
 }
 
+/**
+ * decodeURIComponent.
+ *
+ * Allows V8 to only de-optimize this fn instead of all
+ * of send().
+ *
+ * @param {string} path
+ * @private
+ */
+
+function decode(path: string) {
+  try {
+    return decodeURIComponent(path);
+  } catch (err) {
+    return -1;
+  }
+}
+
 export async function send<T = Response<any>>(
+  req: Request,
   res: T,
   path: string,
   options: any,
 ): Promise<T | void>;
 export async function send(
+  req: Request,
   res: Response,
   path: string,
   options: any,
 ) {
+  // Decode the path
+  const decodedPath = decode(path);
+
+  if (decodedPath === -1) {
+    return sendError(res, createError(400));
+  }
+
+  path = decodedPath;
+
   // null byte(s)
   if (~path.indexOf("\0")) {
-    sendError(res, createError(400));
+    return sendError(res, createError(400));
   }
 
   const root = options.root ? resolve(options.root) : null;
@@ -538,7 +620,7 @@ export async function send(
 
     // malicious path
     if (UP_PATH_REGEXP.test(path)) {
-      sendError(res, createError(403));
+      return sendError(res, createError(403));
     }
 
     // explode path parts
@@ -549,7 +631,7 @@ export async function send(
   } else {
     // ".." is malicious without "root"
     if (UP_PATH_REGEXP.test(path)) {
-      sendError(res, createError(403));
+      return sendError(res, createError(403));
     }
 
     // explode path parts
@@ -564,7 +646,7 @@ export async function send(
     const dotfiles = options.dotfiles ?? "ignore";
 
     if (dotfiles !== "ignore" && dotfiles !== "allow" && dotfiles !== "deny") {
-      sendError(
+      return sendError(
         res,
         new TypeError(
           'dotfiles option must be "allow", "deny", or "ignore"',
@@ -576,10 +658,10 @@ export async function send(
       case "allow":
         break;
       case "deny":
-        sendError(res, createError(403));
+        return sendError(res, createError(403));
       case "ignore":
       default:
-        sendError(res, createError(404));
+        return sendError(res, createError(404));
     }
   }
 
@@ -588,8 +670,8 @@ export async function send(
     : ["index.html"];
 
   if (index.length && hasTrailingSlash(path)) {
-    return await sendIndex(res, path, options, index);
+    return await sendIndex(req, res, path, options, index);
   }
 
-  return await sendFile(res, path, options);
+  return await sendFile(req, res, path, options);
 }

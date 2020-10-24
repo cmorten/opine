@@ -1,6 +1,6 @@
 import { opine } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
-import { describe, it } from "../utils.ts";
+import { describe, it, shouldHaveBody } from "../utils.ts";
 
 describe("res", function () {
   describe(".download(path)", function () {
@@ -35,8 +35,87 @@ describe("res", function () {
     });
   });
 
+  describe(".download(path, filename, options)", function () {
+    it("should accept options", function (done) {
+      const app = opine();
+      var options = {};
+
+      app.use(function (req, res) {
+        res.download("test/fixtures/user.html", "document", options);
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(200)
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="document"')
+        .end(done);
+    });
+
+    it("should allow options to res.sendFile()", function (done) {
+      const app = opine();
+
+      app.use(function (req, res) {
+        res.download("test/fixtures/.name", "document", {
+          dotfiles: "allow",
+          maxAge: "4h",
+        });
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(200)
+        .expect("Content-Disposition", 'attachment; filename="document"')
+        .expect("Cache-Control", "public, max-age=14400")
+        .expect(shouldHaveBody(("Deno")))
+        .end(done);
+    });
+
+    describe("when options.headers contains Content-Disposition", function () {
+      it("should be ignored", function (done) {
+        const app = opine();
+
+        app.use(function (req, res) {
+          res.download("test/fixtures/user.html", "document", {
+            headers: {
+              "Content-Type": "text/x-custom",
+              "Content-Disposition": "inline",
+            },
+          });
+        });
+
+        superdeno(app)
+          .get("/")
+          .expect(200)
+          .expect("Content-Type", "text/x-custom; charset=utf-8")
+          .expect("Content-Disposition", 'attachment; filename="document"')
+          .end(done);
+      });
+
+      it("should be ignored case-insensitively", function (done) {
+        const app = opine();
+
+        app.use(function (req, res) {
+          res.download("test/fixtures/user.html", "document", {
+            headers: {
+              "content-type": "text/x-custom",
+              "content-disposition": "inline",
+            },
+          });
+        });
+
+        superdeno(app)
+          .get("/")
+          .expect(200)
+          .expect("Content-Type", "text/x-custom; charset=utf-8")
+          .expect("Content-Disposition", 'attachment; filename="document"')
+          .end(done);
+      });
+    });
+  });
+
   describe("on failure", function () {
-    it("should invoke the callback", function (done) {
+    it("should throw an error", function (done) {
       const app = opine();
 
       app.use(async function (req, res, next) {

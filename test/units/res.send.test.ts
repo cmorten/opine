@@ -1,26 +1,14 @@
 import { opine } from "../../mod.ts";
-import { describe, it } from "../utils.ts";
+import {
+  describe,
+  it,
+  shouldHaveBody,
+  shouldNotHaveBody,
+  shouldNotHaveHeader,
+} from "../utils.ts";
 import { expect, superdeno } from "../deps.ts";
 import { methods } from "../../src/methods.ts";
 import type { Request, Response } from "../../src/types.ts";
-
-const shouldNotHaveHeader = (field: string) =>
-  (res: any) => {
-    expect(res.header[field.toLowerCase()]).toBeFalsy();
-  };
-
-const shouldHaveBody = (buf: any) =>
-  (res: any) => {
-    const body = res.body || res.text;
-    expect(body).toBeTruthy();
-    expect(body.toString("hex")).toEqual(buf.toString("hex"));
-  };
-
-const shouldNotHaveBody = () =>
-  (res: any) => {
-    expect(res.text === "" || res.text === undefined || res.text === null)
-      .toBeTruthy();
-  };
 
 describe("res", function () {
   describe(".send()", function () {

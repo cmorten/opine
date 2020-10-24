@@ -250,11 +250,28 @@ export class Response implements DenoResponse {
     }
 
     this.written = true;
-    await this.req.respond(this);
+
+    try {
+      await this.req.respond(this);
+    } catch (e) {
+      // Connection might have been already closed
+      if (!(e instanceof Deno.errors.BadResource)) {
+        throw e;
+      }
+    }
 
     for (const rid of this.#resources) {
-      Deno.close(rid);
+      try {
+        Deno.close(rid);
+      } catch (e) {
+        // Resource might have been already closed
+        if (!(e instanceof Deno.errors.BadResource)) {
+          throw e;
+        }
+      }
     }
+
+    this.#resources = [];
   }
 
   /**
@@ -711,16 +728,21 @@ export class Response implements DenoResponse {
       );
     }
 
-    let stat: Deno.FileInfo;
-    try {
-      stat = await Deno.stat(path);
-    } catch (err) {
-      return sendError(this, err);
-    }
+    const onDirectory = async () => {
+      let stat: Deno.FileInfo;
 
-    if (stat.isDirectory) {
-      return sendError(this);
-    }
+      try {
+        stat = await Deno.stat(path);
+      } catch (err) {
+        return sendError(this, err);
+      }
+
+      if (stat.isDirectory) {
+        return sendError(this);
+      }
+    };
+
+    options.onDirectory = onDirectory;
 
     if (options.headers) {
       const obj = options.headers;
@@ -732,7 +754,7 @@ export class Response implements DenoResponse {
       }
     }
 
-    return await send(this, path, options);
+    return await send(this.req as Request, this, path, options);
   }
 
   /**
