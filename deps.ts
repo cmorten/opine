@@ -23,8 +23,11 @@ export {
   dirname,
   extname,
   fromFileUrl,
+  isAbsolute,
   join,
+  normalize,
   resolve,
+  sep,
 } from "https://deno.land/std@0.74.0/path/mod.ts";
 export { setImmediate } from "https://deno.land/std@0.74.0/node/timers.ts";
 export { parse } from "https://deno.land/std@0.74.0/node/querystring.ts";
@@ -53,3 +56,4 @@ export { gunzip, inflate } from "https://deno.land/x/denoflate@1.1/mod.ts";
 export { default as parseRange } from "https://cdn.skypack.dev/range-parser@1.2.1";
 export { default as qs } from "https://cdn.skypack.dev/qs@6.9.4";
 export { default as ipaddr } from "https://cdn.skypack.dev/ipaddr.js@2.0.0";
+export { default as ms } from "https://cdn.skypack.dev/ms@2.1.2";

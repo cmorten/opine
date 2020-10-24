@@ -47,15 +47,13 @@ describe("res", function () {
             return next(new Error("expected error"));
           }
 
-          res.send(err.message);
+          res.send("got " + err.status + " " + err.code);
         }
       });
 
-      superdeno(app).get("/").expect(
-        200,
-        /(No such file or directory|The system cannot find the file specified)/,
-        done,
-      );
+      superdeno(app)
+        .get("/")
+        .expect(200, "got 404 ENOENT", done);
     });
 
     it("should remove Content-Disposition", function (done) {

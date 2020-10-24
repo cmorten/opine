@@ -1,8 +1,10 @@
 {
   "https://cdn.skypack.dev/-/ipaddr.js@v2.0.0-bmm1MGXMVAdeSUKoofQe/dist=es2020/ipaddr.js": "e786568390506e1d8394420ccb22adf553c3df6efea4010c482988dacefc0fb4",
+  "https://cdn.skypack.dev/-/ms@v2.1.2-kvyxyT5MVg6VefEExskE/dist=es2020/ms.js": "85f03199aa287ffa95936d6b841ab405055c18a5ea559a8fe914649fccb3f5d3",
   "https://cdn.skypack.dev/-/qs@v6.9.4-5rAI3SFBu7lGN0fBbBNE/dist=es2020/qs.js": "92b02cfb940d108dc6180f65cd6fae167b68cacbc6b3c3f35333d0c8f03ce389",
   "https://cdn.skypack.dev/-/range-parser@v1.2.1-bLIJpG3lsMxenZULthAx/dist=es2020/range-parser.js": "bac18367ddab293440b03816eb7aae3ac9d2da01e351da5ecebbcb0e7950475c",
   "https://cdn.skypack.dev/ipaddr.js@2.0.0": "e8751dfa8e1b5c8a36c713c0ec318952086542d78c199593554723f634a18e12",
+  "https://cdn.skypack.dev/ms@2.1.2": "2f8dec2b454edd7b89391451f278e696d6b3511c559c8a55c2502010cd955ebd",
   "https://cdn.skypack.dev/qs@6.9.4": "88da96e0e4f8db69479670207d52c39af0dd3d3f6da6e22c96f9e092270fa2ab",
   "https://cdn.skypack.dev/range-parser@1.2.1": "90b078e5fb3e998acf3b4d3c1416c6e11cd76e26cbd9474c9a411259845f3604",
   "https://deno.land/std@0.69.0/_util/assert.ts": "e1f76e77c5ccb5a8e0dbbbe6cce3a56d2556c8cb5a9a8802fc9565af72462149",

@@ -1,14 +1,14 @@
 import { opine } from "../../mod.ts";
 import { describe, it } from "../utils.ts";
-import { expect, superdeno } from "../deps.ts";
-import { dirname, join } from "../../deps.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import { superdeno } from "../deps.ts";
+import { dirname, fromFileUrl, join, resolve } from "../../deps.ts";
 
 const __dirname = dirname(import.meta.url);
-const fixtures = join(__dirname, "../fixtures");
+const fixtures = fromFileUrl(new URL("fixtures", __dirname).toString());
 
 function createApp(path: string) {
   const app = opine();
+  // console.log({ fixtures, path });
 
   app.use(async function (req, res, next) {
     try {
@@ -24,7 +24,7 @@ function createApp(path: string) {
 describe("res", function () {
   describe(".sendFile(path)", function () {
     it("should transfer a file", function (done) {
-      const app = createApp(join(fixtures, "name.txt"));
+      const app = createApp(resolve(fixtures, "name.txt"));
 
       superdeno(app)
         .get("/")
@@ -35,7 +35,7 @@ describe("res", function () {
       done,
     ) {
       const app = createApp(
-        join(fixtures, encodeURIComponent("% of dogs.txt")),
+        resolve(fixtures, "% of dogs.txt"),
       );
 
       superdeno(app)
@@ -44,7 +44,7 @@ describe("res", function () {
     });
 
     it("should include ETag", function (done) {
-      const app = createApp(join(fixtures, "name.txt"));
+      const app = createApp(resolve(fixtures, "name.txt"));
 
       superdeno(app)
         .get("/")
@@ -53,7 +53,7 @@ describe("res", function () {
     });
 
     it("should 304 when ETag matches", function (done) {
-      const app = createApp(join(fixtures, "name.txt"));
+      const app = createApp(resolve(fixtures, "name.txt"));
 
       superdeno(app)
         .get("/")
@@ -80,20 +80,13 @@ describe("res", function () {
         .expect(404, done);
     });
 
-    it("should error when not found", function (done) {
-      const app = createApp(join(fixtures, "does-no-exist"));
+    it("should 404 when not found", function (done) {
+      const app = createApp(resolve(fixtures, "does-no-exist"));
 
       app.use(function (req, res) {
         res.status = 200;
         res.send("no!");
       });
-
-      app.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
-          expect(err).toBeInstanceOf(Deno.errors.NotFound);
-          res.sendStatus(404);
-        },
-      );
 
       superdeno(app)
         .get("/")
@@ -105,7 +98,7 @@ describe("res", function () {
 
       app.use(function (req, res) {
         res.type("application/x-bogus");
-        res.sendFile(join(fixtures, "name.txt"));
+        res.sendFile(resolve(fixtures, "name.txt"));
       });
 
       superdeno(app)

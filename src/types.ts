@@ -651,6 +651,11 @@ export interface Response<ResBody = any>
   download(path: string, filename: string): Promise<this | void>;
 
   /**
+   * Sets an ETag header.
+   */
+  etag(chunk: string | Uint8Array | Deno.FileInfo): this;
+
+  /**
    * Ends a response.
    * 
    * Generally it is recommended to use the `res.send()` or

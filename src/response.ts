@@ -5,13 +5,17 @@ import {
   hasCookieNameProperty,
   hasCookieRequiredProperties,
 } from "./utils/cookies.ts";
+import { send, sendError } from "./utils/send.ts";
 import {
   contentType,
   Cookie,
+  createError,
   encodeUrl,
   escapeHtml,
   extname,
   fromFileUrl,
+  isAbsolute,
+  resolve,
   setCookie,
   Status,
   STATUS_TEXT,
@@ -165,11 +169,12 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: back-compat support for Express signature. i.e. support options.
   /**
    * Transfer the file at the given `path` as an attachment.
    *
    * Optionally providing an alternate attachment `filename`.
+   * 
+   * Optionally providing an `options` object to use with `res.sendFile()`.
    *
    * This function will set the `Content-Disposition` header, overriding
    * any existing `Content-Disposition` header in order to set the attachment
@@ -178,26 +183,44 @@ export class Response implements DenoResponse {
    * This method uses `res.sendFile()`.
    *
    * @param {string} path
-   * @param {string} filename
+   * @param {string} [filename]
+   * @param {object} [options]
    * @return {Promise<Response>}
    * @public
    */
   async download(
     path: string,
     filename?: string,
+    options?: any,
   ): Promise<this | void> {
-    this.set(
-      "Content-Disposition",
-      contentDisposition("attachment", filename || path),
-    );
+    const headers: { [key: string]: string } = {
+      "Content-Disposition": contentDisposition("attachment", filename || path),
+    };
 
-    try {
-      await this.sendFile(path);
-    } catch (err) {
-      this.unset("Content-Disposition");
+    // Merge user-provided headers
+    if (options?.headers) {
+      const keys = Object.keys(options.headers);
 
-      throw err;
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+
+        if (key.toLowerCase() !== "content-disposition") {
+          headers[key] = options.headers[key];
+        }
+      }
     }
+
+    // Merge user-provided options
+    options = {
+      ...options,
+      headers,
+    };
+
+    // Resolve the full path for sendFile
+    const fullPath = resolve(path);
+
+    // Send file
+    return await this.sendFile(fullPath, options);
   }
 
   /**
@@ -647,47 +670,53 @@ export class Response implements DenoResponse {
     return this;
   }
 
-  // TODO: back-compat support for Express signature. Specifically options
-  // parameter, but likely not callback. Should support:
-  //
-  // - abort handling
-  // - directory handling
-  // - error handling - see https://github.com/pillarjs/send/blob/master/index.js#L267
-  // - `options` - see https://github.com/pillarjs/send#sendreq-path-options
-  // - other headers: 'Accept-Ranges', 'Cache-Control', 'Content-Range'
-
   /**
    * Transfer the file at the given `path`.
    *
    * Automatically sets the _Content-Type_ response header field.
    *
    * @param {string} path
+   * @param {object} [options]
    * @return {Promise<Response>}
    * @public
    */
-  async sendFile(path: string): Promise<this | void> {
+  async sendFile(path: string, options: any = {}): Promise<this | void> {
+    if (!path) {
+      throw new TypeError("path argument is required to res.sendFile");
+    } else if (typeof path !== "string") {
+      throw new TypeError("path must be a string to res.sendFile");
+    }
+
     path = path.startsWith("file:") ? fromFileUrl(path) : path;
 
-    const stats: Deno.FileInfo = await Deno.stat(path);
-
-    if (stats.isDirectory) {
-      return (this.req as any).next();
+    if (!options.root && !isAbsolute(path)) {
+      throw new TypeError(
+        "path must be absolute or specify root to res.sendFile",
+      );
     }
 
-    const body = await Deno.readFile(path);
-
-    if (stats.mtime) {
-      this.set("Last-Modified", stats.mtime.toUTCString());
-    }
-    if (!this.get("ETag")) {
-      this.etag(stats);
+    let stat: Deno.FileInfo;
+    try {
+      stat = await Deno.stat(path);
+    } catch (err) {
+      return sendError(this, err);
     }
 
-    if (!this.get("Content-Type")) {
-      this.type(extname(path));
+    if (stat.isDirectory) {
+      return sendError(this);
     }
 
-    return this.send(body);
+    if (options.headers) {
+      const obj = options.headers;
+      const keys = Object.keys(obj);
+
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        this.set(k, obj[k]);
+      }
+    }
+
+    return await send(this, path, options);
   }
 
   /**
