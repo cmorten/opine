@@ -8,6 +8,7 @@ import {
 import { defineGetter } from "./utils/defineGetter.ts";
 import { fresh } from "./utils/fresh.ts";
 import { parseUrl } from "./utils/parseUrl.ts";
+import { all, proxyaddr } from "./utils/proxyAddr.ts";
 import type {
   RangeParserOptions,
   RangeParserRanges,
@@ -235,10 +236,12 @@ request.is = function is(this: Request, types: string | string[]) {
   return typeofrequest(this.headers, arr as string[]);
 };
 
-// TODO: trust proxy work.
 /**
  * Return the protocol string "http" or "https"
- * when requested with TLS.
+ * when requested with TLS. When the "trust proxy"
+ * setting trusts the socket address, the
+ * "X-Forwarded-Proto" header field will be trusted
+ * and used if present.
  *
  * If you're running behind a reverse proxy that
  * supplies https for you this may be enabled.
@@ -248,8 +251,19 @@ request.is = function is(this: Request, types: string | string[]) {
  */
 defineGetter(request, "protocol", function protocol(this: Request) {
   const proto = this.proto.includes("https") ? "https" : "http";
+  const trust = this.app.get("trust proxy fn");
+  const { hostname: remoteAddress } = this.conn.remoteAddr as Deno.NetAddr;
 
-  return proto;
+  if (!trust(remoteAddress, 0)) {
+    return proto;
+  }
+
+  // Note: X-Forwarded-Proto is normally only ever a
+  // single value, but this is to be safe.
+  const header = this.get("X-Forwarded-Proto") ?? proto;
+  const index = header.indexOf(",");
+
+  return index !== -1 ? header.substring(0, index).trim() : header.trim();
 });
 
 /**
@@ -264,9 +278,43 @@ defineGetter(request, "secure", function secure(this: Request) {
   return this.protocol === "https";
 });
 
-// TODO: req.ip
+/**
+ * Return the remote address from the trusted proxy.
+ *
+ * The is the remote address on the socket unless
+ * "trust proxy" is set.
+ *
+ * @return {String}
+ * @public
+ */
 
-// TODO: req.ips
+defineGetter(request, "ip", function ip(this: Request) {
+  const trust = this.app.get("trust proxy fn");
+
+  return proxyaddr(this, trust);
+});
+
+/**
+ * When "trust proxy" is set, trusted proxy addresses + client.
+ *
+ * For example if the value were "client, proxy1, proxy2"
+ * you would receive the array `["client", "proxy1", "proxy2"]`
+ * where "proxy2" is the furthest down-stream and "proxy1" and
+ * "proxy2" were trusted.
+ *
+ * @return {Array}
+ * @public
+ */
+defineGetter(request, "ips", function ips(this: Request) {
+  const trust = this.app.get("trust proxy fn");
+  const addrs = all(this, trust);
+
+  // Reverse the order (to farthest -> closest)
+  // and remove socket address
+  addrs.reverse().pop();
+
+  return addrs;
+});
 
 /**
  * Return subdomains as an array.
@@ -316,8 +364,17 @@ defineGetter(request, "path", function path(this: Request) {
  * @public
  */
 defineGetter(request, "hostname", function hostname(this: Request) {
-  // TODO: trust proxy work
-  const host = this.get("Host");
+  const trust = this.app.get("trust proxy fn");
+  let host = this.get("X-Forwarded-Host");
+  const { hostname: remoteAddress } = this.conn.remoteAddr as Deno.NetAddr;
+
+  if (!host || !trust(remoteAddress, 0)) {
+    host = this.get("Host");
+  } else if (host.indexOf(",") !== -1) {
+    // Note: X-Forwarded-Host is normally only ever a
+    // single value, but this is to be safe.
+    host = host.substring(0, host.indexOf(",")).trimRight();
+  }
 
   if (!host) return;
 

@@ -915,13 +915,17 @@ Note that sub-apps will:
 - Not inherit the value of settings that have a default value. You must set the value in the sub-app.
 - Inherit the value of settings with no default value; these are explicitly noted in the table below.
 
+Exceptions: Sub-apps will inherit the value of `trust proxy` even though it has a default value.
+
 <div class="table-scroller">
   <table class="doctable">
     <thead><tr><th id="app-settings-property">Property</th><th>Type</th><th>Description</th><th>Default</th></tr></thead>
     <tbody>
     <tr>
   <td markdown="1">
-  `case sensitive routing`
+
+`case sensitive routing`
+
   </td>
       <td>Boolean</td>
       <td><p>Enable case sensitivity.
@@ -934,7 +938,9 @@ Note that sub-apps will:
     </tr>
     <tr>
   <td markdown="1">
-  `etag`
+
+`etag`
+
   </td>
   <td>Varied</td>
   <td markdown="1">
@@ -944,12 +950,16 @@ Note that sub-apps will:
 
   </td>
   <td markdown="1">
-  `weak`
+
+`weak`
+
   </td>
     </tr>
     <tr>
   <td markdown="1">
-  `jsonp callback name`
+
+`jsonp callback name`
+
   </td>
       <td>String</td>
       <td>Specifies the default JSONP callback name.</td>
@@ -959,7 +969,9 @@ Note that sub-apps will:
     </tr>
     <tr>
   <td markdown="1">
-  `json escape`
+
+`json escape`
+
   </td>
   <td>Boolean</td>
   <td markdown="1">
@@ -970,7 +982,9 @@ Note that sub-apps will:
     </tr>
     <tr>
   <td markdown="1">
-  `json replacer`
+
+`json replacer`
+
   </td>
       <td>Varied</td>
       <td>The <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter">'replacer' argument used by `JSON.stringify`</a>.
@@ -981,7 +995,9 @@ Note that sub-apps will:
     </tr>
     <tr>
   <td markdown="1">
-  `json spaces`
+
+`json spaces`
+
   </td>
       <td>Varied</td>
       <td>The <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument">'space' argument used by `JSON.stringify`</a>.
@@ -992,7 +1008,9 @@ This is typically set to the number of spaces to use to indent prettified JSON.
     </tr>
     <tr>
   <td markdown="1">
-  `strict routing`
+
+`strict routing`
+
   </td>
       <td>Boolean</td>
       <td><p>Enable strict routing.
@@ -1004,14 +1022,171 @@ This is typically set to the number of spaces to use to indent prettified JSON.
     </tr>
     <tr>
   <td markdown="1">
-  `x-powered-by`
+
+`subdomain offset`
+
+  </td>
+      <td>Number</td>
+      <td><p>The number of dot-separated parts of the host to remove to access subdomain.</p>
+      </td>
+      <td>2</td>
+    </tr>
+    <tr>
+  <td markdown="1">
+  
+  `trust proxy`
+  </td>
+      <td>Varied</td>
+      <td markdown="1">
+      <p>
+      Indicates the app is behind a front-facing proxy, and to use the `X-Forwarded-*` headers to determine the connection and the IP address of the client. NOTE: `X-Forwarded-*` headers are easily spoofed and the detected IP addresses are unreliable.
+      </p><p>
+      When enabled, Express attempts to determine the IP address of the client connected through the front-facing proxy, or series of proxies. The `req.ips` property, then contains an array of IP addresses the client is connected through. To enable it, use the values described in the <a href="#options-for-trust-proxy-setting">trust proxy options table</a>.
+    </p><p>
+      The `trust proxy` setting is implemented using a Deno port of the <a href="https://www.npmjs.org/package/proxy-addr">proxy-addr</a> NPM package. For more information, see its documentation.
+    </p><p>
+    <b>NOTE</b>: Sub-apps <i>will</i> inherit the value of this setting, even though it has a default value.
+    </p>
+      </td>
+      <td markdown="1">
+
+`false` (disabled)</td>
+
+</tr>
+    <tr>
+  <td markdown="1">
+  
+  `views`
+  </td>
+      <td>String or Array</td>
+      <td markdown="1">A directory or an array of directories for the application's views. If an array, the views are looked up in the order they occur in the array.
+      </td>
+      <td markdown="1">
+
+`Deno.cwd() + '/views'`</td>
+
+</tr>
+    <tr>
+  <td markdown="1">
+  
+  `view cache`
+  </td>
+      <td>Boolean</td>
+      <td markdown="1"><p>Enables view template compilation caching.</p>
+  <p>
+  
+  <b>NOTE</b>: Sub-apps will not inherit the value of this setting in production (when `NODE_ENV` is "production").</p>
+      </td>
+      <td markdown="1">
+
+`true` in production, otherwise undefined.</td>
+
+</tr>
+    <tr>
+  <td markdown="1">
+  
+  `view engine`
+  </td>
+      <td>String</td>
+      <td markdown="1">The default engine extension to use when omitted.
+        <p><b>NOTE</b>: Sub-apps will inherit the value of this setting.</p>
+      </td>
+      <td markdown="1">
+      N/A (undefined)</td>
+
+</tr>
+<tr>
+
+  <td markdown="1">
+
+`x-powered-by`
+
   </td>
       <td>Boolean</td>
       <td>Enables the "X-Powered-By: Opine" HTTP header.</td>
   <td markdown="1">
+
   `true`
   </td>
     </tr>
+    </tbody>
+  </table>
+
+###### Options for `trust proxy` setting
+
+<table class="doctable">
+    <thead><tr><th>Type</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Boolean</td>
+  <td markdown="1">
+
+If `true`, the client's IP address is understood as the left-most entry in the `X-Forwarded-*` header.
+
+If `false`, the app is understood as directly facing the Internet and the client's IP address is derived from `req.conn.remoteAddr`. This is the default setting.
+
+  </td>
+      </tr>
+      <tr>
+        <td>String<br/>String containing comma-separated values<br/>Array of strings </td>
+  <td markdown="1">
+  An IP address, subnet, or an array of IP addresses, and subnets to trust. Pre-configured subnet names are:
+
+- loopback - `127.0.0.1/8`, `::1/128`
+- linklocal - `169.254.0.0/16`, `fe80::/10`
+- uniquelocal - `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`
+
+Set IP addresses in any of the following ways:
+
+Specify a single subnet:
+
+```ts
+app.set("trust proxy", "loopback");
+```
+
+Specify a subnet and an address:
+
+```ts
+app.set("trust proxy", "loopback, 123.123.123.123");
+```
+
+Specify multiple subnets as CSV:
+
+```ts
+app.set("trust proxy", "loopback, linklocal, uniquelocal");
+```
+
+Specify multiple subnets as an array:
+
+```ts
+app.set("trust proxy", ["loopback", "linklocal", "uniquelocal"]);
+```
+
+When specified, the IP addresses or the subnets are excluded from the address determination process, and the untrusted IP address nearest to the application server is determined as the client's IP address.
+
+  </td>
+      </tr>
+      <tr>
+        <td>Number</td>
+  <td markdown="1">
+  Trust the <i>n</i><sup>th</sup> hop from the front-facing proxy server as the client.
+  </td>
+      </tr>
+      <tr>
+        <td>Function</td>
+  <td markdown="1">
+  Custom trust implementation. Use this only if you know what you are doing.
+
+```ts
+app.set("trust proxy", function (ip: string) {
+  if (ip === "127.0.0.1" || ip === "123.123.123.123") return true;
+  // trusted IPs
+  else return false;
+});
+```
+
+  </td>
+      </tr>
     </tbody>
   </table>
 

@@ -14,6 +14,7 @@ import { query } from "./middleware/query.ts";
 import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
 import { compileQueryParser } from "./utils/compileQueryParser.ts";
+import { compileTrust } from "./utils/compileTrust.ts";
 import { merge } from "./utils/merge.ts";
 import { View } from "./view.ts";
 import type {
@@ -30,7 +31,11 @@ const create = Object.create;
 const setPrototypeOf = Object.setPrototypeOf;
 const slice = Array.prototype.slice;
 
-// TODO: move app over to class based?
+/**
+ * Variable for trust proxy inheritance
+ * @private
+ */
+const trustProxyDefaultSymbol = "@@symbol:trust_proxy_default";
 
 /**
  * Application prototype.
@@ -65,11 +70,24 @@ app.defaultConfiguration = function defaultConfiguration(): void {
   this.set("etag", "weak");
   this.set("query parser", "extended");
   this.set("subdomain offset", 2);
-  // TODO: trust proxy
+  this.set("trust proxy", false);
+
+  // trust proxy inherit
+  Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
+    configurable: true,
+    value: true,
+  });
 
   const self: Opine = this as Opine;
   this.on("mount", function onmount(parent: Opine) {
-    // TODO: trust proxy
+    // inherit trust proxy
+    if (
+      self.settings[trustProxyDefaultSymbol] === true &&
+      typeof parent.settings["trust proxy fn"] === "function"
+    ) {
+      delete self.settings["trust proxy"];
+      delete self.settings["trust proxy fn"];
+    }
 
     // inherit prototypes
     setPrototypeOf(self.request, parent.request);
@@ -285,6 +303,16 @@ app.set = function set(setting: string, value?: any): Application {
       break;
     case "query parser":
       this.set("query parser fn", compileQueryParser(value));
+      break;
+    case "trust proxy":
+      this.set("trust proxy fn", compileTrust(value));
+
+      // trust proxy inherit
+      Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
+        configurable: true,
+        value: false,
+      });
+
       break;
   }
 

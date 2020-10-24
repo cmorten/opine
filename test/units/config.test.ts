@@ -36,6 +36,15 @@ describe("config", () => {
         expect(app.get("etag fn")).toEqual(fn);
       });
     });
+
+    describe('"trust proxy"', function () {
+      it('should set "trust proxy fn"', function () {
+        const app = opine();
+        const fn = function () {};
+        app.set("trust proxy", fn);
+        expect(app.get("trust proxy fn")).toEqual(fn);
+      });
+    });
   });
 
   describe(".get()", () => {
@@ -70,6 +79,51 @@ describe("config", () => {
         blog.set(mockSetting, mockChildValue);
 
         expect(blog.get(mockSetting)).toEqual(mockChildValue);
+      });
+
+      it('should inherit "trust proxy" setting', function () {
+        const app = opine();
+        const blog = opine();
+
+        function fn() {
+          return false;
+        }
+
+        app.set("trust proxy", fn);
+        expect(app.get("trust proxy")).toEqual(fn);
+        expect(app.get("trust proxy fn")).toEqual(fn);
+
+        app.use(blog);
+
+        expect(blog.get("trust proxy")).toEqual(fn);
+        expect(blog.get("trust proxy fn")).toEqual(fn);
+      });
+
+      it('should prefer child "trust proxy" setting', function () {
+        const app = opine();
+        const blog = opine();
+
+        function fn1() {
+          return false;
+        }
+        function fn2() {
+          return true;
+        }
+
+        app.set("trust proxy", fn1);
+        expect(app.get("trust proxy")).toEqual(fn1);
+        expect(app.get("trust proxy fn")).toEqual(fn1);
+
+        blog.set("trust proxy", fn2);
+        expect(blog.get("trust proxy")).toEqual(fn2);
+        expect(blog.get("trust proxy fn")).toEqual(fn2);
+
+        app.use(blog);
+
+        expect(app.get("trust proxy")).toEqual(fn1);
+        expect(app.get("trust proxy fn")).toEqual(fn1);
+        expect(blog.get("trust proxy")).toEqual(fn2);
+        expect(blog.get("trust proxy fn")).toEqual(fn2);
       });
     });
   });

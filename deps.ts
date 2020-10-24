@@ -52,3 +52,4 @@ export { encodeUrl } from "https://deno.land/x/encodeurl@1.0.0/mod.ts";
 export { gunzip, inflate } from "https://deno.land/x/denoflate@1.1/mod.ts";
 export { default as parseRange } from "https://cdn.skypack.dev/range-parser@1.2.1";
 export { default as qs } from "https://cdn.skypack.dev/qs@6.9.4";
+export { default as ipaddr } from "https://cdn.skypack.dev/ipaddr.js@2.0.0";
