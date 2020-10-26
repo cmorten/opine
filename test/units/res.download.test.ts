@@ -122,12 +122,12 @@ describe("res", function () {
         try {
           await res.download("test/fixtures/foobar.html");
         } catch (err) {
-          if (!err) {
-            return next(new Error("expected error"));
-          }
+          console.log(err);
 
-          res.send("got " + err.status + " " + err.code);
+          return res.send("got " + err.status + " " + err.code);
         }
+
+        next(new Error("expected error"));
       });
 
       superdeno(app)
@@ -141,12 +141,11 @@ describe("res", function () {
       app.use(async function (req, res, next) {
         try {
           await res.download("test/fixtures/foobar.html");
-        } catch (err) {
-          if (!err) {
-            return next(new Error("expected error"));
-          }
-          res.end("failed");
+        } catch (_) {
+          return res.end("failed");
         }
+
+        next(new Error("expected error"));
       });
 
       superdeno(app)
