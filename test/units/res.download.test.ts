@@ -122,8 +122,6 @@ describe("res", function () {
         try {
           await res.download("test/fixtures/foobar.html");
         } catch (err) {
-          console.log(err);
-
           return res.send("got " + err.status + " " + err.code);
         }
 

@@ -59,8 +59,8 @@ const MAX_MAXAGE = 60 * 60 * 24 * 365 * 1000; // 1 year
  */
 const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/;
 
-const ENOENT = "No such file or directory (os error 2)";
-const ENAMETOOLONG = "File name too long (os error 63)";
+const ENOENT_REGEXP = /\(os error 2\)$/;
+const ENAMETOOLONG_REGEXP = /\(os error 63\)$/;
 
 /**
  * Normalize the index option into an array.
@@ -275,9 +275,9 @@ export function sendError(res: Response, error?: Error): void {
       new Deno.errors.NotFound().message,
       { code: "ENOENT" },
     );
-  } else if (error.message === ENOENT) {
+  } else if (ENOENT_REGEXP.test(error.message)) {
     throw createError(404, error.message, { code: "ENOENT" });
-  } else if (error.message === ENAMETOOLONG) {
+  } else if (ENAMETOOLONG_REGEXP.test(error.message)) {
     throw createError(404, error.message, { code: "ENAMETOOLONG" });
   }
 
@@ -555,7 +555,7 @@ async function sendFile(
     return res.redirect(301, collapseLeadingSlashes(path + "/"));
   } catch (err) {
     if (
-      err.message === ENOENT && !extname(path) &&
+      ENOENT_REGEXP.test(err.message) && !extname(path) &&
       path[path.length - 1] !== sep
     ) {
       return await sendExtension(req, res, path, options);
