@@ -280,7 +280,7 @@ describe("serveStatic()", function () {
 
       superdeno(server)
         .get("/users")
-        .expect(404, /Cannot GET \/users\//, done);
+        .expect(200, "<p>deno, superdeno</p>", done);
     });
 
     it("should not redirect incorrectly", function (done) {
@@ -331,19 +331,6 @@ describe("serveStatic()", function () {
 
       superdeno(server)
         .get("/bogus/")
-        .expect(shouldNotHaveHeader("x-custom"))
-        .expect(404, done);
-    });
-
-    it("should not get called on redirect", function (done) {
-      const server = createApp(fixtures, {
-        before: function (res: any) {
-          res.set("x-custom", "set");
-        },
-      });
-
-      superdeno(server)
-        .get("/users")
         .expect(shouldNotHaveHeader("x-custom"))
         .expect(404, done);
     });

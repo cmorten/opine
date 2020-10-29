@@ -108,7 +108,7 @@ function containsDotFile(parts: string[]): boolean {
  * @return {boolean}
  * @private
  */
-function hasTrailingSlash(path: string): boolean {
+export function hasTrailingSlash(path: string): boolean {
   return path[path.length - 1] === "/";
 }
 
@@ -282,7 +282,7 @@ export function sendError(res: Response, error?: Error): void {
   }
 
   throw createError(
-    (error as any).status ?? 500,
+    (error as any).status ?? (error as any).statusCode ?? 500,
     error.message,
     { code: (error as any).code },
   );
@@ -351,6 +351,10 @@ async function _send(
 ) {
   if (res.written) {
     return sendError(res, createError(500, "Response already written"));
+  }
+
+  if (options.before) {
+    options.before(res, path, stat);
   }
 
   const cacheControl = Boolean(options.cacheControl ?? true);
