@@ -22,7 +22,7 @@ describe("bodyParser: text", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual("");
+      expect(req.body).toEqual("");
       done();
     });
   });
@@ -37,7 +37,7 @@ describe("bodyParser: text", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(mockText);
+      expect(req.body).toEqual(mockText);
       done();
     });
   });

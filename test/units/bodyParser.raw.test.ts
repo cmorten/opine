@@ -21,7 +21,7 @@ describe("bodyParser: raw", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual("");
+      expect(req.body).toEqual("");
       done();
     });
   });
@@ -37,7 +37,7 @@ describe("bodyParser: raw", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(encodedText);
+      expect(req.body).toEqual(encodedText);
       done();
     });
   });

@@ -11,7 +11,7 @@ export const create = function (
 ) {
   const id = req.params.user_id;
   const user = db.users[parseInt(id)];
-  const body = req.parsedBody;
+  const body = req.body;
   if (!user) return next("route");
   const pet: any = { name: body.pet.name };
   pet.id = db.pets.push(pet) - 1;

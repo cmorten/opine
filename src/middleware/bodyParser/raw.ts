@@ -69,7 +69,7 @@ export function raw(options: any = {}) {
       !hasBody(req.headers) ||
       parseInt(req.headers.get("content-length") || "") === 0
     ) {
-      req.parsedBody = "";
+      req.body = "";
       next();
 
       return;

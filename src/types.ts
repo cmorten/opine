@@ -519,7 +519,7 @@ export interface Request<
   /**
    * Body of request.
    */
-  body: Deno.Reader;
+  body: any;
 
   method: string;
 

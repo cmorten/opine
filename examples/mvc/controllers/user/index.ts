@@ -47,7 +47,7 @@ export const update = function (
   res: Response,
   _next: NextFunction,
 ) {
-  const body = req.parsedBody;
+  const body = req.body;
   (req as any).user.name = body.user.name;
   res.redirect("/user/" + (req as any).user.id);
 };

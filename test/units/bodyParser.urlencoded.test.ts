@@ -21,7 +21,7 @@ describe("bodyParser: urlencoded", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual({});
+      expect(req.body).toEqual({});
       done();
     });
   });
@@ -36,7 +36,7 @@ describe("bodyParser: urlencoded", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(Object.fromEntries(mockFormData));
+      expect(req.body).toEqual(Object.fromEntries(mockFormData));
       done();
     });
   });

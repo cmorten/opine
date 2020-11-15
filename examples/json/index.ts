@@ -15,14 +15,14 @@ import { json, opine } from "../../mod.ts";
 
 const app = opine();
 
-// Use the JSON body parser to set `req.parsedBody` to the
+// Use the JSON body parser to set `req.body` to the
 // passed JSON payload.
 app.use(json());
 
 // Receive `POST` requests to `/` and return the passed
 // JSON body.
 app.post("/", function (req, res) {
-  res.send(req.parsedBody);
+  res.send(req.body);
 });
 
 // You can call listen the same as Express with just

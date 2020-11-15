@@ -21,7 +21,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual({});
+      expect(req.body).toEqual({});
       done();
     });
   });
@@ -36,7 +36,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(mockJson);
+      expect(req.body).toEqual(mockJson);
       done();
     });
   });
@@ -51,7 +51,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual([mockJson]);
+      expect(req.body).toEqual([mockJson]);
       done();
     });
   });
@@ -70,7 +70,7 @@ describe("bodyParser: json", () => {
 
     parser(req, {} as any, (err?: any) => {
       if (err) throw err;
-      expect(req.parsedBody).toEqual(mockJson);
+      expect(req.body).toEqual(mockJson);
       done();
     });
   });

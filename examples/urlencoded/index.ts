@@ -15,14 +15,14 @@ import { opine, urlencoded } from "../../mod.ts";
 
 const app = opine();
 
-// Use the urlencoded body parser to set `req.parsedBody` to a
+// Use the urlencoded body parser to set `req.body` to a
 // decoded version of the passed payload.
 app.use(urlencoded());
 
 // Receive `POST` requests to `/` and return the decoded
 // version of the passed urlencoded body.
 app.post("/", function (req, res) {
-  res.send(req.parsedBody);
+  res.send(req.body);
 });
 
 // You can call listen the same as Express with just

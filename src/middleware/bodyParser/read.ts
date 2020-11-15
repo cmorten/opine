@@ -86,7 +86,7 @@ export async function read(
       ? new TextDecoder(encoding).decode(raw)
       : raw;
 
-    req.parsedBody = parse(str);
+    req.body = parse(str);
   } catch (err) {
     next(createError(400, err, {
       body: str ?? raw,
