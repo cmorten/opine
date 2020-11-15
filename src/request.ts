@@ -25,23 +25,23 @@ import type {
 export const requestProxy: Function = (req: Request) => {
   return new Proxy(req, {
     get: (target: any, name: string | number | symbol) => {
-      if (name === 'body') return target.parsedBody ?? target.body;
+      if (name === "body") return target.parsedBody ?? target.body;
       return target[name];
     },
     set: (target: any, name: string | number | symbol, value: any): boolean => {
       try {
-        if (name === 'body') {
+        if (name === "body") {
           target.parsedBody = value;
         } else {
           target[name] = value;
         }
         return true;
-      } catch(_) {
+      } catch (_) {
         return false;
       }
-    }
+    },
   });
-}
+};
 
 /**
  * Request prototype.
