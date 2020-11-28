@@ -34,15 +34,15 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@0.25.0/mod.ts";
+import { opine } from "https://deno.land/x/opine@0.25.0/mod.ts"
 
-const app = opine();
+const app = opine()
 
-app.use((req, res) => {
-  res.send("Hello World");
-});
+app.get('/', function(request, response) {
+    response.send("Hello World")
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ## Installation
