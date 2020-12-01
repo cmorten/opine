@@ -14,7 +14,7 @@ benchmark:
 	@echo
 
 build:
-	@deno run --allow-net="deno.land" --lock=lock.json --reload mod.ts
+	@deno run --allow-net="deno.land" --reload mod.ts
 
 ci:
 	@make fmt-check
