@@ -4,6 +4,7 @@ export { methods } from "./src/methods.ts";
 export { request } from "./src/request.ts";
 export { Router } from "./src/router/index.ts";
 export { Route } from "./src/router/route.ts";
+export * from "./src/types.ts";
 export { query } from "./src/middleware/query.ts";
 export { json } from "./src/middleware/bodyParser/json.ts";
 export { raw } from "./src/middleware/bodyParser/raw.ts";

@@ -36,10 +36,9 @@ import {
   encodeUrl,
   escapeHtml,
   fromFileUrl,
-  join,
 } from "../../deps.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
-import { send, hasTrailingSlash, sendError } from "../utils/send.ts";
+import { hasTrailingSlash, send, sendError } from "../utils/send.ts";
 import type {
   Handler,
   NextFunction,

@@ -361,7 +361,7 @@ async function _send(
 
   if (cacheControl && !res.get("Cache-Control")) {
     let maxage = options.maxAge ?? options.maxage;
-    maxage = typeof maxage === "string" ? ms(maxage, {}) : Number(maxage);
+    maxage = typeof maxage === "string" ? ms(maxage) : Number(maxage);
     maxage = !isNaN(maxage) ? Math.min(Math.max(0, maxage), MAX_MAXAGE) : 0;
 
     let cacheControlHeader = "public, max-age=" + Math.floor(maxage / 1000);

@@ -84,12 +84,12 @@ import {
   opine,
   json,
   urlencoded,
-} from "https://deno.land/x/opine@0.25.0/mod.ts";
+} from "https://deno.land/x/opine@0.26.0/mod.ts";
 
 const app = opine();
 
 app.use(json()); // for parsing application/json
-app.use(urlencoded(); // for parsing application/x-www-form-urlencoded
+app.use(urlencoded()); // for parsing application/x-www-form-urlencoded
 
 app.post("/profile", function (req, res, next) {
   console.log(req.parsedBody);
@@ -100,7 +100,7 @@ app.post("/profile", function (req, res, next) {
 The following example shows how to implement your own simple body-parsing middleware to transform `req.parsedBody` into a raw string:
 
 ```ts
-import opine from "https://deno.land/x/opine@0.25.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
 
 const app = opine();
 
