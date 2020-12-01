@@ -39,7 +39,7 @@ import { opine } from "https://deno.land/x/opine@0.26.0/mod.ts";
 const app = opine();
 
 app.get("/", function(req, res) {
-  response.send("Hello World");
+  res.send("Hello World");
 });
 
 app.listen(3000);
