@@ -34,7 +34,7 @@ fmt-check:
 	@deno fmt --check $(FILES_TO_FORMAT)
 
 lint:
-	@deno lint --unstable
+	@deno lint --unstable $(FILES_TO_FORMAT)
 
 lock:
 	@deno run --allow-net="deno.land" --lock=lock.json --lock-write --reload mod.ts

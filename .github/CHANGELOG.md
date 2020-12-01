@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.26.0] - 01-12-2020
+
+- feat: upgrade Opine to support Deno 1.5.4 and std 0.79.0
+
 ## [0.25.0] - 24-10-2020
 
 - [#72] Implement trust proxy setting (#84)
