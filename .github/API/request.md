@@ -89,7 +89,7 @@ import {
 const app = opine();
 
 app.use(json()); // for parsing application/json
-app.use(urlencoded(); // for parsing application/x-www-form-urlencoded
+app.use(urlencoded()); // for parsing application/x-www-form-urlencoded
 
 app.post("/profile", function (req, res, next) {
   console.log(req.parsedBody);
