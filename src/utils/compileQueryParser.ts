@@ -16,7 +16,7 @@ function newObject() {
  * @return {Object}
  * @private
  */
-function parseExtendedQueryString(str: String) {
+function parseExtendedQueryString(str: string) {
   return qs.parse(str, {
     allowPrototypes: true,
   });
