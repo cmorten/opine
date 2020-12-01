@@ -26,7 +26,7 @@ export const query = function (options: any) {
 
   return function opineQuery(req: Request, _res: Response, next: NextFunction) {
     if (!req.query) {
-      const value = parseUrl(req)?.query;
+      const value = parseUrl(req)?.query as string;
       req.query = queryParse(value, opts);
     }
 
