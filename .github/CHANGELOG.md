@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [0.27.0] - 09-12-2020
+
+- feat: upgrade Opine to support Deno 1.6.0 and std 0.80.0
+- feat: upgrade superdeno and evt modules
+
 ## [0.26.0] - 01-12-2020
 
 - feat: upgrade Opine to support Deno 1.5.4 and std 0.79.0

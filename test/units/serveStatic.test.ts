@@ -123,7 +123,7 @@ describe("serveStatic()", function () {
           if (err) throw err;
           superdeno(server)
             .get("/todo.txt")
-            .set("If-None-Match", res.header.etag)
+            .set("If-None-Match", res.header.etag as string)
             .expect(304, done);
         });
     });

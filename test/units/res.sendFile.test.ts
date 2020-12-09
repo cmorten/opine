@@ -63,7 +63,7 @@ describe("res", function () {
             return done(err);
           }
 
-          const etag = res.header.etag;
+          const etag = res.header.etag as string;
 
           superdeno(app)
             .get("/")

@@ -30,7 +30,7 @@ export async function it(
     let race: Promise<unknown> = Promise.resolve();
 
     if (fn.length === 1) {
-      let resolve: () => void;
+      let resolve: (value?: unknown) => void;
       const donePromise = new Promise((r) => {
         resolve = r;
       });
