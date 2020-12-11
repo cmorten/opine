@@ -119,7 +119,7 @@ app.post("/profile", function (req, res, next) {
 });
 ```
 
-#### req.fresh
+#### req.fresh
 
 When the response is still "fresh" in the client's cache `true` is returned, otherwise `false` is returned to indicate that the client cache is now stale and the full response should be sent.
 
