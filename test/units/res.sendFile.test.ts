@@ -130,7 +130,7 @@ describe("res", function () {
         .expect("ETag", /^(?:W\/)?"[^"]+"$/)
         .expect(200, "deno", function (err, res) {
           if (err) return done(err);
-          const etag = res.header.etag;
+          const etag = res.header.etag as string;
 
           superdeno(app)
             .get("/")
