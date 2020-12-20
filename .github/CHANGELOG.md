@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [0.27.1] - 20-12-2020
+
+- feat: upgrade Opine to support Deno 1.6.1 and std 0.81.0
+- feat: upgrade superdeno to 3.0.0
+- ci: upgrade eggs cli to 0.3.3
+
 ## [0.27.0] - 09-12-2020
 
 - feat: upgrade Opine to support Deno 1.6.0 and std 0.80.0

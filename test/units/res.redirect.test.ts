@@ -29,8 +29,6 @@ function createRedirectMiddleware(
       body = new TextDecoder().decode(res.body);
     }
 
-    // It's not currently possible to not follow redirects in superdeno:
-    // https://github.com/asos-craigmorten/superdeno/issues/6
     deferredPromise.resolve({
       status: res.status,
       location: res.headers?.get("location"),
@@ -62,6 +60,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .expect(200, { url: "/to", query: {} }, done);
 
       expect(pick(await output, ["status", "location"])).toEqual({
@@ -84,6 +83,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .expect(
           200,
           {
@@ -114,6 +114,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .expect(200, {
           url: location,
           query: { q: locationSearchParams.get("q") },
@@ -141,6 +142,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .expect(200, { url: location, query: {} }, done);
 
       expect(pick(await output, ["status", "location"])).toEqual({
@@ -165,6 +167,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .expect(500, done);
     });
   });
@@ -181,6 +184,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Referrer", referrer)
         .expect(200, { url: referrer, query: { referrer: "ok" } }, done);
 
@@ -202,6 +206,7 @@ describe("res", function () {
 
       superdeno(app)
         .head("/from")
+        .redirects(-1)
         .expect(shouldNotHaveBody())
         .expect(200, done);
     });
@@ -224,6 +229,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Accept", "text/html")
         .expect(200, { url: location, query: {} }, done);
 
@@ -250,6 +256,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Host", "http://example.com")
         .set("Accept", "text/html")
         .expect(200, { url: escapedLocation, query: {} }, done);
@@ -274,6 +281,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Accept", "text/plain, */*")
         .expect(200, { url: location, query: {} }, done);
 
@@ -295,6 +303,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Host", "http://example.com")
         .set("Accept", "text/plain, */*")
         .expect(200, done);
@@ -319,6 +328,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Accept", "text/plain, */*")
         .expect(200, done);
 
@@ -342,6 +352,7 @@ describe("res", function () {
 
       superdeno(app)
         .get("/from")
+        .redirects(-1)
         .set("Accept", "application/octet-stream")
         .expect(200, { url: "/to", query: {} }, done);
 
