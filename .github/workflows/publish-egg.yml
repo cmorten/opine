@@ -11,11 +11,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.5.4
-      - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.2.2/mod.ts
+          deno-version: 1.6.1
+      - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.3.3/eggs.ts
       - run: |
           export PATH="/home/runner/.deno/bin:$PATH"
           eggs link ${NEST_LAND_KEY}
-          eggs publish
+          eggs publish --yes
         env:
           NEST_LAND_KEY: ${{secrets.NEST_LAND_KEY}}

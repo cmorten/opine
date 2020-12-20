@@ -7,7 +7,7 @@ Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 The `app` object conventionally denotes the Opine application. Create it by calling the top-level `opine()` function exported by the Opine module:
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 
@@ -59,7 +59,7 @@ The `app.mountpath` property contains one or more path patterns on which a sub-a
 > A sub-app is an instance of `opine` that may be used for handling the request to a route.
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine(); // the main app
 const admin = opine(); // the sub app
@@ -447,7 +447,7 @@ app.get("/", function (req, res) {
 Binds and listens for connections on the specified address. This method is nearly identical to Deno's [http.listenAndServe()](https://doc.deno.land/https/deno.land/std/http/server.ts#listenAndServe). An optional callback can be provided which will be executed after the server starts listening for requests - this is provided for legacy reasons to aid in transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 
@@ -477,7 +477,7 @@ Binds and listens for connections on the specified numerical port. If no port is
 This method is supported for legacy reasons to aid in transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 const PORT = 3000;
@@ -490,7 +490,7 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 Binds and listens for connections using the specified [http.HTTPOptions](https://doc.deno.land/https/deno.land/std/http/server.ts#HTTPOptions). This method is nearly identical to Deno's [http.listenAndServe()](https://doc.deno.land/https/deno.land/std/http/server.ts#listenAndServe). An optional callback can be provided which will be executed after the server starts listening for requests - this is provided for legacy reasons to aid in transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 
@@ -502,7 +502,7 @@ app.listen({ port: 3000 });
 Binds and listens for connections using the specified [http.HTTPSOptions](https://doc.deno.land/https/deno.land/std/http/server.ts#HTTPSOptions). This method is nearly identical to Deno's [http.listenAndServeTLS()](https://doc.deno.land/https/deno.land/std/http/server.ts#listenAndServeTLS). An optional callback can be provided which will be executed after the server starts listening for requests - this is provided for legacy reasons to aid in transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 

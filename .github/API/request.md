@@ -84,7 +84,7 @@ import {
   opine,
   json,
   urlencoded,
-} from "https://deno.land/x/opine@0.26.0/mod.ts";
+} from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 
@@ -100,7 +100,7 @@ app.post("/profile", function (req, res, next) {
 The following example shows how to implement your own simple body-parsing middleware to transform `req.parsedBody` into a raw string:
 
 ```ts
-import opine from "https://deno.land/x/opine@0.26.0/mod.ts";
+import opine from "https://deno.land/x/opine@0.27.1/mod.ts";
 
 const app = opine();
 
@@ -119,7 +119,7 @@ app.post("/profile", function (req, res, next) {
 });
 ```
 
-#### req.fresh
+#### req.fresh
 
 When the response is still "fresh" in the client's cache `true` is returned, otherwise `false` is returned to indicate that the client cache is now stale and the full response should be sent.
 

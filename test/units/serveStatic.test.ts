@@ -111,7 +111,7 @@ describe("serveStatic()", function () {
           if (err) throw err;
           superdeno(server)
             .get("/todo.txt")
-            .set("If-None-Match", res.header.etag)
+            .set("If-None-Match", res.header.etag as string)
             .expect(304, done);
         });
     });
@@ -163,7 +163,7 @@ describe("serveStatic()", function () {
             .expect(404, /Cannot GET \/dinos\//, done);
         });
 
-        it("should redirect when directory without slash (but can only test end result is 404 as superdeno cannot intercept redirects)", function (
+        it("should redirect when directory without slash", function (
           done,
         ) {
           server = createApp(
@@ -173,7 +173,7 @@ describe("serveStatic()", function () {
 
           superdeno(server)
             .get("/dinos")
-            .expect(404, /Cannot GET \/dinos\//, done);
+            .expect(301, done);
         });
       });
 
@@ -232,7 +232,7 @@ describe("serveStatic()", function () {
             .expect(404, /NotFoundError|ENOENT/, done);
         });
 
-        it("should redirect when directory without slash (but can only test end result is 404 as superdeno cannot intercept redirects)", function (
+        it("should redirect when directory without slash", function (
           done,
         ) {
           server = createApp(
@@ -242,7 +242,7 @@ describe("serveStatic()", function () {
 
           superdeno(server)
             .get("/dinos")
-            .expect(404, /NotFoundError|ENOENT/, done);
+            .expect(301, done);
         });
       });
 
@@ -280,7 +280,7 @@ describe("serveStatic()", function () {
 
       superdeno(server)
         .get("/users")
-        .expect(200, "<p>deno, superdeno</p>", done);
+        .expect(301, done);
     });
 
     it("should not redirect incorrectly", function (done) {
@@ -333,6 +333,19 @@ describe("serveStatic()", function () {
         .get("/bogus/")
         .expect(shouldNotHaveHeader("x-custom"))
         .expect(404, done);
+    });
+
+    it("should not get called on redirect", function (done) {
+      const server = createApp(fixtures, {
+        before: function (res: any) {
+          res.set("x-custom", "set");
+        },
+      });
+
+      superdeno(server)
+        .get("/users")
+        .expect(shouldNotHaveHeader("x-custom"))
+        .expect(301, done);
     });
   });
 });
