@@ -77,11 +77,28 @@ The `root` argument specifies the root directory from which to serve static asse
 
 The following table describes the properties of the `options` object.
 
-| Property      | Description                                                                                                                    | Type     | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------- |
-| `fallthrough` | Let client errors fall-through as unhandled requests, otherwise forward a client error. See [fallthrough](#fallthrough) below. | Boolean  | `true`  |
-| `redirect`    | Redirect to trailing "/" when the pathname is a directory.                                                                     | Boolean  | `true`  |
-| `before`      | Function for setting HTTP headers to serve with the file. See [before](#before) below.                                         | Function |         |
+| Property       | Description                                                                                                                                                                                                                                                                                                                        | Type     | Default      |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------ |
+| `before`       | Function for setting HTTP headers to serve with the file. See [before](#before) below.                                                                                                                                                                                                                                             | Function |              |
+| `dotfiles`     | Determines how dotfiles (files or directories that begin with a dot ".") are treated. <br/><br/>See [dotfiles](#dotfiles) below.                                                                                                                                                                                                   | String   | "ignore"     |
+| `etag`         | Enable or disable etag generation <br/><br/>NOTE: `express.static` always sends weak ETags.                                                                                                                                                                                                                                        | Boolean  | `true`       |
+| `extensions`   | Sets file extension fallbacks: If a file is not found, search for files with the specified extensions and serve the first one found. Example: `['html', 'htm']`.                                                                                                                                                                   | Mixed    | `false`      |
+| `fallthrough`  | Let client errors fall-through as unhandled requests, otherwise forward a client error. See [fallthrough](#fallthrough) below.                                                                                                                                                                                                     | Boolean  | `true`       |
+| `immutable`    | Enable or disable the `immutable` directive in the `Cache-Control` response header. If enabled, the `maxAge` option should also be specified to enable caching. The `immutable` directive will prevent supported clients from making conditional requests during the life of the `maxAge` option to check if the file has changed. | Boolean  | `false`      |
+| `index`        | Sends the specified directory index file. Set to `false` to disable directory indexing.                                                                                                                                                                                                                                            | Mixed    | "index.html" |
+| `lastModified` | Set the `Last-Modified` header to the last modified date of the file on the OS.                                                                                                                                                                                                                                                    | Boolean  | `true`       |
+| `maxAge`       | Set the max-age property of the Cache-Control header in milliseconds or a string in [ms format](https://www.npmjs.org/package/ms).                                                                                                                                                                                                 | Number   | 0            |
+| `redirect`     | Redirect to trailing "/" when the pathname is a directory.                                                                                                                                                                                                                                                                         | Boolean  | `true`       |
+
+### dotfiles
+
+Possible values for this option are:
+
+- "allow" - No special treatment for dotfiles.
+- "deny" - Deny a request for a dotfile, respond with `403`, then call `next()`.
+- "ignore" - Act as if the dotfile does not exist, respond with `404`, then call `next()`.
+
+**NOTE**: With the default value, it will not ignore files in a directory that begins with a dot.
 
 ### fallthrough
 
@@ -121,7 +138,12 @@ Here is an example of using the `serveStatic` middleware function with an elabor
 
 ```ts
 const options = {
+  dotfiles: "ignore",
+  etag: false,
+  extensions: ["htm", "html"],
   fallthrough: false
+  index: false,
+  maxAge: "1d",
   redirect: false,
   before(res: Response, path: string, stat: Deno.FileInfo) {
     res.set("X-Timestamp", Date.now());
