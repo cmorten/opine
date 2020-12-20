@@ -12,8 +12,6 @@ const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
 textHeaders.set("Content-Length", "1");
 
-//TODO: refactor this once have a supertest equivalent allowing for
-// easy port of Express tests.
 describe("bodyParser: urlencoded", () => {
   it("should handle requests without bodies", (done) => {
     const req: any = { headers: formHeaders };

@@ -42,10 +42,6 @@ import type {
   Response,
 } from "../types.ts";
 
-// TODO: header options, and various other error handling, see:
-// - notes in response.ts for `res.sendFile()`
-// - notes in response.ts for `res.download()`
-// - https://github.com/expressjs/serve-static/#options
 /**
  * Serve static files.
  * 

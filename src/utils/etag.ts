@@ -70,8 +70,6 @@ function entitytag(entity: any): string {
  * @private
  */
 function isstats(obj: any): boolean {
-  // TODO: genuine(?) Deno.FileInfo identification
-
   // quack quack
   return obj && typeof obj === "object" &&
     "atime" in obj &&
