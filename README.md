@@ -74,8 +74,6 @@ import { opine } from "https://x.nest.land/opine@1.0.0/mod.ts";
 - Compatible with [SuperDeno](https://github.com/asos-craigmorten/superdeno) for easy server testing
 - Supports HTTP proxy middleware with [opine-http-proxy](https://github.com/asos-craigmorten/opine-http-proxy)
 
-And more to come as we achieve feature parity with [ExpressJS](https://github.com/expressjs/express).
-
 ## Documentation
 
 - [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) - usually the best place when getting started ✨
