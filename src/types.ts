@@ -602,6 +602,12 @@ export interface Response<ResBody = any>
   written: Boolean;
 
   /**
+   * Add a resource ID to the list of resources to be
+   * closed after the .end() method has been called.
+   */
+  addResource(rid: number): void;
+
+  /**
    * Appends the specified value to the HTTP response header field.
    * If the header is not already set, it creates the header with the specified value.
    * The value parameter can be a string or an array.
@@ -644,11 +650,23 @@ export interface Response<ResBody = any>
    * Transfer the file at the given `path` as an attachment.
    *
    * Optionally providing an alternate attachment `filename`.
+   * 
+   * Optionally providing an `options` object to use with `res.sendFile()`.
+   *
+   * This function will set the `Content-Disposition` header, overriding
+   * any existing `Content-Disposition` header in order to set the attachment
+   * and filename.
    *
    * This method uses `res.sendFile()`.
    */
   download(path: string): Promise<this | void>;
   download(path: string, filename: string): Promise<this | void>;
+  download(path: string, filename: string, options: any): Promise<this | void>;
+
+  /**
+   * Sets an ETag header.
+   */
+  etag(chunk: string | Uint8Array | Deno.FileInfo): this;
 
   /**
    * Ends a response.
@@ -862,7 +880,7 @@ export interface Response<ResBody = any>
    *       });
    *     });
    */
-  sendFile(path: string): Promise<this | void>;
+  sendFile(path: string, options?: any): Promise<this | void>;
 
   /**
    * Set the response HTTP status code to `statusCode` and send its string representation as the response body.

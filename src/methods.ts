@@ -1,6 +1,3 @@
-// TODO: investigate whether Deno exports supported
-// methods like Node's `http.METHODS`.
-
 /**
  * Supported Deno methods.
  * 

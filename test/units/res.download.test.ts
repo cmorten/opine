@@ -1,6 +1,7 @@
 import { opine } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
-import { describe, it } from "../utils.ts";
+import { dirname, fromFileUrl, join } from "../../deps.ts";
+import { describe, it, shouldHaveBody } from "../utils.ts";
 
 describe("res", function () {
   describe(".download(path)", function () {
@@ -9,6 +10,40 @@ describe("res", function () {
 
       app.use(function (req, res) {
         res.download("test/fixtures/user.html");
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="user.html"')
+        .expect(200, "<p>{{user.name}}</p>", done);
+    });
+
+    it("should handle file URLs", function (done) {
+      const app = opine();
+      const __dirname = dirname(import.meta.url);
+
+      app.use(function (req, res) {
+        const filePath = join(__dirname, "../../test/fixtures/user.html");
+        res.download(filePath);
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="user.html"')
+        .expect(200, "<p>{{user.name}}</p>", done);
+    });
+
+    it("should handle absolute paths", function (done) {
+      const app = opine();
+      const __dirname = dirname(import.meta.url);
+
+      app.use(function (req, res) {
+        const filePath = fromFileUrl(
+          join(__dirname, "../../test/fixtures/user.html"),
+        );
+        res.download(filePath);
       });
 
       superdeno(app)
@@ -35,27 +70,102 @@ describe("res", function () {
     });
   });
 
+  describe(".download(path, filename, options)", function () {
+    it("should accept options", function (done) {
+      const app = opine();
+      var options = {};
+
+      app.use(function (req, res) {
+        res.download("test/fixtures/user.html", "document", options);
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(200)
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="document"')
+        .end(done);
+    });
+
+    it("should allow options to res.sendFile()", function (done) {
+      const app = opine();
+
+      app.use(function (req, res) {
+        res.download("test/fixtures/.name", "document", {
+          dotfiles: "allow",
+          maxAge: "4h",
+        });
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect(200)
+        .expect("Content-Disposition", 'attachment; filename="document"')
+        .expect("Cache-Control", "public, max-age=14400")
+        .expect(shouldHaveBody(("Deno")))
+        .end(done);
+    });
+
+    describe("when options.headers contains Content-Disposition", function () {
+      it("should be ignored", function (done) {
+        const app = opine();
+
+        app.use(function (req, res) {
+          res.download("test/fixtures/user.html", "document", {
+            headers: {
+              "Content-Type": "text/x-custom",
+              "Content-Disposition": "inline",
+            },
+          });
+        });
+
+        superdeno(app)
+          .get("/")
+          .expect(200)
+          .expect("Content-Type", "text/x-custom; charset=utf-8")
+          .expect("Content-Disposition", 'attachment; filename="document"')
+          .end(done);
+      });
+
+      it("should be ignored case-insensitively", function (done) {
+        const app = opine();
+
+        app.use(function (req, res) {
+          res.download("test/fixtures/user.html", "document", {
+            headers: {
+              "content-type": "text/x-custom",
+              "content-disposition": "inline",
+            },
+          });
+        });
+
+        superdeno(app)
+          .get("/")
+          .expect(200)
+          .expect("Content-Type", "text/x-custom; charset=utf-8")
+          .expect("Content-Disposition", 'attachment; filename="document"')
+          .end(done);
+      });
+    });
+  });
+
   describe("on failure", function () {
-    it("should invoke the callback", function (done) {
+    it("should throw an error", function (done) {
       const app = opine();
 
       app.use(async function (req, res, next) {
         try {
           await res.download("test/fixtures/foobar.html");
         } catch (err) {
-          if (!err) {
-            return next(new Error("expected error"));
-          }
-
-          res.send(err.message);
+          return res.send("got " + err.status + " " + err.code);
         }
+
+        next(new Error("expected error"));
       });
 
-      superdeno(app).get("/").expect(
-        200,
-        /(No such file or directory|The system cannot find the file specified)/,
-        done,
-      );
+      superdeno(app)
+        .get("/")
+        .expect(200, "got 404 ENOENT", done);
     });
 
     it("should remove Content-Disposition", function (done) {
@@ -64,12 +174,11 @@ describe("res", function () {
       app.use(async function (req, res, next) {
         try {
           await res.download("test/fixtures/foobar.html");
-        } catch (err) {
-          if (!err) {
-            return next(new Error("expected error"));
-          }
-          res.end("failed");
+        } catch (_) {
+          return res.end("failed");
         }
+
+        next(new Error("expected error"));
       });
 
       superdeno(app)

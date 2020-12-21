@@ -170,11 +170,13 @@ res.cookie({ name: "myCookie" });
 res.clearCookie({ name: "myCookie" });
 ```
 
-#### async res.download(path [, filename])
+#### async res.download(path [, filename] [, options])
 
 Transfers the file at `path` as an "attachment". Typically, browsers will prompt the user for download. By default, the `Content-Disposition` header "filename=" parameter is `path` (this typically appears in the browser dialog). Override this default with the `filename` parameter.
 
 This method uses [res.sendFile()](#async-ressendfilepath) to transfer the file.
+
+The optional options argument passes through to the underlying [res.sendFile()](#async-ressendfilepath) call, and takes the exact same parameters.
 
 ```ts
 await res.download("/report-12345.pdf");
@@ -472,20 +474,42 @@ res.send({ user: "deno" });
 res.send([1, 2, 3]);
 ```
 
-#### async res.sendFile(path)
+#### async res.sendFile(path [, options])
 
 Transfers the file at the given `path`. Sets the `Content-Type` response HTTP header field based on the filename's extension.
 
 > This API provides access to data on the running file system. Ensure that the way in which the `path` argument was constructed into an absolute path is secure if it contains user input.
+>
+> When the `root` option is provided, the `path` argument is allowed to be a relative path, including containing `..`. Express will validate that the relative path provided as `path` will resolve within the given `root` option.
+
+The following table provides details on the `options` parameter.
+
+| Property       | Description                                                                                                                                                                                                                                                                                                                        | Default  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `maxAge`       | Sets the max-age property of the `Cache-Control` header in milliseconds or a string in [ms format](https://www.npmjs.org/package/ms)                                                                                                                                                                                               | 0        |
+| `root`         | Root directory for relative filenames.                                                                                                                                                                                                                                                                                             |          |
+| `lastModified` | Sets the `Last-Modified` header to the last modified date of the file on the OS. Set `false` to disable it.                                                                                                                                                                                                                        | Enabled  |
+| `headers`      | Object containing HTTP headers to serve with the file.                                                                                                                                                                                                                                                                             |          |
+| `dotfiles`     | Option for serving dotfiles. Possible values are "allow", "deny", "ignore".                                                                                                                                                                                                                                                        | "ignore" |
+| `acceptRanges` | Enable or disable accepting ranged requests.                                                                                                                                                                                                                                                                                       | `true`   |
+| `cacheControl` | Enable or disable setting `Cache-Control` response header.                                                                                                                                                                                                                                                                         | `true`   |
+| `immutable`    | Enable or disable the `immutable` directive in the `Cache-Control` response header. If enabled, the `maxAge` option should also be specified to enable caching. The `immutable` directive will prevent supported clients from making conditional requests during the life of the `maxAge` option to check if the file has changed. | `false`  |
 
 Here is an example of using `res.sendFile`.
 
 ```ts
 app.get("/file/:name", async function (req, res, next) {
+  const options = {
+    dotfiles: "deny",
+    headers: {
+      "x-timestamp": Date.now(),
+      "x-sent": true,
+    },
+  };
   const fileName = req.params.name;
 
   try {
-    await res.sendFile(fileName);
+    await res.sendFile(fileName, options);
   } catch (err) {
     next(err);
   }
@@ -501,7 +525,7 @@ app.get("/user/:uid/photos/:file", function (req, res) {
 
   req.user.mayViewFilesFrom(uid, async function (yes) {
     if (yes) {
-      await res.sendFile("/uploads/" + uid + "/" + file);
+      await res.sendFile(`/uploads/${uid}/${file}`);
     } else {
       res.setStatus(403).send("Sorry! You can't see that.");
     }

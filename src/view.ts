@@ -73,9 +73,6 @@ export class View {
     }
 
     if (!options.engines[this.ext]) {
-      // TODO: consider if any way to dynamic import view engines based
-      // off of extension name - likely difficult without import maps
-      // or equivalent.
       throw new Error(
         `Could not find a view engine for extension "${this.ext}"`,
       );
@@ -134,7 +131,6 @@ export class View {
     return path;
   }
 
-  // TODO: move to / support Deno async style over callbacks
   /**
    * Render with the given options.
    *

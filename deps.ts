@@ -23,8 +23,11 @@ export {
   dirname,
   extname,
   fromFileUrl,
+  isAbsolute,
   join,
+  normalize,
   resolve,
+  sep,
 } from "https://deno.land/std@0.81.0/path/mod.ts";
 export { setImmediate } from "https://deno.land/std@0.81.0/node/timers.ts";
 export { parse } from "https://deno.land/std@0.81.0/node/querystring.ts";
@@ -53,3 +56,4 @@ export { gunzip, inflate } from "https://deno.land/x/denoflate@1.1/mod.ts";
 export { default as parseRange } from "https://esm.sh/range-parser@1.2.1";
 export { default as qs } from "https://esm.sh/qs@6.9.4";
 export { default as ipaddr } from "https://esm.sh/ipaddr.js@2.0.0";
+export { default as ms } from "https://esm.sh/ms@2.1.2";

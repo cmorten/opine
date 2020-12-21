@@ -12,8 +12,6 @@ jsonHeaders.set("Content-Length", "1");
 const textHeaders = new Headers();
 textHeaders.set("Content-Type", "text/plain");
 
-//TODO: refactor this once have a supertest equivalent allowing for
-// easy port of Express tests.
 describe("bodyParser: text", () => {
   it("should handle requests without bodies", (done) => {
     const req: any = { headers: textHeaders };
