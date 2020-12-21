@@ -11,6 +11,7 @@ import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";
 import { init } from "./middleware/init.ts";
 import { query } from "./middleware/query.ts";
+import { requestProxy } from "./utils/requestProxy.ts";
 import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
 import { compileQueryParser } from "./utils/compileQueryParser.ts";
@@ -146,6 +147,8 @@ app.handle = function handle(
   next: NextFunction,
 ): void {
   const router = this._router;
+
+  req = requestProxy(req);
 
   next = next || finalHandler(req, res);
 

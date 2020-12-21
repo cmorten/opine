@@ -78,7 +78,7 @@ export function urlencoded(options: any = {}) {
       !hasBody(req.headers) ||
       parseInt(req.headers.get("content-length") || "") === 0
     ) {
-      (req as any).parsedBody = Object.fromEntries(
+      req.parsedBody = Object.fromEntries(
         new URLSearchParams().entries(),
       );
       next();
@@ -135,7 +135,8 @@ function simpleParser(options: any) {
   }
 
   return function queryParse(body: string) {
-    const paramCount = parameterCount(body, parameterLimit);
+    const decodedBody = decode(body);
+    const paramCount = parameterCount(decodedBody, parameterLimit);
 
     if (paramCount === undefined) {
       throw createError(413, "too many parameters", {
@@ -144,7 +145,7 @@ function simpleParser(options: any) {
     }
 
     return Object.fromEntries(
-      new URLSearchParams(decodeURIComponent(body.replace(/\+/g, " ")))
+      new URLSearchParams(decodedBody)
         .entries(),
     );
   };
@@ -170,7 +171,8 @@ function extendedParser(options: any) {
   }
 
   return function queryParse(body: string) {
-    const paramCount = parameterCount(body, parameterLimit);
+    const decodedBody = decode(body);
+    const paramCount = parameterCount(decodedBody, parameterLimit);
 
     if (paramCount === undefined) {
       throw createError(413, "too many parameters", {
@@ -180,7 +182,7 @@ function extendedParser(options: any) {
 
     const arrayLimit = Math.max(100, paramCount);
 
-    return qs.parse(body, {
+    return qs.parse(decodedBody, {
       allowPrototypes: true,
       arrayLimit,
       depth: Infinity,
@@ -210,4 +212,15 @@ function parameterCount(body: string, limit: number) {
   }
 
   return count;
+}
+
+/**
+ * URI decode a string
+ * 
+ * @param {string} str 
+ * @returns {string} decoded string
+ * @private
+ */
+function decode(str: string): string {
+  return decodeURIComponent(str.replace(/\+/g, " "));
 }

@@ -518,8 +518,20 @@ export interface Request<
 
   /**
    * Body of request.
+   * 
+   * If the body has been passed such that a `parsedBody`
+   * property is defined, this returns the `parsedBody`
+   * value.
+   * 
+   * To always get the raw body value, use the `raw`
+   * property.
    */
-  body: Deno.Reader;
+  body: any;
+
+  /**
+   * Raw body of request.
+   */
+  raw: Deno.Reader;
 
   method: string;
 
@@ -551,7 +563,7 @@ export interface Request<
   next?: NextFunction;
 
   /**
-   * After body parsers, Request will contain _parsedBody boolean property
+   * After body parsers, Request will contain `_parsedBody` boolean property
    * dictating that the body has been parsed.
    * See: opine/src/middleware/bodyParser/
    */
