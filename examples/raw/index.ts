@@ -16,13 +16,14 @@ import { opine, raw } from "../../mod.ts";
 const app = opine();
 
 // Use the raw body parser to set `req.parsedBody` to a
-// decoded raw body.
+// decoded raw body. Opine also exposes this value on
+// the `req.body` property itself for convenience.
 app.use(raw());
 
 // Receive `POST` requests to `/` and return the decoded
 // raw body.
 app.post("/", function (req, res) {
-  res.send(req.parsedBody);
+  res.send(req.body);
 });
 
 // You can call listen the same as Express with just

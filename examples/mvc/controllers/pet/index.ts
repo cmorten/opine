@@ -33,7 +33,7 @@ export const update = function (
   res: Response,
   _next: NextFunction,
 ) {
-  const body = req.parsedBody;
+  const body = req.body;
   (req as any).pet.name = body.pet.name;
   res.redirect(`/pet/${(req as any).pet.id}`);
 };

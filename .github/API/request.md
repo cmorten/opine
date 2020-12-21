@@ -77,7 +77,7 @@ When a request is made to `/greet/jp`, `req.baseUrl` is "/greet". When a request
 
 Contains the data submitted in the request body. By default the `req.body` is a `Deno.Reader`, and needs to be read using a body-parsing middleware such as [`json()`](./bodyParser.md) or [`urlencoded()`](./bodyParser.md).
 
-The following example shows how to use body-parsing middleware to populate `req.parsedBody`. _Note:_ this is one way Opine differs from Express due to `req.body` being a protected property in Deno.
+The following example shows how to use body-parsing middleware to populate `req.body`.
 
 ```ts
 import {
@@ -92,12 +92,12 @@ app.use(json()); // for parsing application/json
 app.use(urlencoded()); // for parsing application/x-www-form-urlencoded
 
 app.post("/profile", function (req, res, next) {
-  console.log(req.parsedBody);
-  res.json(req.parsedBody);
+  console.log(req.body);
+  res.json(req.body);
 });
 ```
 
-The following example shows how to implement your own simple body-parsing middleware to transform `req.parsedBody` into a raw string:
+The following example shows how to implement your own simple body-parsing middleware to transform `req.body` into a raw string:
 
 ```ts
 import opine from "https://deno.land/x/opine@0.28.0/mod.ts";
@@ -105,17 +105,17 @@ import opine from "https://deno.land/x/opine@0.28.0/mod.ts";
 const app = opine();
 
 const bodyParser = async function (req, res, next) {
-  const rawBody = await Deno.readAll(req.body);
+  const rawBody = await Deno.readAll(req.raw);
   const decodedBody = decoder.decode(rawBody);
 
-  (req as any).parsedBody = decodedBody;
+  req.body = decodedBody;
 };
 
 app.use(bodyParser);
 
 app.post("/profile", function (req, res, next) {
-  console.log(req.parsedBody);
-  res.send(req.parsedBody);
+  console.log(req.body);
+  res.send(req.body);
 });
 ```
 
@@ -262,7 +262,11 @@ console.dir(req.query.color);
 // => ['blue', 'black', 'red']
 ```
 
-#### req.route
+#### req.raw
+
+Contains the data submitted in the request body. The `req.raw` is a `Deno.Reader`, and needs to be read using a body-parsing middleware such as [`json()`](./bodyParser.md) or [`urlencoded()`](./bodyParser.md). Unlike the `req.body` property, `req.raw` cannot be overwritten and will always return the original request body.
+
+#### req.route
 
 Contains the currently-matched route, a string. For example:
 
@@ -360,7 +364,7 @@ req.accepts(["html", "json"]);
 // => "json"
 ```
 
-#### req.acceptsCharsets(charset [, ...])
+#### req.acceptsCharsets(charset [, ...])
 
 Returns the first accepted charset of the specified character sets, based on the request's `Accept-Charset` HTTP header field. If none of the specified charsets is accepted, returns empty.
 
