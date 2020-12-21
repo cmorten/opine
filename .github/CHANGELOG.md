@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [0.28.0] - 21-12-2020
+
+- [#75] File options support (#85)
+
 ## [0.27.1] - 20-12-2020
 
 - feat: upgrade Opine to support Deno 1.6.1 and std 0.81.0
