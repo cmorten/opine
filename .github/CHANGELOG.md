@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.0.0] - 21-12-2020
+
+- [#26] Implement request body proxy (#95)
+
+**Breaking**: `req.body` will now be overwritten by body parsers. To retrieve the original body value, use `req.raw`.
+
 ## [0.28.0] - 21-12-2020
 
 - [#75] File options support (#85)
