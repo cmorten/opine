@@ -256,35 +256,51 @@ function clearHeaders(res: Response) {
 }
 
 /**
+ * Create a 404 error.
+ * 
+ * @param {string} message
+ * @returns {Error}
+ * @private
+ */
+function create404Error(): Error {
+  const error: any = new Deno.errors.NotFound();
+  error.status = 404;
+  error.statusCode = 404;
+
+  return error;
+}
+
+/**
  * Emit errors.
  *
  * @param {object} res
  * @param {Error} [error]
  * @private
  */
-export function sendError(res: Response, error?: Error): void {
+export function sendError(res: Response, error?: any): void {
   clearHeaders(res);
 
-  if ((error as any)?.headers) {
-    res.set((error as any).headers);
+  if (error?.headers) {
+    res.set(error.headers);
   }
 
   if (!error) {
     throw createError(
-      404,
-      new Deno.errors.NotFound().message,
+      create404Error(),
       { code: "ENOENT" },
     );
   } else if (ENOENT_REGEXP.test(error.message)) {
-    throw createError(404, error.message, { code: "ENOENT" });
+    throw createError(create404Error(), { code: "ENOENT" });
   } else if (ENAMETOOLONG_REGEXP.test(error.message)) {
-    throw createError(404, error.message, { code: "ENAMETOOLONG" });
+    throw createError(create404Error(), { code: "ENAMETOOLONG" });
+  } else if (error.status === 404 || error.statusCode === 404) {
+    throw createError(create404Error(), { code: error.code });
   }
 
   throw createError(
-    (error as any).status ?? (error as any).statusCode ?? 500,
+    error.status ?? error.statusCode ?? 500,
     error.message,
-    { code: (error as any).code },
+    { code: error.code },
   );
 }
 

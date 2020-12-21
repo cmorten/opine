@@ -1,5 +1,6 @@
 import { opine } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
+import { dirname, fromFileUrl, join } from "../../deps.ts";
 import { describe, it, shouldHaveBody } from "../utils.ts";
 
 describe("res", function () {
@@ -9,6 +10,40 @@ describe("res", function () {
 
       app.use(function (req, res) {
         res.download("test/fixtures/user.html");
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="user.html"')
+        .expect(200, "<p>{{user.name}}</p>", done);
+    });
+
+    it("should handle file URLs", function (done) {
+      const app = opine();
+      const __dirname = dirname(import.meta.url);
+
+      app.use(function (req, res) {
+        const filePath = join(__dirname, "../../test/fixtures/user.html");
+        res.download(filePath);
+      });
+
+      superdeno(app)
+        .get("/")
+        .expect("Content-Type", "text/html; charset=utf-8")
+        .expect("Content-Disposition", 'attachment; filename="user.html"')
+        .expect(200, "<p>{{user.name}}</p>", done);
+    });
+
+    it("should handle absolute paths", function (done) {
+      const app = opine();
+      const __dirname = dirname(import.meta.url);
+
+      app.use(function (req, res) {
+        const filePath = fromFileUrl(
+          join(__dirname, "../../test/fixtures/user.html"),
+        );
+        res.download(filePath);
       });
 
       superdeno(app)

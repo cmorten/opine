@@ -229,7 +229,7 @@ describe("serveStatic()", function () {
 
           superdeno(server)
             .get("/dinos/")
-            .expect(404, /NotFoundError|ENOENT/, done);
+            .expect(404, /NotFound/, done);
         });
 
         it("should redirect when directory without slash", function (
@@ -255,7 +255,7 @@ describe("serveStatic()", function () {
 
           superdeno(server)
             .get("/dinos/")
-            .expect(404, /NotFoundError|ENOENT/, done);
+            .expect(404, /NotFound/, done);
         });
 
         it("should 404 when directory without slash", function (done) {
@@ -266,7 +266,7 @@ describe("serveStatic()", function () {
 
           superdeno(server)
             .get("/dinos")
-            .expect(404, /NotFoundError|ENOENT/, done);
+            .expect(404, /NotFound/, done);
         });
       });
     });

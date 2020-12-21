@@ -228,8 +228,9 @@ export class Response implements DenoResponse {
       headers,
     };
 
-    // Resolve the full path for sendFile
-    const fullPath = resolve(path);
+    const fullPath = resolve(
+      path.startsWith("file:") ? fromFileUrl(path) : path,
+    );
 
     // Send file
     return await this.sendFile(fullPath, options);
