@@ -540,7 +540,6 @@ app.render = function render(
   tryRender(view, renderOptions, done);
 };
 
-// TODO: consider using a Proxy to enable setting / getting of `req.body`.
 /**
  * Listen for connections.
  *
