@@ -26,6 +26,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 - [Installation](#installation)
 - [Features](#features)
 - [Documentation](#documentation)
+- [Quick Start](#quick-start)
 - [Philosophy](#philosophy)
 - [Examples](#examples)
 - [Contributing](#contributing)
@@ -83,6 +84,30 @@ import { opine } from "https://x.nest.land/opine@1.0.0/mod.ts";
 - [License](https://github.com/asos-craigmorten/opine/blob/main/LICENSE.md)
 - [ExpressJS License](https://github.com/asos-craigmorten/opine/blob/main/EXPRESS_LICENSE.md)
 - [Changelog](https://github.com/asos-craigmorten/opine/blob/main/.github/CHANGELOG.md)
+
+## Quick Start
+
+The quickest way to get started with Opine is to utilize the [Opine CLI](https://github.com/cmorten/opine-cli) to generate an application as shown below:
+
+Install the executable. The executable's major version will match Opine's:
+
+```bash
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.0.0/opine-cli.ts
+```
+
+And follow any suggestions to update your `PATH` environment variable.
+
+Create the app:
+
+```bash
+opine-cli --view=ejs hello-deno && cd hello-deno
+```
+
+Start your Opine app at `http://localhost:3000/`:
+
+```bash
+deno run --allow-net --allow-read --allow-env mod.ts
+```
 
 ## Philosophy
 
