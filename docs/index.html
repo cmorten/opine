@@ -90,6 +90,7 @@
 					<li><a href="#installation">Installation</a></li>
 					<li><a href="#features">Features</a></li>
 					<li><a href="#documentation">Documentation</a></li>
+					<li><a href="#quick-start">Quick Start</a></li>
 					<li><a href="#philosophy">Philosophy</a></li>
 					<li><a href="#examples">Examples</a></li>
 					<li><a href="#contributing">Contributing</a></li>
@@ -141,6 +142,17 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
 					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/EXPRESS_LICENSE.md">ExpressJS License</a></li>
 					<li><a href="https://github.com/asos-craigmorten/opine/blob/main/.github/CHANGELOG.md">Changelog</a></li>
 				</ul>
+				<a href="#quick-start" id="quick-start" style="color: inherit; text-decoration: none;">
+					<h2>Quick Start</h2>
+				</a>
+				<p>The quickest way to get started with Opine is to utilize the <a href="https://github.com/cmorten/opine-cli">Opine CLI</a> to generate an application as shown below:</p>
+				<p>Install the executable. The executable&#39;s major version will match Opine&#39;s:</p>
+				<pre><code class="language-bash">deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.0.0/opine-cli.ts</code></pre>
+				<p>And follow any suggestions to update your <code>PATH</code> environment variable.</p>
+				<p>Create the app:</p>
+				<pre><code class="language-bash">opine-cli --view=ejs hello-deno &amp;&amp; <span class="hljs-built_in">cd</span> hello-deno</code></pre>
+				<p>Start your Opine app at <code>http://localhost:3000/</code>:</p>
+				<pre><code class="language-bash">deno run --allow-net --allow-read --allow-env mod.ts</code></pre>
 				<a href="#philosophy" id="philosophy" style="color: inherit; text-decoration: none;">
 					<h2>Philosophy</h2>
 				</a>
