@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.0.1] - 29-12-2020
+
+- [#97] Support `--no-check` flag (#99)
+- feat: Support Deno `1.6.2` and std `0.82.0`
+- ci: Fix typedoc to version `0.19.2`
+
 ## [1.0.0] - 21-12-2020
 
 - [#26] Implement request body proxy (#95)
