@@ -36,7 +36,7 @@ export { encoder } from "https://deno.land/std@0.81.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
-} from "https://deno.land/x/evt@v1.9.11/mod.ts";
+} from "https://deno.land/x/evt@v1.9.12/mod.ts";
 export {
   charset,
   contentType,
