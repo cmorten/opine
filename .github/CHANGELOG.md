@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.0.2] - 02-01-2021
+
+- feat: Support Deno `1.6.3` and std `0.83.0`
+
 ## [1.0.1] - 29-12-2020
 
 - [#97] Support `--no-check` flag (#99)

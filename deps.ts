@@ -3,21 +3,21 @@ export {
   Server,
   ServerRequest,
   serveTLS,
-} from "https://deno.land/std@0.82.0/http/server.ts";
+} from "https://deno.land/std@0.83.0/http/server.ts";
 export type {
   HTTPOptions,
   HTTPSOptions,
   Response,
-} from "https://deno.land/std@0.82.0/http/server.ts";
+} from "https://deno.land/std@0.83.0/http/server.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.82.0/http/http_status.ts";
+} from "https://deno.land/std@0.83.0/http/http_status.ts";
 export {
   deleteCookie,
   setCookie,
-} from "https://deno.land/std@0.82.0/http/cookie.ts";
-export type { Cookie } from "https://deno.land/std@0.82.0/http/cookie.ts";
+} from "https://deno.land/std@0.83.0/http/cookie.ts";
+export type { Cookie } from "https://deno.land/std@0.83.0/http/cookie.ts";
 export {
   basename,
   dirname,
@@ -28,11 +28,11 @@ export {
   normalize,
   resolve,
   sep,
-} from "https://deno.land/std@0.82.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.82.0/node/timers.ts";
-export { parse } from "https://deno.land/std@0.82.0/node/querystring.ts";
-export { Sha1 } from "https://deno.land/std@0.82.0/hash/sha1.ts";
-export { encoder } from "https://deno.land/std@0.82.0/encoding/utf8.ts";
+} from "https://deno.land/std@0.83.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.83.0/node/timers.ts";
+export { parse } from "https://deno.land/std@0.83.0/node/querystring.ts";
+export { Sha1 } from "https://deno.land/std@0.83.0/hash/sha1.ts";
+export { encoder } from "https://deno.land/std@0.83.0/encoding/utf8.ts";
 export {
   Evt as EventEmitter,
   to as getEvent,
@@ -41,7 +41,7 @@ export {
   charset,
   contentType,
   lookup,
-} from "https://deno.land/x/media_types@v2.6.0/mod.ts";
+} from "https://deno.land/x/media_types@v2.6.1/mod.ts";
 export { createError } from "https://deno.land/x/http_errors@3.0.0/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@2.1.0/mod.ts";
 export {
