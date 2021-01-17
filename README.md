@@ -35,7 +35,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@1.0.2/mod.ts";
+import { opine } from "https://deno.land/x/opine@1.1.0/mod.ts";
 
 const app = opine();
 
@@ -55,13 +55,13 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@1.0.2/mod.ts";
+import { opine } from "https://deno.land/x/opine@1.1.0/mod.ts";
 ```
 
 Opine is also available on [nest.land](https://nest.land/package/opine), a package registry for Deno on the Blockchain.
 
 ```ts
-import { opine } from "https://x.nest.land/opine@1.0.2/mod.ts";
+import { opine } from "https://x.nest.land/opine@1.1.0/mod.ts";
 ```
 
 ## Features
@@ -92,7 +92,7 @@ The quickest way to get started with Opine is to utilize the [Opine CLI](https:/
 Install the executable. The executable's major version will match Opine's:
 
 ```bash
-deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.0.2/opine-cli.ts
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.1.0/opine-cli.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

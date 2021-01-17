@@ -52,7 +52,7 @@ export { isIP } from "https://deno.land/x/isIP@1.0.0/mod.ts";
 export { vary } from "https://deno.land/x/vary@1.0.0/mod.ts";
 export { escapeHtml } from "https://deno.land/x/escape_html@1.0.0/mod.ts";
 export { encodeUrl } from "https://deno.land/x/encodeurl@1.0.0/mod.ts";
-export { gunzip, inflate } from "https://deno.land/x/denoflate@1.1/mod.ts";
+export { gunzip, inflate } from "https://deno.land/x/compress@v0.3.6/mod.ts";
 export { default as parseRange } from "https://esm.sh/range-parser@1.2.1";
 export { default as qs } from "https://esm.sh/qs@6.9.4";
 export { default as ipaddr } from "https://esm.sh/ipaddr.js@2.0.0";
