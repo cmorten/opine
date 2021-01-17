@@ -2,10 +2,13 @@
   "deno.enable": true,
   "deno.unstable": true,
   "[typescript]": {
-    "editor.defaultFormatter": "axetroy.vscode-deno"
+    "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "axetroy.vscode-deno"
+    "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "deno.import_intellisense_origins": {
+    "https://deno.land": true
+  }
 }

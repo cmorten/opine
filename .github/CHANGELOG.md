@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.1.0] - 17-01-2021
+
+- refactor: replace `denoflate` library with `compress` library to remove net requirement as a result of wasm usage.
+- chore: upgrade to official denoland vscode plugin.
+
 ## [1.0.2] - 02-01-2021
 
 - feat: Support Deno `1.6.3` and std `0.83.0`
