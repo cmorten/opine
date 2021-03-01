@@ -1,17 +1,16 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read --unstable ./examples/react/server.tsx
- * 
+ *
  * if have the repo cloned locally. Unfortunately template rendering does not
  * currently support remote URLs for views, so this example cannot be run directly
  * from this repo.
- * 
+ *
  */
-
-import { opine, serveStatic } from "../../mod.ts";
-import { dirname, join } from "../../deps.ts";
-import { renderFileToString } from "https://deno.land/x/dejs@0.8.0/mod.ts";
+import { opine, serveStatic } from "https://deno.land/x/opine@1.1.0/mod.ts";
+import { dirname, join } from "https://deno.land/x/opine@1.1.0/deps.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
 // @deno-types="https://raw.githubusercontent.com/Soremwar/deno_types/4a50660/react/v16.13.1/react.d.ts"
 import React from "https://dev.jspm.io/react@16.13.1";
 import ReactDOMServer from "https://dev.jspm.io/react-dom@16.13.1/server";
@@ -21,10 +20,14 @@ import { App } from "./components/App.tsx";
  * Create our client bundle - you could split this out into
  * a preprocessing step.
  */
-const [diagnostics, js] = await Deno.bundle(
+const { diagnostics, files } = await Deno.emit(
   "./examples/react/client.tsx",
-  undefined,
-  { lib: ["dom", "dom.iterable", "esnext"] },
+  {
+    bundle: "esm",
+    compilerOptions: {
+      lib: ["dom", "dom.iterable", "esnext"],
+    },
+  },
 );
 
 if (diagnostics) {
@@ -71,6 +74,7 @@ app.use("/api/v1/doggos", (req, res) => {
  * Serve our client JS bundle.
  */
 app.get("/scripts/client.js", async (req, res) => {
+  const js = files["deno:///bundle.js"];
   res.type("application/javascript").send(js);
 });
 
