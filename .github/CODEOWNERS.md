@@ -1,3 +1,2 @@
-# CODEOWNERS
-
-- @asos-craigmorten - <craig.morten@asos.com>
+* @asos-craigmorten
+* @cmorten
