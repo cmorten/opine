@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [1.2.0] - 06-03-2021
+
+- docs: add new deno vis badges
+- docs: simplifiy contributing
+- [#105] Updates react example for deno 1.7.5 (#106)
+- feat: Support Deno `1.8.0` and std `0.89.0`
+- chore: upgrade dependencies, replace evt dep with std library EventEmitter
+
 ## [1.1.0] - 17-01-2021
 
 - refactor: replace `denoflate` library with `compress` library to remove net requirement as a result of wasm usage.
