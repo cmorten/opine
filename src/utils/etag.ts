@@ -28,7 +28,10 @@
  * 
  */
 
-import { encoder, Sha1 } from "../../deps.ts";
+import { Sha1 } from "../../deps.ts";
+
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 
 /**s
  * Generate an entity tag.
@@ -44,7 +47,6 @@ function entitytag(entity: any): string {
   }
 
   if (entity instanceof Uint8Array) {
-    const decoder = new TextDecoder();
     entity = decoder.decode(entity);
   }
 

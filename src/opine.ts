@@ -2,7 +2,7 @@ import { app as application } from "./application.ts";
 import { request } from "./request.ts";
 import { Response as ServerResponse } from "./response.ts";
 import { mergeDescriptors } from "./utils/mergeDescriptors.ts";
-import { EventEmitter, getEvent } from "../deps.ts";
+import { EventEmitter } from "../deps.ts";
 import type { NextFunction, Opine, Request, Response } from "./types.ts";
 
 /**
@@ -19,19 +19,19 @@ export const response: Response = Object.create(ServerResponse.prototype);
  * @public
  */
 export function opine(): Opine {
-  const app = ((
+  const app = function (
     req: Request,
     res: Response = new ServerResponse(),
     next: NextFunction,
-  ): void => {
+  ): void {
     app.handle(req, res, next);
-  }) as Opine;
+  } as Opine;
 
-  const eventEmitter = EventEmitter.create<[string, any]>();
+  const eventEmitter = new EventEmitter();
 
-  app.emit = (event: string, arg: any) => eventEmitter.post([event, arg]);
-  app.on = (event: string, arg: any) =>
-    eventEmitter.$attach(getEvent(event), arg);
+  app.emit = (event: string, ...args: any[]) =>
+    eventEmitter.emit(event, ...args);
+  app.on = (event: string, arg: any) => eventEmitter.on(event, arg);
 
   mergeDescriptors(app, application, false);
 
