@@ -1,6 +1,7 @@
 # error-pages
 
-Example of how to use Opine's template engine and rendering capabilities for custom error pages.
+Example of how to use Opine's template engine and rendering capabilities for
+custom error pages.
 
 ## How to run this example
 

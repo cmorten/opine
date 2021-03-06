@@ -20,9 +20,13 @@ describe("middleware", function () {
 
       app.use(async function (req, res) {
         res.set("Content-Type", "application/json; charset=utf-8");
-        const raw = await Deno.readAll(req.body);
-        const data = (new TextDecoder()).decode(raw);
-        res.end(data);
+        try {
+          const raw = await Deno.readAll(req.body);
+          const data = (new TextDecoder()).decode(raw);
+          res.end(data);
+        } catch (e) {
+          console.log(e);
+        }
       });
 
       superdeno(app)

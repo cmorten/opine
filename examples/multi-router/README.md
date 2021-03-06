@@ -1,6 +1,7 @@
 # multi-router
 
-An example of how to use the Opine `Router` to mount several controllers onto a path within an application / API.
+An example of how to use the Opine `Router` to mount several controllers onto a
+path within an application / API.
 
 ## How to run this example
 

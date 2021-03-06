@@ -1,6 +1,7 @@
 # urlencoded
 
-An example of how to use the `raw` body-parser middleware in your Opine applications.
+An example of how to use the `raw` body-parser middleware in your Opine
+applications.
 
 ## How to run this example
 

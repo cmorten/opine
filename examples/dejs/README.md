@@ -1,6 +1,7 @@
 # ejs
 
-Example of how to use Opine's template engine and rendering capabilities with the `dejs` module.
+Example of how to use Opine's template engine and rendering capabilities with
+the `dejs` module.
 
 ## How to run this example
 

@@ -1,6 +1,7 @@
 # eta
 
-Example of how to use Opine's template engine and rendering capabilities with the `eta` template engine.
+Example of how to use Opine's template engine and rendering capabilities with
+the `eta` template engine.
 
 View Eta's documentation at <https://eta.js.org>
 

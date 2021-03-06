@@ -6,15 +6,17 @@ const RAW_BODY_KEY = "raw";
 
 export const requestProxy = (req: Request): Request =>
   new Proxy(req, {
-    get: (target: any, prop: string | number | symbol, receiver: any) => {
+    get: (target: any, prop: string | number | symbol) => {
+      let value;
+
       if (prop === BODY_KEY) {
-        return Reflect.get(target, PARSED_BODY_KEY, receiver) ??
-          Reflect.get(target, BODY_KEY, receiver);
+        value = target[PARSED_BODY_KEY] ?? target[BODY_KEY];
       } else if (prop === RAW_BODY_KEY) {
-        return Reflect.get(target, BODY_KEY, receiver);
+        value = target[BODY_KEY];
+      } else {
+        value = target[prop];
       }
 
-      const value = Reflect.get(target, prop, receiver);
       if (prop === "respond") {
         return value.bind(target);
       }

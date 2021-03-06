@@ -1,6 +1,7 @@
 # location
 
-An example of how set the `Location` header using `res.location()` for a `301` redirect.
+An example of how set the `Location` header using `res.location()` for a `301`
+redirect.
 
 ## How to run this example
 

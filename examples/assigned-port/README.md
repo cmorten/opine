@@ -1,6 +1,7 @@
 # assigned-port
 
-A basic example of starting an Opine server with a port that is assigned for you.
+A basic example of starting an Opine server with a port that is assigned for
+you.
 
 ## How to run this example
 
