@@ -1,6 +1,7 @@
 # graphql
 
-Example of how to use Opine with [gql](https://github.com/deno-libs/gql) for a simple GraphQL server.
+Example of how to use Opine with [gql](https://github.com/deno-libs/gql) for a
+simple GraphQL server.
 
 ## How to run this example
 
