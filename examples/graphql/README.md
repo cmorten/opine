@@ -30,7 +30,7 @@ Then try:
 
 3. You will get this:
 
-```
+```json
 {
   "data": {
     "hello": "Hello World!"
