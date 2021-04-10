@@ -18,8 +18,8 @@ applications:
   and rendering capabilities for custom error pages.
 - [eta](./eta) - Example of how to use Opine's template engine and rendering
   capabilities with the `eta` template engine.
-- [graphql](./graphql) - Example of how to use Opine with [gql](https://github.com/deno-libs/gql) for a
-simple GraphQL server.
+- [graphql](./graphql) - Example of how to use Opine with
+  [gql](https://github.com/deno-libs/gql) for a simple GraphQL server.
 - [hello-world](./hello-world) - A basic example of how to configure and start
   an Opine server.
 - [json](./json) - An example of how to use the `json` body-parser middleware in
