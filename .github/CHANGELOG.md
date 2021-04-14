@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.3.2] - 14-04-2021
+
+- fix: format lockfile to prevent Eggs CLI failure.
+
 ## [1.3.1] - 14-04-2021
 
 - ci: downgrade eggs publish to Deno `1.8.3` due to bug in Eggs CLI.
