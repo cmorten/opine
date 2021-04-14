@@ -8,8 +8,8 @@
  * from this repo.
  *
  */
-import { opine, serveStatic } from "https://deno.land/x/opine@1.3.1/mod.ts";
-import { dirname, join } from "https://deno.land/x/opine@1.3.1/deps.ts";
+import { opine, serveStatic } from "https://deno.land/x/opine@1.3.2/mod.ts";
+import { dirname, join } from "https://deno.land/x/opine@1.3.2/deps.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
 // @deno-types="https://raw.githubusercontent.com/Soremwar/deno_types/4a50660/react/v16.13.1/react.d.ts"
 import React from "https://dev.jspm.io/react@16.13.1";

@@ -1,6 +1,6 @@
 .PHONY: benchmark build ci deps doc fmt fmt-check lint lock test typedoc
 
-FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
+FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts lock.json
 
 benchmark:
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
