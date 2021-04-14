@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.3.1] - 14-04-2021
+
+- ci: downgrade eggs publish to Deno `1.8.3` due to bug in Eggs CLI.
+
 ## [1.3.0] - 14-04-2021
 
 - feat: support Deno `1.9.0` and std `0.93.0`
