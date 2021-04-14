@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.3.0] - 14-04-2021
+
+- feat: support Deno `1.9.0` and std `0.93.0`
+- Add GraphQL example (#109)
+
 ## [1.2.0] - 06-03-2021
 
 - docs: add new deno vis badges

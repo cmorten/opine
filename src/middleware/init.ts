@@ -29,6 +29,9 @@ export const init = function (app: Opine) {
     setPrototypeOf(req, app.request);
     setPrototypeOf(res, app.response);
 
+    // TODO:(asos-craigmorten) why did Deno 1.9.0 result in setPrototypeOf not being sufficient
+    // to populate `res` with the `app` property. Worked in Deno 1.8.3 :thinking:
+    res.app = app.response.app;
     res.locals = res.locals || create(null);
 
     next();
