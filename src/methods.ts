@@ -10,7 +10,7 @@ export const methods: string[] = [
   "head",
   "delete",
   "options",
-  "trace",
+  // "trace", // As of Deno 1.9.0 - TypeError: Method is forbidden.
   "copy",
   "lock",
   "mkcol",

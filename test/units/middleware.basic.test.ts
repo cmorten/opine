@@ -26,7 +26,7 @@ describe("middleware", function () {
       });
 
       superdeno(app)
-        .get("/")
+        .post("/")
         .set("Content-Type", "application/json")
         .send('{"foo":"bar"}')
         .expect("Content-Type", "application/json; charset=utf-8")

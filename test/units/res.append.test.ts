@@ -107,10 +107,9 @@ describe("res", function () {
       });
 
       app.use(function (req, res) {
-        res.append("Set-Cookie", "bar=baz");
-        // `append` and `set` replace a `set-cookie` if they share the same cookie `key`.
-        res.append("Set-cookie", ["bar=bang", "curl=wget; Path=/"]);
-        res.append("Set-cookie", ["bar=bang", "express=js; Path=/"]);
+        res.append("set-cookie", "bar=baz");
+        res.append("set-cookie", ["bar=bang", "curl=wget; Path=/"]);
+        res.append("set-cookie", ["bar=bang", "express=js; Path=/"]);
 
         // Holds the values of all the `set-cookie` headers sent.
         const cookieVals = [];
@@ -129,6 +128,8 @@ describe("res", function () {
         .expect(200, {
           cookies: [
             "bar=bang",
+            "bar=bang",
+            "bar=baz",
             "curl=wget; Path=/",
             "express=js; Path=/",
             "foo=bar; Path=/",

@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.3.3] - 26-04-2021
+
+- feat: support Deno `1.9.2` and std `0.95.0`
+
 ## [1.3.2] - 14-04-2021
 
 - fix: format lockfile to prevent Eggs CLI failure.
