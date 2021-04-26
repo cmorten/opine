@@ -37,41 +37,6 @@ describe("res", function () {
         .expect(200, "string", done);
     });
 
-    it("should support multiple Set-Cookie headers", function (done) {
-      const app = opine();
-
-      const firstCookie =
-        "DOCKER_COMPOSE=up;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
-      const secondCookie =
-        "CARGO=build;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
-
-      app.use(function (req, res) {
-        res.set(
-          "Set-Cookie",
-          firstCookie,
-        );
-        res.set(
-          "Set-Cookie",
-          secondCookie,
-        );
-
-        res.send(JSON.stringify(Array.from(res.headers?.entries() ?? [])));
-      });
-
-      superdeno(app)
-        .get("/")
-        .expect(200, (err, res) => {
-          if (err) {
-            done(err);
-            return;
-          }
-
-          expect(res.text).toMatch(`["set-cookie","${firstCookie}"]`);
-          expect(res.text).toMatch(`["set-cookie","${secondCookie}"]`);
-          done();
-        });
-    });
-
     it("should not set a charset of one is already set", function (done) {
       const app = opine();
 
@@ -123,37 +88,6 @@ describe("res", function () {
         .expect("X-Number", "123")
         .expect("access-control-allow-methods", "POST,GET,OPTIONS")
         .expect(200, "string", done);
-    });
-
-    it("should support multiple Set-Cookie headers", function (done) {
-      const app = opine();
-
-      const firstCookie =
-        "DOCKER_COMPOSE=up;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
-      const secondCookie =
-        "CARGO=build;Path=/;Domain=google.com;Secure;HTTPOnly;SameSite=Lax";
-
-      app.use(function (req, res) {
-        res.set({
-          "set-cookie": firstCookie,
-          "SET-COOKIE": secondCookie,
-        });
-
-        res.send(JSON.stringify(Array.from(res.headers?.entries() ?? [])));
-      });
-
-      superdeno(app)
-        .get("/")
-        .expect(200, (err, res) => {
-          if (err) {
-            done(err);
-            return;
-          }
-
-          expect(res.text).toMatch(`["set-cookie","${firstCookie}"]`);
-          expect(res.text).toMatch(`["set-cookie","${secondCookie}"]`);
-          done();
-        });
     });
   });
 });

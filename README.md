@@ -19,7 +19,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 </p>
 <p align="center">
    <a href="https://deno.land/x/opine"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fopine%2Fmod.ts" alt="Opine latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.9.0-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.9.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fopine%2Fmod.ts" alt="Opine dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fopine%2Fmod.ts" alt="Opine dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fopine%2Fmod.ts" alt="Opine cached size" /></a>
@@ -42,7 +42,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@1.3.2/mod.ts";
+import { opine } from "https://deno.land/x/opine@1.3.3/mod.ts";
 
 const app = opine();
 
@@ -62,13 +62,13 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@1.3.2/mod.ts";
+import { opine } from "https://deno.land/x/opine@1.3.3/mod.ts";
 ```
 
 Opine is also available on [nest.land](https://nest.land/package/opine), a package registry for Deno on the Blockchain.
 
 ```ts
-import { opine } from "https://x.nest.land/opine@1.3.2/mod.ts";
+import { opine } from "https://x.nest.land/opine@1.3.3/mod.ts";
 ```
 
 ## Features
@@ -99,7 +99,7 @@ The quickest way to get started with Opine is to utilize the [Opine CLI](https:/
 Install the executable. The executable's major version will match Opine's:
 
 ```bash
-deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.3.2/opine-cli.ts
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.3.3/opine-cli.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

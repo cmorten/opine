@@ -84,7 +84,7 @@ import {
   opine,
   json,
   urlencoded,
-} from "https://deno.land/x/opine@1.3.2/mod.ts";
+} from "https://deno.land/x/opine@1.3.3/mod.ts";
 
 const app = opine();
 
@@ -100,7 +100,7 @@ app.post("/profile", function (req, res, next) {
 The following example shows how to implement your own simple body-parsing middleware to transform `req.body` into a raw string:
 
 ```ts
-import opine from "https://deno.land/x/opine@1.3.2/mod.ts";
+import opine from "https://deno.land/x/opine@1.3.3/mod.ts";
 
 const app = opine();
 
