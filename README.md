@@ -98,7 +98,7 @@ The quickest way to get started with Opine is to utilize the [Opine CLI](https:/
 Install the executable. The executable's major version will match Opine's:
 
 ```bash
-deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.3.3/opine-cli.ts
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/opinecli@1.2.0/opine-cli.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
