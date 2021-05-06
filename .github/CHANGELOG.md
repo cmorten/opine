@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.3.4] - 06-05-2021
+
+- ci: upgrade eggs CLI to `0.3.6` and drop checks from workflow.
+
 ## [1.3.3] - 26-04-2021
 
 - feat: support Deno `1.9.2` and std `0.95.0`
