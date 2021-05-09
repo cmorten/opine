@@ -34,7 +34,6 @@ app.set("view cache", false);
 const users = [
   { name: "Deno", email: "deno@denoland.com" },
   { name: "SuperDeno", email: "superdeno@denoland.com" },
-  { name: "Ada Lovelace", email: "ada@denoland.com" },
   { name: "Deno the Dinosaur", email: "denosaur@denoland.com" },
 ];
 
@@ -46,5 +45,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(3000);
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  app.listen(3000);
+  console.log("Opine started on port 3000");
+}
+
+export { app };

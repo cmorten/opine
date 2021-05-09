@@ -36,23 +36,27 @@ app.use("/static", serveStatic(join(__dirname, "public")));
 // this will allow "GET /style.css" instead of "GET /css/style.css":
 app.use(serveStatic(join(__dirname, "public", "css")));
 
-// You can call listen the same as Express with just
-// a port: `app.listen(3000)`, or with any arguments
-// that the Deno `http.serve` methods accept. Namely
-// an address string, HttpOptions or HttpsOptions
-// objects.
-app.listen({ port: 3000 });
+if (import.meta.main) {
+  // You can call listen the same as Express with just
+  // a port: `app.listen(3000)`, or with any arguments
+  // that the Deno `http.serve` methods accept. Namely
+  // an address string, HttpOptions or HttpsOptions
+  // objects.
+  app.listen({ port: 3000 });
 
-console.log("listening on port 3000");
-console.log("try:");
-console.log("  GET /hello.txt");
-console.log("  GET /js/app.js");
-console.log("  GET /js/helper.js");
-console.log("  GET /css/style.css");
-console.log("try the files served under `static/`:");
-console.log("  GET /static/hello.txt");
-console.log("  GET /static/js/app.js");
-console.log("  GET /static/js/helper.js");
-console.log("  GET /static/css/style.css");
-console.log("try the css served on the root:");
-console.log("  GET /style.css");
+  console.log("listening on port 3000");
+  console.log("try:");
+  console.log("  GET /hello.txt");
+  console.log("  GET /js/app.js");
+  console.log("  GET /js/helper.js");
+  console.log("  GET /css/style.css");
+  console.log("try the files served under `static/`:");
+  console.log("  GET /static/hello.txt");
+  console.log("  GET /static/js/app.js");
+  console.log("  GET /static/js/helper.js");
+  console.log("  GET /static/css/style.css");
+  console.log("try the css served on the root:");
+  console.log("  GET /style.css");
+}
+
+export { app };

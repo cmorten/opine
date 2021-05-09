@@ -50,10 +50,16 @@ async function format(path: string) {
 
 app.get("/users", await format("./users.ts"));
 
-app.listen(3000);
-console.log("Opine started on port 3000");
-console.log("Try opening http://localhost:3000/ in the browser");
-console.log("Try: `curl -X GET http://localhost:3000 -H 'Accept: text/plain'`");
-console.log(
-  "Try: `curl -X GET http://localhost:3000 -H 'Accept: application/json'`",
-);
+if (import.meta.main) {
+  app.listen(3000);
+  console.log("Opine started on port 3000");
+  console.log("Try opening http://localhost:3000/ in the browser");
+  console.log(
+    "Try: `curl -X GET http://localhost:3000 -H 'Accept: text/plain'`",
+  );
+  console.log(
+    "Try: `curl -X GET http://localhost:3000 -H 'Accept: application/json'`",
+  );
+}
+
+export { app };

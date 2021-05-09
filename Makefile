@@ -41,6 +41,7 @@ lock:
 
 test:
 	@deno test --allow-net --allow-read ./test/units/
+	@deno test --allow-net --allow-read --allow-env --unstable ./examples/
 
 typedoc:
 	@rm -rf docs

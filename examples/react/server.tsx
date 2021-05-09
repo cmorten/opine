@@ -8,12 +8,11 @@
  * from this repo.
  *
  */
-import { opine, serveStatic } from "https://deno.land/x/opine@1.3.4/mod.ts";
-import { dirname, join } from "https://deno.land/x/opine@1.3.4/deps.ts";
+import { opine, serveStatic } from "../../mod.ts";
+import { dirname, join } from "../../deps.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
-// @deno-types="https://raw.githubusercontent.com/Soremwar/deno_types/4a50660/react/v16.13.1/react.d.ts"
-import React from "https://dev.jspm.io/react@16.13.1";
-import ReactDOMServer from "https://dev.jspm.io/react-dom@16.13.1/server";
+import React from "https://esm.sh/react@17.0.2?dev";
+import ReactDOMServer from "https://esm.sh/react-dom@17.0.2/server?dev";
 import { App } from "./components/App.tsx";
 
 /**
@@ -30,7 +29,7 @@ const { diagnostics, files } = await Deno.emit(
   },
 );
 
-if (diagnostics) {
+if (diagnostics?.length) {
   console.log(diagnostics);
 }
 
@@ -93,5 +92,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(3000);
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  app.listen(3000);
+  console.log("Opine started on port 3000");
+}
+
+export { app };

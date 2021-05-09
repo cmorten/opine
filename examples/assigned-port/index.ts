@@ -19,9 +19,13 @@ app.get("/", function (req, res) {
   res.send("Hello Deno!");
 });
 
-// Providing no port results in an available port being assigned
-// for you. You can determine the port using the returned Server
-// object.
-const server = app.listen();
-const address = server.listener.addr as Deno.NetAddr;
-console.log(`Server started on ${address.hostname}:${address.port}`);
+if (import.meta.main) {
+  // Providing no port results in an available port being assigned
+  // for you. You can determine the port using the returned Server
+  // object.
+  const server = app.listen();
+  const address = server.listener.addr as Deno.NetAddr;
+  console.log(`Server started on ${address.hostname}:${address.port}`);
+}
+
+export { app };

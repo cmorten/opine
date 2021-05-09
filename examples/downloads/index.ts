@@ -44,10 +44,14 @@ app.get("/files/:file(*)", async function (req, res, next) {
   }
 });
 
-// You can call listen the same as Express with just
-// a port: `app.listen(3000)`, or with any arguments
-// that the Deno `http.serve` methods accept. Namely
-// an address string, HttpOptions or HttpsOptions
-// objects.
-app.listen({ port: 3000 });
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  // You can call listen the same as Express with just
+  // a port: `app.listen(3000)`, or with any arguments
+  // that the Deno `http.serve` methods accept. Namely
+  // an address string, HttpOptions or HttpsOptions
+  // objects.
+  app.listen({ port: 3000 });
+  console.log("Opine started on port 3000");
+}
+
+export { app };

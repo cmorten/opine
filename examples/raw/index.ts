@@ -26,14 +26,18 @@ app.post("/", function (req, res) {
   res.send(req.body);
 });
 
-// You can call listen the same as Express with just
-// a port: `app.listen(3000)`, or with any arguments
-// that the Deno `http.serve` methods accept. Namely
-// an address string, HttpOptions or HttpsOptions
-// objects.
-app.listen({ port: 3000 });
-console.log("Opine started on port 3000");
-console.log("Try a `POST /` with any raw payload!");
-console.log(
-  `curl -X POST http://localhost:3000/ -d 'rwaaarrr' -H "Content-Type: application/octet-stream"`,
-);
+if (import.meta.main) {
+  // You can call listen the same as Express with just
+  // a port: `app.listen(3000)`, or with any arguments
+  // that the Deno `http.serve` methods accept. Namely
+  // an address string, HttpOptions or HttpsOptions
+  // objects.
+  app.listen({ port: 3000 });
+  console.log("Opine started on port 3000");
+  console.log("Try a `POST /` with any raw payload!");
+  console.log(
+    `curl -X POST http://localhost:3000/ -d 'rwaaarrr' -H "Content-Type: application/octet-stream"`,
+  );
+}
+
+export { app };

@@ -42,5 +42,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(3000);
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  app.listen(3000);
+  console.log("Opine started on port 3000");
+}
+
+export { app };

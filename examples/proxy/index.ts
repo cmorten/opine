@@ -18,5 +18,9 @@ const app = opine();
 
 app.use(proxy("https://github.com/asos-craigmorten/opine"));
 
-app.listen({ port: 3000 });
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  app.listen({ port: 3000 });
+  console.log("Opine started on port 3000");
+}
+
+export { app };

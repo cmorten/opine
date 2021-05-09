@@ -121,5 +121,9 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   res.render("500", { error: err });
 });
 
-app.listen(3000);
-console.log("Opine started on port 3000");
+if (import.meta.main) {
+  app.listen(3000);
+  console.log("Opine started on port 3000");
+}
+
+export { app };
