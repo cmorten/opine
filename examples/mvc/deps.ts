@@ -1,1 +1,1 @@
-export { renderFileToString } from "https://deno.land/x/dejs@0.8.0/mod.ts";
+export { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";

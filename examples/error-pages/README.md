@@ -8,7 +8,7 @@ custom error pages.
 Run this example using:
 
 ```bash
-deno run --allow-net --allow-read ./examples/error-pages/index.ts
+deno run --allow-net --allow-read --allow-env ./examples/error-pages/index.ts
 ```
 
 after cloning the repo locally.
