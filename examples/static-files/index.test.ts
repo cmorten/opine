@@ -3,7 +3,7 @@ import { describe, it } from "../../test/utils.ts";
 import { app } from "./index.ts";
 
 const toOsNewlines = (str: string) =>
-  Deno.build.os === "windows" ? str.replace("\n", "\r\n") : str;
+  Deno.build.os === "windows" ? str.replaceAll("\n", "\r\n") : str;
 
 describe("static-files", () => {
   describe("`public` on /", () => {
