@@ -6,7 +6,7 @@ simple GraphQL server.
 ## How to run this example
 
 ```sh
-deno run --allow-net --allow-read ./examples/grapqhl/index.ts
+deno run --allow-net --allow-read ./examples/graphql/index.ts
 ```
 
 if have the repo cloned locally OR
