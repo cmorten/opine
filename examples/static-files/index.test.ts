@@ -2,6 +2,9 @@ import { superdeno } from "../../test/deps.ts";
 import { describe, it } from "../../test/utils.ts";
 import { app } from "./index.ts";
 
+const toOsNewlines = (str: string) =>
+  Deno.build.os === "windows" ? str.replace("\n", "\r\n") : str;
+
 describe("static-files", () => {
   describe("`public` on /", () => {
     it("should serve hello.txt", async () => {
@@ -13,13 +16,13 @@ describe("static-files", () => {
     it("should serve js/app.js", async () => {
       await superdeno(app)
         .get("/js/app.js")
-        .expect(200, "// app.js\n");
+        .expect(200, toOsNewlines("// app.js\n"));
     });
 
     it("should serve js/helper.js", async () => {
       await superdeno(app)
         .get("/js/helper.js")
-        .expect(200, "// helper.js\n");
+        .expect(200, toOsNewlines("// helper.js\n"));
     });
 
     it("should serve css/style.css", async () => {
@@ -27,7 +30,9 @@ describe("static-files", () => {
         .get("/css/style.css")
         .expect(
           200,
-          "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          toOsNewlines(
+            "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          ),
         );
     });
   });
@@ -42,13 +47,13 @@ describe("static-files", () => {
     it("should serve js/app.js", async () => {
       await superdeno(app)
         .get("/static/js/app.js")
-        .expect(200, "// app.js\n");
+        .expect(200, toOsNewlines("// app.js\n"));
     });
 
     it("should serve js/helper.js", async () => {
       await superdeno(app)
         .get("/static/js/helper.js")
-        .expect(200, "// helper.js\n");
+        .expect(200, toOsNewlines("// helper.js\n"));
     });
 
     it("should serve css/style.css", async () => {
@@ -56,7 +61,9 @@ describe("static-files", () => {
         .get("/static/css/style.css")
         .expect(
           200,
-          "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          toOsNewlines(
+            "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          ),
         );
     });
   });
@@ -67,7 +74,9 @@ describe("static-files", () => {
         .get("/style.css")
         .expect(
           200,
-          "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          toOsNewlines(
+            "/* style.css */\nbody {\n  background: darkslategrey;\n}\n",
+          ),
         );
     });
   });
