@@ -6,7 +6,7 @@ describe("throw after .end()", function () {
   it("should fail gracefully", function (done) {
     const app = opine();
 
-    app.get("/", function (req, res) {
+    app.get("/", function (_req, res) {
       res.end("yay");
       throw new Error("boom");
     });

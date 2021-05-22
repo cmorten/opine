@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.4.0] - 22-05-2021
+
+- feat: support Deno `1.10.2` and std `0.97.0`
+- chore: some lint fixes
+
 ## [1.3.4] - 06-05-2021
 
 - ci: upgrade eggs CLI to `0.3.6` and drop checks from workflow.

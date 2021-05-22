@@ -1,7 +1,7 @@
 import type { Cookie } from "../../deps.ts";
 
 /**
- * Returns `true` if the input has type `{ name: string }`. 
+ * Returns `true` if the input has type `{ name: string }`.
  * @param value
  * @see https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie
  */
@@ -13,7 +13,7 @@ export function hasCookieNameProperty(
 
 /**
  * Returns `true` if input has all required properties of `Cookie`.
- * @param value 
+ * @param value
  * @see https://doc.deno.land/https/deno.land/std/http/mod.ts#Cookie
  */
 export function hasCookieRequiredProperties(

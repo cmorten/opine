@@ -6,7 +6,7 @@ import type { NextFunction, Request, Response } from "../types.ts";
 /**
  * Exposes a query object containing the querystring
  * parameters of the request url.
- * 
+ *
  * @return {Function} query middleware
  * @public
  */

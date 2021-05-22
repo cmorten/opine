@@ -1,8 +1,8 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read --unstable ./examples/eta/index.ts
- * 
+ *
  *    Note: you have to use --unstable because Eta uses the std 'fs' module (which requires --unstable)
  */
 

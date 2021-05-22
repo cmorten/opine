@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-explicit-any
+
 export function wrapPromise(promise: Promise<any>) {
   let status = "pending";
   let response: any;

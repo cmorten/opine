@@ -40,7 +40,7 @@ const trustProxyDefaultSymbol = "@@symbol:trust_proxy_default";
 
 /**
  * Application prototype.
- * 
+ *
  * @public
  */
 export const app: Application = {} as Application;

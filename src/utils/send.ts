@@ -1,13 +1,14 @@
+// deno-lint-ignore-file no-explicit-any
 /**
  * Heavily inspired by send (https://github.com/pillarjs/send/tree/0.17.1)
- * 
+ *
  * send is licensed as follows:
- * 
+ *
  * (The MIT License)
- * 
+ *
  * Copyright (c) 2012 TJ Holowaychuk
  * Copyright (c) 2014-2016 Douglas Christopher Wilson
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * 'Software'), to deal in the Software without restriction, including
@@ -15,10 +16,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +27,7 @@
  * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- * 
+ *
  */
 
 import {
@@ -257,7 +258,7 @@ function clearHeaders(res: Response) {
 
 /**
  * Create a 404 error.
- * 
+ *
  * @param {string} message
  * @returns {Error}
  * @private
@@ -308,7 +309,7 @@ export function sendError(res: Response, error?: any): void {
  * Sets the read offset of the provided file and returns a
  * Deno.Reader to read the file from the offset until the
  * provided contentLength;
- * 
+ *
  * @param {Deno.File} file
  * @param {number} offset
  * @param {number} contentLength
@@ -352,11 +353,11 @@ async function offsetFileReader(
 
 /**
  * Transfer the file at `path`.
- * 
- * @param {object} res 
- * @param {string} path 
- * @param {object} options 
- * @param {object} stat 
+ *
+ * @param {object} res
+ * @param {string} path
+ * @param {object} options
+ * @param {object} stat
  */
 async function _send(
   req: Request,
@@ -598,7 +599,7 @@ async function sendFile(
 function decode(path: string) {
   try {
     return decodeURIComponent(path);
-  } catch (err) {
+  } catch (_err) {
     return -1;
   }
 }

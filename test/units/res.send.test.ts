@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { opine } from "../../mod.ts";
 import {
   describe,
@@ -15,7 +16,7 @@ describe("res", function () {
     it('should set body to ""', function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send();
       });
 
@@ -29,7 +30,7 @@ describe("res", function () {
     it('should set body to ""', function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send(null);
       });
 
@@ -44,7 +45,7 @@ describe("res", function () {
     it('should set body to ""', function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send(undefined);
       });
 
@@ -58,7 +59,7 @@ describe("res", function () {
     it("should send as html", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send("<p>hey</p>");
       });
 
@@ -71,7 +72,7 @@ describe("res", function () {
     it("should set ETag", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         const str = Array(1000).join("-");
         res.send(str);
       });
@@ -85,7 +86,7 @@ describe("res", function () {
     it("should not override Content-Type", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.set("Content-Type", "text/plain").send("hey");
       });
 
@@ -98,7 +99,7 @@ describe("res", function () {
     it("should not override charset in Content-Type", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.set("Content-Type", "text/plain; charset=iso-8859-1").send("hey");
       });
 
@@ -111,7 +112,7 @@ describe("res", function () {
     it("should keep charset in Content-Type for Buffers", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.set("Content-Type", "text/plain; charset=iso-8859-1").send(
           (new TextEncoder()).encode("hi"),
         );
@@ -128,7 +129,7 @@ describe("res", function () {
     it("should send as octet-stream", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send((new TextEncoder()).encode("hello"));
       });
 
@@ -143,7 +144,7 @@ describe("res", function () {
     it("should set ETag", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send((new TextEncoder()).encode("hello"));
       });
 
@@ -156,7 +157,7 @@ describe("res", function () {
     it("should not override Content-Type", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.set("Content-Type", "text/plain").send(
           (new TextEncoder()).encode("hey"),
         );
@@ -171,7 +172,7 @@ describe("res", function () {
     it("should not override ETag", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.type("text/plain").set("ETag", '"foo"').send(
           (new TextEncoder()).encode("hey"),
         );
@@ -188,7 +189,7 @@ describe("res", function () {
     it("should send as application/json", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send({ name: "deno" });
       });
 
@@ -203,7 +204,7 @@ describe("res", function () {
     it("should ignore the body", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.send("yay");
       });
 
@@ -221,7 +222,7 @@ describe("res", function () {
     ) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.setStatus(204).set("Transfer-Encoding", "chunked").send("foo");
       });
 
@@ -240,7 +241,7 @@ describe("res", function () {
     ) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.setStatus(304).set("Transfer-Encoding", "chunked").send("foo");
       });
 
@@ -257,7 +258,7 @@ describe("res", function () {
     const app = opine();
     const etag = '"asdf"';
 
-    app.use(function (req, res, next) {
+    app.use(function (_req, res) {
       res.set("ETag", etag);
       res.send("hey");
     });
@@ -272,7 +273,7 @@ describe("res", function () {
     const app = opine();
     const etag = '"asdf"';
 
-    app.use(function (req, res) {
+    app.use(function (_req, res) {
       const str = Array(1000).join("-");
       res.set("ETag", etag);
       res.send(str);
@@ -288,7 +289,7 @@ describe("res", function () {
     const app = opine();
     const etag = '"asdf"';
 
-    app.use(function (req, res, next) {
+    app.use(function (_req, res) {
       res.setStatus(500);
       res.set("ETag", etag);
       res.send("hey");
@@ -304,7 +305,7 @@ describe("res", function () {
   it("should not support jsonp callbacks", function (done) {
     const app = opine();
 
-    app.use(function (req, res) {
+    app.use(function (_req, res) {
       res.send({ foo: "bar" });
     });
 
@@ -316,7 +317,7 @@ describe("res", function () {
   it("should be chainable", function (done) {
     const app = opine();
 
-    app.use(function (req, res) {
+    app.use(function (_req, res) {
       expect(res.send("hey")).toEqual(res);
     });
 
@@ -330,7 +331,7 @@ describe("res", function () {
       it("should send ETag", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("kajdslfkasdf");
         });
 
@@ -351,7 +352,7 @@ describe("res", function () {
           function (done) {
             const app = opine();
 
-            (app as any)[method]("/", function (req: Request, res: Response) {
+            (app as any)[method]("/", function (_req: Request, res: Response) {
               res.send("kajdslfkasdf");
             });
 
@@ -365,7 +366,7 @@ describe("res", function () {
       it("should send ETag for empty string response", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("");
         });
 
@@ -380,7 +381,7 @@ describe("res", function () {
       it("should send ETag for long response", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           const str = Array(1000).join("-");
           res.send(str);
         });
@@ -396,7 +397,7 @@ describe("res", function () {
       it("should not override ETag when manually set", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.set("etag", '"asdf"');
           res.send(200);
         });
@@ -412,7 +413,7 @@ describe("res", function () {
       it("should not send ETag for res.send()", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send();
         });
 
@@ -429,7 +430,7 @@ describe("res", function () {
       it("should send no ETag", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           const str = Array(1000).join("-");
           res.send(str);
         });
@@ -447,7 +448,7 @@ describe("res", function () {
 
         app.disable("etag");
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.set("etag", '"asdf"');
           res.send(200);
         });
@@ -465,7 +466,7 @@ describe("res", function () {
 
         app.set("etag", "strong");
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("hello, world!");
         });
 
@@ -482,7 +483,7 @@ describe("res", function () {
 
         app.set("etag", "weak");
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("hello, world!");
         });
 
@@ -507,7 +508,7 @@ describe("res", function () {
           return '"custom"';
         });
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("hello, world!");
         });
 
@@ -520,11 +521,11 @@ describe("res", function () {
       it("should not send falsy ETag", function (done) {
         const app = opine();
 
-        app.set("etag", function (body: any) {
+        app.set("etag", function (_body: any) {
           return undefined;
         });
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.send("hello, world!");
         });
 

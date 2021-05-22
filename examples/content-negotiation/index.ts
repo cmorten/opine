@@ -19,7 +19,7 @@ const app = opine();
 
 // So either you can deal with different types of formatting
 // for expected response in index.ts
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.format({
     html() {
       res.send(
@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 async function format(path: string) {
   const obj = await import(path);
 
-  return function (req: Request, res: Response) {
+  return function (_req: Request, res: Response) {
     res.format(obj);
   };
 }

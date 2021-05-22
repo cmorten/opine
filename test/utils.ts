@@ -7,9 +7,9 @@ export const TEST_TIMEOUT = 3000;
 
 /**
  * A no-op _describe_ method.
- * 
- * @param name 
- * @param fn 
+ *
+ * @param name
+ * @param fn
  */
 export async function describe(_name: string, fn: () => void | Promise<void>) {
   fn();
@@ -17,9 +17,9 @@ export async function describe(_name: string, fn: () => void | Promise<void>) {
 
 /**
  * An _it_ wrapper around `Deno.test`.
- * 
- * @param name 
- * @param fn 
+ *
+ * @param name
+ * @param fn
  */
 export async function it(
   name: string,
@@ -80,8 +80,8 @@ export const after = (count: number, done: Function) => {
 
 /**
  * Returns an object subset of `obj`, whose properties are in `keys`.
- * @param obj 
- * @param props 
+ * @param obj
+ * @param props
  */
 export function pick<
   T extends Object,
@@ -98,8 +98,8 @@ export function pick<
 
 /**
  * Returns an object subset of `obj`, whose properties are not in `keys`.
- * @param obj 
- * @param keys 
+ * @param obj
+ * @param keys
  */
 export function omit<T extends Object, K extends keyof T>(
   obj: T,

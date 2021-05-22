@@ -1,5 +1,6 @@
-import { opine, Router } from "../../mod.ts";
-import { expect, superdeno } from "../deps.ts";
+// deno-lint-ignore-file no-explicit-any
+import { opine } from "../../mod.ts";
+import { superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 import type { NextFunction, Request, Response } from "../../src/types.ts";
 
@@ -8,7 +9,7 @@ describe("app", function () {
     it("should map the array", function (done) {
       const app = opine();
 
-      app.param(["id", "uid"], function (req, res, next, id) {
+      app.param(["id", "uid"], function (req, _res, next, id) {
         id = Number(id);
         if (isNaN(id)) return next("route");
         req.params.id = id;
@@ -39,7 +40,7 @@ describe("app", function () {
     it("should map logic for a single param", function (done) {
       const app = opine();
 
-      app.param("id", function (req, res, next, id) {
+      app.param("id", function (req, _res, next, id) {
         id = Number(id);
         if (isNaN(id)) return next("route");
         req.params.id = id;
@@ -61,20 +62,20 @@ describe("app", function () {
       var called = 0;
       var count = 0;
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (_req, _res, next, _user) {
         called++;
         next();
       });
 
-      app.get("/foo/:user", function (req, res, next) {
+      app.get("/foo/:user", function (_req, _res, next) {
         count++;
         next();
       });
-      app.get("/foo/:user", function (req, res, next) {
+      app.get("/foo/:user", function (_req, _res, next) {
         count++;
         next();
       });
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.end([count, called].join(" "));
       });
 
@@ -88,18 +89,18 @@ describe("app", function () {
       var called = 0;
       var count = 0;
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (req, _res, next, user) {
         called++;
         let reqx = req as any;
         reqx.users = (reqx.users || []).concat(user);
         next();
       });
 
-      app.get("/:user/bob", function (req, res, next) {
+      app.get("/:user/bob", function (_req, _res, next) {
         count++;
         next();
       });
-      app.get("/foo/:user", function (req, res, next) {
+      app.get("/foo/:user", function (_req, _res, next) {
         count++;
         next();
       });
@@ -116,15 +117,15 @@ describe("app", function () {
     it("should support altering req.params across routes", function (done) {
       const app = opine();
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (req, _res, next, user) {
         req.params.user = "deno";
         next();
       });
 
-      app.get("/:user", function (req, res, next) {
+      app.get("/:user", function (_req, _res, next) {
         next("route");
       });
-      app.get("/:user", function (req, res, next) {
+      app.get("/:user", function (req, res) {
         res.send(req.params.user);
       });
 
@@ -136,20 +137,20 @@ describe("app", function () {
     it("should not invoke without route handler", function (done) {
       const app = opine();
 
-      app.param("thing", function (req, res, next, thing) {
+      app.param("thing", function (req, _res, next, thing) {
         req.params.thing = thing;
         next();
       });
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (_req, _res, next, user) {
         next(new Error("invalid invokation"));
       });
 
-      app.post("/:user", function (req, res, next) {
+      app.post("/:user", function (req, res) {
         res.send(req.params.user);
       });
 
-      app.get("/:thing", function (req, res, next) {
+      app.get("/:thing", function (req, res) {
         res.send(req.params.thing);
       });
 
@@ -161,7 +162,7 @@ describe("app", function () {
     it("should work with encoded values", function (done) {
       const app = opine();
 
-      app.param("name", function (req, res, next, name) {
+      app.param("name", function (req, _res, next, name) {
         req.params.name = name;
         next();
       });
@@ -179,7 +180,7 @@ describe("app", function () {
     it("should catch thrown error", function (done) {
       const app = opine();
 
-      app.param("id", function (req, res, next, id) {
+      app.param("id", function (_req, _res, _next, _id) {
         throw new Error("err!");
       });
 
@@ -196,11 +197,11 @@ describe("app", function () {
     it("should catch thrown secondary error", function (done) {
       const app = opine();
 
-      app.param("id", function (req, res, next, val) {
+      app.param("id", function (_req, _res, next, _val) {
         Promise.resolve().then(next);
       });
 
-      app.param("id", function (req, res, next, id) {
+      app.param("id", function (_req, _res, _next, _id) {
         throw new Error("err!");
       });
 
@@ -217,7 +218,7 @@ describe("app", function () {
     it("should defer to next route", function (done) {
       const app = opine();
 
-      app.param("id", function (req, res, next, id) {
+      app.param("id", function (_req, _res, next, _id) {
         next("route");
       });
 
@@ -226,7 +227,7 @@ describe("app", function () {
         res.send("" + id);
       });
 
-      app.get("/:name/123", function (req, res) {
+      app.get("/:name/123", function (_req, res) {
         res.send("name");
       });
 
@@ -238,20 +239,20 @@ describe("app", function () {
     it("should defer all the param routes", function (done) {
       const app = opine();
 
-      app.param("id", function (req, res, next, val) {
+      app.param("id", function (_req, _res, next, val) {
         if (val === "new") return next("route");
         return next();
       });
 
-      app.all("/user/:id", function (req, res) {
+      app.all("/user/:id", function (_req, res) {
         res.send("all.id");
       });
 
-      app.get("/user/:id", function (req, res) {
+      app.get("/user/:id", function (_req, res) {
         res.send("get.id");
       });
 
-      app.get("/user/new", function (req, res) {
+      app.get("/user/new", function (_req, res) {
         res.send("get.new");
       });
 
@@ -265,7 +266,7 @@ describe("app", function () {
       var called = 0;
       var count = 0;
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (req, _res, next, user) {
         called++;
         if (user === "foo") throw new Error("err!");
         let reqx = req as any;
@@ -273,11 +274,11 @@ describe("app", function () {
         next();
       });
 
-      app.get("/:user/bob", function (req, res, next) {
+      app.get("/:user/bob", function (_req, _res, next) {
         count++;
         next();
       });
-      app.get("/foo/:user", function (req, res, next) {
+      app.get("/foo/:user", function (_req, _res, next) {
         count++;
         next();
       });
@@ -305,7 +306,7 @@ describe("app", function () {
       var called = 0;
       var count = 0;
 
-      app.param("user", function (req, res, next, user) {
+      app.param("user", function (req, _res, next, user) {
         called++;
         if (user === "foo") return next("route");
         const reqx = req as any;
@@ -313,11 +314,11 @@ describe("app", function () {
         next();
       });
 
-      app.get("/:user/bob", function (req, res, next) {
+      app.get("/:user/bob", function (_req, _res, next) {
         count++;
         next();
       });
-      app.get("/foo/:user", function (req, res, next) {
+      app.get("/foo/:user", function (_req, _res, next) {
         count++;
         next();
       });

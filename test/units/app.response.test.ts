@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { opine } from "../../mod.ts";
 import { superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
@@ -11,7 +12,7 @@ describe("app", function () {
         this.send(str.toUpperCase());
       };
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         (res as any).shout("hey");
       });
 
@@ -32,7 +33,7 @@ describe("app", function () {
         this.send(str);
       };
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         (res as any).shout("hey");
       });
 

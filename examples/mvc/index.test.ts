@@ -35,7 +35,7 @@ describe("mvc", () => {
         .post("/pet/2")
         .set("Content-Type", "application/x-www-form-urlencoded")
         .send({ pet: { name: "Georgie Porgie" } })
-        .expect(302, function (err, res) {
+        .expect(302, function (err) {
           if (err) {
             return done(err);
           }
@@ -107,7 +107,7 @@ describe("mvc", () => {
         .post("/user/1")
         .set("Content-Type", "application/x-www-form-urlencoded")
         .send({ user: { name: "Elephant Seal" } })
-        .expect(302, function (err, res) {
+        .expect(302, function (err) {
           if (err) {
             return done(err);
           }
@@ -126,7 +126,7 @@ describe("mvc", () => {
         .set("Content-Type", "application/x-www-form-urlencoded")
         .send({ pet: { name: "Bramble" } })
         .expect("Location", "/user/0")
-        .expect(302, function (err, res) {
+        .expect(302, function (err) {
           if (err) {
             return done(err);
           }

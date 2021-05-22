@@ -1,21 +1,21 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read ./examples/redirect/index.ts
- * 
+ *
  *    if have the repo cloned locally OR
- * 
+ *
  *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/redirect/index.ts
- * 
+ *
  *    if you don't!
- * 
+ *
  */
 
 import opine from "../../mod.ts";
 
 const app = opine();
 
-app.get("/home", function (req, res) {
+app.get("/home", function (_req, res) {
   res.send("Hello Deno!");
 });
 
@@ -23,7 +23,7 @@ app.get("/home", function (req, res) {
 //
 // To learn more about the Location header, please refer to
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location
-app.get("/redirect", function (req, res) {
+app.get("/redirect", function (_req, res) {
   const status = 301;
   res.redirect(status, `/home?status=${status}`);
 });
@@ -31,7 +31,7 @@ app.get("/redirect", function (req, res) {
 // Redirects from `/relative/redirect/` to `/home` using:
 // 1. a temporary redirect
 // 2. a relative location.
-app.get("/relative/redirect", function (req, res) {
+app.get("/relative/redirect", function (_req, res) {
   res.redirect("../home?status=302");
 });
 

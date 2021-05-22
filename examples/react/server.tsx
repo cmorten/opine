@@ -22,7 +22,7 @@ import { App } from "./components/App.tsx";
 const { diagnostics, files } = await Deno.emit(
   "./examples/react/client.tsx",
   {
-    bundle: "esm",
+    bundle: "module",
     compilerOptions: {
       lib: ["dom", "dom.iterable", "esnext"],
     },

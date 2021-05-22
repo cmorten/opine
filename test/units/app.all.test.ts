@@ -23,7 +23,7 @@ describe("app.all()", function () {
     const app = opine();
     let n = 0;
 
-    app.all("/*", function (req, res, next) {
+    app.all("/*", function (_req, _res, next) {
       if (n++) return done(new Error("DELETE called several times"));
       next();
     });

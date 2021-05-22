@@ -84,7 +84,7 @@ describe("bodyParser: json", () => {
     req.headers.set("Content-Length", "1");
     const parser = json();
 
-    parser(req, {} as any, (err?: any) => {
+    parser(req, {} as any, (err?: unknown) => {
       if (err) throw err;
       expect(req.body).toEqual(mockBody);
       expect(req.parsedBody).toBeUndefined();

@@ -19,7 +19,7 @@ import type {
 
 /**
  * Request prototype.
- * 
+ *
  * @public
  */
 export const request: Request = Object.create(ServerRequest.prototype);

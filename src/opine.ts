@@ -7,14 +7,14 @@ import type { NextFunction, Opine, Request, Response } from "./types.ts";
 
 /**
  * Response prototype.
- * 
+ *
  * @public
  */
 export const response: Response = Object.create(ServerResponse.prototype);
 
 /**
  * Create an Opine application.
- * 
+ *
  * @return {Opine}
  * @public
  */

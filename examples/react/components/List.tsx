@@ -1,3 +1,4 @@
+// deno-lint-ignore-file ban-ts-comment
 import React from "https://esm.sh/react@17.0.2?dev";
 import { fetchDoggos } from "../services/fetchDoggos.ts";
 

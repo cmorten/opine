@@ -55,26 +55,26 @@ describe("req", function () {
       const sub2 = Router();
       const sub3 = Router();
 
-      sub3.get("/:d", function (req, res, next) {
+      sub3.get("/:d", function (req, _res, next) {
         urls.push("0@" + req.baseUrl);
         next();
       });
       sub2.use("/:c", sub3);
-      sub1.use("/", function (req, res, next) {
+      sub1.use("/", function (req, _res, next) {
         urls.push("1@" + req.baseUrl);
         next();
       });
       sub1.use("/bar", sub2);
-      sub1.use("/bar", function (req, res, next) {
+      sub1.use("/bar", function (req, _res, next) {
         urls.push("2@" + req.baseUrl);
         next();
       });
-      app.use(function (req, res, next) {
+      app.use(function (req, _res, next) {
         urls.push("3@" + req.baseUrl);
         next();
       });
       app.use("/:a", sub1);
-      app.use(function (req, res, next) {
+      app.use(function (req, res) {
         urls.push("4@" + req.baseUrl);
         res.end(urls.join(","));
       });

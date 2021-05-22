@@ -23,7 +23,7 @@ describe("res.vary()", function () {
     it("should not add it again", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.vary("Accept");
         res.vary("Accept-Encoding");
         res.vary("Accept-Encoding");
