@@ -175,7 +175,6 @@ describe("res", function () {
   describe("when url is back", function () {
     it("should redirect to the referrer header", async function (done) {
       const app = opine();
-      const location = "back";
       const output: DeferredTestResult = deferred();
       const referrer = "/to?referrer=ok";
 

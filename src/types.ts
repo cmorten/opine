@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 // Type definitions for Opine.
 // Definitions by: Craig Morten <https://github.com/asos-craigmorten>
 
@@ -170,7 +171,7 @@ export interface IRouter {
    *
    * If no callback is provided, then default error handlers will respond
    * in the event of an error bubbling through the stack.
-   * 
+   *
    * @private
    */
   handle(req: Request, res: Response, next?: NextFunction): void;
@@ -518,11 +519,11 @@ export interface Request<
 
   /**
    * Body of request.
-   * 
+   *
    * If the body has been passed such that a `parsedBody`
    * property is defined, this returns the `parsedBody`
    * value.
-   * 
+   *
    * To always get the raw body value, use the `raw`
    * property.
    */
@@ -662,7 +663,7 @@ export interface Response<ResBody = any>
    * Transfer the file at the given `path` as an attachment.
    *
    * Optionally providing an alternate attachment `filename`.
-   * 
+   *
    * Optionally providing an `options` object to use with `res.sendFile()`.
    *
    * This function will set the `Content-Disposition` header, overriding
@@ -682,7 +683,7 @@ export interface Response<ResBody = any>
 
   /**
    * Ends a response.
-   * 
+   *
    * Generally it is recommended to use the `res.send()` or
    * `res.json()` methods which will handle automatically
    * setting the _Content-Type_ header, and are able to
@@ -1107,7 +1108,7 @@ export interface Application extends IRouter, Opine.Application {
 
   /**
    * Emit an event using the applications event emitter.
-   * 
+   *
    * Events will be raised based on the passed event string
    * and any listening _on()_ methods will receive the passed
    * _arg_ as an argument.
@@ -1151,7 +1152,7 @@ export interface Application extends IRouter, Opine.Application {
    */
   render(
     name: string,
-    options?: object,
+    options?: any,
     callback?: (err: Error, html: string) => void,
   ): void;
   render(name: string, callback: (err: Error, html: string) => void): void;

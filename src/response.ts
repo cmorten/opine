@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any no-this-alias
 import { contentDisposition } from "./utils/contentDisposition.ts";
 import { stringify } from "./utils/stringify.ts";
 import { normalizeType, normalizeTypes } from "./utils/normalizeType.ts";
@@ -33,7 +34,7 @@ import type {
 
 /**
  * Response class.
- * 
+ *
  * @public
  */
 export class Response implements DenoResponse {
@@ -50,7 +51,7 @@ export class Response implements DenoResponse {
   /**
    * Add a resource ID to the list of resources to be
    * closed after the .end() method has been called.
-   * 
+   *
    * @param {number} rid Resource ID
    * @public
    */
@@ -61,13 +62,13 @@ export class Response implements DenoResponse {
   /**
    * Append additional header `field` with value `val`.
    * Value can be either a `string` or an array of `string`.
-   * 
+   *
    * Example:
    *
    *    res.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
    *    res.append('Warning', '199 Miscellaneous warning');
    *    res.append("cache-control", ["public", "max-age=604800", "immutable"]);
-   * 
+   *
    * @param {string} field
    * @param {string|string[]} value
    * @return {Response} for chaining
@@ -185,7 +186,7 @@ export class Response implements DenoResponse {
    * Transfer the file at the given `path` as an attachment.
    *
    * Optionally providing an alternate attachment `filename`.
-   * 
+   *
    * Optionally providing an `options` object to use with `res.sendFile()`.
    *
    * This function will set the `Content-Disposition` header, overriding
@@ -277,8 +278,8 @@ export class Response implements DenoResponse {
 
   /**
    * Sets an ETag header.
-   * 
-   * @param {string|Uint8Array|Deno.FileInfo} chunk 
+   *
+   * @param {string|Uint8Array|Deno.FileInfo} chunk
    * @returns {Response} for chaining
    * @public
    */
@@ -522,7 +523,7 @@ export class Response implements DenoResponse {
  * defaulting to `302`.
  *
  * The resulting `url` is determined by `res.location()`.
- * 
+ *
  * Examples:
  *
  *    res.redirect('/foo/bar');
@@ -616,9 +617,9 @@ export class Response implements DenoResponse {
     options._locals = self.locals;
 
     // default callback to respond
-    done = done || function (err: any, str: string) {
+    done = done || function (err: unknown, str: string) {
       if (err) {
-        return (req as any).next(err);
+        return req.next!(err);
       }
 
       self.send(str);
@@ -642,7 +643,7 @@ export class Response implements DenoResponse {
    */
   send(body: ResponseBody): this {
     let chunk: DenoResponseBody;
-    let isUndefined = body === undefined;
+    const isUndefined = body === undefined;
 
     if (isUndefined || body === null) {
       body = "";
@@ -823,7 +824,7 @@ export class Response implements DenoResponse {
 
   /**
    * Set status `code`.
-   * 
+   *
    * This method deviates from Express due to the naming clash
    * with Deno.Response `status` property.
    *
@@ -847,7 +848,7 @@ export class Response implements DenoResponse {
    *     res.type('json');
    *     res.type('application/json');
    *     res.type('png');
-   * 
+   *
    * @param {string} type
    * @return {Response} for chaining
    * @public
@@ -861,7 +862,7 @@ export class Response implements DenoResponse {
 
   /**
    * Deletes a header.
-   * 
+   *
    * @param {string} field
    * @return {Response} for chaining
    * @public

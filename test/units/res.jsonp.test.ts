@@ -7,7 +7,7 @@ describe("res", function () {
     it("should respond with jsonp", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -20,7 +20,7 @@ describe("res", function () {
     it("should use first callback parameter with jsonp", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -33,7 +33,7 @@ describe("res", function () {
     it("should ignore object callback parameter with jsonp", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -48,7 +48,7 @@ describe("res", function () {
 
       app.set("jsonp callback name", "clb");
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -61,7 +61,7 @@ describe("res", function () {
     it("should allow []", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -74,7 +74,7 @@ describe("res", function () {
     it("should disallow arbitrary js", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({});
       });
 
@@ -87,7 +87,7 @@ describe("res", function () {
     it("should escape utf whitespace", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ str: "\u2028 \u2029 woot" });
       });
 
@@ -100,7 +100,7 @@ describe("res", function () {
     it("should not escape utf whitespace for json fallback", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ str: "\u2028 \u2029 woot" });
       });
 
@@ -113,7 +113,7 @@ describe("res", function () {
     it("should include security header and prologue", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.jsonp({ count: 1 });
       });
 
@@ -129,7 +129,7 @@ describe("res", function () {
     ) {
       const app = opine();
 
-      app.get("/", function (req, res) {
+      app.get("/", function (_req, res) {
         res.type("application/vnd.example+json");
         res.jsonp({ hello: "world" });
       });
@@ -146,7 +146,7 @@ describe("res", function () {
     it("should override previous Content-Types with callback", function (done) {
       const app = opine();
 
-      app.get("/", function (req, res) {
+      app.get("/", function (_req, res) {
         res.type("application/vnd.example+json");
         res.jsonp({ hello: "world" });
       });
@@ -162,7 +162,7 @@ describe("res", function () {
       it("should respond with json", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp(null);
         });
 
@@ -177,7 +177,7 @@ describe("res", function () {
       it("should respond with json", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp(["foo", "bar", "baz"]);
         });
 
@@ -192,7 +192,7 @@ describe("res", function () {
       it("should respond with json", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp({ name: "deno" });
         });
 
@@ -207,7 +207,7 @@ describe("res", function () {
       it("should respond with json for null", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp(null);
         });
 
@@ -220,7 +220,7 @@ describe("res", function () {
       it("should respond with json for Number", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp(300);
         });
 
@@ -233,7 +233,7 @@ describe("res", function () {
       it("should respond with json for String", function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp("str");
         });
 
@@ -255,7 +255,7 @@ describe("res", function () {
 
         app.enable("json escape");
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp({ "&": "\u2028<script>\u2029" });
         });
 
@@ -278,7 +278,7 @@ describe("res", function () {
           return key[0] === "_" ? undefined : val;
         });
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp({ name: "deno", _id: 12345 });
         });
 
@@ -300,7 +300,7 @@ describe("res", function () {
 
         app.set("json spaces", 2);
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.jsonp({ name: "deno", age: 2 });
         });
 
@@ -315,7 +315,7 @@ describe("res", function () {
   it("should not override previous Content-Types", function (done) {
     const app = opine();
 
-    app.get("/", function (req, res) {
+    app.get("/", function (_req, res) {
       res.type("application/vnd.example+json");
       res.jsonp({ hello: "world" });
     });

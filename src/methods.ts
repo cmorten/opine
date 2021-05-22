@@ -1,6 +1,6 @@
 /**
  * Supported Deno methods.
- * 
+ *
  * @public
  */
 export const methods: string[] = [

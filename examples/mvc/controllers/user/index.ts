@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import * as db from "../../db.ts";
 import type { NextFunction, Request, Response } from "../../../../src/types.ts";
 

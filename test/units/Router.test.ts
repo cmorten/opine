@@ -544,7 +544,7 @@ describe("Router", function () {
         throw new Error("should not be called");
       }
 
-      router.use(function (req: Request, res: Response) {
+      router.use(function (_req: Request, res: Response) {
         res.end();
       });
 
@@ -574,17 +574,17 @@ describe("Router", function () {
       let count = 0;
       const router = new Router();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: Request, _res: Response, next: NextFunction) {
         expect(++count).toEqual(1);
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: Request, _res: Response, next: NextFunction) {
         expect(++count).toEqual(2);
         next();
       }
 
-      router.use([fn1, fn2], function (req: Request, res: Response) {
+      router.use([fn1, fn2], function () {
         expect(++count).toEqual(3);
         done();
       });
@@ -615,14 +615,14 @@ describe("Router", function () {
 
       sub.get(
         "/bar",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: Request, _res: Response, next: NextFunction) {
           next();
         },
       );
 
       router.use(
         "/foo/:ms/",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: Request, _res: Response, next: NextFunction) {
           const ms = parseInt(req.params.ms, 10);
           (req as any).ms = ms;
           setTimeout(next, ms);
@@ -632,14 +632,14 @@ describe("Router", function () {
       router.use("/foo/:ms/", new Router());
       router.use("/foo/:ms/", sub);
 
-      router.handle(req1, {} as Response, function (err: any) {
+      router.handle(req1, {} as Response, function (err: unknown) {
         expect(err).toBeUndefined();
         expect(req1.ms).toEqual(50);
         expect(req1.originalUrl).toEqual("/foo/50/bar");
         cb();
       });
 
-      router.handle(req2, {} as Response, function (err: any) {
+      router.handle(req2, {} as Response, function (err: unknown) {
         expect(err).toBeUndefined();
         expect(req2.ms).toEqual(10);
         expect(req2.originalUrl).toEqual("/foo/10/bar");

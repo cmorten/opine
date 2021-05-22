@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 const variableRegExp = /\$([0-9a-zA-Z\.]+)/g;
 
 function generateVariableLookup(data: any) {

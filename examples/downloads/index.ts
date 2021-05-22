@@ -1,10 +1,10 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read ./examples/downloads/index.ts
- * 
+ *
  *    after cloning the repo locally.
- * 
+ *
  */
 
 import { dirname, join } from "../../deps.ts";
@@ -13,7 +13,7 @@ import opine from "../../mod.ts";
 const app = opine();
 const __dirname = dirname(import.meta.url);
 
-app.get("/", function (req, res) {
+app.get("/", function (_req, res) {
   res.send(
     "<ul>" +
       '<li>Download <a href="/files/amazing.txt">amazing.txt</a>.</li>' +

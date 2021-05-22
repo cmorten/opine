@@ -1,14 +1,15 @@
+// deno-lint-ignore-file no-explicit-any
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read --allow-env ./examples/error-pages/index.ts
- * 
+ *
  * after cloning the repo locally.
- * 
+ *
  * To turn off verbose errors, set `DENO_ENV=production`. For example:
- * 
+ *
  *    DENO_ENV=production deno run --allow-net --allow-read --allow-env ./examples/error-pages/index.ts
- * 
+ *
  */
 
 import { opine, serveStatic } from "../../mod.ts";
@@ -63,14 +64,14 @@ app.get("/404", function (req, res, next) {
   next();
 });
 
-app.get("/403", function (req, res, next) {
+app.get("/403", function (_req, _res, next) {
   // trigger a 403 error
   const err = new Error("Not Allowed!");
   (err as any).status = 403;
   next(err);
 });
 
-app.get("/500", function (req, res, next) {
+app.get("/500", function (_req, _res, next) {
   // trigger a generic (500) error
   next(new Error("Panicking Deno!"));
 });
@@ -85,7 +86,7 @@ app.get("/500", function (req, res, next) {
 // $ curl http://localhost:3000/notfound -H "Accept: application/json"
 // $ curl http://localhost:3000/notfound -H "Accept: text/plain"
 
-app.use(function (req, res, next) {
+app.use(function (req, res) {
   res.setStatus(404);
 
   res.format({
@@ -113,7 +114,7 @@ app.use(function (req, res, next) {
 // would remain being executed, however here
 // we simply respond with an error page.
 
-app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
+app.use(function (err: any, _req: Request, res: Response, _next: NextFunction) {
   // we may use properties of the error object
   // here and next(err) appropriately, or if
   // we possibly recovered from the error, simply next().

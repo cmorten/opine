@@ -1,14 +1,14 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read ./examples/raw/index.ts
- * 
+ *
  *    if have the repo cloned locally OR
- * 
+ *
  *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/raw/index.ts
- * 
+ *
  *    if you don't!
- * 
+ *
  */
 
 import { opine, raw } from "../../mod.ts";

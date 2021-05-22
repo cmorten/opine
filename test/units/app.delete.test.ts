@@ -6,7 +6,7 @@ describe("app.delete()", function () {
   it("should alias app.delete()", function (done) {
     const app = opine();
 
-    app.delete("/deno", function (req, res) {
+    app.delete("/deno", function (_req, res) {
       res.end("deleted deno!");
     });
 

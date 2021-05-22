@@ -1,8 +1,8 @@
 /**
  * Run this example using:
- * 
+ *
  *    deno run --allow-net --allow-read ./examples/mvc/index.ts
- * 
+ *
  */
 
 import { opine, serveStatic, urlencoded } from "../../mod.ts";
@@ -31,10 +31,12 @@ app.use(urlencoded({ extended: true }));
 // load controllers
 await boot(app);
 
-app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
-  console.error(err.stack);
-  res.setStatus(500).render("5xx");
-});
+app.use(
+  function (err: Error, _req: Request, res: Response, _next: NextFunction) {
+    console.error(err.stack);
+    res.setStatus(500).render("5xx");
+  },
+);
 
 // assume 404 since no middleware responded
 app.use(function (req, res) {

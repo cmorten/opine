@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { opine } from "../../mod.ts";
 import {
   after,
@@ -23,7 +24,7 @@ function createApp(path: string, options?: any) {
   const app = opine();
   // console.log({ fixtures, path });
 
-  app.use(async function (req, res, next) {
+  app.use(async function (_req, res, next) {
     try {
       await res.sendFile(path, options);
     } catch (err) {
@@ -96,7 +97,7 @@ describe("res", function () {
     it("should 404 when not found", function (done) {
       const app = createApp(resolve(fixtures, "does-not-exist"));
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.status = 200;
         res.send("no!");
       });
@@ -109,7 +110,7 @@ describe("res", function () {
     it("should resolve without error when HEAD", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.sendFile(resolve(fixtures, "name.txt"));
       });
 
@@ -121,7 +122,7 @@ describe("res", function () {
     it("should resolve without error when 304", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.sendFile(resolve(fixtures, "name.txt"));
       });
 
@@ -142,7 +143,7 @@ describe("res", function () {
     it("should not override manual content-types", function (done) {
       const app = opine();
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         res.type("application/x-bogus");
         res.sendFile(resolve(fixtures, "name.txt"));
       });
@@ -158,7 +159,7 @@ describe("res", function () {
       const cb = after(2, done);
       let error: any = null;
 
-      app.use(function (req, res) {
+      app.use(function (_req, res) {
         setImmediate(function () {
           res.sendFile(resolve(fixtures, "name.txt"));
           server.close();
@@ -172,7 +173,12 @@ describe("res", function () {
       });
 
       app.use(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          _req: Request,
+          _res: Response,
+          next: NextFunction,
+        ) {
           error = err;
           next(err);
         },
@@ -331,7 +337,7 @@ describe("res", function () {
       ) {
         const app = opine();
 
-        app.use(async function (req, res) {
+        app.use(async function (_req, res) {
           try {
             await res.sendFile(`${fixtures}/foo/../user.html`);
           } catch (err) {
@@ -347,7 +353,7 @@ describe("res", function () {
       it('should allow ../ when "root" is set', function (done) {
         const app = opine();
 
-        app.use(function (req, res) {
+        app.use(function (_req, res) {
           res.sendFile("foo/../user.html", { root: "test/fixtures" });
         });
 
@@ -359,7 +365,7 @@ describe("res", function () {
       it('should disallow requesting out of "root"', function (done) {
         const app = opine();
 
-        app.use(async function (req, res) {
+        app.use(async function (_req, res) {
           try {
             await res.sendFile(
               "foo/../../user.html",
