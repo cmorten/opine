@@ -257,7 +257,7 @@ export class Response implements DenoResponse {
       await this.req.respond(this);
     } catch (e) {
       // Connection might have been already closed
-      if (!(e instanceof Deno.errors.BadResource)) {
+      if (!(e instanceof Deno.errors.BadResource || e instanceof Deno.errors.ConnectionAborted)) {
         throw e;
       }
     }
