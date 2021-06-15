@@ -570,6 +570,20 @@ res.set({
 });
 ```
 
+#### res.setHeader(field [, value])
+
+An alias for `res.set`
+
+```ts
+res.setHeader("Content-Type", "text/plain");
+
+res.setHeader({
+  "Content-Type", "text/plain; charset=utf-8",
+  "Content-Length": "123",
+  "Cache-control": "no-store",
+});
+```
+
 #### res.setStatus(code)
 
 Sets the HTTP status for the response. It is a chainable alias of Deno's [response.status](https://doc.deno.land/https/deno.land/std/http/mod.ts#Response).
