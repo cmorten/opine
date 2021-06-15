@@ -823,6 +823,30 @@ export class Response implements DenoResponse {
   }
 
   /**
+   * Set header `field` to `value`, or pass
+   * an object of header fields.
+   *
+   * alias for res.set()
+   *
+   * Examples:
+   *
+   *     res.setHeader('Accept', 'application/json');
+   *     res.setHeader({
+   *       'Accept-Language': "en-US, en;q=0.5",
+   *       'Accept': 'text/html',
+   *     });
+   * @param {string} field
+   * @param {string} value
+   * @return {Response} for chaining
+   * @public
+   */
+  setHeader(field: string, value: string): this;
+  setHeader(obj: Record<string, string>): this;
+  setHeader(field: unknown, value?: unknown): this {
+    return this.set(field as any, value as any);
+  }
+
+  /**
    * Set status `code`.
    *
    * This method deviates from Express due to the naming clash
