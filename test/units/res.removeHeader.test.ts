@@ -4,7 +4,7 @@ import { superdeno } from "../deps.ts";
 import { expect } from "../deps.ts";
 
 describe("res", function () {
-  describe(".removeHeader(field, value)", function () {
+  describe(".removeHeader(field)", function () {
     it("should remove the response header field", function (done) {
       const app = opine();
 
