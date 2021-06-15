@@ -418,7 +418,7 @@ res.redirect("back");
 
 #### res.removeHeader(field)
 
-Remove the HTTP response header `field`
+Remove the HTTP response header `field`.
 
 ```ts
 res.removeHeader('Accept');
