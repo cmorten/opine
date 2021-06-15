@@ -416,6 +416,14 @@ defaulting to `/` when the referer is missing.
 res.redirect("back");
 ```
 
+#### res.removeHeader(field)
+
+Remove the HTTP response header `field`.
+
+```ts
+res.removeHeader('Accept');
+```
+
 #### res.render(view [, locals][, callback])
 
 Renders a `view` and sends the rendered HTML string to the client. Optional parameters:
