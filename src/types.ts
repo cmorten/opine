@@ -840,6 +840,18 @@ export interface Response<ResBody = any>
   redirect(code: Status, url: string): void;
 
   /**
+   * Remove a header from the response
+   *
+   * Examples:
+   *
+   *     res.removeHeader('Accept');
+   * @param {string} field
+   * @return {Response} for chaining
+   * @public
+   */
+  removeHeader(field: string): this;
+
+  /**
    * Render `view` with the given `options` and optional callback `fn`.
    * When a callback function is given a response will _not_ be made
    * automatically, otherwise a response of _200_ and _text/html_ is given.
