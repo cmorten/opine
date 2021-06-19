@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.5.0] - 19-06-2021
+
+- [NO-ISSUE] Support Deno 1.11.1 and std 0.99.0 (#131)
+- [#128] add res.removeHeader (#129)
+- [#126] add setHeader alias for res.set (#127)
+
 ## [1.4.0] - 22-05-2021
 
 - feat: support Deno `1.10.2` and std `0.97.0`
