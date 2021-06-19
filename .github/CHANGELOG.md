@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.5.2] - 19-06-2021
+
+- ci: bump eggs CLI to `0.3.8`
+
 ## [1.5.1] - 19-06-2021
 
 - ci: bump eggs CLI to `0.3.7`
