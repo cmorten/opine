@@ -12,7 +12,7 @@ jobs:
       - uses: denolib/setup-deno@v2
         with:
           deno-version: 1.11.1
-      - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.3.6/eggs.ts
+      - run: deno install -A -f --unstable -n eggs https://x.nest.land/eggs@0.3.7/eggs.ts
       - run: |
           export PATH="/home/runner/.deno/bin:$PATH"
           eggs link ${NEST_LAND_KEY}

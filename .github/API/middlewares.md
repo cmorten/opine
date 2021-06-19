@@ -13,7 +13,7 @@ After the middleware, the existing `body` property on the `request` object (i.e.
 > As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, json } from "https://deno.land/x/opine@1.5.0/mod.ts";
+import { opine, json } from "https://deno.land/x/opine@1.5.1/mod.ts";
 
 const app = opine();
 
@@ -47,7 +47,7 @@ After the middleware, the existing `body` property on the `request` object (i.e.
 > As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.toString()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.body` is a string before calling string methods is recommended.
 
 ```ts
-import { opine, raw } from "https://deno.land/x/opine@1.5.0/mod.ts";
+import { opine, raw } from "https://deno.land/x/opine@1.5.1/mod.ts";
 
 const app = opine();
 
@@ -166,7 +166,7 @@ After the middleware, the existing `body` property on the `request` object (i.e.
 > As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.trim()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.parsedBody` is a string before calling string methods is recommended.
 
 ```ts
-import { opine, text } from "https://deno.land/x/opine@1.5.0/mod.ts";
+import { opine, text } from "https://deno.land/x/opine@1.5.1/mod.ts";
 
 const app = opine();
 
@@ -198,7 +198,7 @@ After the middleware, the existing `body` property on the `request` object (i.e.
 > As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, urlencoded } from "https://deno.land/x/opine@1.5.0/mod.ts";
+import { opine, urlencoded } from "https://deno.land/x/opine@1.5.1/mod.ts";
 
 const app = opine();
 

@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.5.1] - 19-06-2021
+
+- ci: bump eggs CLI to `0.3.7`
+
 ## [1.5.0] - 19-06-2021
 
 - [NO-ISSUE] Support Deno 1.11.1 and std 0.99.0 (#131)
