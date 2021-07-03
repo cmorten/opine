@@ -14,5 +14,5 @@ deno run --allow-read --allow-net ./examples/cors/index.ts
 
 Please refer to:
 
-- [Deno cors module README.md](https://deno.land/x/cors@v1.2.1)
-- [Deno cors module Opine examples](https://deno.land/x/cors@v1.2.1/examples/opine)
+- [Deno cors module README.md](https://deno.land/x/cors@v1.2.2)
+- [Deno cors module Opine examples](https://deno.land/x/cors@v1.2.2/examples/opine)

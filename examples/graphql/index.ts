@@ -12,9 +12,9 @@
  */
 
 import { opine } from "../../mod.ts";
-import { GraphQLHTTP } from "https://deno.land/x/gql@0.1.1/mod.ts";
-import { makeExecutableSchema } from "https://deno.land/x/graphql_tools@0.0.0/mod.ts";
-import { gql } from "https://deno.land/x/graphql_tag@0.0.0/mod.ts";
+import { GraphQLHTTP } from "https://deno.land/x/gql@0.1.4/mod.ts";
+import { makeExecutableSchema } from "https://deno.land/x/graphql_tools@0.0.1/mod.ts";
+import { gql } from "https://deno.land/x/graphql_tag@0.0.1/mod.ts";
 
 const typeDefs = gql`
   type Query {

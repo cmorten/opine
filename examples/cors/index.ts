@@ -6,7 +6,7 @@
  */
 
 import opine from "../../mod.ts";
-import { opineCors } from "https://deno.land/x/cors@v1.2.1/mod.ts";
+import { opineCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 
 const app = opine();
 

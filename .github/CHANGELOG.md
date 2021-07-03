@@ -1,5 +1,12 @@
 # ChangeLog
 
+## [1.5.4] - 03-07-2021
+
+- test: upgrade superdeno version.
+- feat: upgrade std `0.100.0`.
+- ci: downgrade support to Deno `1.11.1` due to bug with `OPTIONS` requests introduced in `1.11.2`. REF: https://github.com/denoland/deno/issues/10990.
+- chore: upgrade examples dependencies to latest versions.
+
 ## [1.5.3] - 19-06-2021
 
 - fix: version typo
