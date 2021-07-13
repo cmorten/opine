@@ -256,7 +256,6 @@ describe("res", function () {
       superdeno(app)
         .get("/from")
         .redirects(-1)
-        .set("Host", "http://example.com")
         .set("Accept", "text/html")
         .expect(200, { url: escapedLocation, query: {} }, done);
 
@@ -303,7 +302,6 @@ describe("res", function () {
       superdeno(app)
         .get("/from")
         .redirects(-1)
-        .set("Host", "http://example.com")
         .set("Accept", "text/plain, */*")
         .expect(200, done);
 
