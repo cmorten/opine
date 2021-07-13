@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.6.0] - 13-07-2021
+
+- [#132] std lib and deno upgrade (#133)
+- feat: support Deno `1.12.0` and std `0.101.0`.
+
 ## [1.5.4] - 03-07-2021
 
 - test: upgrade superdeno version.
