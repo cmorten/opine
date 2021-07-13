@@ -5,21 +5,13 @@ on:
 
 jobs:
   benchmark:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
-      - run: |
-          curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-          sudo apt-get update
-          sudo apt-get install build-essential libssl-dev git -y
-          git clone https://github.com/wg/wrk.git wrk
-          cd wrk
-          make
-          # move the executable to somewhere in your PATH, ex:
-          sudo cp wrk /usr/local/bin
+      - run: HOMEBREW_NO_AUTO_UPDATE=1 brew install wrk
       - uses: actions/checkout@v2
       - uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.11.1
+          deno-version: 1.12.0
       - run: |
           mkdir -p artifacts          
           cat > artifacts/message.md <<EOF
@@ -28,7 +20,8 @@ jobs:
           <details>
           <summary>PR to merge $GITHUB_HEAD_REF $GITHUB_SHA -> $GITHUB_BASE_REF</summary>
 
-          \`\`\`$(make benchmark)
+          \`\`\`console
+          $(make benchmark)
           \`\`\`
 
           </details>

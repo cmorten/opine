@@ -3,15 +3,30 @@
 FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts lock.json
 
 benchmark:
+	@echo "opine: 1 middleware"
+	@echo "================================"
 	@./benchmarks/run.sh 1 ./benchmarks/middleware.ts
-	@./benchmarks/run.sh 5 ./benchmarks/middleware.ts
+	@echo ""
+	@echo "opine: 10 middleware"
+	@echo "================================"
 	@./benchmarks/run.sh 10 ./benchmarks/middleware.ts
-	@./benchmarks/run.sh 15 ./benchmarks/middleware.ts
-	@./benchmarks/run.sh 20 ./benchmarks/middleware.ts
-	@./benchmarks/run.sh 30 ./benchmarks/middleware.ts
+	@echo ""
+	@echo "opine: 50 middleware"
+	@echo "================================"
 	@./benchmarks/run.sh 50 ./benchmarks/middleware.ts
-	@./benchmarks/run.sh 100 ./benchmarks/middleware.ts
-	@echo
+	@echo ""
+	@echo "native_http benchmark"
+	@echo "================================"
+	@./benchmarks/run.sh 0 https://deno.land/x/native_http/benchmark/bench.ts
+	@echo ""
+	@echo "std/http benchmark"
+	@echo "================================"
+	@./benchmarks/run.sh 0 https://deno.land/std/http/bench.ts
+	@echo ""
+	@echo "deno_http_native benchmark"
+	@echo "================================"
+	@./benchmarks/run.sh 0 https://raw.githubusercontent.com/denoland/deno/main/cli/bench/deno_http_native.js
+	@echo ""
 
 build:
 	@deno run --allow-net="deno.land" --reload mod.ts
