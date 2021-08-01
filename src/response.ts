@@ -257,7 +257,10 @@ export class Response implements DenoResponse {
       await this.req.respond(this);
     } catch (e) {
       // Connection might have been already closed
-      if (!(e instanceof Deno.errors.BadResource)) {
+      if (
+        !(e instanceof Deno.errors.BadResource ||
+          e instanceof Deno.errors.BrokenPipe)
+      ) {
         throw e;
       }
     }
@@ -567,7 +570,7 @@ export class Response implements DenoResponse {
         body = `${STATUS_TEXT.get(status)}. Redirecting to ${address}`;
       },
 
-      html: function _renderRedirectHtmlBoby() {
+      html: function _renderRedirectHtmlBody() {
         const u = escapeHtml(address);
         body = `<p>${
           STATUS_TEXT.get(status)

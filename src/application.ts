@@ -564,30 +564,33 @@ app.listen = function listen(
     ? serveTLS(options as HTTPSOptions)
     : serve(options);
 
+  function isClosed() {
+    return !Deno.resources()[server.listener.rid];
+  }
+
   const start = async () => {
-    try {
-      for await (const request of server) {
-        this(request as Request);
-      }
-    } catch (serverError) {
-      if (server) {
-        try {
-          server.close();
-        } catch (err) {
-          // Server might have been already closed
-          if (!(err instanceof Deno.errors.BadResource)) {
-            throw err;
-          }
+    while (!isClosed()) {
+      try {
+        for await (const request of server) {
+          this(request as Request);
+        }
+      } catch (e) {
+        // Ignore closed connections / servers
+        if (
+          !(e instanceof Deno.errors.BadResource ||
+            e instanceof Deno.errors.BrokenPipe)
+        ) {
+          this.emit("error", e);
         }
       }
-
-      throw serverError;
     }
   };
 
   start();
 
-  if (callback && typeof callback === "function") callback();
+  if (callback && typeof callback === "function") {
+    callback();
+  }
 
   return server;
 };
