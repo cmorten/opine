@@ -53,6 +53,7 @@ lint:
 
 lock:
 	@deno run --allow-net="deno.land" --lock=lock.json --lock-write --reload mod.ts
+	@make fmt
 
 test:
 	@deno test --allow-net --allow-read ./test/units/

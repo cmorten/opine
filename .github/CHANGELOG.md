@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.7.0] - 01-08-2021
+
+- [#102] Handle broken pipe errors gracefully in opine (#135)
+- feat: support Deno `1.12.2` and std `0.103.0`.
+
 ## [1.6.0] - 13-07-2021
 
 - [#132] std lib and deno upgrade (#133)
