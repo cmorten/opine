@@ -5,8 +5,8 @@ const PARSED_BODY_KEY = "parsedBody";
 const RAW_BODY_KEY = "raw";
 
 export const requestProxy = (req: Request): Request =>
-  new Proxy(req, {
-    get: (target: any, prop: string | number | symbol) => {
+  new Proxy<Request>(req, {
+    get: (target, prop: keyof Request) => {
       let value;
 
       if (prop === BODY_KEY) {
