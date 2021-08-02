@@ -75,7 +75,7 @@ When a request is made to `/greet/jp`, `req.baseUrl` is "/greet". When a request
 
 #### req.body
 
-Contains the data submitted in the request body. By default the `req.body` is a `Deno.Reader`, and needs to be read using a body-parsing middleware such as [`json()`](./bodyParser.md) or [`urlencoded()`](./bodyParser.md).
+Contains the data submitted in the request body. By default the `req.body` is a `Deno.Reader`, and needs to be read using a body-parsing middleware such as [`json()`](./middlewares.md#jsonoptions) or [`urlencoded()`](./middlewares.md#urlencodedoptions).
 
 The following example shows how to use body-parsing middleware to populate `req.body`.
 
