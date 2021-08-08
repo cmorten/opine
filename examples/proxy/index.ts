@@ -12,7 +12,7 @@
  */
 
 import opine from "../../mod.ts";
-import { proxy } from "https://deno.land/x/opineHttpProxy@2.8.0/mod.ts";
+import { proxy } from "https://deno.land/x/opineHttpProxy@2.9.0/mod.ts";
 
 const app = opine();
 
