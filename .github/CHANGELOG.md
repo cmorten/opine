@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [1.7.1] - 08-08-2021
+
+- [#137] Move to skypack for npm deps (#138)
+- docs: fix broken middleware links in request docs (#136)
+
 ## [1.7.0] - 01-08-2021
 
 - [#102] Handle broken pipe errors gracefully in opine (#135)
