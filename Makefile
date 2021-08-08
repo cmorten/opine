@@ -1,6 +1,6 @@
-.PHONY: benchmark build ci deps doc fmt fmt-check lint lock test typedoc
+.PHONY: benchmark build ci deps doc fmt fmt-check lint test typedoc
 
-FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts lock.json
+FILES_TO_FORMAT = ./src ./benchmarks/ ./test ./examples deps.ts mod.ts version.ts
 
 benchmark:
 	@echo "opine: 1 middleware"
@@ -50,10 +50,6 @@ fmt-check:
 
 lint:
 	@deno lint --unstable $(FILES_TO_FORMAT)
-
-lock:
-	@deno run --allow-net="deno.land" --lock=lock.json --lock-write --reload mod.ts
-	@make fmt
 
 test:
 	@deno test --allow-net --allow-read ./test/units/
