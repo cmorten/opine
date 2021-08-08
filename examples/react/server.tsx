@@ -10,7 +10,7 @@
  */
 import { opine, serveStatic } from "../../mod.ts";
 import { dirname, join } from "../../deps.ts";
-import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.10.1/mod.ts";
 import React from "https://esm.sh/react@17.0.2?dev";
 import ReactDOMServer from "https://esm.sh/react-dom@17.0.2/server?dev";
 import { App } from "./components/App.tsx";

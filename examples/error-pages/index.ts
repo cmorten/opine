@@ -13,7 +13,7 @@
  */
 
 import { opine, serveStatic } from "../../mod.ts";
-import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.10.1/mod.ts";
 import { dirname, join } from "../../deps.ts";
 import type { NextFunction, Request, Response } from "../../src/types.ts";
 
