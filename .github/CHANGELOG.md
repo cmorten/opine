@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.7.2] - 17-08-2021
+
+- feat: support Deno `1.13.1` and std `0.105.0`.
+
 ## [1.7.1] - 08-08-2021
 
 - [#137] Move to skypack for npm deps (#138)
