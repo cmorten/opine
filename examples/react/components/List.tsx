@@ -10,7 +10,9 @@ export const List = () => {
   return (
     <section className="list_section">
       <ol className="list_list">
-        {doggos.map((doggo: { id: number; src: string; alt: string }) => (
+        {doggos.map((
+          doggo: { id: number; src: string; alt: string },
+        ) => (
           <li className="list_tile" key={doggo.id}>
             <a className="list_card" href={doggo.src}>
               <div className="list_image_container">
