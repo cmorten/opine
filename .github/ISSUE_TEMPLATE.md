@@ -9,4 +9,5 @@ Setup:
 
 ## Details
 
-> Please replace this quote block with the details of the feature / bug you wish to be addressed. If it is a bug please do your best to add steps to reproduce.
+> Please replace this quote block with the details of the feature / bug you wish
+> to be addressed. If it is a bug please do your best to add steps to reproduce.

@@ -3,21 +3,21 @@ export {
   Server,
   ServerRequest,
   serveTLS,
-} from "https://deno.land/std@0.105.0/http/server.ts";
+} from "https://deno.land/std@0.107.0/http/server_legacy.ts";
 export type {
   HTTPOptions,
   HTTPSOptions,
   Response,
-} from "https://deno.land/std@0.105.0/http/server.ts";
+} from "https://deno.land/std@0.107.0/http/server_legacy.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.105.0/http/http_status.ts";
+} from "https://deno.land/std@0.107.0/http/http_status.ts";
 export {
   deleteCookie,
   setCookie,
-} from "https://deno.land/std@0.105.0/http/cookie.ts";
-export type { Cookie } from "https://deno.land/std@0.105.0/http/cookie.ts";
+} from "https://deno.land/std@0.107.0/http/cookie.ts";
+export type { Cookie } from "https://deno.land/std@0.107.0/http/cookie.ts";
 export {
   basename,
   dirname,
@@ -28,11 +28,11 @@ export {
   normalize,
   resolve,
   sep,
-} from "https://deno.land/std@0.105.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.105.0/node/timers.ts";
-export { parse } from "https://deno.land/std@0.105.0/node/querystring.ts";
-export { default as EventEmitter } from "https://deno.land/std@0.105.0/node/events.ts";
-export { Sha1 } from "https://deno.land/std@0.105.0/hash/sha1.ts";
+} from "https://deno.land/std@0.107.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.107.0/node/timers.ts";
+export { parse } from "https://deno.land/std@0.107.0/node/querystring.ts";
+export { default as EventEmitter } from "https://deno.land/std@0.107.0/node/events.ts";
+export { Sha1 } from "https://deno.land/std@0.107.0/hash/sha1.ts";
 export {
   charset,
   contentType,

@@ -6,7 +6,6 @@
  * if have the repo cloned locally. Unfortunately template rendering does not
  * currently support remote URLs for views, so this example cannot be run directly
  * from this repo.
- *
  */
 import { opine, serveStatic } from "../../mod.ts";
 import { dirname, join } from "../../deps.ts";

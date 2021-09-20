@@ -2,7 +2,6 @@
  * Run this example using:
  *
  *    deno run --allow-read --allow-net ./examples/cors/index.ts
- *
  */
 
 import opine from "../../mod.ts";

@@ -45,16 +45,20 @@ import { opine } from "https://deno.land/x/opine@1.7.2/mod.ts";
 
 const app = opine();
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.listen(3000, () => console.log("server has started on http://localhost:3000 🚀"));
+app.listen(
+  3000,
+  () => console.log("server has started on http://localhost:3000 🚀"),
+);
 ```
 
 ## Installation
 
-This is a [Deno](https://deno.land/) module available to import direct from this repo and via the [Deno Registry](https://deno.land/x).
+This is a [Deno](https://deno.land/) module available to import direct from this
+repo and via the [Deno Registry](https://deno.land/x).
 
 Before importing, [download and install Deno](https://deno.land/#installation).
 
@@ -64,7 +68,8 @@ You can then import Opine straight into your project:
 import { opine } from "https://deno.land/x/opine@1.7.2/mod.ts";
 ```
 
-Opine is also available on [nest.land](https://nest.land/package/opine), a package registry for Deno on the Blockchain.
+Opine is also available on [nest.land](https://nest.land/package/opine), a
+package registry for Deno on the Blockchain.
 
 ```ts
 import { opine } from "https://x.nest.land/opine@1.7.2/mod.ts";
@@ -74,16 +79,20 @@ import { opine } from "https://x.nest.land/opine@1.7.2/mod.ts";
 
 - Robust routing
 - Focus on high performance
-- Large selection of HTTP helpers including support for downloading / sending files, etags, Content-Disposition, cookies, JSONP etc.
+- Large selection of HTTP helpers including support for downloading / sending
+  files, etags, Content-Disposition, cookies, JSONP etc.
 - Support for static serving of assets
 - View system supporting template engines
 - Content negotiation
-- Compatible with [SuperDeno](https://github.com/asos-craigmorten/superdeno) for easy server testing
-- Supports HTTP proxy middleware with [opine-http-proxy](https://github.com/asos-craigmorten/opine-http-proxy)
+- Compatible with [SuperDeno](https://github.com/asos-craigmorten/superdeno) for
+  easy server testing
+- Supports HTTP proxy middleware with
+  [opine-http-proxy](https://github.com/asos-craigmorten/opine-http-proxy)
 
 ## Documentation
 
-- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) - usually the best place when getting started ✨
+- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) -
+  usually the best place when getting started ✨
 - [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
@@ -93,7 +102,9 @@ import { opine } from "https://x.nest.land/opine@1.7.2/mod.ts";
 
 ## Quick Start
 
-The quickest way to get started with Opine is to utilize the [Opine CLI](https://github.com/cmorten/opine-cli) to generate an application as shown below:
+The quickest way to get started with Opine is to utilize the
+[Opine CLI](https://github.com/cmorten/opine-cli) to generate an application as
+shown below:
 
 Install the executable. The executable's major version will match Opine's:
 
@@ -117,11 +128,17 @@ deno run --allow-net --allow-read --allow-env mod.ts
 
 ## Philosophy
 
-The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, web sites, hybrids, or public HTTP APIs.
+The Express philosophy is to provide small, robust tooling for HTTP servers,
+making it a great solution for single page applications, web sites, hybrids, or
+public HTTP APIs.
 
-Opine will aim to achieve these same great goals, focussing first on developing robust tooling and features before moving onto accelerating performance and becoming super lightweight.
+Opine will aim to achieve these same great goals, focussing first on developing
+robust tooling and features before moving onto accelerating performance and
+becoming super lightweight.
 
-As time passes, Opine's goals may naturally diverge from [ExpressJS](https://github.com/expressjs/express) and this will be reflected here.
+As time passes, Opine's goals may naturally diverge from
+[ExpressJS](https://github.com/expressjs/express) and this will be reflected
+here.
 
 ## Examples
 
@@ -146,7 +163,8 @@ To run the [examples](./examples), you have two choices:
    deno run --allow-net --allow-read ./examples/hello-world/index.ts
    ```
 
-All the [examples](./examples) contain example commands in their READMEs to help get you started for either of the above methods.
+All the [examples](./examples) contain example commands in their READMEs to help
+get you started for either of the above methods.
 
 ## Contributing
 
@@ -156,10 +174,16 @@ All the [examples](./examples) contain example commands in their READMEs to help
 
 ## License
 
-There are several third party modules that have been ported into this module. Each third party module has maintained it's license and copyrights. The only exception is for Express, from which this entire module has been ported, whose license and copyrights are available at [EXPRESS_LICENSE](./EXPRESS_LICENSE.md) in the root of this repository, and cover all files within the [source](./src) directory which not been explicitly licensed otherwise.
+There are several third party modules that have been ported into this module.
+Each third party module has maintained it's license and copyrights. The only
+exception is for Express, from which this entire module has been ported, whose
+license and copyrights are available at [EXPRESS_LICENSE](./EXPRESS_LICENSE.md)
+in the root of this repository, and cover all files within the [source](./src)
+directory which not been explicitly licensed otherwise.
 
 All modules adapted into this module are licensed under the MIT License.
 
 Opine is licensed under the [MIT License](./LICENSE.md).
 
-Icon designed and created by [Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).
+Icon designed and created by
+[Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).

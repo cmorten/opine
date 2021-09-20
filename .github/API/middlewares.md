@@ -4,16 +4,31 @@ Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 
 ## json([options])
 
-This is a built-in middleware function in Opine. It parses incoming requests with JSON payloads and is based on [body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
+This is a built-in middleware function in Opine. It parses incoming requests
+with JSON payloads and is based on
+[body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
 
-Returns middleware that only parses JSON and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body and supports automatic inflation of `gzip` and `deflate` encodings.
+Returns middleware that only parses JSON and only looks at requests where the
+`Content-Type` header matches the `type` option. This parser accepts any Unicode
+encoding of the body and supports automatic inflation of `gzip` and `deflate`
+encodings.
 
-After the middleware, the existing `body` property on the `request` object (i.e. `req.body`) is overwritten with the parsed data, or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. The original, unparsed request `body` property is still available on the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`) object containing the parsed data is also available for backwards compatibility reasons.
+After the middleware, the existing `body` property on the `request` object (i.e.
+`req.body`) is overwritten with the parsed data, or an empty object (`{}`) if
+there was no body to parse, the `Content-Type` was not matched, or an error
+occurred. The original, unparsed request `body` property is still available on
+the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`)
+object containing the parsed data is also available for backwards compatibility
+reasons.
 
-> As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
+> As `req.body` and `req.parsedBody` shapes are based on user-controlled input,
+> all properties and values in this object are untrusted and should be validated
+> before trusting. For example, `req.body.foo.toString()` may fail in multiple
+> ways, for example `foo` may not be there or may not be a string, and
+> `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, json } from "https://deno.land/x/opine@1.7.2/mod.ts";
+import { json, opine } from "https://deno.land/x/opine@1.7.2/mod.ts";
 
 const app = opine();
 
@@ -37,14 +52,29 @@ The following table describes the properties of the optional `options` object.
 
 ## raw([options])
 
-This is a built-in middleware function in Opine. It parses incoming request payloads into a `Buffer` and is based on
+This is a built-in middleware function in Opine. It parses incoming request
+payloads into a `Buffer` and is based on
 [body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
 
-Returns middleware that parses all bodies as a `Buffer` and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body and supports automatic inflation of `gzip` and `deflate` encodings.
+Returns middleware that parses all bodies as a `Buffer` and only looks at
+requests where the `Content-Type` header matches the `type` option. This parser
+accepts any Unicode encoding of the body and supports automatic inflation of
+`gzip` and `deflate` encodings.
 
-After the middleware, the existing `body` property on the `request` object (i.e. `req.body`) is overwritten with the parsed data, or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. The original, unparsed request `body` property is still available on the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`) string containing the parsed data is also available for backwards compatibility reasons.
+After the middleware, the existing `body` property on the `request` object (i.e.
+`req.body`) is overwritten with the parsed data, or an empty string (`""`) if
+there was no body to parse, the `Content-Type` was not matched, or an error
+occurred. The original, unparsed request `body` property is still available on
+the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`)
+string containing the parsed data is also available for backwards compatibility
+reasons.
 
-> As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.toString()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.body` is a string before calling string methods is recommended.
+> As `req.body` and `req.parsedBody` shapes are based on user-controlled input,
+> all properties and values in this object are untrusted and should be validated
+> before trusting. For example, `req.body.toString()` may fail in multiple ways,
+> for example stacking multiple parsers `req.body` may be from a different
+> parser. Testing that `req.body` is a string before calling string methods is
+> recommended.
 
 ```ts
 import { opine, raw } from "https://deno.land/x/opine@1.7.2/mod.ts";
@@ -69,11 +99,17 @@ The following table describes the properties of the optional `options` object.
 
 ## serveStatic(root, [options])
 
-This is a built-in middleware function in Opine. It serves static files and is based on [serve-static](https://github.com/expressjs/serve-static/).
+This is a built-in middleware function in Opine. It serves static files and is
+based on [serve-static](https://github.com/expressjs/serve-static/).
 
-> NOTE: For best results, use a reverse proxy cache to improve performance of serving static assets.
+> NOTE: For best results, use a reverse proxy cache to improve performance of
+> serving static assets.
 
-The `root` argument specifies the root directory from which to serve static assets. The function determines the file to serve by combining `req.url` with the provided `root` directory. When a file is not found, instead of sending a 404 response, it instead calls `next()` to move on to the next middleware, allowing for stacking and fallbacks.
+The `root` argument specifies the root directory from which to serve static
+assets. The function determines the file to serve by combining `req.url` with
+the provided `root` directory. When a file is not found, instead of sending a
+404 response, it instead calls `next()` to move on to the next middleware,
+allowing for stacking and fallbacks.
 
 The following table describes the properties of the `options` object.
 
@@ -96,21 +132,32 @@ Possible values for this option are:
 
 - "allow" - No special treatment for dotfiles.
 - "deny" - Deny a request for a dotfile, respond with `403`, then call `next()`.
-- "ignore" - Act as if the dotfile does not exist, respond with `404`, then call `next()`.
+- "ignore" - Act as if the dotfile does not exist, respond with `404`, then call
+  `next()`.
 
-**NOTE**: With the default value, it will not ignore files in a directory that begins with a dot.
+**NOTE**: With the default value, it will not ignore files in a directory that
+begins with a dot.
 
 ### fallthrough
 
-When this option is `true`, client errors such as a bad request or a request to a non-existent file will cause this middleware to simply call `next()` to invoke the next middleware in the stack. When false, these errors (even 404s), will invoke `next(err)`.
+When this option is `true`, client errors such as a bad request or a request to
+a non-existent file will cause this middleware to simply call `next()` to invoke
+the next middleware in the stack. When false, these errors (even 404s), will
+invoke `next(err)`.
 
-Set this option to `true` so you can map multiple physical directories to the same web address or for routes to fill in non-existent files.
+Set this option to `true` so you can map multiple physical directories to the
+same web address or for routes to fill in non-existent files.
 
-Use `false` if you have mounted this middleware at a path designed to be strictly a single file system directory, which allows for short-circuiting 404s for less overhead. This middleware will also reply to all methods.
+Use `false` if you have mounted this middleware at a path designed to be
+strictly a single file system directory, which allows for short-circuiting 404s
+for less overhead. This middleware will also reply to all methods.
 
 ### before
 
-For this option, specify a function (async is supported) to make modifications to the response prior to the file being served via a `res.sendFile()`. The general use-case for this function hook is to set custom response headers. The signature of the function is:
+For this option, specify a function (async is supported) to make modifications
+to the response prior to the file being served via a `res.sendFile()`. The
+general use-case for this function hook is to set custom response headers. The
+signature of the function is:
 
 ```ts
 fn(res, path, stat);
@@ -134,7 +181,8 @@ const before = (res: Response, path: string, stat: Deno.FileInfo) => {
 
 ### Example of serveStatic
 
-Here is an example of using the `serveStatic` middleware function with an elaborate options object:
+Here is an example of using the `serveStatic` middleware function with an
+elaborate options object:
 
 ```ts
 const options = {
@@ -157,13 +205,29 @@ app.use(serveStatic("public", options));
 
 ## text([options])
 
-This is a built-in middleware function in Opine. It parses incoming request payloads into a string and is based on [body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
+This is a built-in middleware function in Opine. It parses incoming request
+payloads into a string and is based on
+[body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
 
-Returns middleware that parses all bodies as a string and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts any Unicode encoding of the body and supports automatic inflation of `gzip` and `deflate` encodings.
+Returns middleware that parses all bodies as a string and only looks at requests
+where the `Content-Type` header matches the `type` option. This parser accepts
+any Unicode encoding of the body and supports automatic inflation of `gzip` and
+`deflate` encodings.
 
-After the middleware, the existing `body` property on the `request` object (i.e. `req.body`) is overwritten with the parsed data, or an empty string (`""`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. The original, unparsed request `body` property is still available on the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`) string containing the parsed data is also available for backwards compatibility reasons.
+After the middleware, the existing `body` property on the `request` object (i.e.
+`req.body`) is overwritten with the parsed data, or an empty string (`""`) if
+there was no body to parse, the `Content-Type` was not matched, or an error
+occurred. The original, unparsed request `body` property is still available on
+the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`)
+string containing the parsed data is also available for backwards compatibility
+reasons.
 
-> As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.trim()` may fail in multiple ways, for example stacking multiple parsers `req.body` may be from a different parser. Testing that `req.parsedBody` is a string before calling string methods is recommended.
+> As `req.body` and `req.parsedBody` shapes are based on user-controlled input,
+> all properties and values in this object are untrusted and should be validated
+> before trusting. For example, `req.body.trim()` may fail in multiple ways, for
+> example stacking multiple parsers `req.body` may be from a different parser.
+> Testing that `req.parsedBody` is a string before calling string methods is
+> recommended.
 
 ```ts
 import { opine, text } from "https://deno.land/x/opine@1.7.2/mod.ts";
@@ -189,13 +253,28 @@ The following table describes the properties of the optional `options` object.
 
 ## urlencoded([options])
 
-This is a built-in middleware function in Opine. It parses incoming requests with urlencoded payloads and is based on [body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
+This is a built-in middleware function in Opine. It parses incoming requests
+with urlencoded payloads and is based on
+[body-parser](http://expressjs.com/en/resources/middleware/body-parser.html).
 
-Returns middleware that only parses urlencoded bodies and only looks at requests where the `Content-Type` header matches the `type` option. This parser accepts only UTF-8 encoding of the body and supports automatic inflation of `gzip` and `deflate` encodings.
+Returns middleware that only parses urlencoded bodies and only looks at requests
+where the `Content-Type` header matches the `type` option. This parser accepts
+only UTF-8 encoding of the body and supports automatic inflation of `gzip` and
+`deflate` encodings.
 
-After the middleware, the existing `body` property on the `request` object (i.e. `req.body`) is overwritten with the parsed data, or an empty object (`{}`) if there was no body to parse, the `Content-Type` was not matched, or an error occurred. The original, unparsed request `body` property is still available on the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`) object containing the parsed data is also available for backwards compatibility reasons.
+After the middleware, the existing `body` property on the `request` object (i.e.
+`req.body`) is overwritten with the parsed data, or an empty object (`{}`) if
+there was no body to parse, the `Content-Type` was not matched, or an error
+occurred. The original, unparsed request `body` property is still available on
+the `raw` property (i.e. `req.raw`). A new `parsedBody` (i.e. `req.parsedBody`)
+object containing the parsed data is also available for backwards compatibility
+reasons.
 
-> As `req.body` and `req.parsedBody` shapes are based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, `req.body.foo.toString()` may fail in multiple ways, for example `foo` may not be there or may not be a string, and `toString` may not be a function and instead a string or other user-input.
+> As `req.body` and `req.parsedBody` shapes are based on user-controlled input,
+> all properties and values in this object are untrusted and should be validated
+> before trusting. For example, `req.body.foo.toString()` may fail in multiple
+> ways, for example `foo` may not be there or may not be a string, and
+> `toString` may not be a function and instead a string or other user-input.
 
 ```ts
 import { opine, urlencoded } from "https://deno.land/x/opine@1.7.2/mod.ts";

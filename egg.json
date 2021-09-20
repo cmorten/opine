@@ -1,21 +1,21 @@
 {
-    "name": "opine",
-    "description": "Fast, minimalist web framework for Deno ported from ExpressJS.",
-    "version": "1.7.2",
-    "repository": "https://github.com/asos-craigmorten/opine",
-    "stable": true,
-    "checkFormat": false,
-    "checkTests": false,
-    "checkInstallation": false,
-    "check": false,
-    "files": [
-        "./mod.ts",
-        "./deps.ts",
-        "./version.ts",
-        "./src/**/*",
-        "./README.md",
-        "./LICENSE.md",
-        "./EXPRESS_LICENSE.md",
-        "./.github/CHANGELOG.md"
-    ]
+  "name": "opine",
+  "description": "Fast, minimalist web framework for Deno ported from ExpressJS.",
+  "version": "1.7.2",
+  "repository": "https://github.com/asos-craigmorten/opine",
+  "stable": true,
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": false,
+  "check": false,
+  "files": [
+    "./mod.ts",
+    "./deps.ts",
+    "./version.ts",
+    "./src/**/*",
+    "./README.md",
+    "./LICENSE.md",
+    "./EXPRESS_LICENSE.md",
+    "./.github/CHANGELOG.md"
+  ]
 }

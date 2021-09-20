@@ -2,7 +2,6 @@
  * Run this example using:
  *
  *    deno run --allow-net --allow-read ./examples/mvc/index.ts
- *
  */
 
 import { opine, serveStatic, urlencoded } from "../../mod.ts";
