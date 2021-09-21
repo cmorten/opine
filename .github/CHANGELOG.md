@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.8.0] - 21-09-2021
+
+- [#143] upgrade to support deno v1.14.0 (#142)
+
 ## [1.7.2] - 17-08-2021
 
 - feat: support Deno `1.13.1` and std `0.105.0`.

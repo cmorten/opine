@@ -37,7 +37,7 @@ export {
   charset,
   contentType,
   lookup,
-} from "https://deno.land/x/media_types@v2.10.1/mod.ts";
+} from "https://deno.land/x/media_types@v2.10.2/mod.ts";
 export { createError } from "https://deno.land/x/http_errors@3.0.0/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@2.1.1/mod.ts";
 export {

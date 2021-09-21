@@ -14,7 +14,7 @@ import opine from "../../mod.ts";
 
 const app = opine();
 
-app.get("/", function (req, res) {
+app.get("/", function (_req, res) {
   res.send("Hello Deno!");
 });
 
