@@ -4,7 +4,8 @@ Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 
 ## opine()
 
-Creates an Opine application. The `opine()` function is a top-level function exported by the Opine module:
+Creates an Opine application. The `opine()` function is a top-level function
+exported by the Opine module:
 
 ```ts
 import opine from "https://deno.land/x/opine@1.7.2/mod.ts";

@@ -139,7 +139,7 @@ export class Response implements DenoResponse {
       cookie.path = "/";
     }
 
-    setCookie(this, cookie);
+    setCookie(this.headers, cookie);
 
     return this;
   }
@@ -156,7 +156,7 @@ export class Response implements DenoResponse {
   clearCookie(nameOrCookie: unknown): this {
     if (typeof nameOrCookie === "string") {
       setCookie(
-        this,
+        this.headers,
         {
           path: "/",
           ...arguments[1],
@@ -166,7 +166,7 @@ export class Response implements DenoResponse {
         },
       );
     } else if (hasCookieNameProperty(nameOrCookie)) {
-      setCookie(this, {
+      setCookie(this.headers, {
         path: "/",
         ...nameOrCookie,
         value: "",
@@ -522,22 +522,22 @@ export class Response implements DenoResponse {
   }
 
   /**
- * Redirect to the given `url` with optional response `status`
- * defaulting to `302`.
- *
- * The resulting `url` is determined by `res.location()`.
- *
- * Examples:
- *
- *    res.redirect('/foo/bar');
- *    res.redirect('http://example.com');
- *    res.redirect(301, 'http://example.com');
- *    res.redirect('../login'); // /blog/post/1 -> /blog/login
- *
- * @param {Status} statusCode
- * @param {string} url
- * @public
- */
+   * Redirect to the given `url` with optional response `status`
+   * defaulting to `302`.
+   *
+   * The resulting `url` is determined by `res.location()`.
+   *
+   * Examples:
+   *
+   *    res.redirect('/foo/bar');
+   *    res.redirect('http://example.com');
+   *    res.redirect(301, 'http://example.com');
+   *    res.redirect('../login'); // /blog/post/1 -> /blog/login
+   *
+   * @param {Status} statusCode
+   * @param {string} url
+   * @public
+   */
   redirect(url: string): void;
   redirect(statusCode: Status, url: string): void;
   redirect() {

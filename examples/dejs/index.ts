@@ -4,7 +4,6 @@
  *    deno run --allow-net --allow-read ./examples/dejs/index.ts
  *
  * after cloning the repo locally.
- *
  */
 
 import { opine, serveStatic } from "../../mod.ts";

@@ -4,7 +4,6 @@
  *    deno run --allow-net --allow-read ./examples/downloads/index.ts
  *
  *    after cloning the repo locally.
- *
  */
 
 import { dirname, join } from "../../deps.ts";

@@ -33,7 +33,7 @@ import { Sha1 } from "../../deps.ts";
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-/**s
+/**
  * Generate an entity tag.
  *
  * @param {any} entity

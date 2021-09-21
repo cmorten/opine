@@ -411,7 +411,6 @@ export interface Request<
    *
    * NOTE: remember that ranges are inclusive, so for example "Range: users=0-3"
    * should respond with 4 users when available, not 3.
-   *
    */
   range(
     size: number,
@@ -820,22 +819,22 @@ export interface Response<ResBody = any>
   location(url: string): this;
 
   /**
-  * Redirect to the given `url` with optional response `status`
-  * defaulting to `302`.
-  *
-  * The resulting `url` is determined by `res.location()`.
-  *
-  * Examples:
-  *
-  *    res.redirect('/foo/bar');
-  *    res.redirect('http://example.com');
-  *    res.redirect(301, 'http://example.com');
-  *    res.redirect('../login'); // /blog/post/1 -> /blog/login
-  *
-  * @param {Status} statusCode
-  * @param {string} url
-  * @public
-  */
+   * Redirect to the given `url` with optional response `status`
+   * defaulting to `302`.
+   *
+   * The resulting `url` is determined by `res.location()`.
+   *
+   * Examples:
+   *
+   *    res.redirect('/foo/bar');
+   *    res.redirect('http://example.com');
+   *    res.redirect(301, 'http://example.com');
+   *    res.redirect('../login'); // /blog/post/1 -> /blog/login
+   *
+   * @param {Status} statusCode
+   * @param {string} url
+   * @public
+   */
   redirect(url: string): void;
   redirect(code: Status, url: string): void;
 
@@ -987,7 +986,6 @@ export interface Response<ResBody = any>
    * Examples:
    *
    *     res.vary('User-Agent').render('docs');
-   *
    */
   vary(field: string): this;
 }

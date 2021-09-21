@@ -8,7 +8,6 @@
  *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/json/index.ts
  *
  *    if you don't!
- *
  */
 
 import { json, opine } from "../../mod.ts";

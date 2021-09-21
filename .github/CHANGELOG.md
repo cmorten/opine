@@ -23,7 +23,8 @@
 
 - test: upgrade superdeno version.
 - feat: upgrade std `0.100.0`.
-- ci: downgrade support to Deno `1.11.1` due to bug with `OPTIONS` requests introduced in `1.11.2`. REF: https://github.com/denoland/deno/issues/10990.
+- ci: downgrade support to Deno `1.11.1` due to bug with `OPTIONS` requests
+  introduced in `1.11.2`. REF: https://github.com/denoland/deno/issues/10990.
 - chore: upgrade examples dependencies to latest versions.
 
 ## [1.5.3] - 19-06-2021
@@ -80,7 +81,8 @@
 
 ## [1.1.0] - 17-01-2021
 
-- refactor: replace `denoflate` library with `compress` library to remove net requirement as a result of wasm usage.
+- refactor: replace `denoflate` library with `compress` library to remove net
+  requirement as a result of wasm usage.
 - chore: upgrade to official denoland vscode plugin.
 
 ## [1.0.2] - 02-01-2021
@@ -97,7 +99,8 @@
 
 - [#26] Implement request body proxy (#95)
 
-**Breaking**: `req.body` will now be overwritten by body parsers. To retrieve the original body value, use `req.raw`.
+**Breaking**: `req.body` will now be overwritten by body parsers. To retrieve
+the original body value, use `req.raw`.
 
 ## [0.28.0] - 21-12-2020
 
@@ -191,7 +194,8 @@
 
 ## [0.20.2] - 05-08-2020
 
-- docs: remove reference to importing commit or branch from readme as not supported by Deno registry v2.
+- docs: remove reference to importing commit or branch from readme as not
+  supported by Deno registry v2.
 - fix: use fixed version of opine-http-proxy in examples.
 
 ## [0.20.1] - 04-08-2020
@@ -201,7 +205,8 @@
 ## [0.20.0] - 03-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.2.2` and `0.63.0`.
-- chore: fix modules to tagged versions as [commits and branches are no longer supported by Deno registry](https://deno.land/posts/registry2).
+- chore: fix modules to tagged versions as
+  [commits and branches are no longer supported by Deno registry](https://deno.land/posts/registry2).
 - [#21] Add app param API (#46)
 - [#44] react and dejs examples not working (#47)
 
@@ -275,18 +280,25 @@
 
 ## [0.8.0] - 30-05-2020
 
-- fix: `res.sendFile()` not correctly resolving paths, impacting `res.download()` and other APIs that use it internally.
-- feat: decouple the base Opine route handler from the server it starts so can use Opine as a route handler within other libraries / frameworks as middleware with a server that is not started via `app.listen()`.
-- feat: attempt to close the server within `app.listen()` if an exception occurs in the server connection handling loop.
+- fix: `res.sendFile()` not correctly resolving paths, impacting
+  `res.download()` and other APIs that use it internally.
+- feat: decouple the base Opine route handler from the server it starts so can
+  use Opine as a route handler within other libraries / frameworks as middleware
+  with a server that is not started via `app.listen()`.
+- feat: attempt to close the server within `app.listen()` if an exception occurs
+  in the server connection handling loop.
 
 ## [0.7.0] - 29-05-2020
 
-- feat: support passing no parameters to `app.listen()` and being automatically assigned a port.
+- feat: support passing no parameters to `app.listen()` and being automatically
+  assigned a port.
 
 ## [0.6.3] - 29-05-2020
 
-- fix: set versions on all deps to prevent adopting breaking changes from `master`.
-- feat: minor upgrade of the `std` library third party module imports to `0.53.0`.
+- fix: set versions on all deps to prevent adopting breaking changes from
+  `master`.
+- feat: minor upgrade of the `std` library third party module imports to
+  `0.53.0`.
 
 ## [0.6.2] - 29-05-2020
 
@@ -294,11 +306,13 @@
 
 ## [0.6.1] - 29-05-2020
 
-- refactor: Replace internal ports of NPM modules with tested third party module equivalents.
+- refactor: Replace internal ports of NPM modules with tested third party module
+  equivalents.
 
 ## [0.6.0] - 29-05-2020
 
-- feat: deliver content negotiation with the `res.format()` and `res.vary()` methods.
+- feat: deliver content negotiation with the `res.format()` and `res.vary()`
+  methods.
 - feat: flesh out majority of missing `request` methods and properties:
   - `req.accepts()`
   - `req.acceptsCharsets()`
@@ -328,7 +342,8 @@
 
 - fix: only set `x-powered-by` header if it is enabled as a setting.
 - feat: add missing methods to `response.md` API docs: `unset` and `etag`.
-- chore: audit of feature gap between Express and Opine. Available as TODOs in the code.
+- chore: audit of feature gap between Express and Opine. Available as TODOs in
+  the code.
 
 ## [0.5.1] - 27-05-2020
 
@@ -338,10 +353,14 @@
 
 ## [0.5.0] - 27-05-2020
 
-- fix: major bug with the body parsers. `req.body` is protected in Deno and thus cannot overwrite. We _could_ look to use a proxy like method in the future. For now we populate `req.parsedBody` instead.
-- docs: update middlewares and request docs to cover the use of `req.parsedBody`.
+- fix: major bug with the body parsers. `req.body` is protected in Deno and thus
+  cannot overwrite. We _could_ look to use a proxy like method in the future.
+  For now we populate `req.parsedBody` instead.
+- docs: update middlewares and request docs to cover the use of
+  `req.parsedBody`.
 - test: update body-parser unit tests.
-- docs: update examples to include `urlencoded`, `text` and `raw` body parser examples.
+- docs: update examples to include `urlencoded`, `text` and `raw` body parser
+  examples.
 - docs: add `README.md` to the examples + improve each examples' `README.md`.
 
 ## [0.4.2] - 26-05-2020
@@ -356,7 +375,8 @@
 
 - feat: initial serveStatic implementation
 - refactor: clean up examples.
-- refactor: remove superfluous verification code given we have static type checking.
+- refactor: remove superfluous verification code given we have static type
+  checking.
 - refactor: remove unnecessary file path parsing.
 - chore: remove old typings folder.
 - chore: update docs, lockfile etc.
@@ -367,7 +387,8 @@
 
 - `evt@1.6.8` -> `evt@1.7.9` to pull in bug fixes for Deno `>=1.0.2`.
 - Moved from `DENO_SUPPORTED_VERSION` to `DENO_SUPPORTED_VERSIONS`
-- Added support for `v1.0.2` to CI workflow (`v1.0.1` not supported due to breaking error in Deno).
+- Added support for `v1.0.2` to CI workflow (`v1.0.1` not supported due to
+  breaking error in Deno).
 
 ## [0.2.0] - 23-05-2020
 
@@ -400,7 +421,8 @@
 - Event emitter added to application.
 - Use same pathToRegex version as Express (copied locally as can't be imported).
 - Fix filepath in `res.sendFile`.
-- Fix the mounting of routers onto the app (at the cost of performance - to be remedied).
+- Fix the mounting of routers onto the app (at the cost of performance - to be
+  remedied).
 - `Request` type.
 - Improvements to the final handler.
 

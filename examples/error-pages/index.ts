@@ -9,7 +9,6 @@
  * To turn off verbose errors, set `DENO_ENV=production`. For example:
  *
  *    DENO_ENV=production deno run --allow-net --allow-read --allow-env ./examples/error-pages/index.ts
- *
  */
 
 import { opine, serveStatic } from "../../mod.ts";
