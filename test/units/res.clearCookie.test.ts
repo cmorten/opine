@@ -85,17 +85,20 @@ describe("res", function () {
     });
   });
 
-  it("should raise error if input object does not have type `{ name: string }`", function (
-    done,
-  ) {
-    const app = opine();
+  it(
+    "should raise error if input object does not have type `{ name: string }`",
+    function (
+      done,
+    ) {
+      const app = opine();
 
-    app.use(function (req, res) {
-      res.clearCookie({} as any).end();
-    });
+      app.use(function (req, res) {
+        res.clearCookie({} as any).end();
+      });
 
-    superdeno(app)
-      .get("/")
-      .expect(500, done);
-  });
+      superdeno(app)
+        .get("/")
+        .expect(500, done);
+    },
+  );
 });

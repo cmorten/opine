@@ -45,37 +45,43 @@ describe("res", function () {
         .expect("<p>Deno</p>", done);
     });
 
-    it('should error without "view engine" set and file extension to a non-engine module', function (
-      done,
-    ) {
-      const app = createApp();
+    it(
+      'should error without "view engine" set and file extension to a non-engine module',
+      function (
+        done,
+      ) {
+        const app = createApp();
 
-      app.locals.user = { name: "Deno" };
+        app.locals.user = { name: "Deno" };
 
-      app.use(function (req, res) {
-        res.render(join(__dirname, "../fixtures", "broken.send"));
-      });
+        app.use(function (req, res) {
+          res.render(join(__dirname, "../fixtures", "broken.send"));
+        });
 
-      superdeno(app)
-        .get("/")
-        .expect(500, /Could not find a view engine for extension/, done);
-    });
+        superdeno(app)
+          .get("/")
+          .expect(500, /Could not find a view engine for extension/, done);
+      },
+    );
 
-    it('should error without "view engine" set and no file extension', function (
-      done,
-    ) {
-      const app = createApp();
+    it(
+      'should error without "view engine" set and no file extension',
+      function (
+        done,
+      ) {
+        const app = createApp();
 
-      app.locals.user = { name: "Deno" };
+        app.locals.user = { name: "Deno" };
 
-      app.use(function (req, res) {
-        res.render(join(__dirname, "../fixtures", "user"));
-      });
+        app.use(function (req, res) {
+          res.render(join(__dirname, "../fixtures", "user"));
+        });
 
-      superdeno(app)
-        .get("/")
-        .expect(500, /No default engine was specified/, done);
-    });
+        superdeno(app)
+          .get("/")
+          .expect(500, /No default engine was specified/, done);
+      },
+    );
 
     it("should expose app.locals", function (done) {
       const app = createApp();

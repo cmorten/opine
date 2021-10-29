@@ -158,7 +158,7 @@ export function pathToRegexp(
   }
 
   // If the path is non-ending, match until the end or a slash.
-  path += (end ? "$" : (path[path.length - 1] === "/" ? "" : "(?=\\/|$)"));
+  path += end ? "$" : (path[path.length - 1] === "/" ? "" : "(?=\\/|$)");
 
   return new RegExp(path, flags);
 }

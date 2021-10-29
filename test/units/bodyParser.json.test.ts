@@ -54,9 +54,7 @@ describe("bodyParser: json", () => {
     });
   });
 
-  it("should handle requests with encoded JSON bodies containing whitespace", (
-    done,
-  ) => {
+  it("should handle requests with encoded JSON bodies containing whitespace", (done) => {
     const req: any = {
       body: new Deno.Buffer(
         encoder.encode(` \r\n\t\n${JSON.stringify(mockJson)}\n\t\r\n `),
@@ -73,9 +71,7 @@ describe("bodyParser: json", () => {
     });
   });
 
-  it("should not alter request bodies when the content type is not JSON", (
-    done,
-  ) => {
+  it("should not alter request bodies when the content type is not JSON", (done) => {
     const mockBody = Symbol("test-body");
     const req: any = {
       body: mockBody,

@@ -217,41 +217,47 @@ describe("res", function () {
   });
 
   describe("when .statusCode is 204", function () {
-    it("should strip Content-* fields, Transfer-Encoding field, and body", function (
-      done,
-    ) {
-      const app = opine();
+    it(
+      "should strip Content-* fields, Transfer-Encoding field, and body",
+      function (
+        done,
+      ) {
+        const app = opine();
 
-      app.use(function (_req, res) {
-        res.setStatus(204).set("Transfer-Encoding", "chunked").send("foo");
-      });
+        app.use(function (_req, res) {
+          res.setStatus(204).set("Transfer-Encoding", "chunked").send("foo");
+        });
 
-      superdeno(app)
-        .get("/")
-        .expect("Content-Length", "0")
-        .expect(shouldNotHaveHeader("Content-Type"))
-        .expect(shouldNotHaveHeader("Transfer-Encoding"))
-        .expect(204, null, done);
-    });
+        superdeno(app)
+          .get("/")
+          .expect("Content-Length", "0")
+          .expect(shouldNotHaveHeader("Content-Type"))
+          .expect(shouldNotHaveHeader("Transfer-Encoding"))
+          .expect(204, null, done);
+      },
+    );
   });
 
   describe("when .statusCode is 304", function () {
-    it("should strip Content-* fields, Transfer-Encoding field, and body", function (
-      done,
-    ) {
-      const app = opine();
+    it(
+      "should strip Content-* fields, Transfer-Encoding field, and body",
+      function (
+        done,
+      ) {
+        const app = opine();
 
-      app.use(function (_req, res) {
-        res.setStatus(304).set("Transfer-Encoding", "chunked").send("foo");
-      });
+        app.use(function (_req, res) {
+          res.setStatus(304).set("Transfer-Encoding", "chunked").send("foo");
+        });
 
-      superdeno(app)
-        .get("/")
-        .expect("Content-Length", "0")
-        .expect(shouldNotHaveHeader("Content-Type"))
-        .expect(shouldNotHaveHeader("Transfer-Encoding"))
-        .expect(304, null, done);
-    });
+        superdeno(app)
+          .get("/")
+          .expect("Content-Length", "0")
+          .expect(shouldNotHaveHeader("Content-Type"))
+          .expect(shouldNotHaveHeader("Transfer-Encoding"))
+          .expect(304, null, done);
+      },
+    );
   });
 
   it("should always check regardless of length", function (done) {

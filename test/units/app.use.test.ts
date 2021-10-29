@@ -327,28 +327,31 @@ describe("app", function () {
         .expect(200, done);
     });
 
-    it("should invoke middleware for all requests starting with path", function (
-      done,
-    ) {
-      const app = opine();
-      const cb = after(3, done);
+    it(
+      "should invoke middleware for all requests starting with path",
+      function (
+        done,
+      ) {
+        const app = opine();
+        const cb = after(3, done);
 
-      app.use("/foo", function (req, res) {
-        res.send("saw " + req.method + " " + req.url);
-      });
+        app.use("/foo", function (req, res) {
+          res.send("saw " + req.method + " " + req.url);
+        });
 
-      superdeno(app)
-        .get("/")
-        .expect(404, cb);
+        superdeno(app)
+          .get("/")
+          .expect(404, cb);
 
-      superdeno(app)
-        .post("/foo")
-        .expect(200, "saw POST /", cb);
+        superdeno(app)
+          .post("/foo")
+          .expect(200, "saw POST /", cb);
 
-      superdeno(app)
-        .post("/foo/bar")
-        .expect(200, "saw POST /bar", cb);
-    });
+        superdeno(app)
+          .post("/foo/bar")
+          .expect(200, "saw POST /bar", cb);
+      },
+    );
 
     it("should work if path has trailing slash", function (done) {
       const app = opine();

@@ -151,25 +151,28 @@ describe("res", function () {
       });
     });
 
-    it("should throw exception (500) if the first arg is not a number", async function (
-      done,
-    ) {
-      const app = opine();
-      const expectedStatus = "303";
-      const location = "/to";
-      const output: DeferredTestResult = deferred();
+    it(
+      "should throw exception (500) if the first arg is not a number",
+      async function (
+        done,
+      ) {
+        const app = opine();
+        const expectedStatus = "303";
+        const location = "/to";
+        const output: DeferredTestResult = deferred();
 
-      app.use(
-        "/from",
-        createRedirectMiddleware([expectedStatus, location], output),
-      );
-      app.use("/to", handleRedirectTarget);
+        app.use(
+          "/from",
+          createRedirectMiddleware([expectedStatus, location], output),
+        );
+        app.use("/to", handleRedirectTarget);
 
-      superdeno(app)
-        .get("/from")
-        .redirects(-1)
-        .expect(500, done);
-    });
+        superdeno(app)
+          .get("/from")
+          .redirects(-1)
+          .expect(500, done);
+      },
+    );
   });
 
   describe("when url is back", function () {

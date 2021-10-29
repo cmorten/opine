@@ -39,9 +39,7 @@ describe("bodyParser: urlencoded", () => {
     });
   });
 
-  it("should not alter request bodies when the content type is not urlencoded", (
-    done,
-  ) => {
+  it("should not alter request bodies when the content type is not urlencoded", (done) => {
     const mockBody = Symbol("test-body");
     const req: any = {
       body: mockBody,

@@ -32,22 +32,25 @@ describe("req", function () {
           .expect("https", done);
       });
 
-      it("should default to the conn addr if X-Forwarded-Proto not present", function (
-        done,
-      ) {
-        const app = opine();
+      it(
+        "should default to the conn addr if X-Forwarded-Proto not present",
+        function (
+          done,
+        ) {
+          const app = opine();
 
-        app.enable("trust proxy");
+          app.enable("trust proxy");
 
-        app.use(function (req, res) {
-          req.proto = "https";
-          res.end(req.protocol);
-        });
+          app.use(function (req, res) {
+            req.proto = "https";
+            res.end(req.protocol);
+          });
 
-        superdeno(app)
-          .get("/")
-          .expect("https", done);
-      });
+          superdeno(app)
+            .get("/")
+            .expect("https", done);
+        },
+      );
 
       it("should ignore X-Forwarded-Proto if conn addr not trusted", function (
         done,

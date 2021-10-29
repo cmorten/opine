@@ -40,9 +40,7 @@ describe("bodyParser: text", () => {
     });
   });
 
-  it("should not alter request bodies when the content type is not text", (
-    done,
-  ) => {
+  it("should not alter request bodies when the content type is not text", (done) => {
     const mockBody = Symbol("test-body");
     const req: any = {
       body: mockBody,

@@ -19,9 +19,7 @@ describe("redirect", () => {
         .expect(301, done);
     });
 
-    it("should respond with 'Hello Deno!' on the /redirect path once redirected", (
-      done,
-    ) => {
+    it("should respond with 'Hello Deno!' on the /redirect path once redirected", (done) => {
       superdeno(app)
         .get("/redirect")
         .redirects(1)
@@ -37,9 +35,7 @@ describe("redirect", () => {
         .expect(302, done);
     });
 
-    it("should respond with 'Hello Deno!' on the /relative/redirect path once redirected", (
-      done,
-    ) => {
+    it("should respond with 'Hello Deno!' on the /relative/redirect path once redirected", (done) => {
       superdeno(app)
         .get("/relative/redirect")
         .redirects(1)

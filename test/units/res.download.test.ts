@@ -102,7 +102,7 @@ describe("res", function () {
         .expect(200)
         .expect("Content-Disposition", 'attachment; filename="document"')
         .expect("Cache-Control", "public, max-age=14400")
-        .expect(shouldHaveBody(("Deno")))
+        .expect(shouldHaveBody("Deno"))
         .end(done);
     });
 

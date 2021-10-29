@@ -45,17 +45,20 @@ describe("res", function () {
         .expect(200, "deno", done);
     });
 
-    it("should transfer a file with special characters in string (provided the path segment is passed through encodeURIComponent first)", function (
-      done,
-    ) {
-      const app = createApp(
-        resolve(fixtures, encodeURIComponent("% of dogs.txt")),
-      );
+    it(
+      "should transfer a file with special characters in string (provided the path segment is passed through encodeURIComponent first)",
+      function (
+        done,
+      ) {
+        const app = createApp(
+          resolve(fixtures, encodeURIComponent("% of dogs.txt")),
+        );
 
-      superdeno(app)
-        .get("/")
-        .expect(200, "20%", done);
-    });
+        superdeno(app)
+          .get("/")
+          .expect(200, "20%", done);
+      },
+    );
 
     it("should include ETag", function (done) {
       const app = createApp(resolve(fixtures, "name.txt"));
@@ -402,18 +405,21 @@ describe("res", function () {
         .expect(206, "super", done);
     });
 
-    it("should ignore multi-part ranges and treat them as regular responses", function (
-      done,
-    ) {
-      superdeno(
-        createApp(
-          resolve(fixtures, "dinos/names.txt"),
-          { start: 2, end: 12, acceptRanges: true },
-        ),
-      )
-        .get("/")
-        .set("Range", "bytes=3-7, 9-11")
-        .expect(200, "no,superden", done);
-    });
+    it(
+      "should ignore multi-part ranges and treat them as regular responses",
+      function (
+        done,
+      ) {
+        superdeno(
+          createApp(
+            resolve(fixtures, "dinos/names.txt"),
+            { start: 2, end: 12, acceptRanges: true },
+          ),
+        )
+          .get("/")
+          .set("Range", "bytes=3-7, 9-11")
+          .expect(200, "no,superden", done);
+      },
+    );
   });
 });

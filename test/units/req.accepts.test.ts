@@ -110,19 +110,22 @@ describe("req", function () {
         .expect("application/json", done);
     });
 
-    it("should return the first acceptable type with canonical mime types", function (
-      done,
-    ) {
-      const app = opine();
+    it(
+      "should return the first acceptable type with canonical mime types",
+      function (
+        done,
+      ) {
+        const app = opine();
 
-      app.use(function (req, res, next) {
-        res.end(req.accepts(["application/json", "text/html"]) as string);
-      });
+        app.use(function (req, res, next) {
+          res.end(req.accepts(["application/json", "text/html"]) as string);
+        });
 
-      superdeno(app)
-        .get("/")
-        .set("Accept", "*/html")
-        .expect("text/html", done);
-    });
+        superdeno(app)
+          .get("/")
+          .set("Accept", "*/html")
+          .expect("text/html", done);
+      },
+    );
   });
 });

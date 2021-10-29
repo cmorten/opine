@@ -43,24 +43,27 @@ describe("req", function () {
             .expect("p1", done);
         });
 
-        it("should return the addr after trusted proxy, from sub app", function (
-          done,
-        ) {
-          const app = opine();
-          const sub = opine();
+        it(
+          "should return the addr after trusted proxy, from sub app",
+          function (
+            done,
+          ) {
+            const app = opine();
+            const sub = opine();
 
-          app.set("trust proxy", 2);
-          app.use(sub);
+            app.set("trust proxy", 2);
+            app.use(sub);
 
-          sub.use(function (req, res, _next) {
-            res.send(req.ip);
-          });
+            sub.use(function (req, res, _next) {
+              res.send(req.ip);
+            });
 
-          superdeno(app)
-            .get("/")
-            .set("X-Forwarded-For", "client, p1, p2")
-            .expect(200, "p1", done);
-        });
+            superdeno(app)
+              .get("/")
+              .set("X-Forwarded-For", "client, p1, p2")
+              .expect(200, "p1", done);
+          },
+        );
       });
 
       describe('when "trust proxy" is disabled', function () {

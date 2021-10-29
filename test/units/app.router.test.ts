@@ -334,25 +334,28 @@ describe("app.router", function () {
         .expect(200, '[["0","10"],["1","deno"],["2","profile"]]', done);
     });
 
-    it("should merge numeric indices req.params when parent has same number", function (
-      done,
-    ) {
-      const app = opine();
-      const router = new Router({ mergeParams: true });
+    it(
+      "should merge numeric indices req.params when parent has same number",
+      function (
+        done,
+      ) {
+        const app = opine();
+        const router = new Router({ mergeParams: true });
 
-      router.get("/name:(\\w+)", function (req: Request, res: Response) {
-        const keys = Object.keys(req.params).sort();
-        res.send(keys.map(function (k) {
-          return [k, req.params[k]];
-        }));
-      });
+        router.get("/name:(\\w+)", function (req: Request, res: Response) {
+          const keys = Object.keys(req.params).sort();
+          res.send(keys.map(function (k) {
+            return [k, req.params[k]];
+          }));
+        });
 
-      app.use("/user/id:(\\d+)", router);
+        app.use("/user/id:(\\d+)", router);
 
-      superdeno(app)
-        .get("/user/id:10/name:deno")
-        .expect(200, '[["0","10"],["1","deno"]]', done);
-    });
+        superdeno(app)
+          .get("/user/id:10/name:deno")
+          .expect(200, '[["0","10"],["1","deno"]]', done);
+      },
+    );
 
     it("should ignore invalid incoming req.params", function (done) {
       const app = opine();
