@@ -291,6 +291,8 @@ export function sendError(res: Response, error?: any): void {
     );
   } else if (ENOENT_REGEXP.test(error.message)) {
     throw createError(create404Error(), { code: "ENOENT" });
+  } else if (error instanceof Deno.errors.NotFound) {
+    throw createError(create404Error(), { code: "ENOENT" });
   } else if (ENAMETOOLONG_REGEXP.test(error.message)) {
     throw createError(create404Error(), { code: "ENAMETOOLONG" });
   } else if (error.status === 404 || error.statusCode === 404) {
