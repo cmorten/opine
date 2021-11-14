@@ -29,16 +29,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  createError,
-  extname,
-  join,
-  ms,
-  normalize,
-  resolve,
-  sep,
-} from "../../deps.ts";
+import { extname, join, ms, normalize, resolve, sep } from "../../deps.ts";
 import type { Request, Response } from "../types.ts";
+import { createError } from "../utils/createError.ts";
 import { parseHttpDate, parseTokenList } from "./fresh.ts";
 
 /**

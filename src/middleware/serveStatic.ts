@@ -31,7 +31,8 @@
  *
  */
 
-import { createError, encodeUrl, escapeHtml, fromFileUrl } from "../../deps.ts";
+import { encodeUrl, escapeHtml, fromFileUrl } from "../../deps.ts";
+import { createError } from "../utils/createError.ts";
 import { originalUrl as original, parseUrl } from "../utils/parseUrl.ts";
 import { hasTrailingSlash, send, sendError } from "../utils/send.ts";
 import type {

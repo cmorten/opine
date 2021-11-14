@@ -10,16 +10,19 @@
  *    if you don't!
  */
 
-import opine from "../../mod.ts";
-import { proxy } from "https://deno.land/x/opineHttpProxy@2.9.0/mod.ts";
+// Temporarily disabled due to sub-dependency incompatibility with Deno ^1.16.0
+// and issues with opine and the opine-http-proxy repo's referencing each other.
 
-const app = opine();
+// import opine from "../../mod.ts";
+// import { proxy } from "https://deno.land/x/opineHttpProxy@2.9.0/mod.ts";
 
-app.use(proxy("https://github.com/asos-craigmorten/opine"));
+// const app = opine();
 
-if (import.meta.main) {
-  app.listen({ port: 3000 });
-  console.log("Opine started on port 3000");
-}
+// app.use(proxy("https://github.com/asos-craigmorten/opine"));
 
-export { app };
+// if (import.meta.main) {
+//   app.listen({ port: 3000 });
+//   console.log("Opine started on port 3000");
+// }
+
+// export { app };

@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.9.1] - 14-11-2021
+
+- feat: support Deno `1.16.1`, std `0.114.0`, and other minor dep upgrades.
+- [#147] bring `createError()` method into Opine due to outdated dependencies in
+  unmaintained upstream module.
+
 ## [1.9.0] - 29-10-2021
 
 - feat: support Deno `1.15.3`, std `0.113.0`, and other minor dep upgrades.

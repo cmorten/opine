@@ -29,7 +29,8 @@
  *
  */
 
-import { createError, hasBody } from "../../../deps.ts";
+import { hasBody } from "../../../deps.ts";
+import { createError } from "../../utils/createError.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { typeChecker } from "./typeChecker.ts";

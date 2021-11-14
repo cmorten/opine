@@ -31,10 +31,10 @@
 
 import type { NextFunction, Request, Response } from "../../types.ts";
 import {
-  createError,
   gunzip as createGunzip,
   inflate as createInflate,
 } from "../../../deps.ts";
+import { createError } from "../../utils/createError.ts";
 
 /**
  * Read a request into a buffer and parse.
