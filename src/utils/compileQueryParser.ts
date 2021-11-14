@@ -22,7 +22,7 @@ function parseExtendedQueryString(str: string) {
   });
 }
 
-type QueryParserValue = Function | Boolean | "extended" | "simple";
+type QueryParserValue = Function | boolean | "extended" | "simple";
 
 /**
  * Compile "query parser" value to function.
