@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type { ServerRequest } from "../../deps.ts";
+import type { OpineRequest } from "../types.ts";
 
 /**
  * Get all addresses in the request, using the `X-Forwarded-For` header.
@@ -36,7 +36,7 @@ import type { ServerRequest } from "../../deps.ts";
  * @return {array}
  * @public
  */
-export function forwarded(req: ServerRequest) {
+export function forwarded(req: OpineRequest) {
   if (!req) {
     throw new TypeError("argument req is required");
   }

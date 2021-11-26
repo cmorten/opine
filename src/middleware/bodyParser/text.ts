@@ -31,7 +31,7 @@
 
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
-import type { NextFunction, Request, Response } from "../../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import { hasBody } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
@@ -59,7 +59,11 @@ export function text(options: any = {}) {
     return buf;
   }
 
-  return function textParser(req: Request, res: Response, next: NextFunction) {
+  return function textParser(
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
     if (req._parsedBody) {
       next();
 

@@ -1,8 +1,8 @@
 import type {
   NextFunction,
   Opine,
-  Request,
-  Response,
+  OpineRequest,
+  OpineResponse,
 } from "../../src/types.ts";
 
 const create = Object.create;
@@ -19,7 +19,11 @@ const setPrototypeOf = Object.setPrototypeOf;
  * @private
  */
 export const init = function (app: Opine) {
-  return function opineInit(req: Request, res: Response, next: NextFunction) {
+  return function opineInit(
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
     if (app.enabled("x-powered-by")) res.set("X-Powered-By", "Opine");
 
     req.res = res;

@@ -29,16 +29,16 @@
  *
  */
 
-import type { ParsedURL, Request } from "../types.ts";
+import type { OpineRequest, ParsedURL } from "../types.ts";
 
 /**
  * Parse the `req` url with memoization.
  *
- * @param {Request} req
+ * @param {OpineRequest} req
  * @return {ParsedURL}
  * @public
  */
-export function parseUrl(req: Request): ParsedURL | undefined {
+export function parseUrl(req: OpineRequest): ParsedURL | undefined {
   const url = req.url;
 
   if (url === undefined) {
@@ -67,7 +67,7 @@ export function parseUrl(req: Request): ParsedURL | undefined {
  * @return {Object}
  * @public
  */
-export function originalUrl(req: Request): ParsedURL | undefined {
+export function originalUrl(req: OpineRequest): ParsedURL | undefined {
   const url = req.originalUrl;
 
   if (typeof url !== "string") {

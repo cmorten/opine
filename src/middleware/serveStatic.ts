@@ -38,9 +38,9 @@ import { hasTrailingSlash, send, sendError } from "../utils/send.ts";
 import type {
   Handler,
   NextFunction,
+  OpineRequest,
+  OpineResponse,
   ParsedURL,
-  Request,
-  Response,
 } from "../types.ts";
 
 /**
@@ -75,8 +75,8 @@ export function serveStatic(root: string, options: any = {}): Handler {
     : createNotFoundDirectoryListener;
 
   return async function serveStatic(
-    req: Request,
-    res: Response,
+    req: OpineRequest,
+    res: OpineResponse,
     next: NextFunction,
   ) {
     if (req.method !== "GET" && req.method !== "HEAD") {
@@ -154,8 +154,8 @@ function createHtmlDocument(title: string, body: string): string {
  * @private
  */
 function createNotFoundDirectoryListener(
-  _req: Request,
-  res: Response,
+  _req: OpineRequest,
+  res: OpineResponse,
   _path: string,
 ): Function {
   return function notFound(): void {
@@ -168,8 +168,8 @@ function createNotFoundDirectoryListener(
  * @private
  */
 function createRedirectDirectoryListener(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
 ): Function {
   return function redirect(): void {

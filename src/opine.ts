@@ -1,16 +1,22 @@
 import { app as application } from "./application.ts";
-import { request } from "./request.ts";
+import { WrappedRequest } from "./request.ts";
 import { Response as ServerResponse } from "./response.ts";
 import { mergeDescriptors } from "./utils/mergeDescriptors.ts";
 import { EventEmitter } from "../deps.ts";
-import type { NextFunction, Opine, Request, Response } from "./types.ts";
+import type {
+  NextFunction,
+  Opine,
+  OpineRequest,
+  OpineResponse,
+} from "./types.ts";
 
 /**
  * Response prototype.
  *
  * @public
  */
-export const response: Response = Object.create(ServerResponse.prototype);
+export const response: OpineResponse = Object.create(ServerResponse.prototype);
+export const request: OpineRequest = Object.create(WrappedRequest.prototype);
 
 /**
  * Create an Opine application.
@@ -20,8 +26,8 @@ export const response: Response = Object.create(ServerResponse.prototype);
  */
 export function opine(): Opine {
   const app = function (
-    req: Request,
-    res: Response = new ServerResponse(),
+    req: OpineRequest,
+    res: OpineResponse = new ServerResponse(),
     next: NextFunction,
   ): void {
     app.handle(req, res, next);

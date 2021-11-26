@@ -1,5 +1,5 @@
 import { pathToRegexp } from "../utils/pathToRegex.ts";
-import type { NextFunction, Request, Response } from "../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../types.ts";
 
 export const Layer: any = function Layer(
   this: any,
@@ -26,16 +26,16 @@ export const Layer: any = function Layer(
  * Handle the error for the layer.
  *
  * @param {Error|string} error
- * @param {Request} req
- * @param {Response} res
+ * @param {OpineRequest} req
+ * @param {OpineResponse} res
  * @param {NextFunction} next
  * @private
  */
 
 Layer.prototype.handle_error = async function handle_error(
   error: any,
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
 ) {
   let fn = this.handle;
@@ -55,14 +55,14 @@ Layer.prototype.handle_error = async function handle_error(
 /**
  * Handle the request for the layer.
  *
- * @param {Request} req
- * @param {Response} res
+ * @param {OpineRequest} req
+ * @param {OpineResponse} res
  * @param {NextFunction} next
  * @private
  */
 Layer.prototype.handle_request = async function handle(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
 ) {
   let fn = this.handle;

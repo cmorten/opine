@@ -30,7 +30,7 @@
  */
 
 import { extname, join, ms, normalize, resolve, sep } from "../../deps.ts";
-import type { Request, Response } from "../types.ts";
+import type { OpineRequest, OpineResponse } from "../types.ts";
 import { createError } from "../utils/createError.ts";
 import { parseHttpDate, parseTokenList } from "./fresh.ts";
 
@@ -111,7 +111,7 @@ export function hasTrailingSlash(path: string): boolean {
  * @return {boolean}
  * @private
  */
-function isConditionalGET(req: Request): boolean {
+function isConditionalGET(req: OpineRequest): boolean {
   return Boolean(
     req.headers.get("if-match") ||
       req.headers.get("if-unmodified-since") ||
@@ -126,7 +126,7 @@ function isConditionalGET(req: Request): boolean {
  * @return {boolean}
  * @private
  */
-function isPreconditionFailure(req: Request, res: Response): boolean {
+function isPreconditionFailure(req: OpineRequest, res: OpineResponse): boolean {
   // if-match
   const match = req.headers.get("if-match");
 
@@ -170,7 +170,7 @@ function contentRange(type: string, size: number, range?: any): string {
  *
  * @private
  */
-function removeContentHeaderFields(res: Response): void {
+function removeContentHeaderFields(res: OpineResponse): void {
   const headers: string[] = Array.from(res.headers?.keys() ?? []);
 
   for (const header of headers) {
@@ -198,7 +198,7 @@ function isCachable(statusCode: number): boolean {
  * @return {boolean}
  * @private
  */
-function isRangeFresh(req: Request, res: Response): boolean {
+function isRangeFresh(req: OpineRequest, res: OpineResponse): boolean {
   const ifRange = req.get("if-range");
 
   if (!ifRange) {
@@ -240,7 +240,7 @@ function collapseLeadingSlashes(str: string) {
  * @param {object} res
  * @private
  */
-function clearHeaders(res: Response) {
+function clearHeaders(res: OpineResponse) {
   const headers = Array.from(res.headers?.keys() ?? []);
 
   for (const header of headers) {
@@ -270,7 +270,7 @@ function create404Error(): Error {
  * @param {Error} [error]
  * @private
  */
-export function sendError(res: Response, error?: any): void {
+export function sendError(res: OpineResponse, error?: any): void {
   clearHeaders(res);
 
   if (error?.headers) {
@@ -354,14 +354,14 @@ async function offsetFileReader(
  * @param {object} stat
  */
 async function _send(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
   options: any,
   stat: Deno.FileInfo,
 ) {
   if (res.written) {
-    return sendError(res, createError(500, "Response already written"));
+    return sendError(res, createError(500, "OpineResponse already written"));
   }
 
   if (options.before) {
@@ -486,8 +486,8 @@ async function _send(
 }
 
 async function sendIndex(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
   options: any,
   index: string[],
@@ -514,8 +514,8 @@ async function sendIndex(
 }
 
 async function sendExtension(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
   options: any,
 ) {
@@ -545,8 +545,8 @@ async function sendExtension(
 }
 
 async function sendFile(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
   options: any,
 ) {
@@ -598,15 +598,15 @@ function decode(path: string) {
   }
 }
 
-export async function send<T = Response<any>>(
-  req: Request,
+export async function send<T = OpineResponse<any>>(
+  req: OpineRequest,
   res: T,
   path: string,
   options: any,
 ): Promise<T | void>;
 export async function send(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   path: string,
   options: any,
 ) {

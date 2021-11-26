@@ -15,7 +15,7 @@ import {
   resolve,
   setImmediate,
 } from "../../deps.ts";
-import { NextFunction, Request, Response } from "../../src/types.ts";
+import { NextFunction, OpineRequest, OpineResponse } from "../../src/types.ts";
 
 const __dirname = dirname(import.meta.url);
 const fixtures = fromFileUrl(new URL("fixtures", __dirname).toString());
@@ -178,8 +178,8 @@ describe("res", function () {
       app.use(
         function (
           err: Error,
-          _req: Request,
-          _res: Response,
+          _req: OpineRequest,
+          _res: OpineResponse,
           next: NextFunction,
         ) {
           error = err;

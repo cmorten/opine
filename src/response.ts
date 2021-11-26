@@ -27,23 +27,23 @@ import type {
   CookieWithOptionalValue,
   DenoResponseBody,
   NextFunction,
-  Request,
-  Response as DenoResponse,
+  OpineRequest,
+  OpineResponse,
   ResponseBody,
 } from "../src/types.ts";
 
 /**
- * Response class.
+ * OpineResponse class.
  *
  * @public
  */
-export class Response implements DenoResponse {
+export class Response implements OpineResponse {
   status: Status = 200;
   headers: Headers = new Headers();
-  written: Boolean = false;
+  written = false;
   body!: DenoResponseBody;
   app!: Application;
-  req!: Request;
+  req!: OpineRequest;
   locals!: any;
 
   #resources: number[] = [];
@@ -71,7 +71,7 @@ export class Response implements DenoResponse {
    *
    * @param {string} field
    * @param {string|string[]} value
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   append(field: string, value: string | string[]): this {
@@ -90,7 +90,7 @@ export class Response implements DenoResponse {
    * Set _Content-Disposition_ header to _attachment_ with optional `filename`.
    *
    * @param {string} filename
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   attachment(filename: string): this {
@@ -112,7 +112,7 @@ export class Response implements DenoResponse {
    *    res.cookie({ name: "rememberme", value: "1", expires: new Date(Date.now() + 900000), httpOnly: true });
    *
    * @param {Cookie} cookie
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   cookie(name: string, value: string, options: CookieOptions): this;
@@ -148,7 +148,7 @@ export class Response implements DenoResponse {
    * Clear a cookie.
    *
    * @param {string|CookieWithOptionalValue} cookie
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   clearCookie(cookie: CookieWithOptionalValue): this;
@@ -198,7 +198,7 @@ export class Response implements DenoResponse {
    * @param {string} path
    * @param {string} [filename]
    * @param {object} [options]
-   * @return {Promise<Response>}
+   * @return {Promise<OpineResponse>}
    * @public
    */
   async download(
@@ -283,7 +283,7 @@ export class Response implements DenoResponse {
    * Sets an ETag header.
    *
    * @param {string|Uint8Array|Deno.FileInfo} chunk
-   * @returns {Response} for chaining
+   * @returns {OpineResponse} for chaining
    * @public
    */
   etag(chunk: string | Uint8Array | Deno.FileInfo): this {
@@ -353,7 +353,7 @@ export class Response implements DenoResponse {
    * instead.
    *
    * @param {Object} obj
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   format(obj: any): this {
@@ -405,7 +405,7 @@ export class Response implements DenoResponse {
    *     res.json({ user: 'deno' });
    *
    * @param {ResponseBody} body
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   json(body: ResponseBody): this {
@@ -431,7 +431,7 @@ export class Response implements DenoResponse {
    *     res.jsonp({ user: 'deno' });
    *
    * @param {ResponseBody} body
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   jsonp(body: ResponseBody) {
@@ -481,7 +481,7 @@ export class Response implements DenoResponse {
    *    });
    *
    * @param {any} links
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   links(links: any) {
@@ -511,7 +511,7 @@ export class Response implements DenoResponse {
    *    res.location('../login');
    *
    * @param {string} url
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   location(url: string): this {
@@ -599,7 +599,7 @@ export class Response implements DenoResponse {
    *
    *     res.removeHeader('Accept');
    * @param {string} field
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   removeHeader(field: string): this {
@@ -656,7 +656,7 @@ export class Response implements DenoResponse {
    *     res.send('<p>some html</p>');
    *
    * @param {ResponseBody} body
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   send(body: ResponseBody): this {
@@ -730,7 +730,7 @@ export class Response implements DenoResponse {
    *
    * @param {string} path
    * @param {object} [options]
-   * @return {Promise<Response>}
+   * @return {Promise<OpineResponse>}
    * @public
    */
   async sendFile(path: string, options: any = {}): Promise<this | void> {
@@ -774,7 +774,7 @@ export class Response implements DenoResponse {
       }
     }
 
-    return await send(this.req as Request, this, path, options);
+    return await send(this.req as OpineRequest, this, path, options);
   }
 
   /**
@@ -789,7 +789,7 @@ export class Response implements DenoResponse {
    *     res.sendStatus(200);
    *
    * @param {Status} code
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   sendStatus(code: Status): this {
@@ -814,7 +814,7 @@ export class Response implements DenoResponse {
    *     });
    * @param {string} field
    * @param {string} value
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   set(field: string, value: string): this;
@@ -855,7 +855,7 @@ export class Response implements DenoResponse {
    *     });
    * @param {string} field
    * @param {string} value
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   setHeader(field: string, value: string): this;
@@ -868,10 +868,10 @@ export class Response implements DenoResponse {
    * Set status `code`.
    *
    * This method deviates from Express due to the naming clash
-   * with Deno.Response `status` property.
+   * with Deno.OpineResponse `status` property.
    *
    * @param {Status} code
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   setStatus(code: Status): this {
@@ -892,7 +892,7 @@ export class Response implements DenoResponse {
    *     res.type('png');
    *
    * @param {string} type
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   type(type: string): this {
@@ -906,7 +906,7 @@ export class Response implements DenoResponse {
    * Deletes a header.
    *
    * @param {string} field
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   unset(field: string): this {
@@ -920,7 +920,7 @@ export class Response implements DenoResponse {
    * this call is simply ignored.
    *
    * @param {Array|String} field
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   vary(field: string | string[]): this {

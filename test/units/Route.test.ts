@@ -4,8 +4,8 @@ import { describe, it } from "../utils.ts";
 import type {
   IRoute,
   NextFunction,
-  Request,
-  Response,
+  OpineRequest,
+  OpineResponse,
 } from "../../src/types.ts";
 import { methods } from "../../src/methods.ts";
 
@@ -156,7 +156,12 @@ describe("Route", function () {
       });
 
       route.all(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           (req as any).order += "a";
           next(err);
         },
@@ -184,7 +189,12 @@ describe("Route", function () {
       });
 
       route.all(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           (req as any).order += "a";
           next(err);
         },
@@ -207,13 +217,23 @@ describe("Route", function () {
       });
 
       route.get(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           throw new Error("oops");
         },
       );
 
       route.get(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           (req as any).message = err.message;
           next();
         },
@@ -246,7 +266,12 @@ describe("Route", function () {
       const route: IRoute = new Route("");
 
       route.all(
-        function (err: Error, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: Error,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           // this should not execute
           done(new Error("'route.all' should not have been executed"));
         },

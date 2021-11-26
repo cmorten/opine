@@ -2,7 +2,11 @@ import { Router } from "../../mod.ts";
 import { expect } from "../deps.ts";
 import { methods } from "../../src/methods.ts";
 import { describe, it } from "../utils.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("Router", function () {
   it("should return a function with router methods", function () {
@@ -18,14 +22,14 @@ describe("Router", function () {
     const router = new Router();
     const another = new Router();
 
-    another.get("/bar", function (req: Request, res: Response) {
+    another.get("/bar", function (req: OpineRequest, res: OpineResponse) {
       res.end();
     });
 
     router.use("/foo", another);
     router.handle(
-      { url: "/foo/bar", method: "GET" } as Request,
-      { end: done } as Response,
+      { url: "/foo/bar", method: "GET" } as OpineRequest,
+      { end: done } as OpineResponse,
     );
   });
 
@@ -33,7 +37,7 @@ describe("Router", function () {
     const router = new Router();
     const another = new Router();
 
-    another.get("/:bar", function (req: Request, res: Response) {
+    another.get("/:bar", function (req: OpineRequest, res: OpineResponse) {
       expect(req.params.bar).toEqual("route");
       res.end();
     });
@@ -41,33 +45,37 @@ describe("Router", function () {
     router.use("/:foo", another);
 
     router.handle(
-      { url: "/test/route", method: "GET" } as Request,
-      { end: done } as Response,
+      { url: "/test/route", method: "GET" } as OpineRequest,
+      { end: done } as OpineResponse,
     );
   });
 
   it("should handle blank URL", function (done) {
     const router = new Router();
 
-    router.use(function (req: Request, res: Response) {
+    router.use(function (req: OpineRequest, res: OpineResponse) {
       done(new Error("'route.use' should not be called"));
     });
 
-    router.handle({ url: "", method: "GET" } as Request, {} as Response, done);
+    router.handle(
+      { url: "", method: "GET" } as OpineRequest,
+      {} as OpineResponse,
+      done,
+    );
   });
 
   it("should handle missing URL", function (done) {
     const router = new Router();
 
-    router.use(function (req: Request, res: Response) {
+    router.use(function (req: OpineRequest, res: OpineResponse) {
       throw new Error("'router.use' should not be called");
     });
 
-    router.handle({ method: "GET" } as Request, {} as Response, done);
+    router.handle({ method: "GET" } as OpineRequest, {} as OpineResponse, done);
   });
 
   it("should not stack overflow with many registered routes", function (done) {
-    const handler = function (req: Request, res: Response) {
+    const handler = function (req: OpineRequest, res: OpineResponse) {
       done(new Error("wrong handler"));
     };
     const router = new Router();
@@ -76,13 +84,13 @@ describe("Router", function () {
       router.get("/thing" + i, handler);
     }
 
-    router.get("/", function (req: Request, res: Response) {
+    router.get("/", function (req: OpineRequest, res: OpineResponse) {
       res.end();
     });
 
     router.handle(
-      { url: "/", method: "GET" } as Request,
-      { end: done } as Response,
+      { url: "/", method: "GET" } as OpineRequest,
+      { end: done } as OpineResponse,
     );
   });
 
@@ -90,18 +98,20 @@ describe("Router", function () {
     it("should dispatch", function (done) {
       const router = new Router();
 
-      router.route("/foo").get(function (req: Request, res: Response) {
-        res.send("foo");
-      });
+      router.route("/foo").get(
+        function (req: OpineRequest, res: OpineResponse) {
+          res.send("foo");
+        },
+      );
 
       const res = {
         send: function (val: any) {
           expect(val).toEqual("foo");
           done();
         },
-      } as Response;
+      } as OpineResponse;
       router.handle(
-        { url: "/foo", method: "GET" } as Request,
+        { url: "/foo", method: "GET" } as OpineRequest,
         res,
       );
     });
@@ -141,32 +151,39 @@ describe("Router", function () {
 
       router.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           next(new Error("foo"));
         },
       );
 
       router.get(
         "/bar",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           next(new Error("bar"));
         },
       );
 
-      router.use(function (req: Request, res: Response, next: NextFunction) {
-        throw new Error("non error middleware should not be called");
-      });
+      router.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          throw new Error("non error middleware should not be called");
+        },
+      );
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           expect(err.message).toEqual("foo");
           done();
         },
       );
 
       router.handle(
-        { url: "/foo", method: "GET" } as Request,
-        {} as Response,
+        { url: "/foo", method: "GET" } as OpineRequest,
+        {} as OpineResponse,
         done,
       );
     });
@@ -176,25 +193,32 @@ describe("Router", function () {
 
       router.get(
         "/foo/:id",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           throw new Error("foo");
         },
       );
 
-      router.use(function (req: Request, res: Response, next: NextFunction) {
-        throw new Error("non error middleware should not be called");
-      });
+      router.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          throw new Error("non error middleware should not be called");
+        },
+      );
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           expect(err.message).toEqual("foo");
           done();
         },
       );
 
       router.handle(
-        { url: "/foo/2", method: "GET" } as Request,
-        {} as Response,
+        { url: "/foo/2", method: "GET" } as OpineRequest,
+        {} as OpineResponse,
         function () {},
       );
     });
@@ -202,26 +226,38 @@ describe("Router", function () {
     it("should handle throwing inside error handlers", function (done) {
       const router = new Router();
 
-      router.use(function (req: Request, res: Response, next: NextFunction) {
-        throw new Error("boom!");
-      });
+      router.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          throw new Error("boom!");
+        },
+      );
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           throw new Error("oops");
         },
       );
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           expect(err.message).toEqual("oops");
           done();
         },
       );
 
       router.handle(
-        { url: "/", method: "GET" } as Request,
-        {} as Response,
+        { url: "/", method: "GET" } as OpineRequest,
+        {} as OpineResponse,
         done,
       );
     });
@@ -230,7 +266,11 @@ describe("Router", function () {
       const router = new Router();
 
       router.use(
-        async function (req: Request, res: Response, next: NextFunction) {
+        async function (
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           throw new Error("boom!");
         },
       );
@@ -238,8 +278,8 @@ describe("Router", function () {
       router.use(
         async function (
           err: any,
-          req: Request,
-          res: Response,
+          req: OpineRequest,
+          res: OpineResponse,
           next: NextFunction,
         ) {
           throw new Error("oops");
@@ -247,15 +287,20 @@ describe("Router", function () {
       );
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           expect(err.message).toEqual("oops");
           done();
         },
       );
 
       router.handle(
-        { url: "/", method: "GET" } as Request,
-        {} as Response,
+        { url: "/", method: "GET" } as OpineRequest,
+        {} as OpineResponse,
         done,
       );
     });
@@ -266,13 +311,15 @@ describe("Router", function () {
       const request = { hit: 0, url: "http://example.com/foo", method: "GET" };
       const router = new Router();
 
-      router.use(function (req: Request, res: Response, next: NextFunction) {
-        expect((req as any).hit++).toEqual(0);
-        expect(req.url).toEqual("http://example.com/foo");
-        next();
-      });
+      router.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          expect((req as any).hit++).toEqual(0);
+          expect(req.url).toEqual("http://example.com/foo");
+          next();
+        },
+      );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -289,14 +336,14 @@ describe("Router", function () {
 
       router.use(
         "/proxy",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(0);
           expect(req.url).toEqual("/?url=http://example.com/blog/post/1");
           next();
         },
       );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -313,14 +360,14 @@ describe("Router", function () {
 
       router.use(
         "/proxy",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(0);
           expect(req.url).toEqual("/http://example.com/blog/post/1");
           next();
         },
       );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -337,14 +384,14 @@ describe("Router", function () {
 
       router.use(
         "/blog",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(0);
           expect(req.url).toEqual("http://example.com/post/1");
           next();
         },
       );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(1);
         done();
@@ -359,22 +406,24 @@ describe("Router", function () {
       };
       const router = new Router();
 
-      router.use(function (req: Request, res: Response, next: NextFunction) {
-        expect((req as any).hit++).toEqual(0);
-        expect(req.url).toEqual("http://example.com/blog/post/1");
-        next();
-      });
+      router.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          expect((req as any).hit++).toEqual(0);
+          expect(req.url).toEqual("http://example.com/blog/post/1");
+          next();
+        },
+      );
 
       router.use(
         "/blog",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(1);
           expect(req.url).toEqual("http://example.com/post/1");
           next();
         },
       );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(2);
         done();
@@ -393,7 +442,7 @@ describe("Router", function () {
 
       router.use(
         "/blog",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(0);
           expect(req.url).toEqual("http://example.com/post/1");
           next();
@@ -402,7 +451,7 @@ describe("Router", function () {
 
       router.use(
         "/blog",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(1);
           expect(req.url).toEqual("http://example.com/post/1");
           next();
@@ -411,14 +460,14 @@ describe("Router", function () {
 
       router.use(
         "/blog",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           expect((req as any).hit++).toEqual(2);
           expect(req.url).toEqual("http://example.com/post/1");
           next();
         },
       );
 
-      router.handle(request as any, {} as Response, function (err: any) {
+      router.handle(request as any, {} as OpineResponse, function (err: any) {
         if (err) return done(err);
         expect(request.hit).toEqual(3);
         done();
@@ -439,8 +488,8 @@ describe("Router", function () {
 
       methods.forEach(function testMethod(method) {
         router.handle(
-          { url: url, method: method } as Request,
-          {} as Response,
+          { url: url, method: method } as OpineRequest,
+          {} as OpineResponse,
           function () {},
         );
       });
@@ -465,28 +514,28 @@ describe("Router", function () {
         throw new Error("should not be called");
       }
 
-      router.all("*", function (req: Request, res: Response) {
+      router.all("*", function (req: OpineRequest, res: OpineResponse) {
         res.end();
       });
 
       router.handle(
-        { url: "/", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "/", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "/foo", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "/foo", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "foo", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "foo", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "*", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "*", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
     });
@@ -544,28 +593,28 @@ describe("Router", function () {
         throw new Error("should not be called");
       }
 
-      router.use(function (_req: Request, res: Response) {
+      router.use(function (_req: OpineRequest, res: OpineResponse) {
         res.end();
       });
 
       router.handle(
-        { url: "/", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "/", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "/foo", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "/foo", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "foo", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "foo", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
       router.handle(
-        { url: "*", method: "GET" } as Request,
-        { end: cb } as Response,
+        { url: "*", method: "GET" } as OpineRequest,
+        { end: cb } as OpineResponse,
         no,
       );
     });
@@ -574,12 +623,12 @@ describe("Router", function () {
       let count = 0;
       const router = new Router();
 
-      function fn1(req: Request, _res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, _res: OpineResponse, next: NextFunction) {
         expect(++count).toEqual(1);
         next();
       }
 
-      function fn2(req: Request, _res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, _res: OpineResponse, next: NextFunction) {
         expect(++count).toEqual(2);
         next();
       }
@@ -590,8 +639,8 @@ describe("Router", function () {
       });
 
       router.handle(
-        { url: "/foo", method: "GET" } as Request,
-        {} as Response,
+        { url: "/foo", method: "GET" } as OpineRequest,
+        {} as OpineResponse,
         function () {},
       );
     });
@@ -599,8 +648,8 @@ describe("Router", function () {
 
   describe("parallel requests", function () {
     it("should not mix requests", function (done) {
-      const req1: any = { url: "/foo/50/bar", method: "get" } as Request;
-      const req2: any = { url: "/foo/10/bar", method: "get" } as Request;
+      const req1: any = { url: "/foo/50/bar", method: "get" } as OpineRequest;
+      const req2: any = { url: "/foo/10/bar", method: "get" } as OpineRequest;
       const router = new Router();
       const sub = new Router();
 
@@ -615,14 +664,14 @@ describe("Router", function () {
 
       sub.get(
         "/bar",
-        function (req: Request, _res: Response, next: NextFunction) {
+        function (req: OpineRequest, _res: OpineResponse, next: NextFunction) {
           next();
         },
       );
 
       router.use(
         "/foo/:ms/",
-        function (req: Request, _res: Response, next: NextFunction) {
+        function (req: OpineRequest, _res: OpineResponse, next: NextFunction) {
           const ms = parseInt(req.params.ms, 10);
           (req as any).ms = ms;
           setTimeout(next, ms);
@@ -632,14 +681,14 @@ describe("Router", function () {
       router.use("/foo/:ms/", new Router());
       router.use("/foo/:ms/", sub);
 
-      router.handle(req1, {} as Response, function (err: unknown) {
+      router.handle(req1, {} as OpineResponse, function (err: unknown) {
         expect(err).toBeUndefined();
         expect(req1.ms).toEqual(50);
         expect(req1.originalUrl).toEqual("/foo/50/bar");
         cb();
       });
 
-      router.handle(req2, {} as Response, function (err: unknown) {
+      router.handle(req2, {} as OpineResponse, function (err: unknown) {
         expect(err).toBeUndefined();
         expect(req2.ms).toEqual(10);
         expect(req2.originalUrl).toEqual("/foo/10/bar");

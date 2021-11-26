@@ -29,7 +29,7 @@
 
 import { ipaddr } from "../../deps.ts";
 import { forwarded } from "./forwarded.ts";
-import type { ServerRequest } from "../../deps.ts";
+import type { OpineRequest } from "../types.ts";
 
 const DIGIT_REGEXP = /^[0-9]+$/;
 const isip = ipaddr.isValid;
@@ -54,7 +54,7 @@ const IP_RANGES: { [key: string]: string[] } = {
  * @param {Function|Array|String} [trust]
  * @public
  */
-export function all(req: ServerRequest, trust: Function | string[] | string) {
+export function all(req: OpineRequest, trust: Function | string[] | string) {
   // get addresses
   const addrs = forwarded(req);
 
@@ -211,7 +211,7 @@ function parseNetmask(netmask: string) {
  * @public
  */
 export function proxyaddr(
-  req: ServerRequest,
+  req: OpineRequest,
   trust: Function | string[] | string,
 ) {
   if (!req) {

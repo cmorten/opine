@@ -30,7 +30,7 @@
  */
 
 import { read } from "./read.ts";
-import type { NextFunction, Request, Response } from "../../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import { hasBody } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
@@ -53,11 +53,15 @@ export function raw(options: any = {}) {
   // create the appropriate type checking function
   const shouldParse = typeof type !== "function" ? typeChecker(type) : type;
 
-  function parse(body: any) {
+  function parse(body: unknown) {
     return body;
   }
 
-  return function rawParser(req: Request, res: Response, next: NextFunction) {
+  return function rawParser(
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
     if (req._parsedBody) {
       next();
 

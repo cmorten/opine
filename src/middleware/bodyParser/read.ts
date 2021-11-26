@@ -29,7 +29,7 @@
  *
  */
 
-import type { NextFunction, Request, Response } from "../../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import {
   gunzip as createGunzip,
   inflate as createInflate,
@@ -39,16 +39,16 @@ import { createError } from "../../utils/createError.ts";
 /**
  * Read a request into a buffer and parse.
  *
- * @param {Request} req
- * @param {Response} res
+ * @param {OpineRequest} req
+ * @param {OpineResponse} res
  * @param {Function} next
  * @param {Function} parse
  * @param {object} options
  * @private
  */
 export async function read(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
   parse: Function,
   options: any,
@@ -108,7 +108,7 @@ export async function read(
  * @private
  */
 async function decodeContent(
-  req: Request,
+  req: OpineRequest,
   inflate: boolean = true,
 ): Promise<Uint8Array> {
   const encoding = (req.headers.get("content-encoding") || "identity")

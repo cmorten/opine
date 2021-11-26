@@ -1,6 +1,6 @@
 import { Layer } from "./layer.ts";
 import { methods } from "../methods.ts";
-import type { NextFunction, Request, Response } from "../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../types.ts";
 
 /**
  * Initialize `Route` with the given `path`.
@@ -59,8 +59,8 @@ Route.prototype._options = function _options() {
  * @private
  */
 Route.prototype.dispatch = function dispatch(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   done: NextFunction,
 ) {
   let idx = 0;

@@ -2,7 +2,11 @@
 import opine from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
 import { after, describe, it } from "../utils.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("app", function () {
   it('should emit "mount" when mounted', function (done) {
@@ -87,12 +91,12 @@ describe("app", function () {
       const other = opine();
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
@@ -124,12 +128,12 @@ describe("app", function () {
     it("should accept multiple arguments", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
@@ -171,17 +175,17 @@ describe("app", function () {
     it("should accept array of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -199,17 +203,17 @@ describe("app", function () {
     it("should accept multiple arrays of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -227,17 +231,17 @@ describe("app", function () {
     it("should accept nested arrays of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -304,12 +308,12 @@ describe("app", function () {
     it("should accept multiple arguments", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
@@ -377,17 +381,17 @@ describe("app", function () {
     it("should accept array of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -405,17 +409,17 @@ describe("app", function () {
     it("should accept multiple arrays of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -433,17 +437,17 @@ describe("app", function () {
     it("should accept nested arrays of middleware", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.end();
       }
@@ -485,17 +489,17 @@ describe("app", function () {
       const app = opine();
       const cb = after(2, done);
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-1", "hit");
         next();
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-2", "hit");
         next();
       }
 
-      function fn3(req: Request, res: Response, next: NextFunction) {
+      function fn3(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("x-fn-3", "hit");
         res.send(
           "saw " + req.method + " " + req.url + " through " + req.originalUrl,

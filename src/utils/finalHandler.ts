@@ -30,7 +30,12 @@
 
 import { parseUrl } from "./parseUrl.ts";
 import { escapeHtml, Status, STATUS_TEXT } from "../../deps.ts";
-import type { NextFunction, ParsedURL, Request, Response } from "../types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+  ParsedURL,
+} from "../types.ts";
 
 const DOUBLE_SPACE_REGEXP = /\x20{2}/g;
 const NEWLINE_REGEXP = /\n/g;
@@ -65,12 +70,15 @@ function createHtmlDocument(message: string): string {
 /**
  * Create a function to handle the final response.
  *
- * @param {Request} req
- * @param {Response} res
+ * @param {OpineRequest} req
+ * @param {OpineResponse} res
  * @return {Function}
  * @public
  */
-export function finalHandler(req: Request, res: Response): NextFunction {
+export function finalHandler(
+  req: OpineRequest,
+  res: OpineResponse,
+): NextFunction {
   return function (err?: any) {
     let headers;
     let msg;
@@ -168,11 +176,11 @@ function getErrorStatusCode(err: any): number | undefined {
  * This is typically just the original pathname of the request
  * but will fallback to "resource" is that cannot be determined.
  *
- * @param {Request} req
+ * @param {OpineRequest} req
  * @return {string}
  * @private
  */
-function getResourceName(req: Request): string {
+function getResourceName(req: OpineRequest): string {
   try {
     return (parseUrl(req) as ParsedURL).pathname;
   } catch (e) {
@@ -183,11 +191,11 @@ function getResourceName(req: Request): string {
 /**
  * Get status code from response.
  *
- * @param {Response} res
+ * @param {OpineResponse} res
  * @return {number}
  * @private
  */
-function getResponseStatusCode(res: Response): number {
+function getResponseStatusCode(res: OpineResponse): number {
   let status = res.status;
 
   // default status code to 500 if outside valid range
@@ -201,16 +209,16 @@ function getResponseStatusCode(res: Response): number {
 /**
  * Send response.
  *
- * @param {Request} req
- * @param {Response} res
+ * @param {OpineRequest} req
+ * @param {OpineResponse} res
  * @param {number} status
  * @param {object} headers
  * @param {string} message
  * @private
  */
 function send(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   status: Status,
   headers: any,
   message: any,
@@ -244,11 +252,11 @@ function send(
 /**
  * Set response headers from an object.
  *
- * @param {Response} res
+ * @param {OpineResponse} res
  * @param {object} headers
  * @private
  */
-function setHeaders(res: Response, headers: any): void {
+function setHeaders(res: OpineResponse, headers: any): void {
   if (!headers) {
     return;
   }

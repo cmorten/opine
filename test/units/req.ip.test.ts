@@ -4,7 +4,7 @@ import type { Server } from "../../deps.ts";
 import { describe, it } from "../utils.ts";
 
 function getExpectedClientAddress(server: Server) {
-  return (server.listener.addr as Deno.NetAddr).hostname === "::"
+  return (server.addrs[0] as Deno.NetAddr).hostname === "::"
     ? "::ffff:127.0.0.1"
     : "127.0.0.1";
 }
@@ -75,7 +75,7 @@ describe("req", function () {
           });
 
           const server = app.listen();
-          const address = server.listener.addr as Deno.NetAddr;
+          const address = server.addrs[0] as Deno.NetAddr;
           const url = `http://localhost:${address.port}`;
 
           const test = superdeno(url).get("/");
@@ -99,7 +99,7 @@ describe("req", function () {
         });
 
         const server = app.listen();
-        const address = server.listener.addr as Deno.NetAddr;
+        const address = server.addrs[0] as Deno.NetAddr;
         const url = `http://localhost:${address.port}`;
 
         const test = superdeno(url).get("/");

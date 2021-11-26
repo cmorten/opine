@@ -128,14 +128,16 @@ deno run --allow-net --allow-read --allow-env mod.ts
 
 ## Philosophy
 
-The [Express](https://github.com/expressjs/express) philosophy is to provide small, robust tooling for HTTP servers,
-making it a great solution for single page applications, web sites, hybrids, or
-public HTTP APIs.
+The [Express](https://github.com/expressjs/express) philosophy is to provide
+small, robust tooling for HTTP servers, making it a great solution for single
+page applications, web sites, hybrids, or public HTTP APIs.
 
-Opine will aim to achieve these same great goals, focussing on providing equivalent
-robust tooling and features.
+Opine will aim to achieve these same great goals, focussing on providing
+equivalent robust tooling and features.
 
-Once Deno's [Node compatibility layer](https://deno.land/std/node/README.md) matures sufficiently to support Express out of the box, Opine will be operate in maintenance mode.
+Once Deno's [Node compatibility layer](https://deno.land/std/node/README.md)
+matures sufficiently to support Express out of the box, Opine will be operate in
+maintenance mode.
 
 ## Examples
 
