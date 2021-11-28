@@ -230,10 +230,12 @@ describe("res", function () {
 
         superdeno(app)
           .get("/")
-          .expect("Content-Length", "0")
           .expect(shouldNotHaveHeader("Content-Type"))
           .expect(shouldNotHaveHeader("Transfer-Encoding"))
-          .expect(204, null, done);
+          .expect(204, null, (err, res) => {
+            console.log(res);
+            done(err);
+          });
       },
     );
   });
@@ -252,7 +254,6 @@ describe("res", function () {
 
         superdeno(app)
           .get("/")
-          .expect("Content-Length", "0")
           .expect(shouldNotHaveHeader("Content-Type"))
           .expect(shouldNotHaveHeader("Transfer-Encoding"))
           .expect(304, null, done);

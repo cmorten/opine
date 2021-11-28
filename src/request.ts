@@ -50,6 +50,7 @@ export class WrappedRequest implements OpineRequest {
   url: string;
   originalUrl!: string;
   baseUrl!: string;
+  proto: string;
 
   method: string;
   headers: Headers;
@@ -74,6 +75,7 @@ export class WrappedRequest implements OpineRequest {
 
     const { pathname, search, hash } = new URL(request.url);
     this.url = `${pathname}${search}${hash}`
+    this.proto = parseUrl(this)?.protocol ?? "";
     this.method = request.method;
     this.headers = new Headers(this.#request.headers);
   }
@@ -296,10 +298,6 @@ export class WrappedRequest implements OpineRequest {
     }
 
     return typeofrequest(this.headers, arr as string[]);
-  }
-
-  get proto(): string {
-    return parseUrl(this)?.protocol ?? "";
   }
 
   get #body() {
