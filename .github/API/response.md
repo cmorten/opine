@@ -1,4 +1,4 @@
-# 1.x API
+# 2.x API
 
 Adapted from the [ExpressJS API Docs](https://expressjs.com/en/4x/api.html).
 
