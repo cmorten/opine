@@ -232,10 +232,7 @@ describe("res", function () {
           .get("/")
           .expect(shouldNotHaveHeader("Content-Type"))
           .expect(shouldNotHaveHeader("Transfer-Encoding"))
-          .expect(204, null, (err, res) => {
-            console.log(res);
-            done(err);
-          });
+          .expect(204, null, done);
       },
     );
   });

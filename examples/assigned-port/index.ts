@@ -23,7 +23,7 @@ if (import.meta.main) {
   // for you. You can determine the port using the returned Server
   // object.
   const server = app.listen();
-  const address = server.listener.addr as Deno.NetAddr;
+  const address = server.addrs[0] as Deno.NetAddr;
   console.log(`Server started on ${address.hostname}:${address.port}`);
 }
 

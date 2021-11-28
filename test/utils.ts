@@ -47,7 +47,7 @@ export function it(
 
       let done: Done = (err?: unknown) => {
         if (err) {
-          testError =  err;
+          testError = err;
         }
       };
 

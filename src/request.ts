@@ -54,7 +54,7 @@ export class WrappedRequest implements OpineRequest {
 
   method: string;
   headers: Headers;
-  
+
   parsedBody?: unknown;
   _parsedBody?: boolean | undefined;
   _parsedUrl?: ParsedURL | undefined;
@@ -74,7 +74,7 @@ export class WrappedRequest implements OpineRequest {
     });
 
     const { pathname, search, hash } = new URL(request.url);
-    this.url = `${pathname}${search}${hash}`
+    this.url = `${pathname}${search}${hash}`;
     this.proto = parseUrl(this)?.protocol ?? "";
     this.method = request.method;
     this.headers = new Headers(this.#request.headers);
@@ -456,7 +456,7 @@ export class WrappedRequest implements OpineRequest {
    * @return {string}
    * @public
    */
-  get hostname(): string|undefined {
+  get hostname(): string | undefined {
     const trust = this.app.get("trust proxy fn");
     let host = this.get("X-Forwarded-Host");
     const { hostname: remoteAddress } = this.conn
