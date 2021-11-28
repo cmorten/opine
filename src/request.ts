@@ -66,12 +66,14 @@ export class WrappedRequest implements OpineRequest {
 
   constructor(request: Request, connInfo: ConnInfo) {
     this.#request = request;
-    this.url = request.url;
-    this.method = request.method;
     this.#connInfo = connInfo;
     this.#responsePromise = new Promise((resolve) => {
       this.#responsePromiseResolver = resolve;
     });
+
+    const { pathname, search, hash } = new URL(request.url);
+    this.url = `${pathname}${search}${hash}`
+    this.method = request.method;
   }
 
   respond(response: OpineResponse) {
