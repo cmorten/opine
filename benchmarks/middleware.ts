@@ -13,9 +13,11 @@ let middlewareCount: number = parseInt(Deno.env.get("MW") || "1");
 console.log("%s middleware", middlewareCount);
 
 while (middlewareCount--) {
-  app.use((_req: OpineRequest, _res: OpineResponse, next: NextFunction): void => {
-    next();
-  });
+  app.use(
+    (_req: OpineRequest, _res: OpineResponse, next: NextFunction): void => {
+      next();
+    },
+  );
 }
 
 app.use((_req: OpineRequest, res: OpineResponse, _next: NextFunction): void => {
