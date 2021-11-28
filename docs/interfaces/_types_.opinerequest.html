@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Request | opine</title>
+	<title>OpineRequest | opine</title>
 	<meta name="description" content="Documentation for opine">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_types_.html">&quot;types&quot;</a>
 				</li>
 				<li>
-					<a href="_types_.request.html">Request</a>
+					<a href="_types_.opinerequest.html">OpineRequest</a>
 				</li>
 			</ul>
-			<h1>Interface Request&lt;P, ResBody, ReqQuery&gt;</h1>
+			<h1>Interface OpineRequest&lt;P, ResBody, ReqQuery&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -108,16 +108,19 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">any</span>
-					</li>
-					<li>
 						<a href="_types_.__global.opine.request.html" class="tsd-signature-type">Request</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Request</span>
+								<span class="target">OpineRequest</span>
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/_request_.wrappedrequest.html" class="tsd-signature-type">WrappedRequest</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -127,50 +130,50 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_parsedbody" class="tsd-kind-icon">_parsed<wbr>Body</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_parsedoriginalurl" class="tsd-kind-icon">_parsed<wbr>Original<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#app" class="tsd-kind-icon">app</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#body" class="tsd-kind-icon">body</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#conn" class="tsd-kind-icon">conn</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#fresh" class="tsd-kind-icon">fresh</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#headers" class="tsd-kind-icon">headers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#hostname" class="tsd-kind-icon">hostname</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#ip" class="tsd-kind-icon">ip</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#ips" class="tsd-kind-icon">ips</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#method" class="tsd-kind-icon">method</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#next" class="tsd-kind-icon">next</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#param" class="tsd-kind-icon">param</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#params" class="tsd-kind-icon">params</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#path" class="tsd-kind-icon">path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#proto" class="tsd-kind-icon">proto</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protomajor" class="tsd-kind-icon">proto<wbr>Major</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protominor" class="tsd-kind-icon">proto<wbr>Minor</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#protocol" class="tsd-kind-icon">protocol</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#query" class="tsd-kind-icon">query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#raw" class="tsd-kind-icon">raw</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#res" class="tsd-kind-icon">res</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#route" class="tsd-kind-icon">route</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#secure" class="tsd-kind-icon">secure</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#stale" class="tsd-kind-icon">stale</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#subdomains" class="tsd-kind-icon">subdomains</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#url" class="tsd-kind-icon">url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.request.html#xhr" class="tsd-kind-icon">xhr</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#_parsedbody" class="tsd-kind-icon">_parsed<wbr>Body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#_parsedoriginalurl" class="tsd-kind-icon">_parsed<wbr>Original<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#app" class="tsd-kind-icon">app</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#body" class="tsd-kind-icon">body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#conn" class="tsd-kind-icon">conn</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#finalresponse" class="tsd-kind-icon">final<wbr>Response</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#fresh" class="tsd-kind-icon">fresh</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#headers" class="tsd-kind-icon">headers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#hostname" class="tsd-kind-icon">hostname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#ip" class="tsd-kind-icon">ip</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#ips" class="tsd-kind-icon">ips</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#method" class="tsd-kind-icon">method</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#next" class="tsd-kind-icon">next</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#param" class="tsd-kind-icon">param</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#params" class="tsd-kind-icon">params</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#proto" class="tsd-kind-icon">proto</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#protocol" class="tsd-kind-icon">protocol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#query" class="tsd-kind-icon">query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#raw" class="tsd-kind-icon">raw</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#res" class="tsd-kind-icon">res</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#route" class="tsd-kind-icon">route</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#secure" class="tsd-kind-icon">secure</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#stale" class="tsd-kind-icon">stale</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#subdomains" class="tsd-kind-icon">subdomains</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.opinerequest.html#xhr" class="tsd-kind-icon">xhr</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#accepts" class="tsd-kind-icon">accepts</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#is" class="tsd-kind-icon">is</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.request.html#range" class="tsd-kind-icon">range</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#accepts" class="tsd-kind-icon">accepts</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#is" class="tsd-kind-icon">is</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#range" class="tsd-kind-icon">range</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_types_.opinerequest.html#respond" class="tsd-kind-icon">respond</a></li>
 							</ul>
 						</section>
 					</div>
@@ -184,12 +187,12 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">_parsed<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L570">home/runner/work/opine/opine/src/types.ts:570</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L569">home/runner/work/opine/opine/src/types.ts:569</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>After body parsers, Request will contain <code>_parsedBody</code> boolean property
+							<p>After body parsers, OpineRequest will contain <code>_parsedBody</code> boolean property
 								dictating that the body has been parsed.
 							See: opine/src/middleware/bodyParser/</p>
 						</div>
@@ -201,7 +204,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">_parsed<wbr>Original<wbr>Url<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#parsedurl" class="tsd-signature-type">ParsedURL</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L589">home/runner/work/opine/opine/src/types.ts:589</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L588">home/runner/work/opine/opine/src/types.ts:588</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -217,7 +220,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">_parsed<wbr>Url<span class="tsd-signature-symbol">:</span> <a href="../modules/_types_.html#parsedurl" class="tsd-signature-type">ParsedURL</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L583">home/runner/work/opine/opine/src/types.ts:583</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L582">home/runner/work/opine/opine/src/types.ts:582</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +236,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <a href="_types_.application.html" class="tsd-signature-type">Application</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L556">home/runner/work/opine/opine/src/types.ts:556</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L555">home/runner/work/opine/opine/src/types.ts:555</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -243,7 +246,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L548">home/runner/work/opine/opine/src/types.ts:548</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L548">home/runner/work/opine/opine/src/types.ts:548</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +256,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L529">home/runner/work/opine/opine/src/types.ts:529</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L529">home/runner/work/opine/opine/src/types.ts:529</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -270,12 +273,27 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="conn" class="tsd-anchor"></a>
 					<h3>conn</h3>
-					<div class="tsd-signature tsd-kind-icon">conn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Deno.Conn</span></div>
+					<div class="tsd-signature tsd-kind-icon">conn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConnInfo</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L554">home/runner/work/opine/opine/src/types.ts:554</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L553">home/runner/work/opine/opine/src/types.ts:553</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="finalresponse" class="tsd-anchor"></a>
+					<h3>final<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">final<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L601">home/runner/work/opine/opine/src/types.ts:601</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Returns a promise that resolves to the response to the request.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="fresh" class="tsd-anchor"></a>
@@ -283,7 +301,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">fresh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L505">home/runner/work/opine/opine/src/types.ts:505</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L505">home/runner/work/opine/opine/src/types.ts:505</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -300,7 +318,7 @@ app.get&lt;ParamsArray&gt;(<span class="hljs-string">&#x27;/user/*&#x27;</span>,
 					<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L400">home/runner/work/opine/opine/src/types.ts:400</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L400">home/runner/work/opine/opine/src/types.ts:400</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -348,17 +366,17 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Headers</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L553">home/runner/work/opine/opine/src/types.ts:553</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L551">home/runner/work/opine/opine/src/types.ts:551</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="hostname" class="tsd-anchor"></a>
-					<h3>hostname</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> hostname</h3>
 					<div class="tsd-signature tsd-kind-icon">hostname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L498">home/runner/work/opine/opine/src/types.ts:498</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L498">home/runner/work/opine/opine/src/types.ts:498</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -373,7 +391,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">ip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L465">home/runner/work/opine/opine/src/types.ts:465</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L465">home/runner/work/opine/opine/src/types.ts:465</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -390,7 +408,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">ips<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L475">home/runner/work/opine/opine/src/types.ts:475</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L475">home/runner/work/opine/opine/src/types.ts:475</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -409,7 +427,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L536">home/runner/work/opine/opine/src/types.ts:536</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L536">home/runner/work/opine/opine/src/types.ts:536</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -419,7 +437,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">:</span> <a href="_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L563">home/runner/work/opine/opine/src/types.ts:563</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L562">home/runner/work/opine/opine/src/types.ts:562</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -429,7 +447,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">original<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L544">home/runner/work/opine/opine/src/types.ts:544</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L544">home/runner/work/opine/opine/src/types.ts:544</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -439,7 +457,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">param<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L401">home/runner/work/opine/opine/src/types.ts:401</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L401">home/runner/work/opine/opine/src/types.ts:401</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -473,7 +491,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">P</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L538">home/runner/work/opine/opine/src/types.ts:538</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L538">home/runner/work/opine/opine/src/types.ts:538</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -483,12 +501,12 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">parsed<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L577">home/runner/work/opine/opine/src/types.ts:577</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L576">home/runner/work/opine/opine/src/types.ts:576</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>After body parsers, Request will contain parsedBody property
+							<p>After body parsers, OpineRequest will contain parsedBody property
 								containing the parsed body.
 							See: opine/src/middleware/bodyParser/</p>
 						</div>
@@ -500,7 +518,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L493">home/runner/work/opine/opine/src/types.ts:493</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L493">home/runner/work/opine/opine/src/types.ts:493</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -515,27 +533,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L550">home/runner/work/opine/opine/src/types.ts:550</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="protomajor" class="tsd-anchor"></a>
-					<h3>proto<wbr>Major</h3>
-					<div class="tsd-signature tsd-kind-icon">proto<wbr>Major<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L552">home/runner/work/opine/opine/src/types.ts:552</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="protominor" class="tsd-anchor"></a>
-					<h3>proto<wbr>Minor</h3>
-					<div class="tsd-signature tsd-kind-icon">proto<wbr>Minor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L551">home/runner/work/opine/opine/src/types.ts:551</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L550">home/runner/work/opine/opine/src/types.ts:550</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -545,7 +543,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L451">home/runner/work/opine/opine/src/types.ts:451</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L451">home/runner/work/opine/opine/src/types.ts:451</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -565,7 +563,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReqQuery</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L540">home/runner/work/opine/opine/src/types.ts:540</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L540">home/runner/work/opine/opine/src/types.ts:540</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -575,7 +573,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">raw<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Deno.Reader</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L534">home/runner/work/opine/opine/src/types.ts:534</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L534">home/runner/work/opine/opine/src/types.ts:534</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -587,15 +585,15 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="res" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> res</h3>
-					<div class="tsd-signature tsd-kind-icon">res<span class="tsd-signature-symbol">:</span> <a href="_types_.response.html" class="tsd-signature-type">Response</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">res<span class="tsd-signature-symbol">:</span> <a href="_types_.opineresponse.html" class="tsd-signature-type">OpineResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L562">home/runner/work/opine/opine/src/types.ts:562</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L561">home/runner/work/opine/opine/src/types.ts:561</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>After middleware.init executed, Request will contain res and next properties.
+							<p>After middleware.init executed, OpineRequest will contain res and next properties.
 							See: opine/src/middleware/init.ts</p>
 						</div>
 					</div>
@@ -606,7 +604,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L542">home/runner/work/opine/opine/src/types.ts:542</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L542">home/runner/work/opine/opine/src/types.ts:542</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -616,7 +614,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">secure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L458">home/runner/work/opine/opine/src/types.ts:458</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L458">home/runner/work/opine/opine/src/types.ts:458</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -632,7 +630,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">stale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L512">home/runner/work/opine/opine/src/types.ts:512</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L512">home/runner/work/opine/opine/src/types.ts:512</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -649,7 +647,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">subdomains<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L488">home/runner/work/opine/opine/src/types.ts:488</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L488">home/runner/work/opine/opine/src/types.ts:488</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -670,7 +668,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L546">home/runner/work/opine/opine/src/types.ts:546</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L546">home/runner/work/opine/opine/src/types.ts:546</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -680,7 +678,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L517">home/runner/work/opine/opine/src/types.ts:517</a></li>
+							<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L517">home/runner/work/opine/opine/src/types.ts:517</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -705,7 +703,7 @@ req.get(<span class="hljs-string">&#x27;Something&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L342">home/runner/work/opine/opine/src/types.ts:342</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L342">home/runner/work/opine/opine/src/types.ts:342</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -750,7 +748,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L343">home/runner/work/opine/opine/src/types.ts:343</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L343">home/runner/work/opine/opine/src/types.ts:343</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -764,7 +762,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L344">home/runner/work/opine/opine/src/types.ts:344</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L344">home/runner/work/opine/opine/src/types.ts:344</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -778,7 +776,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L345">home/runner/work/opine/opine/src/types.ts:345</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L345">home/runner/work/opine/opine/src/types.ts:345</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -804,7 +802,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L354">home/runner/work/opine/opine/src/types.ts:354</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L354">home/runner/work/opine/opine/src/types.ts:354</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -820,7 +818,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L355">home/runner/work/opine/opine/src/types.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L355">home/runner/work/opine/opine/src/types.ts:355</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -834,7 +832,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L356">home/runner/work/opine/opine/src/types.ts:356</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L356">home/runner/work/opine/opine/src/types.ts:356</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -848,7 +846,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L357">home/runner/work/opine/opine/src/types.ts:357</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L357">home/runner/work/opine/opine/src/types.ts:357</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -874,7 +872,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L366">home/runner/work/opine/opine/src/types.ts:366</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L366">home/runner/work/opine/opine/src/types.ts:366</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -890,7 +888,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L367">home/runner/work/opine/opine/src/types.ts:367</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L367">home/runner/work/opine/opine/src/types.ts:367</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -904,7 +902,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L368">home/runner/work/opine/opine/src/types.ts:368</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L368">home/runner/work/opine/opine/src/types.ts:368</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -918,7 +916,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L369">home/runner/work/opine/opine/src/types.ts:369</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L369">home/runner/work/opine/opine/src/types.ts:369</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -944,7 +942,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L378">home/runner/work/opine/opine/src/types.ts:378</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L378">home/runner/work/opine/opine/src/types.ts:378</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -960,7 +958,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L379">home/runner/work/opine/opine/src/types.ts:379</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L379">home/runner/work/opine/opine/src/types.ts:379</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -974,7 +972,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L380">home/runner/work/opine/opine/src/types.ts:380</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L380">home/runner/work/opine/opine/src/types.ts:380</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -988,7 +986,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L381">home/runner/work/opine/opine/src/types.ts:381</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L381">home/runner/work/opine/opine/src/types.ts:381</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1011,7 +1009,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L441">home/runner/work/opine/opine/src/types.ts:441</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L441">home/runner/work/opine/opine/src/types.ts:441</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1056,7 +1054,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/d99e3dc/src/types.ts#L415">home/runner/work/opine/opine/src/types.ts:415</a></li>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L415">home/runner/work/opine/opine/src/types.ts:415</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1084,6 +1082,58 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="respond" class="tsd-anchor"></a>
+					<h3>respond</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">respond<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.Reader</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>headers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>statusText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>trailers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/asos-craigmorten/opine/blob/df481ad/src/types.ts#L590">home/runner/work/opine/opine/src/types.ts:590</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>response: <span class="tsd-signature-symbol">{ </span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.Reader</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>headers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>statusText<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>trailers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.Reader</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> headers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Headers</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> status<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> status<wbr>Text<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> trailers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Headers</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter-signature">
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Headers</span></li>
+													</ul>
+													<ul class="tsd-descriptions">
+														<li class="tsd-description">
+															<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Headers</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Headers</span></h4>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -1107,124 +1157,124 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="_types_.request.html" class="tsd-kind-icon">Request</a>
+						<a href="_types_.opinerequest.html" class="tsd-kind-icon">Opine<wbr>Request</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#_parsedbody" class="tsd-kind-icon">_parsed<wbr>Body</a>
+								<a href="_types_.opinerequest.html#_parsedbody" class="tsd-kind-icon">_parsed<wbr>Body</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#_parsedoriginalurl" class="tsd-kind-icon">_parsed<wbr>Original<wbr>Url</a>
+								<a href="_types_.opinerequest.html#_parsedoriginalurl" class="tsd-kind-icon">_parsed<wbr>Original<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a>
+								<a href="_types_.opinerequest.html#_parsedurl" class="tsd-kind-icon">_parsed<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#app" class="tsd-kind-icon">app</a>
+								<a href="_types_.opinerequest.html#app" class="tsd-kind-icon">app</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a>
+								<a href="_types_.opinerequest.html#baseurl" class="tsd-kind-icon">base<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#body" class="tsd-kind-icon">body</a>
+								<a href="_types_.opinerequest.html#body" class="tsd-kind-icon">body</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#conn" class="tsd-kind-icon">conn</a>
+								<a href="_types_.opinerequest.html#conn" class="tsd-kind-icon">conn</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#fresh" class="tsd-kind-icon">fresh</a>
+								<a href="_types_.opinerequest.html#finalresponse" class="tsd-kind-icon">final<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#get" class="tsd-kind-icon">get</a>
+								<a href="_types_.opinerequest.html#fresh" class="tsd-kind-icon">fresh</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#headers" class="tsd-kind-icon">headers</a>
+								<a href="_types_.opinerequest.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#hostname" class="tsd-kind-icon">hostname</a>
+								<a href="_types_.opinerequest.html#headers" class="tsd-kind-icon">headers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#ip" class="tsd-kind-icon">ip</a>
+								<a href="_types_.opinerequest.html#hostname" class="tsd-kind-icon">hostname</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#ips" class="tsd-kind-icon">ips</a>
+								<a href="_types_.opinerequest.html#ip" class="tsd-kind-icon">ip</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#method" class="tsd-kind-icon">method</a>
+								<a href="_types_.opinerequest.html#ips" class="tsd-kind-icon">ips</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#next" class="tsd-kind-icon">next</a>
+								<a href="_types_.opinerequest.html#method" class="tsd-kind-icon">method</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a>
+								<a href="_types_.opinerequest.html#next" class="tsd-kind-icon">next</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#param" class="tsd-kind-icon">param</a>
+								<a href="_types_.opinerequest.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#params" class="tsd-kind-icon">params</a>
+								<a href="_types_.opinerequest.html#param" class="tsd-kind-icon">param</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a>
+								<a href="_types_.opinerequest.html#params" class="tsd-kind-icon">params</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#path" class="tsd-kind-icon">path</a>
+								<a href="_types_.opinerequest.html#parsedbody" class="tsd-kind-icon">parsed<wbr>Body</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#proto" class="tsd-kind-icon">proto</a>
+								<a href="_types_.opinerequest.html#path" class="tsd-kind-icon">path</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#protomajor" class="tsd-kind-icon">proto<wbr>Major</a>
+								<a href="_types_.opinerequest.html#proto" class="tsd-kind-icon">proto</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#protominor" class="tsd-kind-icon">proto<wbr>Minor</a>
+								<a href="_types_.opinerequest.html#protocol" class="tsd-kind-icon">protocol</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#protocol" class="tsd-kind-icon">protocol</a>
+								<a href="_types_.opinerequest.html#query" class="tsd-kind-icon">query</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#query" class="tsd-kind-icon">query</a>
+								<a href="_types_.opinerequest.html#raw" class="tsd-kind-icon">raw</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#raw" class="tsd-kind-icon">raw</a>
+								<a href="_types_.opinerequest.html#res" class="tsd-kind-icon">res</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#res" class="tsd-kind-icon">res</a>
+								<a href="_types_.opinerequest.html#route" class="tsd-kind-icon">route</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#route" class="tsd-kind-icon">route</a>
+								<a href="_types_.opinerequest.html#secure" class="tsd-kind-icon">secure</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#secure" class="tsd-kind-icon">secure</a>
+								<a href="_types_.opinerequest.html#stale" class="tsd-kind-icon">stale</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#stale" class="tsd-kind-icon">stale</a>
+								<a href="_types_.opinerequest.html#subdomains" class="tsd-kind-icon">subdomains</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#subdomains" class="tsd-kind-icon">subdomains</a>
+								<a href="_types_.opinerequest.html#url" class="tsd-kind-icon">url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#url" class="tsd-kind-icon">url</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.request.html#xhr" class="tsd-kind-icon">xhr</a>
+								<a href="_types_.opinerequest.html#xhr" class="tsd-kind-icon">xhr</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#accepts" class="tsd-kind-icon">accepts</a>
+								<a href="_types_.opinerequest.html#accepts" class="tsd-kind-icon">accepts</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a>
+								<a href="_types_.opinerequest.html#acceptscharsets" class="tsd-kind-icon">accepts<wbr>Charsets</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a>
+								<a href="_types_.opinerequest.html#acceptsencodings" class="tsd-kind-icon">accepts<wbr>Encodings</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a>
+								<a href="_types_.opinerequest.html#acceptslanguages" class="tsd-kind-icon">accepts<wbr>Languages</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#is" class="tsd-kind-icon">is</a>
+								<a href="_types_.opinerequest.html#is" class="tsd-kind-icon">is</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_types_.request.html#range" class="tsd-kind-icon">range</a>
+								<a href="_types_.opinerequest.html#range" class="tsd-kind-icon">range</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_types_.opinerequest.html#respond" class="tsd-kind-icon">respond</a>
 							</li>
 						</ul>
 					</li>
