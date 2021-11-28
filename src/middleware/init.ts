@@ -36,6 +36,7 @@ export const init = function (app: Opine) {
     // Deno 1.9.0 introduced a change which restricted the interaction with
     // the prototype object requiring properties to be manually copied in
     // this fashion.
+    req.app = app.request.app;
     res.app = app.response.app;
     res.locals = res.locals || create(null);
 

@@ -46,8 +46,13 @@ export class WrappedRequest implements OpineRequest {
   params!: ParamsDictionary;
   query: unknown;
   route: unknown;
+
+  url: string;
   originalUrl!: string;
   baseUrl!: string;
+
+  method: string;
+  
   parsedBody?: unknown;
   _parsedBody?: boolean | undefined;
   _parsedUrl?: ParsedURL | undefined;
@@ -61,6 +66,8 @@ export class WrappedRequest implements OpineRequest {
 
   constructor(request: Request, connInfo: ConnInfo) {
     this.#request = request;
+    this.url = request.url;
+    this.method = request.method;
     this.#connInfo = connInfo;
     this.#responsePromise = new Promise((resolve) => {
       this.#responsePromiseResolver = resolve;
@@ -287,16 +294,8 @@ export class WrappedRequest implements OpineRequest {
     return typeofrequest(this.headers, arr as string[]);
   }
 
-  get method() {
-    return this.#request.method;
-  }
-
   get headers() {
     return this.#request.headers;
-  }
-
-  get url(): string {
-    return this.#request.url;
   }
 
   get proto(): string {
