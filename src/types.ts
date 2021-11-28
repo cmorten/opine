@@ -21,13 +21,13 @@ declare global {
 export type HTTPOptions = Omit<Deno.ListenOptions, "transport">;
 export type HTTPSOptions = Omit<Deno.ListenTlsOptions, "transport">;
 
-export type DenoResponseBody = string | Uint8Array | Deno.Reader;
+export type DenoResponseBody = undefined | string | Uint8Array | Deno.Reader;
 export type ResponseBody =
   | null
   | undefined
   | number
   | boolean
-  | object
+  | Record<string, unknown>
   | DenoResponseBody;
 
 export interface Cookie extends DenoCookie {}
@@ -495,7 +495,7 @@ export interface OpineRequest<
   /**
    * Parse the "Host" header field hostname.
    */
-  hostname: string;
+  hostname?: string;
 
   /**
    * Check if the request is fresh, aka

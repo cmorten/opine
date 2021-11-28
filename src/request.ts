@@ -52,6 +52,7 @@ export class WrappedRequest implements OpineRequest {
   baseUrl!: string;
 
   method: string;
+  headers: Headers;
   
   parsedBody?: unknown;
   _parsedBody?: boolean | undefined;
@@ -74,6 +75,7 @@ export class WrappedRequest implements OpineRequest {
     const { pathname, search, hash } = new URL(request.url);
     this.url = `${pathname}${search}${hash}`
     this.method = request.method;
+    this.headers = new Headers(this.#request.headers);
   }
 
   respond(response: OpineResponse) {
@@ -296,10 +298,6 @@ export class WrappedRequest implements OpineRequest {
     return typeofrequest(this.headers, arr as string[]);
   }
 
-  get headers() {
-    return this.#request.headers;
-  }
-
   get proto(): string {
     return parseUrl(this)?.protocol ?? "";
   }
@@ -460,7 +458,7 @@ export class WrappedRequest implements OpineRequest {
    * @return {string}
    * @public
    */
-  get hostname() {
+  get hostname(): string|undefined {
     const trust = this.app.get("trust proxy fn");
     let host = this.get("X-Forwarded-Host");
     const { hostname: remoteAddress } = this.conn
@@ -475,7 +473,7 @@ export class WrappedRequest implements OpineRequest {
     }
 
     if (!host) {
-      return "";
+      return undefined;
     }
 
     // IPv6 literal support
