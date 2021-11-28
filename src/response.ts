@@ -542,7 +542,7 @@ export class Response implements OpineResponse {
   redirect(statusCode: Status, url: string): void;
   redirect() {
     let address: string;
-    let body: string = "";
+    let body = "";
     let status: Status;
 
     if (arguments.length === 0) {

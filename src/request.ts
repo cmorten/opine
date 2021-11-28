@@ -71,9 +71,8 @@ export class WrappedRequest implements OpineRequest {
     const bodyInit = isDenoReader(response.body)
       ? readableStreamFromReader(response.body)
       : response.body;
-    const responseInit = {};
 
-    this.#responsePromiseResolver(new Response(bodyInit, responseInit));
+    this.#responsePromiseResolver(new Response(bodyInit, response));
   }
 
   /**

@@ -17,6 +17,18 @@ export function describe(_name: string, fn: () => void | Promise<void>) {
 export type Done = (err?: unknown) => void;
 
 /**
+ * An stub to remove a test.
+ *
+ * @param name
+ * @param fn
+ */
+export function nit(
+  _name: string,
+  _fn: (done: Done) => void | Promise<void>,
+  _options?: Partial<Deno.TestDefinition>,
+) {}
+
+/**
  * An _it_ wrapper around `Deno.test`.
  *
  * @param name
@@ -31,9 +43,11 @@ export function it(
     ...options,
     name,
     fn: async () => {
+      let testError: unknown;
+
       let done: Done = (err?: unknown) => {
         if (err) {
-          throw err;
+          testError =  err;
         }
       };
 
@@ -66,20 +80,24 @@ export function it(
           resolve();
 
           if (err) {
-            throw err;
+            testError = err;
           }
         };
       }
 
       await fn(done);
       await race;
-      
+
       if (timeoutId!) {
         clearTimeout(timeoutId);
       }
 
       // REF: https://github.com/denoland/deno/blob/987716798fb3bddc9abc7e12c25a043447be5280/ext/timers/01_timers.js#L353
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      if (testError) {
+        throw testError;
+      }
     },
   });
 }

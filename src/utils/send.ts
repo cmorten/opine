@@ -361,7 +361,7 @@ async function _send(
   stat: Deno.FileInfo,
 ) {
   if (res.written) {
-    return sendError(res, createError(500, "OpineResponse already written"));
+    return sendError(res, createError(500, "Response already written"));
   }
 
   if (options.before) {
