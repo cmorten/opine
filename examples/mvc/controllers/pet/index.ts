@@ -1,10 +1,14 @@
 // deno-lint-ignore-file no-explicit-any
 import * as db from "../../db.ts";
-import type { NextFunction, Request, Response } from "../../../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../../../src/types.ts";
 
 export const before = function (
-  req: Request,
-  _res: Response,
+  req: OpineRequest,
+  _res: OpineResponse,
   next: NextFunction,
 ) {
   const pet = db.pets[parseInt(req.params.pet_id)];
@@ -14,24 +18,24 @@ export const before = function (
 };
 
 export const show = function (
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   _next: NextFunction,
 ) {
   res.render("show", { pet: (req as any).pet });
 };
 
 export const edit = function (
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   _next: NextFunction,
 ) {
   res.render("edit", { pet: (req as any).pet });
 };
 
 export const update = function (
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   _next: NextFunction,
 ) {
   const body = req.body;

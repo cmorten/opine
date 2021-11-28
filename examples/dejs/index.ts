@@ -33,7 +33,7 @@ const users = [
   { name: "SuperDeno", email: "superdeno@denoland.com" },
 ];
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.set("cache-control", "no-store").render("users", {
     users,
     title: "EJS example",
