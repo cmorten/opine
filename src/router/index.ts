@@ -6,8 +6,8 @@ import { parseUrl } from "../utils/parseUrl.ts";
 import { methods } from "../methods.ts";
 import type {
   NextFunction,
-  Request,
-  Response,
+  OpineRequest,
+  OpineResponse,
   Router as IRouter,
   RouterConstructor,
 } from "../types.ts";
@@ -24,8 +24,8 @@ const setPrototypeOf = Object.setPrototypeOf;
  */
 export const Router: RouterConstructor = function (options: any = {}): any {
   function router(
-    req: Request,
-    res: Response,
+    req: OpineRequest,
+    res: OpineResponse,
     next: NextFunction,
   ): void {
     (router as any).handle(req, res, next);
@@ -111,8 +111,8 @@ Router.param = function param(name, fn) {
  * @private
  */
 Router.handle = function handle(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   out: NextFunction = () => {},
 ) {
   const self: any = this;
@@ -320,8 +320,8 @@ Router.handle = function handle(
 Router.process_params = function process_params(
   layer: any,
   called: any,
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   done: NextFunction,
 ) {
   let params = this.params;
@@ -623,7 +623,11 @@ function restore(fn: Function, obj: any) {
 }
 
 // send an OPTIONS response
-function sendOptionsResponse(res: Response, options: any, next: NextFunction) {
+function sendOptionsResponse(
+  res: OpineResponse,
+  options: any,
+  next: NextFunction,
+) {
   try {
     let body = options.join(",");
     res.set("Allow", body);

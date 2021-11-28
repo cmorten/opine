@@ -4,8 +4,8 @@ import { after, describe, it } from "../utils.ts";
 import type {
   NextFunction,
   Opine,
-  Request,
-  Response,
+  OpineRequest,
+  OpineResponse,
 } from "../../src/types.ts";
 
 const app1 = opine();
@@ -29,13 +29,20 @@ app1.use(function (req, res, next) {
   });
 });
 
-app1.use(function (err: any, req: Request, res: Response, next: NextFunction) {
-  if (!err.types) {
-    throw err;
-  }
+app1.use(
+  function (
+    err: any,
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
+    if (!err.types) {
+      throw err;
+    }
 
-  res.setStatus(err.status).send("Supports: " + err.types.join(", "));
-});
+    res.setStatus(err.status).send("Supports: " + err.types.join(", "));
+  },
+);
 
 const app2 = opine();
 
@@ -53,9 +60,16 @@ app2.use(function (req, res, next) {
   });
 });
 
-app2.use(function (err: any, req: Request, res: Response, next: NextFunction) {
-  res.setStatus(err.status).send("Supports: " + err.types.join(", "));
-});
+app2.use(
+  function (
+    err: any,
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
+    res.setStatus(err.status).send("Supports: " + err.types.join(", "));
+  },
+);
 
 const app3 = opine();
 
@@ -86,9 +100,16 @@ app4.get("/", function (req, res, next) {
   });
 });
 
-app4.use(function (err: any, req: Request, res: Response, next: NextFunction) {
-  res.setStatus(err.status).send("Supports: " + err.types.join(", "));
-});
+app4.use(
+  function (
+    err: any,
+    req: OpineRequest,
+    res: OpineResponse,
+    next: NextFunction,
+  ) {
+    res.setStatus(err.status).send("Supports: " + err.types.join(", "));
+  },
+);
 
 const app5 = opine();
 
@@ -128,7 +149,12 @@ describe("res", function () {
       });
 
       app.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           res.setStatus(err.status).send("Supports: " + err.types.join(", "));
         },
       );
@@ -175,7 +201,12 @@ describe("res", function () {
       });
 
       router.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           res.setStatus(err.status).send("Supports: " + err.types.join(", "));
         },
       );

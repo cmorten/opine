@@ -7,7 +7,11 @@
 import { opine, serveStatic, urlencoded } from "../../mod.ts";
 import { dirname, join } from "../../deps.ts";
 import { renderFileToString } from "./deps.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 import boot from "./lib/boot.ts";
 
 const app = opine();
@@ -31,7 +35,12 @@ app.use(urlencoded({ extended: true }));
 await boot(app);
 
 app.use(
-  function (err: Error, _req: Request, res: Response, _next: NextFunction) {
+  function (
+    err: Error,
+    _req: OpineRequest,
+    res: OpineResponse,
+    _next: NextFunction,
+  ) {
     console.error(err.stack);
     res.setStatus(500).render("5xx");
   },

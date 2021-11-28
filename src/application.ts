@@ -1,31 +1,25 @@
-import {
-  fromFileUrl,
-  HTTPOptions,
-  HTTPSOptions,
-  resolve,
-  serve,
-  Server,
-  serveTLS,
-} from "../deps.ts";
+import { fromFileUrl, resolve, Server } from "../deps.ts";
 import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";
 import { init } from "./middleware/init.ts";
 import { query } from "./middleware/query.ts";
-import { requestProxy } from "./utils/requestProxy.ts";
 import { finalHandler } from "./utils/finalHandler.ts";
 import { compileETag } from "./utils/compileETag.ts";
 import { compileQueryParser } from "./utils/compileQueryParser.ts";
 import { compileTrust } from "./utils/compileTrust.ts";
 import { merge } from "./utils/merge.ts";
 import { View } from "./view.ts";
+import { WrappedRequest } from "./request.ts";
 import type {
   Application,
+  HTTPOptions,
+  HTTPSOptions,
   IRoute,
   NextFunction,
   Opine,
+  OpineRequest,
+  OpineResponse,
   PathParams,
-  Request,
-  Response,
 } from "../src/types.ts";
 
 const create = Object.create;
@@ -142,13 +136,11 @@ app.lazyrouter = function lazyrouter(): void {
  * @private
  */
 app.handle = function handle(
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
 ): void {
   const router = this._router;
-
-  req = requestProxy(req);
 
   next = next || finalHandler(req, res);
 
@@ -159,7 +151,7 @@ app.handle = function handle(
   router.handle(req, res, next);
 };
 
-const isPath = (thing: any) =>
+const isPath = (thing: unknown): thing is string | RegExp =>
   typeof thing === "string" || thing instanceof RegExp;
 
 /**
@@ -200,8 +192,8 @@ app.use = function use(...args: any[]): Application {
     router.use(
       path,
       function mounted_app(
-        req: Request,
-        res: Response,
+        req: OpineRequest,
+        res: OpineResponse,
         next: NextFunction,
       ): void {
         const orig = req.app as Opine;
@@ -540,6 +532,14 @@ app.render = function render(
   tryRender(view, renderOptions, done);
 };
 
+const isTlsOptions = (
+  options?: number | string | HTTPOptions | HTTPSOptions,
+): options is HTTPSOptions =>
+  options !== null &&
+  typeof options === "object" &&
+  "certFile" in options &&
+  "keyFile" in options;
+
 /**
  * Listen for connections.
  *
@@ -549,30 +549,39 @@ app.render = function render(
  */
 app.listen = function listen(
   options?: number | string | HTTPOptions | HTTPSOptions,
-  callback?: Function,
+  callback?: () => void,
 ): Server {
+  let addr: string;
+
   if (typeof options === "undefined") {
-    options = { port: 0 };
+    addr = ":0";
   } else if (typeof options === "number") {
-    options = `:${options}`;
+    addr = `:${options}`;
+  } else if (typeof options === "string") {
+    addr = options;
+  } else {
+    addr = `${options.hostname ?? ""}:${options.port ?? 0}`;
   }
 
-  const isTlsOptions = typeof options !== "string" &&
-    typeof (options as HTTPSOptions).certFile !== "undefined";
+  const isTls = isTlsOptions(options);
 
-  const server = isTlsOptions
-    ? serveTLS(options as HTTPSOptions)
-    : serve(options);
+  const server = new Server({
+    addr,
+    handler: async (request, connInfo) => {
+      const opineRequest = new WrappedRequest(request, connInfo);
+      this(opineRequest);
 
-  function isClosed() {
-    return !Deno.resources()[server.listener.rid];
-  }
+      return await opineRequest.finalResponse;
+    },
+  });
 
   const start = async () => {
-    while (!isClosed()) {
+    while (!server.closed) {
       try {
-        for await (const request of server) {
-          this(request as Request);
+        if (isTls) {
+          await server.listenAndServeTls(options.certFile, options.keyFile);
+        } else {
+          await server.listenAndServe();
         }
       } catch (e) {
         // Ignore closed connections / servers

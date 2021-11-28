@@ -1,3 +1,4 @@
+import type { Opine, OpineResponse } from "../../mod.ts";
 import { opine, serveStatic } from "../../mod.ts";
 import {
   describe,
@@ -12,7 +13,7 @@ import { dirname, join } from "../../deps.ts";
 const __dirname = dirname(import.meta.url);
 const fixtures = join(__dirname, "../fixtures");
 
-function createApp(dir: string = fixtures, opts?: any) {
+function createApp(dir: string = fixtures, opts?: unknown) {
   const app = opine();
 
   app.use(serveStatic(dir, opts));
@@ -22,7 +23,7 @@ function createApp(dir: string = fixtures, opts?: any) {
 
 describe("serveStatic()", function () {
   describe("basic operations", function () {
-    let server: any;
+    let server: Opine;
 
     it("should serve static files", function (done) {
       server = createApp();
@@ -68,12 +69,12 @@ describe("serveStatic()", function () {
         .end(done);
     });
 
-    it("should not choke on auth-looking URL", function (done) {
+    it("should not choke on auth-looking URL", async function () {
       server = createApp();
 
-      superdeno(server)
+      await superdeno(server)
         .get("//todo@txt")
-        .expect(404, done);
+        .expect(404);
     });
 
     it("should support ../", function (done) {
@@ -94,12 +95,12 @@ describe("serveStatic()", function () {
         .end(done);
     });
 
-    it("should skip POST requests", function (done) {
+    it("should skip POST requests", async function () {
       server = createApp();
 
-      superdeno(server)
+      await superdeno(server)
         .post("/todo.txt")
-        .expect(404, /Cannot POST \/todo.txt/, done);
+        .expect(404, /Cannot POST \/todo.txt/);
     });
 
     it("should support conditional requests", function (done) {
@@ -126,41 +127,41 @@ describe("serveStatic()", function () {
   });
 
   describe("fallthrough", function () {
-    let server: any;
+    let server: Opine;
 
-    it("should default to true", function (done) {
-      superdeno(createApp())
+    it("should default to true", async function () {
+      await superdeno(createApp())
         .get("/does-not-exist")
-        .expect(404, /Cannot GET \/does-not-exist/, done);
+        .expect(404, /Cannot GET \/does-not-exist/);
     });
 
     describe("when true", function () {
-      it("should fall-through when OPTIONS request", function (done) {
+      it("should fall-through when OPTIONS request", async function () {
         server = createApp(fixtures, { fallthrough: true });
 
-        superdeno(server)
+        await superdeno(server)
           .options("/todo.txt")
-          .expect(404, /Cannot OPTIONS \/todo.txt/, done);
+          .expect(404, /Cannot OPTIONS \/todo.txt/);
       });
 
-      it("should fall-through when URL malformed", function (done) {
+      it("should fall-through when URL malformed", async function () {
         server = createApp(fixtures, { fallthrough: true });
 
-        superdeno(server)
+        await superdeno(server)
           .get("/%")
-          .expect(404, /Cannot GET \/%/, done);
+          .expect(404, /Cannot GET \/%/);
       });
 
       describe("with redirect: true", function () {
-        it("should fall-through when directory", function (done) {
+        it("should fall-through when directory", async function () {
           server = createApp(
             fixtures,
             { fallthrough: true, redirect: true },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos/")
-            .expect(404, /Cannot GET \/dinos\//, done);
+            .expect(404, /Cannot GET \/dinos\//);
         });
 
         it("should redirect when directory without slash", function (
@@ -178,26 +179,26 @@ describe("serveStatic()", function () {
       });
 
       describe("with redirect: false", function () {
-        it("should fall-through when directory", function (done) {
+        it("should fall-through when directory", async function () {
           server = createApp(
             fixtures,
             { fallthrough: true, redirect: false },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos/")
-            .expect(404, /Cannot GET \/dinos\//, done);
+            .expect(404, /Cannot GET \/dinos\//);
         });
 
-        it("should fall-through when directory without slash", function (done) {
+        it("should fall-through when directory without slash", async function () {
           server = createApp(
             fixtures,
             { fallthrough: true, redirect: false },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos")
-            .expect(404, /Cannot GET \/dinos/, done);
+            .expect(404, /Cannot GET \/dinos/);
         });
       });
     });
@@ -221,15 +222,15 @@ describe("serveStatic()", function () {
       });
 
       describe("with redirect: true", function () {
-        it("should 404 when directory", function (done) {
+        it("should 404 when directory", async function () {
           server = createApp(
             fixtures,
             { fallthrough: false, redirect: true },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos/")
-            .expect(404, /NotFound/, done);
+            .expect(404, /NotFound/);
         });
 
         it("should redirect when directory without slash", function (
@@ -247,33 +248,33 @@ describe("serveStatic()", function () {
       });
 
       describe("with redirect: false", function () {
-        it("should 404 when directory", function (done) {
+        it("should 404 when directory", async function () {
           server = createApp(
             fixtures,
             { fallthrough: false, redirect: false },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos/")
-            .expect(404, /NotFound/, done);
+            .expect(404, /NotFound/);
         });
 
-        it("should 404 when directory without slash", function (done) {
+        it("should 404 when directory without slash", async function () {
           server = createApp(
             fixtures,
             { fallthrough: false, redirect: false },
           );
 
-          superdeno(server)
+          await superdeno(server)
             .get("/dinos")
-            .expect(404, /NotFound/, done);
+            .expect(404, /NotFound/);
         });
       });
     });
   });
 
   describe("redirect", function () {
-    let server: any;
+    let server: Opine;
 
     it("should redirect directories", function (done) {
       server = createApp();
@@ -283,21 +284,21 @@ describe("serveStatic()", function () {
         .expect(301, done);
     });
 
-    it("should not redirect incorrectly", function (done) {
+    it("should not redirect incorrectly", async function () {
       server = createApp();
 
-      superdeno(server)
+      await superdeno(server)
         .get("/")
-        .expect(404, done);
+        .expect(404);
     });
 
     describe("when false", function () {
-      it("should disable redirect", function (done) {
+      it("should disable redirect", async function () {
         server = createApp(fixtures, { redirect: false });
 
-        superdeno(server)
+        await superdeno(server)
           .get("/users")
-          .expect(404, done);
+          .expect(404);
       });
     });
   });
@@ -311,7 +312,7 @@ describe("serveStatic()", function () {
 
     it("should get called when sending file", function (done) {
       const server = createApp(fixtures, {
-        before: function (res: any) {
+        before: function (res: OpineResponse) {
           res.set("x-custom", "set");
         },
       });
@@ -322,22 +323,22 @@ describe("serveStatic()", function () {
         .expect(200, done);
     });
 
-    it("should not get called on 404", function (done) {
+    it("should not get called on 404", async function () {
       const server = createApp(fixtures, {
-        before: function (res: any) {
+        before: function (res: OpineResponse) {
           res.set("x-custom", "set");
         },
       });
 
-      superdeno(server)
+      await superdeno(server)
         .get("/bogus/")
         .expect(shouldNotHaveHeader("x-custom"))
-        .expect(404, done);
+        .expect(404);
     });
 
     it("should not get called on redirect", function (done) {
       const server = createApp(fixtures, {
-        before: function (res: any) {
+        before: function (res: OpineResponse) {
           res.set("x-custom", "set");
         },
       });

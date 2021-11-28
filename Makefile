@@ -15,10 +15,6 @@ benchmark:
 	@echo "================================"
 	@./benchmarks/run.sh 50 ./benchmarks/middleware.ts
 	@echo ""
-	@echo "native_http benchmark"
-	@echo "================================"
-	@./benchmarks/run.sh 0 https://deno.land/x/native_http/benchmark/bench.ts
-	@echo ""
 	@echo "std/http benchmark"
 	@echo "================================"
 	@./benchmarks/run.sh 0 https://deno.land/std/http/bench.ts

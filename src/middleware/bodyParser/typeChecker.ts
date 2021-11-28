@@ -29,7 +29,7 @@
  *
  */
 
-import type { Request } from "../../types.ts";
+import type { OpineRequest } from "../../types.ts";
 import { typeofrequest } from "../../../deps.ts";
 
 /**
@@ -39,7 +39,7 @@ import { typeofrequest } from "../../../deps.ts";
  * @return {function}
  */
 export function typeChecker(type: string) {
-  return function checkType(req: Request) {
+  return function checkType(req: OpineRequest) {
     return Boolean(typeofrequest(req.headers, [type]));
   };
 }

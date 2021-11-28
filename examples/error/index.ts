@@ -11,7 +11,11 @@
  */
 
 import opine from "../../mod.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 const app = opine();
 
@@ -21,7 +25,12 @@ const app = opine();
 // middleware, you may have several of them,
 // in different orders etc.
 
-function error(err: any, req: Request, res: Response, next: NextFunction) {
+function error(
+  err: any,
+  _req: OpineRequest,
+  res: OpineResponse,
+  _next: NextFunction,
+) {
   // respond with custom 500 "Internal Server Error".
   res.setStatus(500);
   res.json({ message: "Internal Server Error", error: err.message });

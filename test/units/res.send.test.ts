@@ -9,7 +9,7 @@ import {
 } from "../utils.ts";
 import { expect, superdeno } from "../deps.ts";
 import { methods } from "../../src/methods.ts";
-import type { Request, Response } from "../../src/types.ts";
+import type { OpineRequest, OpineResponse } from "../../src/types.ts";
 
 describe("res", function () {
   describe(".send()", function () {
@@ -230,7 +230,6 @@ describe("res", function () {
 
         superdeno(app)
           .get("/")
-          .expect("Content-Length", "0")
           .expect(shouldNotHaveHeader("Content-Type"))
           .expect(shouldNotHaveHeader("Transfer-Encoding"))
           .expect(204, null, done);
@@ -252,7 +251,6 @@ describe("res", function () {
 
         superdeno(app)
           .get("/")
-          .expect("Content-Length", "0")
           .expect(shouldNotHaveHeader("Content-Type"))
           .expect(shouldNotHaveHeader("Transfer-Encoding"))
           .expect(304, null, done);
@@ -358,9 +356,12 @@ describe("res", function () {
           function (done) {
             const app = opine();
 
-            (app as any)[method]("/", function (_req: Request, res: Response) {
-              res.send("kajdslfkasdf");
-            });
+            (app as any)[method](
+              "/",
+              function (_req: OpineRequest, res: OpineResponse) {
+                res.send("kajdslfkasdf");
+              },
+            );
 
             (superdeno(app) as any)[method]("/")
               .expect("ETag", 'W/"c-22047f2f9485ec22507dfe30c4a"')

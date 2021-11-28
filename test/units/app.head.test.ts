@@ -6,7 +6,7 @@ describe("HEAD", function () {
   it("should default to GET", function (done) {
     const app = opine();
 
-    app.get("/deno", function (req, res) {
+    app.get("/deno", function (_req, res) {
       res.send("deno");
     });
 
@@ -18,7 +18,7 @@ describe("HEAD", function () {
   it("should output the same headers as GET requests", function (done) {
     const app = opine();
 
-    app.get("/deno", function (req, res) {
+    app.get("/deno", function (_req, res) {
       // send() detects HEAD
       res.send("deno");
     });
@@ -53,12 +53,12 @@ describe("app.head()", function () {
     const app = opine();
     let called = false;
 
-    app.head("/deno", function (req, res) {
+    app.head("/deno", function (_req, res) {
       called = true;
       res.end("");
     });
 
-    app.get("/deno", function (req, res) {
+    app.get("/deno", function () {
       throw new Error("should not be called");
     });
 

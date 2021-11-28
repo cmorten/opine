@@ -2,7 +2,7 @@ import opine from "../../mod.ts";
 import { describe, it, pick } from "../utils.ts";
 import { Deferred, deferred, expect, superdeno } from "../deps.ts";
 import type { SuperDenoResponse } from "../deps.ts";
-import type { Handler, Request, Response } from "../../src/types.ts";
+import type { Handler, OpineRequest, OpineResponse } from "../../src/types.ts";
 
 type DeferredTestResult = Deferred<
   {
@@ -38,7 +38,7 @@ function createRedirectMiddleware(
   };
 }
 
-function handleRedirectTarget(req: Request, res: Response) {
+function handleRedirectTarget(req: OpineRequest, res: OpineResponse) {
   res.json({ url: req.originalUrl, query: req.query });
 }
 

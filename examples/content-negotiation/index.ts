@@ -12,7 +12,7 @@
 
 import { opine } from "../../mod.ts";
 import { users } from "./db.ts";
-import type { Request, Response } from "../../src/types.ts";
+import type { OpineRequest, OpineResponse } from "../../src/types.ts";
 
 const app = opine();
 
@@ -42,7 +42,7 @@ app.get("/", (_req, res) => {
 async function format(path: string) {
   const obj = await import(path);
 
-  return function (_req: Request, res: Response) {
+  return function (_req: OpineRequest, res: OpineResponse) {
     res.format(obj);
   };
 }

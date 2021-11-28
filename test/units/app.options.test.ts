@@ -1,7 +1,11 @@
 import { opine, Router } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("OPTIONS", function () {
   it("should default to the routes defined", function (done) {
@@ -86,7 +90,12 @@ describe("OPTIONS", function () {
       });
       app.use(router);
       app.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           res.end("true");
         },
       );

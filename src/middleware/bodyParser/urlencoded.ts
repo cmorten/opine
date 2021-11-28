@@ -32,7 +32,7 @@
 import { createError } from "../../utils/createError.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
-import type { NextFunction, Request, Response } from "../../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import { hasBody, qs } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
 
@@ -63,8 +63,8 @@ export function urlencoded(options: any = {}) {
   }
 
   return function urlencodedParser(
-    req: Request,
-    res: Response,
+    req: OpineRequest,
+    res: OpineResponse,
     next: NextFunction,
   ) {
     if (req._parsedBody) {

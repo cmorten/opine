@@ -2,7 +2,11 @@
 import { opine } from "../../mod.ts";
 import { superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("app", function () {
   describe(".param(names, fn)", function () {
@@ -285,8 +289,8 @@ describe("app", function () {
 
       function error(
         err: any,
-        req: Request,
-        res: Response,
+        req: OpineRequest,
+        res: OpineResponse,
         next: NextFunction,
       ) {
         // respond with custom 500 "Internal Server Error".

@@ -1,7 +1,11 @@
 import { opine } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("app", function () {
   describe(".VERB()", function () {
@@ -44,17 +48,32 @@ describe("app", function () {
             a = true;
             next();
           },
-          function (err: any, req: Request, res: Response, next: NextFunction) {
+          function (
+            err: any,
+            req: OpineRequest,
+            res: OpineResponse,
+            next: NextFunction,
+          ) {
             b = true;
             expect(err.message).toEqual("fabricated error");
             next(err);
           },
-          function (err: any, req: Request, res: Response, next: NextFunction) {
+          function (
+            err: any,
+            req: OpineRequest,
+            res: OpineResponse,
+            next: NextFunction,
+          ) {
             c = true;
             expect(err.message).toEqual("fabricated error");
             next();
           },
-          function (err: any, req: Request, res: Response, next: NextFunction) {
+          function (
+            err: any,
+            req: OpineRequest,
+            res: OpineResponse,
+            next: NextFunction,
+          ) {
             d = true;
             next();
           },

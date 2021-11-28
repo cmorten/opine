@@ -2,26 +2,36 @@ import { opine, Router } from "../../mod.ts";
 import { expect, superdeno } from "../deps.ts";
 import { after, describe, it } from "../utils.ts";
 import { methods } from "../../src/methods.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 describe("app.router", function () {
   it("should restore req.params after leaving router", function (done) {
     const app = opine();
     const router = Router();
 
-    function handler1(req: Request, res: Response, next: NextFunction) {
+    function handler1(
+      req: OpineRequest,
+      res: OpineResponse,
+      next: NextFunction,
+    ) {
       res.set("x-user-id", String(req.params.id));
       next();
     }
 
-    function handler2(req: Request, res: Response) {
+    function handler2(req: OpineRequest, res: OpineResponse) {
       res.send(req.params.id);
     }
 
-    router.use(function (req: Request, res: Response, next: NextFunction) {
-      res.set("x-router", String(req.params.id));
-      next();
-    });
+    router.use(
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        res.set("x-router", String(req.params.id));
+        next();
+      },
+    );
 
     app.get("/user/:id", handler1, router, handler2);
 
@@ -39,9 +49,12 @@ describe("app.router", function () {
       it("should include " + method.toUpperCase(), function (done) {
         const app = opine();
 
-        (app as any)[method]("/foo", function (req: Request, res: Response) {
-          res.send(method);
-        });
+        (app as any)[method](
+          "/foo",
+          function (req: OpineRequest, res: OpineResponse) {
+            res.send(method);
+          },
+        );
 
         (superdeno(app) as any)[method]("/foo")
           .expect(200, done);
@@ -57,14 +70,16 @@ describe("app.router", function () {
       const app = opine();
       const cb = after(3, done);
 
-      app.use(function (req: Request, res: Response, next: NextFunction) {
-        if (req.method !== "POST") return next();
-        req.method = "DELETE";
-        res.set("X-Method-Altered", "1");
-        next();
-      });
+      app.use(
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+          if (req.method !== "POST") return next();
+          req.method = "DELETE";
+          res.set("X-Method-Altered", "1");
+          next();
+        },
+      );
 
-      app.delete("/", function (req: Request, res: Response) {
+      app.delete("/", function (req: OpineRequest, res: OpineResponse) {
         res.end("deleted everything");
       });
 
@@ -89,7 +104,7 @@ describe("app.router", function () {
 
       app.get(
         "/:name",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.send(req.params.name);
         },
       );
@@ -104,7 +119,7 @@ describe("app.router", function () {
 
       app.get(
         "/:name",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.send(req.params.name);
         },
       );
@@ -119,7 +134,7 @@ describe("app.router", function () {
 
       app.get(
         "/:name",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.send(req.params.name);
         },
       );
@@ -134,7 +149,7 @@ describe("app.router", function () {
 
       app.get(
         "/:name",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.send(req.params.name);
         },
       );
@@ -149,20 +164,27 @@ describe("app.router", function () {
     const app = opine();
     let calls: any[] = [];
 
-    app.use(function (req: Request, res: Response, next: NextFunction) {
-      calls.push("before");
-      next();
-    });
+    app.use(
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        calls.push("before");
+        next();
+      },
+    );
 
-    app.get("/", function (req: Request, res: Response, next: NextFunction) {
-      calls.push("GET /");
-      next();
-    });
+    app.get(
+      "/",
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        calls.push("GET /");
+        next();
+      },
+    );
 
-    app.use(function (req: Request, res: Response, next: NextFunction) {
-      calls.push("after");
-      res.json(calls);
-    });
+    app.use(
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        calls.push("after");
+        res.json(calls);
+      },
+    );
 
     superdeno(app)
       .get("/")
@@ -173,9 +195,12 @@ describe("app.router", function () {
     it("should match the pathname only", function (done) {
       const app = opine();
 
-      app.get(/^\/user\/[0-9]+$/, function (req: Request, res: Response) {
-        res.end("user");
-      });
+      app.get(
+        /^\/user\/[0-9]+$/,
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end("user");
+        },
+      );
 
       superdeno(app)
         .get("/user/12?foo=bar")
@@ -187,7 +212,7 @@ describe("app.router", function () {
 
       app.get(
         /^\/user\/([0-9]+)\/(view|edit)?$/,
-        function (req: Request, res: Response) {
+        function (req: OpineRequest, res: OpineResponse) {
           const id = req.params[0],
             op = req.params[1];
           res.end(op + "ing user " + id);
@@ -204,7 +229,7 @@ describe("app.router", function () {
     it("should be disabled by default", function (done) {
       const app = opine();
 
-      app.get("/user", function (req: Request, res: Response) {
+      app.get("/user", function (req: OpineRequest, res: OpineResponse) {
         res.end("deno");
       });
 
@@ -219,7 +244,7 @@ describe("app.router", function () {
 
         app.enable("case sensitive routing");
 
-        app.get("/uSer", function (req: Request, res: Response) {
+        app.get("/uSer", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -233,7 +258,7 @@ describe("app.router", function () {
 
         app.enable("case sensitive routing");
 
-        app.get("/uSer", function (req: Request, res: Response) {
+        app.get("/uSer", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -249,7 +274,7 @@ describe("app.router", function () {
       const app = opine();
       const router = Router();
 
-      router.get("/:action", function (req: Request, res: Response) {
+      router.get("/:action", function (req: OpineRequest, res: OpineResponse) {
         res.send(req.params);
       });
 
@@ -264,7 +289,7 @@ describe("app.router", function () {
       const app = opine();
       const router = new Router({ mergeParams: true });
 
-      router.get("/:action", function (req: Request, res: Response) {
+      router.get("/:action", function (req: OpineRequest, res: OpineResponse) {
         const keys = Object.keys(req.params).sort();
         res.send(keys.map(function (k) {
           return [k, req.params[k]];
@@ -282,7 +307,7 @@ describe("app.router", function () {
       const app = opine();
       const router = new Router({ mergeParams: true });
 
-      router.get("/:thing", function (req: Request, res: Response) {
+      router.get("/:thing", function (req: OpineRequest, res: OpineResponse) {
         const keys = Object.keys(req.params).sort();
         res.send(keys.map(function (k) {
           return [k, req.params[k]];
@@ -300,7 +325,7 @@ describe("app.router", function () {
       const app = opine();
       const router = new Router({ mergeParams: true });
 
-      router.get("/*.*", function (req: Request, res: Response) {
+      router.get("/*.*", function (req: OpineRequest, res: OpineResponse) {
         const keys = Object.keys(req.params).sort();
         res.send(keys.map(function (k) {
           return [k, req.params[k]];
@@ -320,7 +345,7 @@ describe("app.router", function () {
       const app = opine();
       const router = new Router({ mergeParams: true });
 
-      router.get("/*", function (req: Request, res: Response) {
+      router.get("/*", function (req: OpineRequest, res: OpineResponse) {
         const keys = Object.keys(req.params).sort();
         res.send(keys.map(function (k) {
           return [k, req.params[k]];
@@ -342,12 +367,15 @@ describe("app.router", function () {
         const app = opine();
         const router = new Router({ mergeParams: true });
 
-        router.get("/name:(\\w+)", function (req: Request, res: Response) {
-          const keys = Object.keys(req.params).sort();
-          res.send(keys.map(function (k) {
-            return [k, req.params[k]];
-          }));
-        });
+        router.get(
+          "/name:(\\w+)",
+          function (req: OpineRequest, res: OpineResponse) {
+            const keys = Object.keys(req.params).sort();
+            res.send(keys.map(function (k) {
+              return [k, req.params[k]];
+            }));
+          },
+        );
 
         app.use("/user/id:(\\d+)", router);
 
@@ -361,7 +389,7 @@ describe("app.router", function () {
       const app = opine();
       const router = new Router({ mergeParams: true });
 
-      router.get("/:name", function (req: Request, res: Response) {
+      router.get("/:name", function (req: OpineRequest, res: OpineResponse) {
         const keys = Object.keys(req.params).sort();
         res.send(keys.map(function (k) {
           return [k, req.params[k]];
@@ -370,7 +398,7 @@ describe("app.router", function () {
 
       app.use(
         "/user/",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           (req as any).params = 3; // wat?
           router(req, res, next);
         },
@@ -387,14 +415,14 @@ describe("app.router", function () {
 
       router.get(
         "/user:(\\w+)/*",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           next();
         },
       );
 
       app.use(
         "/user/id:(\\d+)",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           router(req, res, function (err: any) {
             const keys = Object.keys(req.params).sort();
             res.send(keys.map(function (k) {
@@ -414,7 +442,7 @@ describe("app.router", function () {
     it("should be optional by default", function (done) {
       const app = opine();
 
-      app.get("/user", function (req: Request, res: Response) {
+      app.get("/user", function (req: OpineRequest, res: OpineResponse) {
         res.end("deno");
       });
 
@@ -429,7 +457,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.get("/user/", function (req: Request, res: Response) {
+        app.get("/user/", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -443,12 +471,14 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.use(function (req: Request, res: Response, next: NextFunction) {
-          res.set("x-middleware", "true");
-          next();
-        });
+        app.use(
+          function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+            res.set("x-middleware", "true");
+            next();
+          },
+        );
 
-        app.get("/user/", function (req: Request, res: Response) {
+        app.get("/user/", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -465,15 +495,18 @@ describe("app.router", function () {
 
         app.use(
           "/user/",
-          function (req: Request, res: Response, next: NextFunction) {
+          function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
             res.set("x-middleware", "true");
             next();
           },
         );
 
-        app.get("/user/test/", function (req: Request, res: Response) {
-          res.end("deno");
-        });
+        app.get(
+          "/user/test/",
+          function (req: OpineRequest, res: OpineResponse) {
+            res.end("deno");
+          },
+        );
 
         superdeno(app)
           .get("/user/test/")
@@ -486,7 +519,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.get("/user", function (req: Request, res: Response) {
+        app.get("/user", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -502,7 +535,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.use("/user/", function (req: Request, res: Response) {
+        app.use("/user/", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -516,7 +549,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.use("/user", function (req: Request, res: Response) {
+        app.use("/user", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -532,7 +565,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.use("/user", function (req: Request, res: Response) {
+        app.use("/user", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -546,7 +579,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.get("/user/", function (req: Request, res: Response) {
+        app.get("/user/", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -560,7 +593,7 @@ describe("app.router", function () {
 
         app.enable("strict routing");
 
-        app.get("/user", function (req: Request, res: Response) {
+        app.get("/user", function (req: OpineRequest, res: OpineResponse) {
           res.end("deno");
         });
 
@@ -574,7 +607,7 @@ describe("app.router", function () {
   it("should allow escaped regexp", function (done) {
     const app = opine();
 
-    app.get("/user/\\d+", function (req: Request, res: Response) {
+    app.get("/user/\\d+", function (req: OpineRequest, res: OpineResponse) {
       res.end("woot");
     });
 
@@ -591,12 +624,15 @@ describe("app.router", function () {
   it('should allow literal "."', function (done) {
     const app = opine();
 
-    app.get("/api/users/:from..:to", function (req: Request, res: Response) {
-      const from = req.params.from;
-      const to = req.params.to;
+    app.get(
+      "/api/users/:from..:to",
+      function (req: OpineRequest, res: OpineResponse) {
+        const from = req.params.from;
+        const to = req.params.to;
 
-      res.end("users from " + from + " to " + to);
-    });
+        res.end("users from " + from + " to " + to);
+      },
+    );
 
     superdeno(app)
       .get("/api/users/1..50")
@@ -607,7 +643,7 @@ describe("app.router", function () {
     it("should capture everything", function (done) {
       const app = opine();
 
-      app.get("*", function (req: Request, res: Response) {
+      app.get("*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -619,7 +655,7 @@ describe("app.router", function () {
     it("should decode the capture", function (done) {
       const app = opine();
 
-      app.get("*", function (req: Request, res: Response) {
+      app.get("*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -631,7 +667,7 @@ describe("app.router", function () {
     it("should denote a greedy capture group", function (done) {
       const app = opine();
 
-      app.get("/user/*.json", function (req: Request, res: Response) {
+      app.get("/user/*.json", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -643,7 +679,7 @@ describe("app.router", function () {
     it("should work with several", function (done) {
       const app = opine();
 
-      app.get("/api/*.*", function (req: Request, res: Response) {
+      app.get("/api/*.*", function (req: OpineRequest, res: OpineResponse) {
         const resource = req.params[0];
         const format = req.params[1];
         res.end(resource + " as " + format);
@@ -657,7 +693,7 @@ describe("app.router", function () {
     it("should work cross-segment", function (done) {
       const app = opine();
 
-      app.get("/api*", function (req: Request, res: Response) {
+      app.get("/api*", function (req: OpineRequest, res: OpineResponse) {
         res.send(req.params[0]);
       });
 
@@ -673,10 +709,13 @@ describe("app.router", function () {
     it("should allow naming", function (done) {
       const app = opine();
 
-      app.get("/api/:resource(*)", function (req: Request, res: Response) {
-        const resource = req.params.resource;
-        res.end(resource);
-      });
+      app.get(
+        "/api/:resource(*)",
+        function (req: OpineRequest, res: OpineResponse) {
+          const resource = req.params.resource;
+          res.end(resource);
+        },
+      );
 
       superdeno(app)
         .get("/api/users/0.json")
@@ -686,7 +725,7 @@ describe("app.router", function () {
     it("should not be greedy immediately after param", function (done) {
       const app = opine();
 
-      app.get("/user/:user*", function (req: Request, res: Response) {
+      app.get("/user/:user*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params.user);
       });
 
@@ -698,7 +737,7 @@ describe("app.router", function () {
     it("should eat everything after /", function (done) {
       const app = opine();
 
-      app.get("/user/:user*", function (req: Request, res: Response) {
+      app.get("/user/:user*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params.user);
       });
 
@@ -710,7 +749,7 @@ describe("app.router", function () {
     it("should span multiple segments", function (done) {
       const app = opine();
 
-      app.get("/file/*", function (req: Request, res: Response) {
+      app.get("/file/*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -722,7 +761,7 @@ describe("app.router", function () {
     it("should be optional", function (done) {
       const app = opine();
 
-      app.get("/file/*", function (req: Request, res: Response) {
+      app.get("/file/*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -734,7 +773,7 @@ describe("app.router", function () {
     it("should require a preceding /", function (done) {
       const app = opine();
 
-      app.get("/file/*", function (req: Request, res: Response) {
+      app.get("/file/*", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params[0]);
       });
 
@@ -746,7 +785,7 @@ describe("app.router", function () {
     it("should keep correct parameter indexes", function (done) {
       const app = opine();
 
-      app.get("/*/user/:id", function (req: Request, res: Response) {
+      app.get("/*/user/:id", function (req: OpineRequest, res: OpineResponse) {
         res.send(req.params);
       });
 
@@ -760,7 +799,7 @@ describe("app.router", function () {
 
       app.get(
         ["/user/:id", "/foo/*", "/:bar"],
-        function (req: Request, res: Response) {
+        function (req: OpineRequest, res: OpineResponse) {
           res.send(req.params.bar);
         },
       );
@@ -775,7 +814,7 @@ describe("app.router", function () {
     it("should denote a capture group", function (done) {
       const app = opine();
 
-      app.get("/user/:user", function (req: Request, res: Response) {
+      app.get("/user/:user", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params.user);
       });
 
@@ -787,7 +826,7 @@ describe("app.router", function () {
     it("should match a single segment only", function (done) {
       const app = opine();
 
-      app.get("/user/:user", function (req: Request, res: Response) {
+      app.get("/user/:user", function (req: OpineRequest, res: OpineResponse) {
         res.end(req.params.user);
       });
 
@@ -799,9 +838,12 @@ describe("app.router", function () {
     it("should allow several capture groups", function (done) {
       const app = opine();
 
-      app.get("/user/:user/:op", function (req: Request, res: Response) {
-        res.end(req.params.op + "ing " + req.params.user);
-      });
+      app.get(
+        "/user/:user/:op",
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end(req.params.op + "ing " + req.params.user);
+        },
+      );
 
       superdeno(app)
         .get("/user/deno/edit")
@@ -812,12 +854,15 @@ describe("app.router", function () {
       const app = opine();
       const cb = after(2, done);
 
-      app.get("/user(s)?/:user/:op", function (req: Request, res: Response) {
-        res.end(
-          req.params.op + "ing " + req.params.user +
-            (req.params[0] ? " (old)" : ""),
-        );
-      });
+      app.get(
+        "/user(s)?/:user/:op",
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end(
+            req.params.op + "ing " + req.params.user +
+              (req.params[0] ? " (old)" : ""),
+          );
+        },
+      );
 
       superdeno(app)
         .get("/user/deno/edit")
@@ -831,9 +876,12 @@ describe("app.router", function () {
     it("should work inside literal parenthesis", function (done) {
       const app = opine();
 
-      app.get("/:user\\(:op\\)", function (req: Request, res: Response) {
-        res.end(req.params.op + "ing " + req.params.user);
-      });
+      app.get(
+        "/:user\\(:op\\)",
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end(req.params.op + "ing " + req.params.user);
+        },
+      );
 
       superdeno(app)
         .get("/deno(edit)")
@@ -846,7 +894,7 @@ describe("app.router", function () {
 
       app.get(
         ["/user/:user/poke", "/user/:user/pokes"],
-        function (req: Request, res: Response) {
+        function (req: OpineRequest, res: OpineResponse) {
           res.end("poking " + req.params.user);
         },
       );
@@ -865,10 +913,13 @@ describe("app.router", function () {
     it("should denote an optional capture group", function (done) {
       const app = opine();
 
-      app.get("/user/:user/:op?", function (req: Request, res: Response) {
-        const op = req.params.op || "view";
-        res.end(op + "ing " + req.params.user);
-      });
+      app.get(
+        "/user/:user/:op?",
+        function (req: OpineRequest, res: OpineResponse) {
+          const op = req.params.op || "view";
+          res.end(op + "ing " + req.params.user);
+        },
+      );
 
       superdeno(app)
         .get("/user/deno")
@@ -878,10 +929,13 @@ describe("app.router", function () {
     it("should populate the capture group", function (done) {
       const app = opine();
 
-      app.get("/user/:user/:op?", function (req: Request, res: Response) {
-        const op = req.params.op || "view";
-        res.end(op + "ing " + req.params.user);
-      });
+      app.get(
+        "/user/:user/:op?",
+        function (req: OpineRequest, res: OpineResponse) {
+          const op = req.params.op || "view";
+          res.end(op + "ing " + req.params.user);
+        },
+      );
 
       superdeno(app)
         .get("/user/deno/edit")
@@ -893,9 +947,12 @@ describe("app.router", function () {
     it("should denote a format", function (done) {
       const app = opine();
 
-      app.get("/:name.:format", function (req: Request, res: Response) {
-        res.end(req.params.name + " as " + req.params.format);
-      });
+      app.get(
+        "/:name.:format",
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end(req.params.name + " as " + req.params.format);
+        },
+      );
 
       superdeno(app)
         .get("/foo.json")
@@ -911,9 +968,12 @@ describe("app.router", function () {
     it("should denote an optional format", function (done) {
       const app = opine();
 
-      app.get("/:name.:format?", function (req: Request, res: Response) {
-        res.end(req.params.name + " as " + (req.params.format || "html"));
-      });
+      app.get(
+        "/:name.:format?",
+        function (req: OpineRequest, res: OpineResponse) {
+          res.end(req.params.name + " as " + (req.params.format || "html"));
+        },
+      );
 
       superdeno(app)
         .get("/foo")
@@ -932,19 +992,19 @@ describe("app.router", function () {
 
       app.get(
         "/foo/:bar?",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           calls.push("/foo/:bar?");
           next();
         },
       );
 
-      app.get("/bar", function (req: Request, res: Response) {
+      app.get("/bar", function (req: OpineRequest, res: OpineResponse) {
         throw new Error("should not be called");
       });
 
       app.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           calls.push("/foo");
           next();
         },
@@ -952,7 +1012,7 @@ describe("app.router", function () {
 
       app.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           calls.push("/foo 2");
           res.json(calls);
         },
@@ -968,7 +1028,7 @@ describe("app.router", function () {
     it("should jump to next route", function (done) {
       const app = opine();
 
-      function fn(req: Request, res: Response, next: NextFunction) {
+      function fn(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("X-Hit", "1");
         next("route");
       }
@@ -976,12 +1036,12 @@ describe("app.router", function () {
       app.get(
         "/foo",
         fn,
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.end("failure");
         },
       );
 
-      app.get("/foo", function (req: Request, res: Response) {
+      app.get("/foo", function (req: OpineRequest, res: OpineResponse) {
         res.end("success");
       });
 
@@ -997,7 +1057,7 @@ describe("app.router", function () {
       const app = opine();
       const router = Router();
 
-      function fn(req: Request, res: Response, next: NextFunction) {
+      function fn(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.set("X-Hit", "1");
         next("router");
       }
@@ -1005,21 +1065,21 @@ describe("app.router", function () {
       router.get(
         "/foo",
         fn,
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.end("failure");
         },
       );
 
       router.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           res.end("failure");
         },
       );
 
       app.use(router);
 
-      app.get("/foo", function (req: Request, res: Response) {
+      app.get("/foo", function (req: OpineRequest, res: OpineResponse) {
         res.end("success");
       });
 
@@ -1037,19 +1097,19 @@ describe("app.router", function () {
 
       app.get(
         "/foo/:bar?",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           calls.push("/foo/:bar?");
           next();
         },
       );
 
-      app.get("/bar", function (req: Request, res: Response) {
+      app.get("/bar", function (req: OpineRequest, res: OpineResponse) {
         throw new Error("should not be called");
       });
 
       app.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           calls.push("/foo");
           next(new Error("fail"));
         },
@@ -1057,13 +1117,18 @@ describe("app.router", function () {
 
       app.get(
         "/foo",
-        function (req: Request, res: Response, next: NextFunction) {
+        function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
           throw new Error("should not be called");
         },
       );
 
       app.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           res.json({
             calls: calls,
             error: err.message,
@@ -1079,22 +1144,32 @@ describe("app.router", function () {
     it("should call handler in same route, if exists", function (done) {
       const app = opine();
 
-      function fn1(req: Request, res: Response, next: NextFunction) {
+      function fn1(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         next(new Error("boom!"));
       }
 
-      function fn2(req: Request, res: Response, next: NextFunction) {
+      function fn2(req: OpineRequest, res: OpineResponse, next: NextFunction) {
         res.send("foo here");
       }
 
-      function fn3(err: any, req: Request, res: Response, next: NextFunction) {
+      function fn3(
+        err: any,
+        req: OpineRequest,
+        res: OpineResponse,
+        next: NextFunction,
+      ) {
         res.send("route go " + err.message);
       }
 
       app.get("/foo", fn1, fn2, fn3);
 
       app.use(
-        function (err: any, req: Request, res: Response, next: NextFunction) {
+        function (
+          err: any,
+          req: OpineRequest,
+          res: OpineResponse,
+          next: NextFunction,
+        ) {
           res.end("error!");
         },
       );
@@ -1110,14 +1185,14 @@ describe("app.router", function () {
 
     app.get(
       "/account/edit",
-      function (req: Request, res: Response, next: NextFunction) {
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
         (req as any).user = { id: 12 }; // faux authenticated user
         req.url = "/user/" + (req as any).user.id + "/edit";
         next();
       },
     );
 
-    app.get("/user/:id/edit", function (req: Request, res: Response) {
+    app.get("/user/:id/edit", function (req: OpineRequest, res: OpineResponse) {
       res.send("editing user " + req.params.id);
     });
 
@@ -1130,41 +1205,51 @@ describe("app.router", function () {
     const app = opine();
     const path: any[] = [];
 
-    app.get("*", function (req: Request, res: Response, next: NextFunction) {
-      path.push(0);
-      next();
-    });
+    app.get(
+      "*",
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        path.push(0);
+        next();
+      },
+    );
 
     app.get(
       "/user/:id",
-      function (req: Request, res: Response, next: NextFunction) {
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
         path.push(1);
         next();
       },
     );
 
-    app.use(function (req: Request, res: Response, next: NextFunction) {
-      path.push(2);
-      next();
-    });
+    app.use(
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        path.push(2);
+        next();
+      },
+    );
 
     app.all(
       "/user/:id",
-      function (req: Request, res: Response, next: NextFunction) {
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
         path.push(3);
         next();
       },
     );
 
-    app.get("*", function (req: Request, res: Response, next: NextFunction) {
-      path.push(4);
-      next();
-    });
+    app.get(
+      "*",
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        path.push(4);
+        next();
+      },
+    );
 
-    app.use(function (req: Request, res: Response, next: NextFunction) {
-      path.push(5);
-      res.end(path.join(","));
-    });
+    app.use(
+      function (req: OpineRequest, res: OpineResponse, next: NextFunction) {
+        path.push(5);
+        res.end(path.join(","));
+      },
+    );
 
     superdeno(app)
       .get("/user/1")

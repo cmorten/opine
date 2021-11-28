@@ -14,13 +14,17 @@
 import { opine, serveStatic } from "../../mod.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.10.2/mod.ts";
 import { dirname, join } from "../../deps.ts";
-import type { NextFunction, Request, Response } from "../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../src/types.ts";
 
 const env = Deno.env.get("DENO_ENV");
 const silent = env === "test";
 
 const logger = () =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: OpineRequest, _res: OpineResponse, next: NextFunction) => {
     console.log(`${req.method} ${req.path}`);
     next();
   };
@@ -113,13 +117,20 @@ app.use(function (req, res) {
 // would remain being executed, however here
 // we simply respond with an error page.
 
-app.use(function (err: any, _req: Request, res: Response, _next: NextFunction) {
-  // we may use properties of the error object
-  // here and next(err) appropriately, or if
-  // we possibly recovered from the error, simply next().
-  res.setStatus(err.status || 500);
-  res.render("500", { error: err });
-});
+app.use(
+  function (
+    err: any,
+    _req: OpineRequest,
+    res: OpineResponse,
+    _next: NextFunction,
+  ) {
+    // we may use properties of the error object
+    // here and next(err) appropriately, or if
+    // we possibly recovered from the error, simply next().
+    res.setStatus(err.status || 500);
+    res.render("500", { error: err });
+  },
+);
 
 if (import.meta.main) {
   app.listen(3000);

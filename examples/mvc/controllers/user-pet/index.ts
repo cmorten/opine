@@ -1,12 +1,16 @@
 import * as db from "../../db.ts";
-import type { NextFunction, Request, Response } from "../../../../src/types.ts";
+import type {
+  NextFunction,
+  OpineRequest,
+  OpineResponse,
+} from "../../../../src/types.ts";
 
 export const name = "pet";
 export const prefix = "/user/:user_id";
 
 export const create = function (
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
 ) {
   const id = req.params.user_id;

@@ -1,7 +1,7 @@
 import { qs } from "../../deps.ts";
 import { parseUrl } from "../utils/parseUrl.ts";
 import { merge } from "../utils/merge.ts";
-import type { NextFunction, Request, Response } from "../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../types.ts";
 
 /**
  * Exposes a query object containing the querystring
@@ -24,7 +24,11 @@ export const query = function (options: any) {
     opts.allowPrototypes = true;
   }
 
-  return function opineQuery(req: Request, _res: Response, next: NextFunction) {
+  return function opineQuery(
+    req: OpineRequest,
+    _res: OpineResponse,
+    next: NextFunction,
+  ) {
     if (!req.query) {
       const value = parseUrl(req)?.query as string;
       req.query = queryParse(value, opts);

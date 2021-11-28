@@ -9,7 +9,7 @@ describe("app", function () {
       const app = opine();
 
       (app.request as any).querystring = function () {
-        return (parseUrl({ url: this.url } as any) as any).query;
+        return (parseUrl({ url: this.url } as any) as any).search;
       };
 
       app.use(function (req, res) {
@@ -18,7 +18,7 @@ describe("app", function () {
 
       superdeno(app)
         .get("/foo?name=Deno")
-        .expect("name=Deno", done);
+        .expect("?name=Deno", done);
     });
   });
 });

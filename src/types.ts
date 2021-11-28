@@ -3,12 +3,9 @@
 // Definitions by: Craig Morten <https://github.com/asos-craigmorten>
 
 import type {
+  ConnInfo,
   Cookie as DenoCookie,
-  HTTPOptions,
-  HTTPSOptions,
-  Response as DenoServerResponse,
   Server,
-  ServerRequest as DenoServerRequest,
   Status,
 } from "../deps.ts";
 
@@ -21,13 +18,16 @@ declare global {
   }
 }
 
-export type DenoResponseBody = string | Uint8Array | Deno.Reader;
+export type HTTPOptions = Omit<Deno.ListenOptions, "transport">;
+export type HTTPSOptions = Omit<Deno.ListenTlsOptions, "transport">;
+
+export type DenoResponseBody = undefined | string | Uint8Array | Deno.Reader;
 export type ResponseBody =
   | null
   | undefined
   | number
   | boolean
-  | object
+  | Record<string, unknown>
   | DenoResponseBody;
 
 export interface Cookie extends DenoCookie {}
@@ -56,8 +56,8 @@ export interface RequestHandler<
   ReqQuery = any,
 > {
   (
-    req: Request<P, ResBody, ReqQuery>,
-    res: Response<ResBody>,
+    req: OpineRequest<P, ResBody, ReqQuery>,
+    res: OpineResponse<ResBody>,
     next: NextFunction,
   ): any;
 }
@@ -68,8 +68,8 @@ export type ErrorRequestHandler<
   ReqQuery = any,
 > = (
   err: any,
-  req: Request<P, ResBody, ReqQuery>,
-  res: Response<ResBody>,
+  req: OpineRequest<P, ResBody, ReqQuery>,
+  res: OpineResponse<ResBody>,
   next: NextFunction,
 ) => any;
 
@@ -174,7 +174,7 @@ export interface IRouter {
    *
    * @private
    */
-  handle(req: Request, res: Response, next?: NextFunction): void;
+  handle(req: OpineRequest, res: OpineResponse, next?: NextFunction): void;
   param(name: string, fn: RequestParamHandler): void;
 
   /**
@@ -183,8 +183,8 @@ export interface IRouter {
   process_params(
     layer: any,
     called: any,
-    req: Request,
-    res: Response,
+    req: OpineRequest,
+    res: OpineResponse,
     done: NextFunction,
   ): void;
 
@@ -297,11 +297,11 @@ export type RangeParserResult =
  *     app.get<ParamsArray>(/user\/(.*)/, (req, res) => res.send(req.params[0]));
  *     app.get<ParamsArray>('/user/*', (req, res) => res.send(req.params[0]));
  */
-export interface Request<
+export interface OpineRequest<
   P extends Params = ParamsDictionary,
   ResBody = any,
   ReqQuery = any,
-> extends DenoServerRequest, Opine.Request {
+> extends Opine.Request {
   /**
    * Check if the given `type(s)` is acceptable, returning
    * the best match when true, otherwise `undefined`, in which
@@ -495,7 +495,7 @@ export interface Request<
   /**
    * Parse the "Host" header field hostname.
    */
-  hostname: string;
+  hostname?: string;
 
   /**
    * Check if the request is fresh, aka
@@ -548,29 +548,28 @@ export interface Request<
   baseUrl: string;
 
   proto: string;
-  protoMinor: number;
-  protoMajor: number;
   headers: Headers;
-  conn: Deno.Conn;
+
+  conn: ConnInfo;
 
   app: Application;
 
   /**
-   * After middleware.init executed, Request will contain res and next properties.
+   * After middleware.init executed, OpineRequest will contain res and next properties.
    * See: opine/src/middleware/init.ts
    */
-  res?: Response<ResBody>;
+  res?: OpineResponse<ResBody>;
   next?: NextFunction;
 
   /**
-   * After body parsers, Request will contain `_parsedBody` boolean property
+   * After body parsers, OpineRequest will contain `_parsedBody` boolean property
    * dictating that the body has been parsed.
    * See: opine/src/middleware/bodyParser/
    */
   _parsedBody?: boolean;
 
   /**
-   * After body parsers, Request will contain parsedBody property
+   * After body parsers, OpineRequest will contain parsedBody property
    * containing the parsed body.
    * See: opine/src/middleware/bodyParser/
    */
@@ -587,6 +586,19 @@ export interface Request<
    * is memoization by storing onto the `_parsedOriginalUrl` property.
    */
   _parsedOriginalUrl?: ParsedURL;
+
+  respond(response: {
+    status?: number;
+    statusText?: string;
+    headers?: Headers;
+    body?: Uint8Array | Deno.Reader | string;
+    trailers?: () => Promise<Headers> | Headers;
+  }): void;
+
+  /**
+   * Returns a promise that resolves to the response to the request.
+   */
+  finalResponse: Promise<Response>;
 }
 
 export interface MediaType {
@@ -596,13 +608,19 @@ export interface MediaType {
   subtype: string;
 }
 
-export type Send<ResBody = any, T = Response<ResBody>> = (body?: ResBody) => T;
+export type Send<ResBody = any, T = OpineResponse<ResBody>> = (
+  body?: ResBody,
+) => T;
 
-export interface Response<ResBody = any>
-  extends DenoServerResponse, Opine.Response {
+export interface OpineResponse<ResBody = any> extends Opine.Response {
+  status?: number;
+  statusText?: string;
+  headers?: Headers;
+  body?: Uint8Array | Deno.Reader | string;
+
   app: Application;
 
-  req?: Request;
+  req?: OpineRequest;
 
   locals: any;
 
@@ -611,7 +629,7 @@ export interface Response<ResBody = any>
   /**
    * Boolean signifying whether the request has already been responded to.
    */
-  written: Boolean;
+  written: boolean;
 
   /**
    * Add a resource ID to the list of resources to be
@@ -845,7 +863,7 @@ export interface Response<ResBody = any>
    *
    *     res.removeHeader('Accept');
    * @param {string} field
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   removeHeader(field: string): this;
@@ -948,7 +966,7 @@ export interface Response<ResBody = any>
    *     });
    * @param {string} field
    * @param {string} value
-   * @return {Response} for chaining
+   * @return {OpineResponse} for chaining
    * @public
    */
   setHeader(field: string, value: string): this;
@@ -993,8 +1011,8 @@ export interface Response<ResBody = any>
 export interface Handler extends RequestHandler {}
 
 export type RequestParamHandler = (
-  req: Request,
-  res: Response,
+  req: OpineRequest,
+  res: OpineResponse,
   next: NextFunction,
   value: any,
   name: string,
@@ -1011,8 +1029,8 @@ export interface Application extends IRouter, Opine.Application {
    * third argument.
    */
   (
-    req: Request,
-    res?: Response,
+    req: OpineRequest,
+    res?: OpineResponse,
   ): void;
 
   /**
@@ -1190,6 +1208,6 @@ export interface Application extends IRouter, Opine.Application {
 }
 
 export interface Opine extends Application {
-  request: Request;
-  response: Response;
+  request: OpineRequest;
+  response: OpineResponse;
 }

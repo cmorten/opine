@@ -34,7 +34,7 @@ import { createError } from "../../utils/createError.ts";
 import { read } from "./read.ts";
 import { getCharset } from "./getCharset.ts";
 import { typeChecker } from "./typeChecker.ts";
-import type { NextFunction, Request, Response } from "../../types.ts";
+import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 
 /**
  * RegExp to match the first non-space in a string.
@@ -96,8 +96,8 @@ export function json(options: any = {}) {
   }
 
   return async function jsonParser(
-    req: Request,
-    res: Response,
+    req: OpineRequest,
+    res: OpineResponse,
     next: NextFunction,
   ) {
     if (req._parsedBody) {

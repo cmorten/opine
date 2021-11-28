@@ -1,17 +1,17 @@
 import { charset } from "../../../deps.ts";
-import type { Request } from "../../types.ts";
+import type { OpineRequest } from "../../types.ts";
 
 /**
  * Get the charset of a request.
  *
- * @param {Request} req
+ * @param {OpineRequest} req
  * @returns {string|undefined}
  * @private
  */
-export function getCharset(req: Request): string | undefined {
+export function getCharset(req: OpineRequest): string | undefined {
   try {
     return (charset(req.headers.get("Content-Type") || "") || "").toLowerCase();
-  } catch (e) {
+  } catch (_e) {
     return undefined;
   }
 }
