@@ -14,7 +14,7 @@ deno run --allow-net --allow-read ./examples/location/index.ts
 if have the repo cloned locally _OR_
 
 ```bash
-deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/location/index.ts
+deno run --allow-net --allow-read https://raw.githubusercontent.com/cmorten/opine/main/examples/location/index.ts
 ```
 
 if you don't!

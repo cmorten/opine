@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 // Type definitions for Opine.
-// Definitions by: Craig Morten <https://github.com/asos-craigmorten>
+// Definitions by: Craig Morten <https://github.com/cmorten>
 
 import type {
   ConnInfo,

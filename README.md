@@ -1,19 +1,19 @@
 <p align="center">
-  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height:200px;" src="https://github.com/asos-craigmorten/opine/raw/main/.github/icon.png" alt="Deno reading an opinionated book"></a>
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height:200px;" src="https://github.com/cmorten/opine/raw/main/.github/icon.png" alt="Deno reading an opinionated book"></a>
   <h1 align="center">Opine</h1>
 </p>
 <p align="center">
 Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
 <p align="center">
-   <a href="https://github.com/asos-craigmorten/opine/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/opine" alt="Current version" /></a>
-   <img src="https://github.com/asos-craigmorten/opine/workflows/Test/badge.svg" alt="Current test status" />
+   <a href="https://github.com/cmorten/opine/tags/"><img src="https://img.shields.io/github/tag/cmorten/opine" alt="Current version" /></a>
+   <img src="https://github.com/cmorten/opine/workflows/Test/badge.svg" alt="Current test status" />
    <a href="https://doc.deno.land/https/deno.land/x/opine/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="Deno docs" /></a>
    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
-   <a href="https://github.com/asos-craigmorten/opine/issues/"><img src="https://img.shields.io/github/issues/asos-craigmorten/opine" alt="Opine issues" /></a>
-   <img src="https://img.shields.io/github/stars/asos-craigmorten/opine" alt="Opine stars" />
-   <img src="https://img.shields.io/github/forks/asos-craigmorten/opine" alt="Opine forks" />
-   <img src="https://img.shields.io/github/license/asos-craigmorten/opine" alt="Opine license" />
-   <a href="https://GitHub.com/asos-craigmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
+   <a href="https://github.com/cmorten/opine/issues/"><img src="https://img.shields.io/github/issues/cmorten/opine" alt="Opine issues" /></a>
+   <img src="https://img.shields.io/github/stars/cmorten/opine" alt="Opine stars" />
+   <img src="https://img.shields.io/github/forks/cmorten/opine" alt="Opine forks" />
+   <img src="https://img.shields.io/github/license/cmorten/opine" alt="Opine license" />
+   <a href="https://GitHub.com/cmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
    <a href="https://nest.land/package/opine"><img src="https://nest.land/badge.svg" alt="Published on nest.land" /></a>
 </p>
 <p align="center">
@@ -84,21 +84,21 @@ import { opine } from "https://x.nest.land/opine@2.0.1/mod.ts";
 - Support for static serving of assets
 - View system supporting template engines
 - Content negotiation
-- Compatible with [SuperDeno](https://github.com/asos-craigmorten/superdeno) for
-  easy server testing
+- Compatible with [SuperDeno](https://github.com/cmorten/superdeno) for easy
+  server testing
 - Supports HTTP proxy middleware with
-  [opine-http-proxy](https://github.com/asos-craigmorten/opine-http-proxy)
+  [opine-http-proxy](https://github.com/cmorten/opine-http-proxy)
 
 ## Documentation
 
-- [Opine Docs](https://github.com/asos-craigmorten/opine/blob/main/.github/API/api.md) -
+- [Opine Docs](https://github.com/cmorten/opine/blob/main/.github/API/api.md) -
   usually the best place when getting started ✨
-- [Opine Type Docs](https://asos-craigmorten.github.io/opine/)
+- [Opine Type Docs](https://cmorten.github.io/opine/)
 - [Opine Deno Docs](https://doc.deno.land/https/deno.land/x/opine/mod.ts)
 - [ExpressJS API Docs](https://expressjs.com/en/4x/api.html)
-- [License](https://github.com/asos-craigmorten/opine/blob/main/LICENSE.md)
-- [ExpressJS License](https://github.com/asos-craigmorten/opine/blob/main/EXPRESS_LICENSE.md)
-- [Changelog](https://github.com/asos-craigmorten/opine/blob/main/.github/CHANGELOG.md)
+- [License](https://github.com/cmorten/opine/blob/main/LICENSE.md)
+- [ExpressJS License](https://github.com/cmorten/opine/blob/main/EXPRESS_LICENSE.md)
+- [Changelog](https://github.com/cmorten/opine/blob/main/.github/CHANGELOG.md)
 
 ## Quick Start
 
@@ -146,13 +146,13 @@ To run the [examples](./examples), you have two choices:
 1. Run the example using Deno directly from GitHub, for example:
 
    ```bash
-   deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/hello-world/index.ts
+   deno run --allow-net --allow-read https://raw.githubusercontent.com/cmorten/opine/main/examples/hello-world/index.ts
    ```
 
 1. Clone the Opine repo locally:
 
    ```bash
-   git clone git://github.com/asos-craigmorten/opine.git --depth 1
+   git clone git://github.com/cmorten/opine.git --depth 1
    cd opine
    ```
 
@@ -167,7 +167,7 @@ get you started for either of the above methods.
 
 ## Contributing
 
-[Contributing guide](https://github.com/asos-craigmorten/opine/blob/main/.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/cmorten/opine/blob/main/.github/CONTRIBUTING.md)
 
 ---
 

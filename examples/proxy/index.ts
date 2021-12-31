@@ -5,7 +5,7 @@
  *
  *    if have the repo cloned locally OR
  *
- *    deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/proxy/index.ts
+ *    deno run --allow-net --allow-read https://raw.githubusercontent.com/cmorten/opine/main/examples/proxy/index.ts
  *
  *    if you don't!
  */
@@ -15,7 +15,7 @@ import { proxy } from "https://deno.land/x/opineHttpProxy@2.9.1/mod.ts";
 
 const app = opine();
 
-app.use(proxy("https://github.com/asos-craigmorten/opine"));
+app.use(proxy("https://github.com/cmorten/opine"));
 
 if (import.meta.main) {
   app.listen({ port: 3000 });

@@ -12,7 +12,7 @@ deno run --allow-net --allow-read ./examples/graphql/index.ts
 if have the repo cloned locally OR
 
 ```sh
-deno run --allow-net --allow-read https://raw.githubusercontent.com/asos-craigmorten/opine/main/examples/graphql/index.ts
+deno run --allow-net --allow-read https://raw.githubusercontent.com/cmorten/opine/main/examples/graphql/index.ts
 ```
 
 if you don't!
