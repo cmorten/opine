@@ -8,7 +8,7 @@ Creates an Opine application. The `opine()` function is a top-level function
 exported by the Opine module:
 
 ```ts
-import opine from "https://deno.land/x/opine@2.0.0/mod.ts";
+import opine from "https://deno.land/x/opine@2.0.1/mod.ts";
 
 const app = opine();
 ```
@@ -16,7 +16,7 @@ const app = opine();
 The `opine()` function is also exported as a named export:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.0.0/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.0.1/mod.ts";
 
 const app = opine();
 ```

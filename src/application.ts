@@ -551,22 +551,25 @@ app.listen = function listen(
   options?: number | string | HTTPOptions | HTTPSOptions,
   callback?: () => void,
 ): Server {
-  let addr: string;
+  let port = 0;
+  let hostname = "";
 
-  if (typeof options === "undefined") {
-    addr = ":0";
-  } else if (typeof options === "number") {
-    addr = `:${options}`;
+  if (typeof options === "number") {
+    port = options;
   } else if (typeof options === "string") {
-    addr = options;
+    const addr = options.split(":");
+    hostname = addr[0];
+    port = parseInt(addr[1]);
   } else {
-    addr = `${options.hostname ?? ""}:${options.port ?? 0}`;
+    hostname = options?.hostname ?? "";
+    port = options?.port ?? 0;
   }
 
   const isTls = isTlsOptions(options);
 
   const server = new Server({
-    addr,
+    port,
+    hostname,
     handler: async (request, connInfo) => {
       const opineRequest = new WrappedRequest(request, connInfo);
       this(opineRequest);

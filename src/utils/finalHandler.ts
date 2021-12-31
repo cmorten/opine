@@ -183,7 +183,7 @@ function getErrorStatusCode(err: any): number | undefined {
 function getResourceName(req: OpineRequest): string {
   try {
     return (parseUrl(req) as ParsedURL).pathname;
-  } catch (e) {
+  } catch {
     return "resource";
   }
 }
