@@ -2,7 +2,7 @@
 
 ## [2.0.1] - 18-12-2021
 
-- deps: support Deno `1.17.0`, std `0.118.0`, and other minor dep upgrades.
+- deps: support Deno `1.17.1`, std `0.119.0`, and other minor dep upgrades.
 
 ## [2.0.0] - 28-11-2021
 
