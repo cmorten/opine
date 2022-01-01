@@ -16,7 +16,7 @@ Opine has a top-level named function export `Router()` that creates a new
 `router` object.
 
 ```ts
-import { Router } from "https://deno.land/x/opine@2.0.1/mod.ts";
+import { Router } from "https://deno.land/x/opine@2.0.2/mod.ts";
 
 const router = Router(options);
 ```
@@ -260,7 +260,7 @@ function defined and work their way "down" the middleware stack processing for
 each path they match.
 
 ```ts
-import opine, { Router } from "https://deno.land/x/opine@2.0.1/mod.ts";
+import opine, { Router } from "https://deno.land/x/opine@2.0.2/mod.ts";
 
 const app = opine();
 const router = Router();

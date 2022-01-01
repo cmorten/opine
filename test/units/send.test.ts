@@ -21,7 +21,6 @@ app.use(async (req, res) => {
   try {
     await send(req, res, req.url, { root: fixtures });
   } catch (err) {
-    console.log(err);
     res.status = err.status ?? 500;
     await res.end(STATUS_TEXT.get(err.status));
   }
@@ -39,7 +38,6 @@ function createServer(
 
       await send(req, res, req.url, opts);
     } catch (err) {
-      console.log(err);
       res.status = err.status ?? 500;
       await res.end(String(err));
     }

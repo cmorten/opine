@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.0.2] - 01-01-2022
+
+- [#145] [#151] don't close file before fully read to stream
+
 ## [2.0.1] - 18-12-2021
 
 - deps: support Deno `1.17.1`, std `0.119.0`, and other minor dep upgrades.
