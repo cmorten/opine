@@ -581,7 +581,10 @@ async function sendFile(
     res.set("Content-Security-Policy", "default-src 'none'");
     res.set("X-Content-Type-Options", "nosniff");
 
-    return res.redirect(301, encodeUrl(collapseLeadingSlashes(options.path + "/")));
+    return res.redirect(
+      301,
+      encodeUrl(collapseLeadingSlashes(options.path + "/")),
+    );
   } catch (err) {
     if (
       ENOENT_REGEXP.test(err.message) && !extname(path) &&
