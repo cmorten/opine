@@ -29,6 +29,12 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/**
+ * encodeurl
+ * Copyright(c) 2016 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
 import { extname, join, ms, normalize, resolve, sep } from "../../deps.ts";
 import type { OpineRequest, OpineResponse } from "../types.ts";
 import { createError } from "../utils/createError.ts";
@@ -52,8 +58,8 @@ const MAX_MAXAGE = 60 * 60 * 24 * 365 * 1000; // 1 year
  */
 const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/;
 
-const ENOENT_REGEXP = /\(os error 2\)$/;
-const ENAMETOOLONG_REGEXP = /\(os error 63\)$/;
+const ENOENT_REGEXP = /\(os error 2\)/;
+const ENAMETOOLONG_REGEXP = /\(os error 63\)|\(os error 36\)/;
 
 /**
  * Normalize the index option into an array.
@@ -95,14 +101,14 @@ function containsDotFile(parts: string[]): boolean {
 }
 
 /**
- * Check if the pathname ends with "/".
+ * Check if the pathname ends with "/" or "\\" (os dependent).
  *
  * @param {string} path
  * @return {boolean}
  * @private
  */
 export function hasTrailingSlash(path: string): boolean {
-  return path[path.length - 1] === "/";
+  return path[path.length - 1] === sep;
 }
 
 /**
@@ -159,7 +165,6 @@ function isPreconditionFailure(req: OpineRequest, res: OpineResponse): boolean {
  * @param {array} [range]
  * @private
  */
-
 function contentRange(type: string, size: number, range?: any): string {
   return type + " " + (range ? range.start + "-" + range.end : "*") + "/" +
     size;
@@ -187,7 +192,7 @@ function removeContentHeaderFields(res: OpineResponse): void {
  * @return {boolean}
  * @private
  */
-function isCachable(statusCode: number): boolean {
+function isCacheable(statusCode: number): boolean {
   return (statusCode >= 200 && statusCode < 300) ||
     statusCode === 304;
 }
@@ -225,7 +230,9 @@ function isRangeFresh(req: OpineRequest, res: OpineResponse): boolean {
  * @private
  */
 function collapseLeadingSlashes(str: string) {
-  for (var i = 0; i < str.length; i++) {
+  let i = 0;
+
+  for (; i < str.length; i++) {
     if (str[i] !== "/") {
       break;
     }
@@ -283,38 +290,38 @@ export function sendError(res: OpineResponse, error?: any): void {
       { code: "ENOENT" },
     );
   } else if (ENOENT_REGEXP.test(error.message)) {
-    throw createError(create404Error(), { code: "ENOENT" });
+    throw createError(create404Error(), { ...error, code: "ENOENT" });
   } else if (error instanceof Deno.errors.NotFound) {
-    throw createError(create404Error(), { code: "ENOENT" });
+    throw createError(create404Error(), { ...error, code: "ENOENT" });
   } else if (ENAMETOOLONG_REGEXP.test(error.message)) {
-    throw createError(create404Error(), { code: "ENAMETOOLONG" });
+    throw createError(create404Error(), { ...error, code: "ENAMETOOLONG" });
   } else if (error.status === 404 || error.statusCode === 404) {
-    throw createError(create404Error(), { code: error.code });
+    throw createError(create404Error(), { ...error });
   }
 
   throw createError(
     error.status ?? error.statusCode ?? 500,
     error.message,
-    { code: error.code },
+    { ...error },
   );
 }
 
 /**
  * Sets the read offset of the provided file and returns a
- * Deno.Reader to read the file from the offset until the
+ * Deno.Reader & Deno.Closer to read the file from the offset until the
  * provided contentLength;
  *
  * @param {Deno.File} file
  * @param {number} offset
  * @param {number} contentLength
- * @returns {Deno.Reader} reader
+ * @returns {Deno.Reader & Deno.Closer} reader closer
  * @private
  */
 async function offsetFileReader(
   file: Deno.File,
   offset: number,
   contentLength: number,
-): Promise<Deno.Reader> {
+): Promise<Deno.Reader & Deno.Closer> {
   let totalRead = 0;
   let finished = false;
 
@@ -342,7 +349,11 @@ async function offsetFileReader(
     return result;
   }
 
-  return { read };
+  function close(): void {
+    file.close();
+  }
+
+  return { read, close };
 }
 
 /**
@@ -414,7 +425,7 @@ async function _send(
       return sendError(res, createError(412));
     }
 
-    if (isCachable(res.status as number) && req.fresh) {
+    if (isCacheable(res.status as number) && req.fresh) {
       removeContentHeaderFields(res);
       res.status = 304;
 
@@ -424,8 +435,7 @@ async function _send(
 
   // Adjust len to start/end options
   let offset: number = options.start ?? 0;
-  let len: number = stat.size;
-  len = Math.max(0, len - offset);
+  let len = Math.max(0, stat.size - offset);
 
   if (options.end !== undefined) {
     const bytes = options.end - offset + 1;
@@ -475,12 +485,16 @@ async function _send(
     }
   }
 
-  // Set read options
-  const file = await Deno.open(path, { read: true });
-  res.addResource(file.rid);
-
   // content-length
   res.set("Content-Length", len + "");
+
+  // HEAD support
+  if (req.method === "HEAD") {
+    return await res.end();
+  }
+
+  // Set read options
+  const file = await Deno.open(path, { read: true });
 
   return await res.send(await offsetFileReader(file, offset, len));
 }
@@ -567,7 +581,10 @@ async function sendFile(
     res.set("Content-Security-Policy", "default-src 'none'");
     res.set("X-Content-Type-Options", "nosniff");
 
-    return res.redirect(301, collapseLeadingSlashes(path + "/"));
+    return res.redirect(
+      301,
+      encodeUrl(collapseLeadingSlashes(options.path + "/")),
+    );
   } catch (err) {
     if (
       ENOENT_REGEXP.test(err.message) && !extname(path) &&
@@ -598,6 +615,50 @@ function decode(path: string) {
   }
 }
 
+/**
+ * RegExp to match non-URL code points, *after* encoding (i.e. not including "%")
+ * and including invalid escape sequences.
+ * @private
+ */
+const ENCODE_CHARS_REGEXP =
+  /(?:[^\x21\x25\x26-\x3B\x3D\x3F-\x5B\x5D\x5F\x61-\x7A\x7E]|%(?:[^0-9A-Fa-f]|[0-9A-Fa-f][^0-9A-Fa-f]|$))+/g;
+
+/**
+ * RegExp to match unmatched surrogate pair.
+ * @private
+ */
+const UNMATCHED_SURROGATE_PAIR_REGEXP =
+  /(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]([^\uDC00-\uDFFF]|$)/g;
+
+/**
+ * String to replace unmatched surrogate pair with.
+ * @private
+ */
+const UNMATCHED_SURROGATE_PAIR_REPLACE = "$1\uFFFD$2";
+
+/**
+ * Encode a URL to a percent-encoded form, excluding already-encoded sequences.
+ *
+ * This function will take an already-encoded URL and encode all the non-URL
+ * code points. This function will not encode the "%" character unless it is
+ * not part of a valid sequence (`%20` will be left as-is, but `%foo` will
+ * be encoded as `%25foo`).
+ *
+ * This encode is meant to be "safe" and does not throw errors. It will try as
+ * hard as it can to properly encode the given URL, including replacing any raw,
+ * unpaired surrogate pairs with the Unicode replacement character prior to
+ * encoding.
+ *
+ * @param {string} url
+ * @return {string}
+ * @public
+ */
+function encodeUrl(url: string) {
+  return String(url)
+    .replace(UNMATCHED_SURROGATE_PAIR_REGEXP, UNMATCHED_SURROGATE_PAIR_REPLACE)
+    .replace(ENCODE_CHARS_REGEXP, encodeURI);
+}
+
 export async function send<T = OpineResponse<any>>(
   req: OpineRequest,
   res: T,
@@ -610,6 +671,8 @@ export async function send(
   path: string,
   options: any,
 ) {
+  options.path = path;
+
   // Decode the path
   const decodedPath = decode(path);
 
@@ -627,6 +690,7 @@ export async function send(
   const root = options.root ? resolve(options.root) : null;
 
   let parts;
+
   if (root !== null) {
     // normalize
     if (path) {

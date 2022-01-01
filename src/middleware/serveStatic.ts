@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 /*!
  * Port of serve-static (https://github.com/expressjs/serve-static) for Deno.
  *

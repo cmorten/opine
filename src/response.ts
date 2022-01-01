@@ -809,7 +809,7 @@ export class Response implements OpineResponse {
    *
    *     res.set('Accept', 'application/json');
    *     res.set({
-   *       'Accept-Language': "en-US, en;q=0.5",
+   *       'Accept-Language': 'en-US, en;q=0.5',
    *       'Accept': 'text/html',
    *     });
    * @param {string} field

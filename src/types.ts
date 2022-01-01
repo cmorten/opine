@@ -1,4 +1,4 @@
-// deno-lint-ignore-file no-explicit-any
+// deno-lint-ignore-file no-explicit-any no-empty-interface
 // Type definitions for Opine.
 // Definitions by: Craig Morten <https://github.com/cmorten>
 
@@ -880,7 +880,7 @@ export interface OpineResponse<ResBody = any> extends Opine.Response {
    */
   render(
     view: string,
-    options?: object,
+    options?: Record<string, unknown>,
     callback?: (err: Error, html: string) => void,
   ): void;
   render(view: string, callback?: (err: Error, html: string) => void): void;
@@ -1116,10 +1116,10 @@ export interface Application extends IRouter, Opine.Application {
    * A Deno `Server` is returned.
    */
   listen(): Server;
-  listen(port: number, callback?: Function): Server;
-  listen(addr: string, callback?: Function): Server;
-  listen(options: HTTPOptions, callback?: Function): Server;
-  listen(options: HTTPSOptions, callback?: Function): Server;
+  listen(port: number, callback?: () => void): Server;
+  listen(addr: string, callback?: () => void): Server;
+  listen(options: HTTPOptions, callback?: () => void): Server;
+  listen(options: HTTPSOptions, callback?: () => void): Server;
 
   router: string;
 
@@ -1183,7 +1183,7 @@ export interface Application extends IRouter, Opine.Application {
     ext: string,
     fn: (
       path: string,
-      options: object,
+      options: Record<string, unknown>,
       callback: (e: any, rendered: string) => void,
     ) => void,
   ): this;

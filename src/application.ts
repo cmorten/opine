@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { fromFileUrl, resolve, Server } from "../deps.ts";
 import { methods } from "./methods.ts";
 import { Router } from "./router/index.ts";

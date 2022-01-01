@@ -41,7 +41,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.0.1/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.0.2/mod.ts";
 
 const app = opine();
 
@@ -65,14 +65,14 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.0.1/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.0.2/mod.ts";
 ```
 
 Opine is also available on [nest.land](https://nest.land/package/opine), a
 package registry for Deno on the Blockchain.
 
 ```ts
-import { opine } from "https://x.nest.land/opine@2.0.1/mod.ts";
+import { opine } from "https://x.nest.land/opine@2.0.2/mod.ts";
 ```
 
 ## Features

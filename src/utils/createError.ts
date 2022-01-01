@@ -108,8 +108,8 @@ export function createError(
     }
 
     props = message as Props;
-  } else if (typeof message === "string") {
-    err = new HttpErrorImpl(status as number, message);
+  } else if (typeof props !== "undefined") {
+    err = new HttpErrorImpl(status as number, message as string | undefined);
     Error.captureStackTrace(err, createError);
   } else {
     props = message as Props;
