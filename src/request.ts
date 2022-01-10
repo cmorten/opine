@@ -85,7 +85,9 @@ export class WrappedRequest implements OpineRequest {
       ? readableStreamFromReader(response.body)
       : response.body;
 
-    this.#responsePromiseResolver(new Response(bodyInit, response));
+    this.#responsePromiseResolver(
+      response.wsUpgrade || new Response(bodyInit, response),
+    );
   }
 
   /**
@@ -298,6 +300,12 @@ export class WrappedRequest implements OpineRequest {
     }
 
     return typeofrequest(this.headers, arr as string[]);
+  }
+
+  upgrade(res: OpineResponse): WebSocket {
+    const { socket, response } = Deno.upgradeWebSocket(this.#request);
+    res.wsUpgrade = response;
+    return socket;
   }
 
   get #body() {
