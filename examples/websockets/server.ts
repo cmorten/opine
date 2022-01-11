@@ -11,11 +11,11 @@
  *
  * After running the example, run the client with:
  *
- *    deno run --allow-net ./examples/websockets/client.ts
+ *    deno run --allow-read --allow-net ./examples/websockets/client.ts
  *
  *    (OR)
  *
- *    deno run --allow-net https://raw.githubusercontent.com/cmorten/opine/main/examples/websockets/server.ts
+ *    deno run --allow-read --allow-net https://raw.githubusercontent.com/cmorten/opine/main/examples/websockets/server.ts
  */
 
 import { opine } from "../../mod.ts";
@@ -23,12 +23,14 @@ import { opine } from "../../mod.ts";
 const app = opine();
 const sockets = new Map<string, WebSocket>();
 
-const handleWs = async (socket: WebSocket) => {
+const handleWs = (socket: WebSocket) => {
   sockets.set(crypto.randomUUID(), socket);
-  socket.addEventListener("open", (e) => {
+
+  socket.addEventListener("open", () => {
     socket.send("ping");
     console.log("sent ping to client");
   });
+
   socket.addEventListener("close", (_) => {
     console.log("socket closed :(");
   });

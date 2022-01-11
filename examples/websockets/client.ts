@@ -1,7 +1,7 @@
 console.log("Client started");
 const socket = new WebSocket("ws://localhost:3000/ws");
 
-socket.addEventListener("open", (e) => {
+socket.addEventListener("open", () => {
   socket.send("ping");
   console.log("sent ping to server");
 });

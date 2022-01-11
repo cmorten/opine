@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.1.0] - 11-01-2022
+
+- [#154] Implement WebSocket support. (#155) @xyzshantaram
+- deps: support Deno `1.17.2`, std `0.120.0`, and other minor dep upgrades.
+
 ## [2.0.2] - 01-01-2022
 
 - [#145] [#151] don't close file before fully read to stream
