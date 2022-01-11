@@ -101,7 +101,7 @@ import {
   json,
   opine,
   urlencoded,
-} from "https://deno.land/x/opine@2.1.0/mod.ts";
+} from "https://deno.land/x/opine@2.1.1/mod.ts";
 
 const app = opine();
 
@@ -118,7 +118,7 @@ The following example shows how to implement your own simple body-parsing
 middleware to transform `req.body` into a raw string:
 
 ```ts
-import opine from "https://deno.land/x/opine@2.1.0/mod.ts";
+import opine from "https://deno.land/x/opine@2.1.1/mod.ts";
 
 const app = opine();
 
@@ -207,9 +207,6 @@ Contains a string corresponding to the HTTP method of the request: `GET`,
 `POST`, `PUT`, and so on.
 
 #### req.originalUrl
-
-> `req.url` is not a native Opine property, it is inherited from Deno's
-> [http module](https://doc.deno.land/https/deno.land/std/http/mod.ts#ServerRequest).
 
 This property is much like `req.url`; however, it retains the original request
 URL, allowing you to rewrite `req.url` freely for internal routing purposes. For
@@ -393,6 +390,13 @@ The application property `subdomain offset`, which defaults to 2, is used for
 determining the beginning of the subdomain segments. To change this behavior,
 change its value using [app.set](./application.md#appsetname-value).
 
+#### req.url
+
+Request URL string. This contains only the URL that is present in the actual
+HTTP request. Unlike `req.originalUrl`, `req.url` can be rewritten freely for
+internal routing purposes. For example, the "mounting" feature of `app.use()`
+will rewrite `req.url` to strip the mount point.
+
 #### req.xhr
 
 A Boolean property that is `true` if the request's `X-Requested-With` header
@@ -536,4 +540,20 @@ if (range.type === "bytes") {
     // do something with r.start and r.end
   });
 }
+```
+
+#### req.upgrade()
+
+Upgrades the HTTP connection to a WebSocket connection by internally calling
+`Deno.upgradeWebSocket(req)`. Returns the created WebSocket.
+
+```ts
+app.get("/ws", async (req, _res, next) => {
+  if (req.headers.get("upgrade") === "websocket") {
+    const socket = req.upgrade();
+    handleSocket(socket);
+  } else {
+    next();
+  }
+});
 ```

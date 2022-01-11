@@ -445,19 +445,19 @@ export interface OpineRequest<
    *
    * Example:
    *
-   *     app.get("/ws", async (req, res, next) => {
+   *     app.get("/ws", async (req, _res, next) => {
    *       if (req.headers.get("upgrade") === "websocket") {
-   *         const sock = req.upgrade(res);
-   *         await handleWs(sock);
+   *         const socket = req.upgrade();
+   *         handleSocket(socket);
    *       } else {
-   *         res.send("You've gotta set the magic header...");
+   *         next();
    *       }
-   *       next();
    *     });
+   *
    * @param res The response object that will contain the WebSocket response we need to send.
    * @returns A socket object.
    */
-  upgrade(res: OpineResponse): WebSocket;
+  upgrade(): WebSocket;
 
   /**
    * Return the protocol string "http" or "https"

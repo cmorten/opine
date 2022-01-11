@@ -25,9 +25,9 @@ describe("req", function () {
 
       const app = opine();
 
-      app.get("/ws", function (req, res, _next) {
+      app.get("/ws", function (req, _res, _next) {
         if (req.headers.get("upgrade") === "websocket") {
-          const socket = req.upgrade(res);
+          const socket = req.upgrade();
           expect(socket).toBeInstanceOf(WebSocket);
           handleSocket(socket);
         }

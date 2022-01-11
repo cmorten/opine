@@ -47,7 +47,7 @@ const handleWs = (socket: WebSocket) => {
 
 app.get("/ws", async (req, res, next) => {
   if (req.headers.get("upgrade") === "websocket") {
-    const sock = req.upgrade(res);
+    const sock = req.upgrade();
     await handleWs(sock);
   } else {
     res.send("You've gotta set the magic header...");

@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.1.1] - 11-01-2022
+
+- fix: remove unnecessary argument to `req.upgrade()`
+
 ## [2.1.0] - 11-01-2022
 
 - [#154] Implement WebSocket support. (#155) @xyzshantaram

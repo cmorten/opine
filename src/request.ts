@@ -300,7 +300,7 @@ export class WrappedRequest implements OpineRequest {
     return typeofrequest(this.headers, arr as string[]);
   }
 
-  upgrade(res: OpineResponse): WebSocket {
+  upgrade(): WebSocket {
     const { socket, response } = Deno.upgradeWebSocket(this.#request);
     this.#responsePromiseResolver(response);
     return socket;

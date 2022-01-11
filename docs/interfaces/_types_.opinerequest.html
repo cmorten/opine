@@ -1155,7 +1155,7 @@ req.accepts(<span class="hljs-string">&#x27;html, json&#x27;</span>);
 								<p>Example:</p>
 								<pre><code>app.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;/ws&quot;</span>, <span class="hljs-keyword">async</span> (req, res, next) =&gt; {
   <span class="hljs-keyword">if</span> (req.headers.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;upgrade&quot;</span>) === <span class="hljs-string">&quot;websocket&quot;</span>) {
-    <span class="hljs-keyword">const</span> sock = req.upgrade(res);
+    <span class="hljs-keyword">const</span> sock = req.upgrade();
     <span class="hljs-keyword">await</span> handleWs(sock);
   } <span class="hljs-keyword">else</span> {
     res.send(<span class="hljs-string">&quot;You&#x27;ve gotta set the magic header...&quot;</span>);
