@@ -441,6 +441,25 @@ export interface OpineRequest<
   is(type: string | string[]): string | boolean | null;
 
   /**
+   * Upgrade an HTTP connection to a WebSocket connection by calling Deno.upgradeWebSocket.
+   *
+   * Example:
+   *
+   *     app.get("/ws", async (req, res, next) => {
+   *       if (req.headers.get("upgrade") === "websocket") {
+   *         const sock = req.upgrade(res);
+   *         await handleWs(sock);
+   *       } else {
+   *         res.send("You've gotta set the magic header...");
+   *       }
+   *       next();
+   *     });
+   * @param res The response object that will contain the WebSocket response we need to send.
+   * @returns A socket object.
+   */
+  upgrade(res: OpineResponse): WebSocket;
+
+  /**
    * Return the protocol string "http" or "https"
    * when requested with TLS. When the "trust proxy"
    * setting is enabled the "X-Forwarded-Proto" header
