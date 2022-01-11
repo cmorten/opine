@@ -45,7 +45,6 @@ export class Response implements OpineResponse {
   app!: Application;
   req!: OpineRequest;
   locals!: any;
-  wsUpgrade: globalThis.Response | null = null;
 
   #resources: number[] = [];
 

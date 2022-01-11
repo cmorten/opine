@@ -646,14 +646,6 @@ export interface OpineResponse<ResBody = any> extends Opine.Response {
   statusMessage?: any;
 
   /**
-   * # DON'T TOUCH THIS!
-   * Internal member holding the WebSocket upgrade response if OpineRequest.upgrade is called.
-   * Cannot be marked as readonly since it needs to be set at runtime.
-   * @internal
-   */
-  wsUpgrade: globalThis.Response | null;
-
-  /**
    * Boolean signifying whether the request has already been responded to.
    */
   written: boolean;
