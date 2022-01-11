@@ -3,6 +3,7 @@ const socket = new WebSocket("ws://localhost:3000/ws");
 
 socket.addEventListener("open", (e) => {
   socket.send("ping");
+  console.log("sent ping to server");
 });
 
 socket.addEventListener("close", (_) => {
@@ -10,9 +11,11 @@ socket.addEventListener("close", (_) => {
 });
 
 socket.addEventListener("message", (e) => {
-  console.log(`Received msg "${e.data}" from server.`);
   if (e.data === "ping") {
+    console.log("Received ping from server. Responding...");
     socket.send("pong");
+  } else if (e.data === "pong") {
+    console.log("Received ping response from server.");
   }
 });
 

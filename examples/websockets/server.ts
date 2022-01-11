@@ -27,15 +27,18 @@ const handleWs = async (socket: WebSocket) => {
   sockets.set(crypto.randomUUID(), socket);
   socket.addEventListener("open", (e) => {
     socket.send("ping");
+    console.log("sent ping to client");
   });
   socket.addEventListener("close", (_) => {
     console.log("socket closed :(");
   });
 
   socket.addEventListener("message", (e) => {
-    console.log(`Received msg "${e.data}" from client.`);
     if (e.data === "ping") {
+      console.log("Received ping from client. Responding...");
       socket.send("pong");
+    } else if (e.data === "pong") {
+      console.log("Received ping response from client.");
     }
   });
 };
