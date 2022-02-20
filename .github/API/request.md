@@ -120,10 +120,12 @@ middleware to transform `req.body` into a raw string:
 ```ts
 import opine from "https://deno.land/x/opine@2.1.1/mod.ts";
 
+import { readAll } from "https://deno.land/std@0.120.0/streams/conversion.ts";
+
 const app = opine();
 
 const bodyParser = async function (req, res, next) {
-  const rawBody = await Deno.readAll(req.raw);
+  const rawBody = await readAll(req.raw);
   const decodedBody = decoder.decode(rawBody);
 
   req.body = decodedBody;
