@@ -27,6 +27,7 @@ export { Sha1 } from "https://deno.land/std@0.120.0/hash/sha1.ts";
 export {
   readableStreamFromReader,
   readerFromStreamReader,
+  readAll
 } from "https://deno.land/std@0.120.0/streams/conversion.ts";
 
 export {
