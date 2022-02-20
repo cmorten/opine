@@ -1,5 +1,5 @@
 import { opine } from "../../mod.ts";
-import { expect, superdeno, readAll } from "../deps.ts";
+import { expect, readAll, superdeno } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 describe("middleware", function () {

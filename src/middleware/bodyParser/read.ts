@@ -33,7 +33,7 @@ import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import {
   gunzip as createGunzip,
   inflate as createInflate,
-  readAll
+  readAll,
 } from "../../../deps.ts";
 import { createError } from "../../utils/createError.ts";
 
