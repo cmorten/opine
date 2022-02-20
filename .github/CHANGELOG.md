@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.1.2] - 20-02-2022
+
+- [#156] Replace deprecated Deno.readAll (#157) @yourfriendoss
+
 ## [2.1.1] - 11-01-2022
 
 - fix: remove unnecessary argument to `req.upgrade()`
