@@ -26,6 +26,7 @@ export { default as EventEmitter } from "https://deno.land/std@0.120.0/node/even
 export { Sha1 } from "https://deno.land/std@0.120.0/hash/sha1.ts";
 export {
   readableStreamFromReader,
+  readAll,
   readerFromStreamReader,
 } from "https://deno.land/std@0.120.0/streams/conversion.ts";
 

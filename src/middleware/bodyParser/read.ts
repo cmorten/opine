@@ -33,6 +33,7 @@ import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import {
   gunzip as createGunzip,
   inflate as createInflate,
+  readAll,
 } from "../../../deps.ts";
 import { createError } from "../../utils/createError.ts";
 
@@ -123,7 +124,7 @@ async function decodeContent(
 
   let raw;
   try {
-    raw = await Deno.readAll(req.body);
+    raw = await readAll(req.body);
   } catch (err) {
     throw createError(400, err);
   }
