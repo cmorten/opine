@@ -3,6 +3,7 @@
 ## [2.1.2] - 20-02-2022
 
 - [#156] Replace deprecated Deno.readAll (#157) @yourfriendoss
+- deps: support Deno `1.19.0`, std `0.126.0`, and other minor dep upgrades.
 
 ## [2.1.1] - 11-01-2022
 
