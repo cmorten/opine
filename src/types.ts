@@ -461,12 +461,12 @@ export interface OpineRequest<
 
   /**
    * Takes the `Request` stream and reads it to completion.
-   * 
+   *
    * Returns a promise that resolves with a `FormData` object.
-   * 
+   *
    * @returns A `FormData` object.
    */
-   formData(): Promise<FormData>;
+  formData(): Promise<FormData>;
 
   /**
    * Return the protocol string "http" or "https"
