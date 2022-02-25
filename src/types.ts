@@ -460,6 +460,15 @@ export interface OpineRequest<
   upgrade(): WebSocket;
 
   /**
+   * Takes the `Request` stream and reads it to completion.
+   * 
+   * Returns a promise that resolves with a `FormData` object.
+   * 
+   * @returns A `FormData` object.
+   */
+   formData(): Promise<FormData>;
+
+  /**
    * Return the protocol string "http" or "https"
    * when requested with TLS. When the "trust proxy"
    * setting is enabled the "X-Forwarded-Proto" header

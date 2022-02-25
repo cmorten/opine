@@ -303,11 +303,31 @@ export class WrappedRequest implements OpineRequest {
   upgrade(): WebSocket {
     const { socket, response } = Deno.upgradeWebSocket(this.#request);
     this.#responsePromiseResolver(response);
+
     return socket;
+  }
+
+  /**
+   * Takes the `Request` stream and reads it to completion.
+   * 
+   * Returns a promise that resolves with a `FormData` object.
+   */
+  async formData(): Promise<FormData> {
+    if (this.body instanceof FormData) {
+      return this.body;
+    } else if (this._parsedBody) {
+      throw new TypeError();
+    }
+
+    const formData = await this.#request.formData();
+    this.body = formData;
+
+    return formData;
   }
 
   get #body() {
     const streamReader = this.#request.body?.getReader();
+
     return streamReader ? readerFromStreamReader(streamReader) : emptyReader();
   }
 
@@ -316,6 +336,7 @@ export class WrappedRequest implements OpineRequest {
   }
 
   set body(value: unknown) {
+    this._parsedBody = true;
     this.parsedBody = value;
   }
 
