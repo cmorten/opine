@@ -466,6 +466,18 @@ Returns the first accepted language of the specified languages, based on the
 request's `Accept-Language` HTTP header field. If none of the specified
 languages is accepted, returns empty.
 
+#### async req.formData()
+
+Takes the request stream and reads it to completion, returning a promise that resolves with a `FormData` object.
+
+```ts
+const formData = await req.formData();
+
+for (const entry of formData) {
+  console.log(entry);
+}
+```
+
 #### req.get(field)
 
 Returns the specified HTTP request header field (case-insensitive match). The
