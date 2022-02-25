@@ -29,7 +29,6 @@
  *
  */
 
-import { getCharset } from "./getCharset.ts";
 import type { NextFunction, OpineRequest, OpineResponse } from "../../types.ts";
 import { hasBody, MultipartReader } from "../../../deps.ts";
 import { typeChecker } from "./typeChecker.ts";
@@ -42,8 +41,6 @@ import { typeChecker } from "./typeChecker.ts";
  * @public
  */
 export function formData(options: any = {}) {
-  const defaultCharset = options.defaultCharset || "utf-8";
-  const inflate = options.inflate !== false;
   const type = options.type || "multipart/form-data";
   const verify = options.verify || false;
 
@@ -56,7 +53,7 @@ export function formData(options: any = {}) {
 
   return function formParser(
     req: OpineRequest,
-    res: OpineResponse,
+    _res: OpineResponse,
     next: NextFunction,
   ) {
     if (req._parsedBody) {
@@ -80,16 +77,10 @@ export function formData(options: any = {}) {
 
     // determine if request should be parsed
     if (!shouldParse(req)) {
-      req.parsedBody = new FormData();
-      req.body = req.parsedBody;
-
       next();
 
       return;
     }
-
-    // get charset
-    const charset = getCharset(req) || defaultCharset;
 
     // read
     const type = req.headers.get("Content-Type");
