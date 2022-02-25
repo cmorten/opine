@@ -29,7 +29,7 @@ export {
   readAll,
   readerFromStreamReader,
 } from "https://deno.land/std@0.126.0/streams/conversion.ts";
-
+export { MultipartReader } from "https://deno.land/std@0.126.0/mime/mod.ts";
 export {
   charset,
   contentType,

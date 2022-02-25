@@ -7,6 +7,7 @@ export * from "./src/types.ts";
 export { query } from "./src/middleware/query.ts";
 export { json } from "./src/middleware/bodyParser/json.ts";
 export { raw } from "./src/middleware/bodyParser/raw.ts";
+export { formData } from "./src/middleware/bodyParser/formData.ts";
 export { text } from "./src/middleware/bodyParser/text.ts";
 export { urlencoded } from "./src/middleware/bodyParser/urlencoded.ts";
 export { serveStatic } from "./src/middleware/serveStatic.ts";
