@@ -11,7 +11,10 @@ textHeaders.set("Content-Type", "text/plain");
 textHeaders.set("Content-Length", "1");
 
 const formDataHeaders = new Headers();
-formDataHeaders.set("Content-Type", "multipart/form-data; boundary=----opineBoundary");
+formDataHeaders.set(
+  "Content-Type",
+  "multipart/form-data; boundary=----opineBoundary",
+);
 
 describe("bodyParser: formData", () => {
   it("should handle requests without bodies", (done) => {
