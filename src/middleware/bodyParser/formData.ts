@@ -62,7 +62,19 @@ export function formData(options: any = {}) {
 
       return;
     }
-    const mr = new MultipartReader(req.raw, type.split(";")[1]?.split("=")[1]);
+
+    const boundary = type.match(/boundary=(?:([^;]+))/);
+
+    if(boundary == null) {
+      req.parsedBody = new FormData();
+      req.body = req.parsedBody;
+
+      next();
+
+      return;
+    }
+
+    const mr = new MultipartReader(req.raw, boundary[boundary.length - 1]);
     const body = mr.readForm();
 
     req._parsedBody = true;
