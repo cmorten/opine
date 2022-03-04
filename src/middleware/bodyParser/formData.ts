@@ -20,7 +20,7 @@ export function formData(options: any = {}) {
   // create the appropriate type checking function
   const shouldParse = typeof type !== "function" ? typeChecker(type) : type;
 
-  return function formParser(
+  return async function formParser(
     req: OpineRequest,
     _res: OpineResponse,
     next: NextFunction,
@@ -75,11 +75,31 @@ export function formData(options: any = {}) {
     }
 
     const mr = new MultipartReader(req.raw, boundary[boundary.length - 1]);
-    const body = mr.readForm();
+    const body = await mr.readForm();
+    const customFormData = new FormData();
+
+    [...body.entries()].forEach(([key, value]) => {
+      value?.forEach(async (v) => {
+        if (typeof v == "string") {
+          customFormData.append(key, v);
+        } else {
+          let buffer = v.content;
+
+          if (!buffer) {
+            buffer = await Deno.readFile(v.filename);
+          }
+
+          const file = new File([buffer], v.filename);
+
+          customFormData.append(key, file);
+        }
+      });
+    });
 
     req._parsedBody = true;
-    req.parsedBody = body;
-    req.body = body;
+    req.parsedBody = customFormData;
+    req.body = customFormData;
+
     next();
   };
 }
