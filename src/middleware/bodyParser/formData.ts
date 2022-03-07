@@ -80,7 +80,7 @@ export function formData(options: any = {}) {
 
     [...body.entries()].forEach(([key, value]) => {
       value?.forEach(async (v) => {
-        if (typeof v == "string") {
+        if (typeof v === "string") {
           customFormData.append(key, v);
         } else {
           let buffer = v.content;
