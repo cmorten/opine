@@ -61,9 +61,6 @@ export function formData(options: any = {}) {
     const boundary = type.match(/boundary=(?:([^;]+))/);
 
     if (!boundary) {
-      req.parsedBody = new FormData();
-      req.body = req.parsedBody;
-
       next();
 
       return;
