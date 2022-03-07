@@ -11,11 +11,6 @@ import { typeChecker } from "./typeChecker.ts";
  */
 export function formData(options: any = {}) {
   const type = options.type || "multipart/form-data";
-  const verify = options.verify || false;
-
-  if (verify !== false && typeof verify !== "function") {
-    throw new TypeError("option verify must be function");
-  }
 
   // create the appropriate type checking function
   const shouldParse = typeof type !== "function" ? typeChecker(type) : type;
