@@ -59,7 +59,7 @@ const MAX_MAXAGE = 60 * 60 * 24 * 365 * 1000; // 1 year
 const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/;
 
 const ENOENT_REGEXP = /\(os error 2\)/;
-const ENAMETOOLONG_REGEXP = /\(os error 63\)|\(os error 36\)/;
+const ENAMETOOLONG_REGEXP = /\(os error 63\)|\(os error 36\)|\(os error 126\)/;
 
 /**
  * Normalize the index option into an array.
@@ -283,8 +283,6 @@ export function sendError(res: OpineResponse, error?: any): void {
   if (error?.headers) {
     res.set(error.headers);
   }
-
-  console.log(error);
 
   if (!error) {
     throw createError(
