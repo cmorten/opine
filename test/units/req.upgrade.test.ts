@@ -4,11 +4,15 @@ import { describe, it } from "../utils.ts";
 
 describe("req", function () {
   describe(".upgrade", function () {
-    it("should upgrade websocket requests", function (done) {
+    it("should upgrade websocket requests", async function (done) {
       let serverSocket: WebSocket;
 
-      const serverSocketClosedDeferred = deferred();
       const clientSocketClosedDeferred = deferred();
+      const clientSocketPingedDeferred = deferred();
+      const clientSocketPongedDeferred = deferred();
+      const serverSocketClosedDeferred = deferred();
+      const serverSocketPingedDeferred = deferred();
+      const serverSocketPongedDeferred = deferred();
 
       const handleSocket = (socket: WebSocket) => {
         serverSocket = socket;
@@ -20,12 +24,14 @@ describe("req", function () {
         serverSocket.addEventListener("open", () => {
           console.log("[server]: ping");
           serverSocket.send("ping");
+          serverSocketPingedDeferred.resolve();
         });
 
         serverSocket.addEventListener("message", (e) => {
           if (e.data === "ping") {
             console.log("[server]: pong");
             serverSocket.send("pong");
+            serverSocketPongedDeferred.resolve();
           }
         });
       };
@@ -42,38 +48,46 @@ describe("req", function () {
 
       const server = app.listen(3000);
 
-      const socket = new WebSocket("ws://localhost:3000/ws");
+      const clientSocket = new WebSocket("ws://localhost:3000/ws");
 
-      socket.addEventListener("close", () => {
+      clientSocket.addEventListener("close", () => {
         clientSocketClosedDeferred.resolve();
       });
 
-      socket.addEventListener("open", () => {
+      clientSocket.addEventListener("open", () => {
         console.log("[client]: ping");
-        socket.send("ping");
+        clientSocket.send("ping");
+        clientSocketPingedDeferred.resolve();
       });
 
-      socket.addEventListener("message", async (e) => {
+      clientSocket.addEventListener("message", (e) => {
         if (e.data === "ping") {
           console.log("[client]: pong");
-          socket.send("pong");
+          clientSocket.send("pong");
+          clientSocketPongedDeferred.resolve();
         } else if (e.data === "pong") {
-          socket.close();
-          serverSocket.close();
           server.close();
-
-          await serverSocketClosedDeferred;
-          await clientSocketClosedDeferred;
-
-          done();
+          clientSocket.close();
+          serverSocket.close();
         } else {
           done(new Error("unexpected message"));
         }
       });
 
-      socket.addEventListener("error", (e) => {
+      clientSocket.addEventListener("error", (e) => {
         done(e);
       });
+
+      await Promise.all([
+        clientSocketPingedDeferred,
+        clientSocketPongedDeferred,
+        serverSocketPingedDeferred,
+        serverSocketPongedDeferred,
+        serverSocketClosedDeferred,
+        clientSocketClosedDeferred,
+      ]);
+
+      done();
     });
   });
 });
