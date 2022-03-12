@@ -1,5 +1,5 @@
 import { opine } from "../../mod.ts";
-import { expect } from "../deps.ts";
+import { deferred, expect } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 describe("req", function () {
@@ -7,18 +7,25 @@ describe("req", function () {
     it("should upgrade websocket requests", function (done) {
       let serverSocket: WebSocket;
 
+      const serverSocketClosedDeferred = deferred();
+      const clientSocketClosedDeferred = deferred();
+
       const handleSocket = (socket: WebSocket) => {
         serverSocket = socket;
 
-        socket.addEventListener("open", () => {
-          console.log("[server]: ping");
-          socket.send("ping");
+        serverSocket.addEventListener("close", () => {
+          serverSocketClosedDeferred.resolve();
         });
 
-        socket.addEventListener("message", (e) => {
+        serverSocket.addEventListener("open", () => {
+          console.log("[server]: ping");
+          serverSocket.send("ping");
+        });
+
+        serverSocket.addEventListener("message", (e) => {
           if (e.data === "ping") {
             console.log("[server]: pong");
-            socket.send("pong");
+            serverSocket.send("pong");
           }
         });
       };
@@ -37,12 +44,16 @@ describe("req", function () {
 
       const socket = new WebSocket("ws://localhost:3000/ws");
 
+      socket.addEventListener("close", () => {
+        clientSocketClosedDeferred.resolve();
+      });
+
       socket.addEventListener("open", () => {
         console.log("[client]: ping");
         socket.send("ping");
       });
 
-      socket.addEventListener("message", (e) => {
+      socket.addEventListener("message", async (e) => {
         if (e.data === "ping") {
           console.log("[client]: pong");
           socket.send("pong");
@@ -50,6 +61,9 @@ describe("req", function () {
           socket.close();
           serverSocket.close();
           server.close();
+
+          await serverSocketClosedDeferred;
+          await clientSocketClosedDeferred;
 
           done();
         } else {
