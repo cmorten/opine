@@ -59,7 +59,7 @@ const MAX_MAXAGE = 60 * 60 * 24 * 365 * 1000; // 1 year
 const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/;
 
 const ENOENT_REGEXP = /\(os error 2\)/;
-const ENAMETOOLONG_REGEXP = /\(os error 63\)|\(os error 36\)|\(os error 126\)/;
+const ENAMETOOLONG_REGEXP = /\(os error 63\)|\(os error 36\)|\(os error 123\)/;
 
 /**
  * Normalize the index option into an array.
