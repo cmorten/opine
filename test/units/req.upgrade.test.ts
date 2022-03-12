@@ -32,6 +32,8 @@ describe("req", function () {
             console.log("[server]: pong");
             serverSocket.send("pong");
             serverSocketPongedDeferred.resolve();
+          } else if (e.data === "pong") {
+            serverSocket.close();
           }
         });
       };
@@ -66,9 +68,7 @@ describe("req", function () {
           clientSocket.send("pong");
           clientSocketPongedDeferred.resolve();
         } else if (e.data === "pong") {
-          server.close();
           clientSocket.close();
-          serverSocket.close();
         } else {
           done(new Error("unexpected message"));
         }
@@ -87,6 +87,7 @@ describe("req", function () {
         clientSocketClosedDeferred,
       ]);
 
+      server.close();
       done();
     });
   });
