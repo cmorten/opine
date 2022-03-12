@@ -284,6 +284,8 @@ export function sendError(res: OpineResponse, error?: any): void {
     res.set(error.headers);
   }
 
+  console.log(error);
+
   if (!error) {
     throw createError(
       create404Error(),

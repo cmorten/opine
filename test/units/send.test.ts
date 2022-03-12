@@ -90,7 +90,11 @@ describe("send(file)", function () {
 
     superdeno(app)
       .get("/" + path)
-      .expect(404, done);
+      .expect(404)
+      .end((err) => {
+        console.log(err);
+        done(err);
+      });
   });
 
   it("should support HEAD", function (done) {
