@@ -1,5 +1,5 @@
 import { text } from "../../mod.ts";
-import { expect } from "../deps.ts";
+import { Buffer, expect } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 const encoder = new TextEncoder();
@@ -27,7 +27,7 @@ describe("bodyParser: text", () => {
 
   it("should handle requests with encoded text bodies", (done) => {
     const req: any = {
-      body: new Deno.Buffer(encoder.encode(mockText)),
+      body: new Buffer(encoder.encode(mockText)),
       headers: textHeaders,
     };
     req.headers.set("Content-Length", "1");

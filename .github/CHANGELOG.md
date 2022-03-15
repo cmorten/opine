@@ -1,5 +1,15 @@
 # ChangeLog
 
+## [2.1.4] - 12-03-2022
+
+- fix: handle new OS error thrown for long filenames on windows
+- test: compensate for WebSocket messages fired after close resulting in leaking timer ops
+
+## [2.1.3] - 12-03-2022
+
+- deps: support Deno `1.19.3`, std `0.129.0`, and other minor dep upgrades.
+- [#162] remove usage of `Deno.Buffer`
+
 ## [2.1.2] - 20-02-2022
 
 - [#156] Replace deprecated Deno.readAll (#157) @yourfriendoss

@@ -1,5 +1,5 @@
 import { json } from "../../mod.ts";
-import { expect } from "../deps.ts";
+import { Buffer, expect } from "../deps.ts";
 import { describe, it } from "../utils.ts";
 
 const encoder = new TextEncoder();
@@ -26,7 +26,7 @@ describe("bodyParser: json", () => {
 
   it("should handle requests with encoded JSON bodies", (done) => {
     const req: any = {
-      body: new Deno.Buffer(encoder.encode(JSON.stringify(mockJson))),
+      body: new Buffer(encoder.encode(JSON.stringify(mockJson))),
       headers: jsonHeaders,
     };
     req.headers.set("Content-Length", "1");
@@ -41,7 +41,7 @@ describe("bodyParser: json", () => {
 
   it("should handle requests with encoded JSON array bodies", (done) => {
     const req: any = {
-      body: new Deno.Buffer(encoder.encode(JSON.stringify([mockJson]))),
+      body: new Buffer(encoder.encode(JSON.stringify([mockJson]))),
       headers: jsonHeaders,
     };
     req.headers.set("Content-Length", "1");
@@ -56,7 +56,7 @@ describe("bodyParser: json", () => {
 
   it("should handle requests with encoded JSON bodies containing whitespace", (done) => {
     const req: any = {
-      body: new Deno.Buffer(
+      body: new Buffer(
         encoder.encode(` \r\n\t\n${JSON.stringify(mockJson)}\n\t\r\n `),
       ),
       headers: jsonHeaders,
