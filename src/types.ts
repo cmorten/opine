@@ -19,7 +19,7 @@ declare global {
 }
 
 export type HTTPOptions = Omit<Deno.ListenOptions, "transport">;
-export type HTTPSOptions = Omit<Deno.ListenTlsOptions, "transport">;
+export type HTTPSOptions = Omit<Deno.ListenTlsOptions & {"certFile":string, "keyFile":string}, "transport">;
 
 export type DenoResponseBody = undefined | string | Uint8Array | Deno.Reader;
 export type ResponseBody =
