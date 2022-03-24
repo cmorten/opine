@@ -70,7 +70,7 @@ export function formData(options: any = {}) {
     const body = await mr.readForm();
     const customFormData = new FormData();
 
-    [...body.entries()].forEach(([key, value]) => {
+    for (const [key, value] of body) {
       value?.forEach(async (v) => {
         if (typeof v === "string") {
           customFormData.append(key, v);
@@ -86,7 +86,7 @@ export function formData(options: any = {}) {
           customFormData.append(key, file);
         }
       });
-    });
+    };
 
     req._parsedBody = true;
     req.parsedBody = customFormData;
