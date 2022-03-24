@@ -78,7 +78,7 @@ export function formData(options: any = {}) {
           customFormData.append(key, file);
         }
       });
-    };
+    }
 
     req._parsedBody = true;
     req.parsedBody = customFormData;
