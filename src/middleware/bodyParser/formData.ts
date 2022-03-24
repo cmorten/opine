@@ -66,22 +66,23 @@ export function formData(options: any = {}) {
       return;
     }
 
-    const mr = new MultipartReader(req.raw, boundary[boundary.length - 1]);
-    const body = await mr.readForm();
+    const multipartReader = new MultipartReader(req.raw, boundary[boundary.length - 1]);
     const customFormData = new FormData();
 
+    const body = await multipartReader.readForm();
+
     for (const [key, value] of body) {
-      value?.forEach(async (v) => {
-        if (typeof v === "string") {
-          customFormData.append(key, v);
+      value?.forEach(async (formValue) => {
+        if (typeof formValue === "string") {
+          customFormData.append(key, formValue);
         } else {
-          let buffer = v.content;
+          let buffer = formValue.content;
 
           if (!buffer) {
-            buffer = await Deno.readFile(v.filename);
+            buffer = await Deno.readFile(formValue.filename);
           }
 
-          const file = new File([buffer], v.filename);
+          const file = new File([buffer], formValue.filename);
 
           customFormData.append(key, file);
         }
