@@ -47,16 +47,7 @@ export function formData(options: any = {}) {
     }
 
     // read
-    const type = req.headers.get("Content-Type");
-
-    if (!type) {
-      req.parsedBody = new FormData();
-      req.body = req.parsedBody;
-
-      next();
-
-      return;
-    }
+    const type = req.headers.get("Content-Type") || "";
 
     const boundary = type.match(/boundary=(?:([^;]+))/);
 
