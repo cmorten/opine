@@ -66,7 +66,7 @@ export function formData(options: any = {}) {
       return;
     }
 
-    const multipartReader = new MultipartReader(req.raw, boundary[boundary.length - 1]);
+    const multipartReader = new MultipartReader(req.raw, boundary.at(-1) || "");
     const customFormData = new FormData();
 
     const body = await multipartReader.readForm();
