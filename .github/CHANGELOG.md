@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.1.5] - 28-03-2022
+
+- [#164] Update HTTPSOptions to make it compatible with Deno 1.20.1 (#165) @AEtheve
+
 ## [2.1.4] - 12-03-2022
 
 - fix: handle new OS error thrown for long filenames on windows
