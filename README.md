@@ -41,18 +41,20 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.1.4/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.1.5/mod.ts"
 
-const app = opine();
+const app = opine()
 
 app.get("/", function (req, res) {
-  res.send("Hello World");
+    res.send("Hello World")
 });
 
+const port = 3000
+
 app.listen(
-  3000,
-  () => console.log("server has started on http://localhost:3000 🚀"),
-);
+    port,
+    () => console.log(`server has started on http://localhost:${port} 🚀`),
+)
 ```
 
 ## Installation
