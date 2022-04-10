@@ -60,7 +60,7 @@ export function formData(options: any = {}) {
     const multipartReader = new MultipartReader(req.raw, boundary.at(-1) || "");
     const customFormData = new FormData();
 
-    const body = await multipartReader.readForm();
+    const body = await multipartReader.readForm(options.maxMemory || 15728640);
 
     for (const [key, value] of body) {
       value?.forEach(async (formValue) => {
