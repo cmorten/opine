@@ -50,14 +50,12 @@ describe("send(file)", function () {
   it("should stream the file contents", function (done) {
     superdeno(app)
       .get("/name.txt")
-      .expect("Content-Length", "4")
       .expect(200, "deno", done);
   });
 
   it("should stream a zero-length file", function (done) {
     superdeno(app)
       .get("/empty.txt")
-      .expect("Content-Length", "0")
       .expect(200, "", done);
   });
 

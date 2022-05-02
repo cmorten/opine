@@ -14,7 +14,7 @@ describe("res.vary()", function () {
 
       superdeno(app)
         .get("/")
-        .expect("Vary", "Accept")
+        .expect("vary", /Accept/)
         .expect(200, done);
     });
   });
