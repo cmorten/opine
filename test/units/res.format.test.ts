@@ -264,7 +264,7 @@ function test(app: Opine) {
     superdeno(app)
       .get("/")
       .set("Accept", "text/html; q=.5, text/plain")
-      .expect("vary", "Accept", done);
+      .expect("vary", /Accept/, done);
   });
 
   describe("when Accept is not present", function () {
