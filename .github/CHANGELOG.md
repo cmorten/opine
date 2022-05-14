@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [2.2.0] - 02-05-2022
+
+- deps: support Deno `1.21.1`, std `0.137.0`, and other minor dep upgrades.
+
+## [2.1.5] - 28-03-2022
+
+- [#164] Update HTTPSOptions to make it compatible with Deno 1.20.1 (#165) @AEtheve
+
 ## [2.1.4] - 12-03-2022
 
 - fix: handle new OS error thrown for long filenames on windows
