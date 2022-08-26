@@ -23,8 +23,8 @@ import type {
 const env = Deno.env.get("DENO_ENV");
 const silent = env === "test";
 
-const logger = () =>
-  (req: OpineRequest, _res: OpineResponse, next: NextFunction) => {
+const logger =
+  () => (req: OpineRequest, _res: OpineResponse, next: NextFunction) => {
     console.log(`${req.method} ${req.path}`);
     next();
   };

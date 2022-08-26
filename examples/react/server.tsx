@@ -18,6 +18,7 @@ import { App } from "./components/App.tsx";
  * Create our client bundle - you could split this out into
  * a preprocessing step.
  */
+
 const { diagnostics, files } = await Deno.emit(
   "./examples/react/client.tsx",
   {

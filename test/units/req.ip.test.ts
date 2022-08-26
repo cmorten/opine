@@ -1,9 +1,9 @@
 import { opine } from "../../mod.ts";
 import { superdeno } from "../deps.ts";
-import type { Server } from "../../deps.ts";
 import { describe, it } from "../utils.ts";
 
-function getExpectedClientAddress(server: Server) {
+// deno-lint-ignore no-explicit-any
+function getExpectedClientAddress(server: any) {
   return (server.addrs[0] as Deno.NetAddr).hostname === "::"
     ? "::ffff:127.0.0.1"
     : "127.0.0.1";

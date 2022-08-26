@@ -154,20 +154,17 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(
   return copy as Omit<T, K>;
 }
 
-export const shouldNotHaveHeader = (field: string) =>
-  (res: any) => {
-    expect(res.header[field.toLowerCase()]).toBeFalsy();
-  };
+export const shouldNotHaveHeader = (field: string) => (res: any) => {
+  expect(res.header[field.toLowerCase()]).toBeFalsy();
+};
 
-export const shouldHaveBody = (buf: any) =>
-  (res: any) => {
-    const body = res.body || res.text;
-    expect(body).toBeTruthy();
-    expect(body.toString("hex")).toEqual(buf.toString("hex"));
-  };
+export const shouldHaveBody = (buf: any) => (res: any) => {
+  const body = res.body || res.text;
+  expect(body).toBeTruthy();
+  expect(body.toString("hex")).toEqual(buf.toString("hex"));
+};
 
-export const shouldNotHaveBody = () =>
-  (res: any) => {
-    expect(res.text === "" || res.text === undefined || res.text === null)
-      .toBeTruthy();
-  };
+export const shouldNotHaveBody = () => (res: any) => {
+  expect(res.text === "" || res.text === undefined || res.text === null)
+    .toBeTruthy();
+};

@@ -40,7 +40,7 @@ abstract class HttpError extends Error {
       className += "Error";
     }
 
-    const msg = message != null ? message : STATUS_TEXT.get(code)!;
+    const msg = message != null ? message : STATUS_TEXT[code as Status]!;
     this.message = msg;
     this.status = this.statusCode = code;
     this.name = className;

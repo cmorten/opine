@@ -567,13 +567,13 @@ export class Response implements OpineResponse {
     // Support text/{plain,html} by default
     this.format({
       text: function _renderRedirectBody() {
-        body = `${STATUS_TEXT.get(status)}. Redirecting to ${address}`;
+        body = `${STATUS_TEXT[status]}. Redirecting to ${address}`;
       },
 
       html: function _renderRedirectHtmlBody() {
         const u = escapeHtml(address);
         body = `<p>${
-          STATUS_TEXT.get(status)
+          STATUS_TEXT[status]
         }. Redirecting to <a href="${u}">${u}</a></p>`;
       },
 
@@ -793,7 +793,7 @@ export class Response implements OpineResponse {
    * @public
    */
   sendStatus(code: Status): this {
-    const body: string = STATUS_TEXT.get(code) || String(code);
+    const body: string = STATUS_TEXT[code] || String(code);
 
     this.setStatus(code);
     this.type("txt");

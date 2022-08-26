@@ -9,6 +9,7 @@ import {
 } from "../utils.ts";
 import { superdeno } from "../deps.ts";
 import { dirname, fromFileUrl, join, STATUS_TEXT } from "../../deps.ts";
+import type { Status } from "../../deps.ts";
 
 const __dirname = dirname(import.meta.url);
 const fixtures = fromFileUrl(join(__dirname, "../fixtures"));
@@ -22,7 +23,7 @@ app.use(async (req, res) => {
     await send(req, res, req.url, { root: fixtures });
   } catch (err) {
     res.status = err.status ?? 500;
-    await res.end(STATUS_TEXT.get(err.status));
+    await res.end(STATUS_TEXT[err.status as Status]);
   }
 });
 

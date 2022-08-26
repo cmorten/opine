@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.3.0] - 26-08-2022
+
+- deps: support Deno `1.25.0`, std `0.153.0`, and other minor dep upgrades.
+
 ## [2.2.0] - 02-05-2022
 
 - deps: support Deno `1.21.1`, std `0.137.0`, and other minor dep upgrades.

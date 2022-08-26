@@ -1,14 +1,18 @@
-export { Server } from "https://deno.land/std@0.137.0/http/server.ts";
-export type { ConnInfo } from "https://deno.land/std@0.137.0/http/server.ts";
+export {
+  serve,
+  Server,
+  serveTls,
+} from "https://deno.land/std@0.153.0/http/server.ts";
+export type { ConnInfo } from "https://deno.land/std@0.153.0/http/server.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.137.0/http/http_status.ts";
+} from "https://deno.land/std@0.153.0/http/http_status.ts";
 export {
   deleteCookie,
   setCookie,
-} from "https://deno.land/std@0.137.0/http/cookie.ts";
-export type { Cookie } from "https://deno.land/std@0.137.0/http/cookie.ts";
+} from "https://deno.land/std@0.153.0/http/cookie.ts";
+export type { Cookie } from "https://deno.land/std@0.153.0/http/cookie.ts";
 export {
   basename,
   dirname,
@@ -19,22 +23,22 @@ export {
   normalize,
   resolve,
   sep,
-} from "https://deno.land/std@0.137.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.133.0/node/timers.ts";
-export { parse } from "https://deno.land/std@0.133.0/node/querystring.ts";
-export { default as EventEmitter } from "https://deno.land/std@0.133.0/node/events.ts";
-export { Sha1 } from "https://deno.land/std@0.137.0/hash/sha1.ts";
+} from "https://deno.land/std@0.153.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.153.0/node/timers.ts";
+export { parse } from "https://deno.land/std@0.153.0/node/querystring.ts";
+export { default as EventEmitter } from "https://deno.land/std@0.153.0/node/events.ts";
+export { Sha1 } from "https://deno.land/std@0.153.0/hash/sha1.ts";
 export {
   readableStreamFromReader,
   readAll,
   readerFromStreamReader,
-} from "https://deno.land/std@0.137.0/streams/conversion.ts";
+} from "https://deno.land/std@0.153.0/streams/conversion.ts";
 
 export {
   charset,
   contentType,
   lookup,
-} from "https://deno.land/x/media_types@v3.0.2/mod.ts";
+} from "https://deno.land/x/media_types@v3.0.3/mod.ts";
 export { Accepts } from "https://deno.land/x/accepts@2.1.1/mod.ts";
 export {
   hasBody,

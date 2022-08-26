@@ -151,7 +151,7 @@ function getErrorMessage(err: any, status: Status): string {
     msg = err.toString();
   }
 
-  return msg || STATUS_TEXT.get(status);
+  return msg || STATUS_TEXT[status];
 }
 
 /**
@@ -228,7 +228,7 @@ function send(
 
   // response status
   res.status = status;
-  res.statusMessage = STATUS_TEXT.get(status);
+  res.statusMessage = STATUS_TEXT[status];
 
   // response headers
   setHeaders(res, headers);

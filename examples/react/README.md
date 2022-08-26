@@ -1,5 +1,8 @@
 # react
 
+**Note that this example no longer works with latest Deno as `Deno.emit` was
+removed from the core APIs.**
+
 An example of how you can use Opine with React.
 
 This example uses ejs templates to create the HTML markup, serves static assets

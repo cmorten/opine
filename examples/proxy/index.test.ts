@@ -9,7 +9,7 @@ describe("proxy", () => {
       .expect("server", "GitHub.com")
       .expect(
         200,
-        /Fast, minimalist web framework for Deno ported from ExpressJS./,
+        /Minimalist web framework for Deno ported from ExpressJS./,
       );
   });
 });

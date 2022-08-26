@@ -3,7 +3,7 @@
   <h1 align="center">Opine</h1>
 </p>
 <p align="center">
-Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
+A minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
 <p align="center">
    <a href="https://github.com/cmorten/opine/tags/"><img src="https://img.shields.io/github/tag/cmorten/opine" alt="Current version" /></a>
    <img src="https://github.com/cmorten/opine/workflows/Test/badge.svg" alt="Current test status" />
@@ -13,16 +13,25 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
    <img src="https://img.shields.io/github/stars/cmorten/opine" alt="Opine stars" />
    <img src="https://img.shields.io/github/forks/cmorten/opine" alt="Opine forks" />
    <img src="https://img.shields.io/github/license/cmorten/opine" alt="Opine license" />
-   <a href="https://GitHub.com/cmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
+   <a href="https://GitHub.com/cmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-no-green.svg" alt="Opine is not maintained" /></a>
    <a href="https://nest.land/package/opine"><img src="https://nest.land/badge.svg" alt="Published on nest.land" /></a>
 </p>
 <p align="center">
    <a href="https://deno.land/x/opine"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fopine%2Fmod.ts" alt="Opine latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-1.21.1-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-1.25.0-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fopine%2Fmod.ts" alt="Opine dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fopine%2Fmod.ts" alt="Opine dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fopine%2Fmod.ts" alt="Opine cached size" /></a>
 </p>
+
+---
+
+_**Now in maintenance mode:** Deno has introduced Node and NPM compat, [considering using Express itself in
+Deno](https://deno.com/blog/v1.25#experimental-npm-support)!_
+
+```ts
+import express from "npm:express";
+```
 
 ---
 
@@ -41,7 +50,7 @@ Fast, minimalist web framework for <a href="https://deno.land/">Deno</a> ported 
 ## Getting Started
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.2.0/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.3.0/mod.ts";
 
 const app = opine();
 
@@ -49,9 +58,8 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.listen(
-  3000,
-  () => console.log("server has started on http://localhost:3000 🚀"),
+app.listen(3000, () =>
+  console.log("server has started on http://localhost:3000 🚀")
 );
 ```
 
@@ -65,29 +73,24 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import Opine straight into your project:
 
 ```ts
-import { opine } from "https://deno.land/x/opine@2.2.0/mod.ts";
+import { opine } from "https://deno.land/x/opine@2.3.0/mod.ts";
 ```
 
 Opine is also available on [nest.land](https://nest.land/package/opine), a
 package registry for Deno on the Blockchain.
 
 ```ts
-import { opine } from "https://x.nest.land/opine@2.2.0/mod.ts";
+import { opine } from "https://x.nest.land/opine@2.3.0/mod.ts";
 ```
 
 ## Features
 
 - Robust routing
-- Focus on high performance
 - Large selection of HTTP helpers including support for downloading / sending
   files, etags, Content-Disposition, cookies, JSONP etc.
 - Support for static serving of assets
 - View system supporting template engines
 - Content negotiation
-- Compatible with [SuperDeno](https://github.com/cmorten/superdeno) for easy
-  server testing
-- Supports HTTP proxy middleware with
-  [opine-http-proxy](https://github.com/cmorten/opine-http-proxy)
 
 ## Documentation
 
@@ -132,11 +135,11 @@ The [Express](https://github.com/expressjs/express) philosophy is to provide
 small, robust tooling for HTTP servers, making it a great solution for single
 page applications, web sites, hybrids, or public HTTP APIs.
 
-Opine will aim to achieve these same great goals, focussing on providing
-equivalent robust tooling and features.
+Opine aimed to achieve these same great goals, focussing on providing equivalent
+robust tooling and features for Deno uses.
 
-Once Deno's [Node compatibility layer](https://deno.land/std/node/README.md)
-matures sufficiently to support Express out of the box, Opine will likely operate in
+Now Deno's [Node compatibility layer](https://deno.land/std/node/README.md) is
+maturing sufficiently to support Express out of the box, Opine is operating
 maintenance mode.
 
 ## Examples
