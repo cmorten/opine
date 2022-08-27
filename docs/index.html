@@ -67,7 +67,7 @@
 					<h1 align="center">Opine</h1>
 				</p>
 				<p align="center">
-				Minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
+				A minimalist web framework for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/expressjs/express">ExpressJS</a>.</p>
 				<p align="center">
 					<a href="https://github.com/cmorten/opine/tags/"><img src="https://img.shields.io/github/tag/cmorten/opine" alt="Current version" /></a>
 					<img src="https://github.com/cmorten/opine/workflows/Test/badge.svg" alt="Current test status" />
@@ -77,7 +77,7 @@
 					<img src="https://img.shields.io/github/stars/cmorten/opine" alt="Opine stars" />
 					<img src="https://img.shields.io/github/forks/cmorten/opine" alt="Opine forks" />
 					<img src="https://img.shields.io/github/license/cmorten/opine" alt="Opine license" />
-					<a href="https://GitHub.com/cmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Opine is maintained" /></a>
+					<a href="https://GitHub.com/cmorten/opine/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-no-green.svg" alt="Opine is not maintained" /></a>
 					<a href="https://nest.land/package/opine"><img src="https://nest.land/badge.svg" alt="Published on nest.land" /></a>
 				</p>
 				<p align="center">
@@ -87,6 +87,11 @@
 					<a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fopine%2Fmod.ts" alt="Opine dependency outdatedness" /></a>
 					<a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/opine/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fopine%2Fmod.ts" alt="Opine cached size" /></a>
 				</p>
+				<hr>
+				<p><em><strong>Now in maintenance mode:</strong> Deno has introduced Node and NPM compat, <a href="https://deno.com/blog/v1.25#experimental-npm-support">considering using Express itself in
+				Deno</a>!</em></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;npm:express&quot;</span>;
+</code></pre>
 				<hr>
 				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
 					<h2>Table of Contents</h2>
@@ -113,9 +118,8 @@ app.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-functi
   res.send(<span class="hljs-string">&quot;Hello World&quot;</span>);
 });
 
-app.listen(
-  <span class="hljs-number">3000</span>,
-  <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;server has started on http://localhost:3000 🚀&quot;</span>),
+app.listen(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;server has started on http://localhost:3000 🚀&quot;</span>)
 );
 </code></pre>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
@@ -136,16 +140,11 @@ app.listen(
 				</a>
 				<ul>
 					<li>Robust routing</li>
-					<li>Focus on high performance</li>
 					<li>Large selection of HTTP helpers including support for downloading / sending
 					files, etags, Content-Disposition, cookies, JSONP etc.</li>
 					<li>Support for static serving of assets</li>
 					<li>View system supporting template engines</li>
 					<li>Content negotiation</li>
-					<li>Compatible with <a href="https://github.com/cmorten/superdeno">SuperDeno</a> for easy
-					server testing</li>
-					<li>Supports HTTP proxy middleware with
-					<a href="https://github.com/cmorten/opine-http-proxy">opine-http-proxy</a></li>
 				</ul>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
@@ -182,10 +181,10 @@ app.listen(
 				<p>The <a href="https://github.com/expressjs/express">Express</a> philosophy is to provide
 					small, robust tooling for HTTP servers, making it a great solution for single
 				page applications, web sites, hybrids, or public HTTP APIs.</p>
-				<p>Opine will aim to achieve these same great goals, focussing on providing
-				equivalent robust tooling and features.</p>
-				<p>Once Deno&#39;s <a href="https://deno.land/std/node/README.md">Node compatibility layer</a>
-					matures sufficiently to support Express out of the box, Opine will likely operate in
+				<p>Opine aimed to achieve these same great goals, focussing on providing equivalent
+				robust tooling and features for Deno uses.</p>
+				<p>Now Deno&#39;s <a href="https://deno.land/std/node/README.md">Node compatibility layer</a> is
+					maturing sufficiently to support Express out of the box, Opine is operating
 				maintenance mode.</p>
 				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
 					<h2>Examples</h2>
