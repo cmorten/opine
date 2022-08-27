@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.3.1] - 27-08-2022
+
+- fix: improve error messages thrown from `read` module
+
 ## [2.3.0] - 26-08-2022
 
 - deps: support Deno `1.25.0`, std `0.153.0`, and other minor dep upgrades.

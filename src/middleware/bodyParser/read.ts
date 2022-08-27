@@ -72,7 +72,7 @@ export async function read(
     try {
       verify(req, res, raw, encoding);
     } catch (err) {
-      next(createError(403, err, {
+      next(createError(403, err.message, {
         body: raw,
         type: err.type ?? "entity.verify.failed",
       }));
@@ -89,7 +89,7 @@ export async function read(
 
     req.parsedBody = parse(str);
   } catch (err) {
-    next(createError(400, err, {
+    next(createError(400, err.message, {
       body: str ?? raw,
       type: err.type ?? "entity.parse.failed",
     }));
@@ -110,7 +110,7 @@ export async function read(
  */
 async function decodeContent(
   req: OpineRequest,
-  inflate: boolean = true,
+  inflate = true,
 ): Promise<Uint8Array> {
   const encoding = (req.headers.get("content-encoding") || "identity")
     .toLowerCase();
@@ -126,7 +126,7 @@ async function decodeContent(
   try {
     raw = await readAll(req.body);
   } catch (err) {
-    throw createError(400, err);
+    throw createError(400, err.message, err);
   }
 
   switch (encoding) {

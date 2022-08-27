@@ -1,7 +1,7 @@
 {
   "name": "opine",
   "description": "Minimalist web framework for Deno ported from ExpressJS.",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "repository": "https://github.com/cmorten/opine",
   "stable": true,
   "checkFormat": false,
