@@ -24,7 +24,12 @@ export type HTTPSOptions = Omit<
   "transport"
 >;
 
-export type DenoResponseBody = undefined | string | Uint8Array | Deno.Reader;
+export type DenoResponseBody =
+  | undefined
+  | string
+  | Uint8Array
+  | Deno.Reader
+  | ReadableStream;
 export type ResponseBody =
   | null
   | undefined
@@ -613,7 +618,7 @@ export interface OpineRequest<
     status?: number;
     statusText?: string;
     headers?: Headers;
-    body?: Uint8Array | Deno.Reader | string;
+    body?: Uint8Array | Deno.Reader | string | ReadableStream;
     trailers?: () => Promise<Headers> | Headers;
   }): void;
 
@@ -638,7 +643,7 @@ export interface OpineResponse<ResBody = any> extends Opine.Response {
   status?: number;
   statusText?: string;
   headers?: Headers;
-  body?: Uint8Array | Deno.Reader | string;
+  body?: Uint8Array | Deno.Reader | string | ReadableStream;
 
   app: Application;
 

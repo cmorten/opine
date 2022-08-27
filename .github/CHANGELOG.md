@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.3.3] - 27-08-2022
+
+- fix: support `ReadableStream` in `res.send()`
+
 ## [2.3.2] - 27-08-2022
 
 - fix: replace `Deno.statSync` with `Deno.stat` to allow views to be used on Deno Deploy

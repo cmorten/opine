@@ -244,9 +244,7 @@ export class Response implements OpineResponse {
    * @return {Promise<void>}
    * @public
    */
-  async end(
-    body?: DenoResponseBody,
-  ): Promise<void> {
+  async end(body?: DenoResponseBody): Promise<void> {
     if (body) {
       this.body = body;
     }
@@ -678,9 +676,10 @@ export class Response implements OpineResponse {
       default:
         if (
           body instanceof Uint8Array ||
-          typeof (body as Deno.Reader).read === "function"
+          typeof (body as Deno.Reader).read === "function" ||
+          typeof (body as ReadableStream).getReader === "function"
         ) {
-          chunk = body as Uint8Array | Deno.Reader;
+          chunk = body as Uint8Array | Deno.Reader | ReadableStream;
 
           if (!this.get("Content-Type")) {
             this.type("bin");
