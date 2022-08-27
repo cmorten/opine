@@ -78,7 +78,7 @@ describe("app", function () {
 
       function View(this: any, name: string, options: any) {
         this.name = name;
-        this.path = "fake";
+        this.pathPromise = Promise.resolve("fake");
       }
 
       View.prototype.render = function (options: any, fn: any) {
@@ -230,7 +230,7 @@ describe("app", function () {
 
         function View(this: any, name: string, options: any) {
           this.name = name;
-          this.path =
+          this.pathPromise =
             "path is required by application.js as a signal of success even though it is not used there.";
         }
 
@@ -255,7 +255,7 @@ describe("app", function () {
 
         function View(this: any, name: string, options: any) {
           this.name = name;
-          this.path = "fake";
+          this.pathPromise = "fake";
           count++;
         }
 
@@ -285,7 +285,7 @@ describe("app", function () {
 
         function View(this: any, name: string, options: any) {
           this.name = name;
-          this.path = "fake";
+          this.pathPromise = "fake";
           count++;
         }
 
@@ -364,7 +364,7 @@ describe("app", function () {
 
         function View(this: any, name: string, options: any) {
           this.name = name;
-          this.path = "fake";
+          this.pathPromise = "fake";
           count++;
         }
 

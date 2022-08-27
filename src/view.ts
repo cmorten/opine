@@ -11,13 +11,13 @@ import {
  * Return a stat, maybe.
  *
  * @param {string} path
- * @return {Deno.FileInfo}
+ * @return {Promise<Deno.FileInfo>}
  * @private
  */
-function tryStat(path: string) {
+async function tryStat(path: string) {
   try {
-    return Deno.statSync(path);
-  } catch (e) {
+    return await Deno.stat(path);
+  } catch {
     return undefined;
   }
 }
@@ -32,7 +32,7 @@ export class View {
   name!: any;
   root!: any;
   engine!: any;
-  path!: any;
+  pathPromise!: any;
 
   /**
    * Initialize a new `View` with the given `name`.
@@ -82,7 +82,7 @@ export class View {
     this.engine = options.engines[this.ext];
 
     // lookup path
-    this.path = this.lookup(fileName);
+    this.pathPromise = this.lookup(fileName);
   }
 
   /**
@@ -92,9 +92,9 @@ export class View {
    * @param {string} file
    * @private
    */
-  resolve(dir: string, file: string) {
+  async resolve(dir: string, file: string) {
     let path = join(dir, file);
-    let stat = tryStat(path);
+    let stat = await tryStat(path);
 
     if (stat && stat.isFile) {
       return path;
@@ -103,7 +103,7 @@ export class View {
     // <path>/index.<ext>
     const ext = this.ext;
     path = join(dir, basename(file, ext), `index${ext}`);
-    stat = tryStat(path);
+    stat = await tryStat(path);
 
     if (stat && stat.isFile) {
       return path;
@@ -116,7 +116,7 @@ export class View {
    * @param {string} name
    * @private
    */
-  lookup(name: string) {
+  async lookup(name: string) {
     const roots = [].concat(this.root);
     let path;
 
@@ -125,7 +125,7 @@ export class View {
       const loc = resolve(root, name);
       const dir = dirname(loc);
       const file = basename(loc);
-      path = this.resolve(dir, file);
+      path = await this.resolve(dir, file);
     }
 
     return path;
@@ -139,7 +139,8 @@ export class View {
    * @private
    */
   async render(options: object, callback: Function) {
-    const out = await this.engine(this.path, options);
+    const path = await this.pathPromise;
+    const out = await this.engine(path, options);
     callback(undefined, out);
   }
 }

@@ -457,7 +457,7 @@ async function tryRender(view: any, options: any, callback: Function) {
  * @param {Function} callback
  * @public
  */
-app.render = function render(
+app.render = async function render(
   name: string,
   options: any,
   callback: Function = () => {},
@@ -501,13 +501,17 @@ app.render = function render(
   if (!view) {
     const View = this.get("view");
 
-    view = new View(name, {
-      defaultEngine: this.get("view engine"),
-      engines,
-      root: this.get("views"),
-    });
+    try {
+      view = new View(name, {
+        defaultEngine: this.get("view engine"),
+        engines,
+        root: this.get("views"),
+      });
+    } catch (e) {
+      return done(e);
+    }
 
-    if (!view.path) {
+    if (!await view.pathPromise) {
       const dirs = Array.isArray(view.root) && view.root.length > 1
         ? `directories "${view.root.slice(0, -1).join('", "')}" or "${
           view.root[view.root.length - 1]
@@ -530,7 +534,7 @@ app.render = function render(
   }
 
   // render
-  tryRender(view, renderOptions, done);
+  await tryRender(view, renderOptions, done);
 };
 
 const isTlsOptions = (
