@@ -137,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">Application<wbr>Request<wbr>Handler&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_types_.irouterhandler.html" class="tsd-signature-type">IRouterHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_types_.iroutermatcher.html" class="tsd-signature-type">IRouterMatcher</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>handlers<span class="tsd-signature-symbol">: </span><a href="_types_.html#requesthandlerparams" class="tsd-signature-type">RequestHandlerParams</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L1043">home/runner/work/opine/opine/src/types.ts:1043</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L1048">home/runner/work/opine/opine/src/types.ts:1048</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -153,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">Cookie<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"value"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L94">home/runner/work/opine/opine/src/types.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L99">home/runner/work/opine/opine/src/types.ts:99</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,17 +163,17 @@
 					<div class="tsd-signature tsd-kind-icon">Cookie<wbr>With<wbr>Optional<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_types_.cookie.html" class="tsd-signature-type">Cookie</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"value"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Cookie</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">"value"</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L90">home/runner/work/opine/opine/src/types.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L95">home/runner/work/opine/opine/src/types.ts:95</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="denoresponsebody" class="tsd-anchor"></a>
 					<h3>Deno<wbr>Response<wbr>Body</h3>
-					<div class="tsd-signature tsd-kind-icon">Deno<wbr>Response<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.Reader</span></div>
+					<div class="tsd-signature tsd-kind-icon">Deno<wbr>Response<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Deno.Reader</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ReadableStream</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L27">home/runner/work/opine/opine/src/types.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L27">home/runner/work/opine/opine/src/types.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">Errback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="../classes/_utils_createerror_.httperror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L259">home/runner/work/opine/opine/src/types.ts:259</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L264">home/runner/work/opine/opine/src/types.ts:264</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -214,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">Error<wbr>Request<wbr>Handler&lt;P, ResBody, ReqQuery&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.opinerequest.html" class="tsd-signature-type">OpineRequest</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span>, res<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.opineresponse.html" class="tsd-signature-type">OpineResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">&gt;</span>, next<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L68">home/runner/work/opine/opine/src/types.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L73">home/runner/work/opine/opine/src/types.ts:73</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -266,7 +266,7 @@
 					<div class="tsd-signature tsd-kind-icon">HTTPOptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Deno.ListenOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"transport"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L21">home/runner/work/opine/opine/src/types.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L21">home/runner/work/opine/opine/src/types.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -276,7 +276,7 @@
 					<div class="tsd-signature tsd-kind-icon">HTTPSOptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Deno.ListenTlsOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>certFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>keyFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"transport"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L22">home/runner/work/opine/opine/src/types.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L22">home/runner/work/opine/opine/src/types.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -286,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">Params<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_types_.paramsdictionary.html" class="tsd-signature-type">ParamsDictionary</a><span class="tsd-signature-symbol"> | </span><a href="_types_.html#paramsarray" class="tsd-signature-type">ParamsArray</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L54">home/runner/work/opine/opine/src/types.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L59">home/runner/work/opine/opine/src/types.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -296,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">Params<wbr>Array<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L53">home/runner/work/opine/opine/src/types.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L58">home/runner/work/opine/opine/src/types.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">ParsedURL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>_raw<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>query<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L261">home/runner/work/opine/opine/src/types.ts:261</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L266">home/runner/work/opine/opine/src/types.ts:266</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -316,7 +316,7 @@
 					<div class="tsd-signature tsd-kind-icon">Path<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_.rangeparserranges.html#array" class="tsd-signature-type">Array</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L79">home/runner/work/opine/opine/src/types.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L84">home/runner/work/opine/opine/src/types.ts:84</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -326,7 +326,7 @@
 					<div class="tsd-signature tsd-kind-icon">Range<wbr>Parser<wbr>Result<span class="tsd-signature-symbol">:</span> <a href="_types_.html#rangeparserresultunsatisfiable" class="tsd-signature-type">RangeParserResultUnsatisfiable</a><span class="tsd-signature-symbol"> | </span><a href="_types_.html#rangeparserresultinvalid" class="tsd-signature-type">RangeParserResultInvalid</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L286">home/runner/work/opine/opine/src/types.ts:286</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L291">home/runner/work/opine/opine/src/types.ts:291</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -336,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">Range<wbr>Parser<wbr>Result<wbr>Invalid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">-2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L285">home/runner/work/opine/opine/src/types.ts:285</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L290">home/runner/work/opine/opine/src/types.ts:290</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -346,7 +346,7 @@
 					<div class="tsd-signature tsd-kind-icon">Range<wbr>Parser<wbr>Result<wbr>Unsatisfiable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">-1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L284">home/runner/work/opine/opine/src/types.ts:284</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L289">home/runner/work/opine/opine/src/types.ts:289</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -356,7 +356,7 @@
 					<div class="tsd-signature tsd-kind-icon">Request<wbr>Handler<wbr>Params&lt;P, ResBody, ReqQuery&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_types_.requesthandler.html" class="tsd-signature-type">RequestHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="_types_.html#errorrequesthandler" class="tsd-signature-type">ErrorRequestHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ReqQuery</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_.rangeparserranges.html#array" class="tsd-signature-type">Array</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_types_.requesthandler.html" class="tsd-signature-type">RequestHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="_types_.html#errorrequesthandler" class="tsd-signature-type">ErrorRequestHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L81">home/runner/work/opine/opine/src/types.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L86">home/runner/work/opine/opine/src/types.ts:86</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -378,7 +378,7 @@
 					<div class="tsd-signature tsd-kind-icon">Request<wbr>Param<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.opinerequest.html" class="tsd-signature-type">OpineRequest</a>, res<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.opineresponse.html" class="tsd-signature-type">OpineResponse</a>, next<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.nextfunction.html" class="tsd-signature-type">NextFunction</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L1035">home/runner/work/opine/opine/src/types.ts:1035</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L1040">home/runner/work/opine/opine/src/types.ts:1040</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -421,7 +421,7 @@
 					<div class="tsd-signature tsd-kind-icon">Response<wbr>Body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="_types_.html#denoresponsebody" class="tsd-signature-type">DenoResponseBody</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L28">home/runner/work/opine/opine/src/types.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L33">home/runner/work/opine/opine/src/types.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -431,7 +431,7 @@
 					<div class="tsd-signature tsd-kind-icon">Send&lt;ResBody, T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>body<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ResBody</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cmorten/opine/blob/048e2a8/src/types.ts#L633">home/runner/work/opine/opine/src/types.ts:633</a></li>
+							<li>Defined in <a href="https://github.com/cmorten/opine/blob/b6f175f/src/types.ts#L638">home/runner/work/opine/opine/src/types.ts:638</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
