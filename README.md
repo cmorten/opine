@@ -33,6 +33,8 @@ Deno](https://deno.com/blog/v1.25#experimental-npm-support)!_
 import express from "npm:express";
 ```
 
+Express not working for you? [Raise an issue on Deno](https://github.com/denoland/deno/issues) and keep reading for Opine usage :tada:
+
 ---
 
 ## Table of Contents
