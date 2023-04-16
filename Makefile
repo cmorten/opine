@@ -33,7 +33,7 @@ ci:
 	@make test
 
 deps:
-	@npm install -g typescript typedoc@0.19.2
+	@npm install -g typescript@4.9.5 typedoc@0.19.2
 
 doc:
 	@deno doc ./mod.ts
