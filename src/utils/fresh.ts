@@ -120,12 +120,12 @@ export function parseTokenList(str: string): any[] {
   // gather tokens
   for (let i = 0, len = str.length; i < len; i++) {
     switch (str.charCodeAt(i)) {
-      case 0x20:/*   */
+      case 0x20: /*   */
         if (start === end) {
           start = end = i + 1;
         }
         break;
-      case 0x2c:/* , */
+      case 0x2c: /* , */
         list.push(str.substring(start, end));
         start = end = i + 1;
         break;

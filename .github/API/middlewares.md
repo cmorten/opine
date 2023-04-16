@@ -28,7 +28,7 @@ reasons.
 > `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { json, opine } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { json, opine } from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 
@@ -77,7 +77,7 @@ reasons.
 > recommended.
 
 ```ts
-import { opine, raw } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { opine, raw } from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 
@@ -230,7 +230,7 @@ reasons.
 > recommended.
 
 ```ts
-import { opine, text } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { opine, text } from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 
@@ -277,7 +277,7 @@ reasons.
 > `toString` may not be a function and instead a string or other user-input.
 
 ```ts
-import { opine, urlencoded } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { opine, urlencoded } from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 

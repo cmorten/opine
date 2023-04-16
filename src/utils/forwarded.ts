@@ -64,13 +64,13 @@ function parse(header: string) {
   // gather addresses, backwards
   for (let i = header.length - 1; i >= 0; i--) {
     switch (header.charCodeAt(i)) {
-      case 0x20:/*   */
+      case 0x20: /*   */
         if (start === end) {
           start = end = i;
         }
 
         break;
-      case 0x2c:/* , */
+      case 0x2c: /* , */
         if (start !== end) {
           list.push(header.substring(start, end));
         }

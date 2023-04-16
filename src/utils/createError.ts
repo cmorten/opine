@@ -15,7 +15,7 @@ abstract class HttpError extends Error {
   status: number;
   statusCode: number;
   expose = false;
-  [key: string]: unknown
+  [key: string]: unknown;
 
   constructor(code: number, message?: string) {
     super(message);

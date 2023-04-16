@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.3.4] - 16-04-2023
+
+- fix: derive protocol from original request url.
+- deps: support Deno `1.32.4`, std `0.183.0` (where possible), and other minor dep upgrades.
+
 ## [2.3.3] - 27-08-2022
 
 - fix: support `ReadableStream` in `res.send()`

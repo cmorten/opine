@@ -2,17 +2,17 @@ export {
   serve,
   Server,
   serveTls,
-} from "https://deno.land/std@0.153.0/http/server.ts";
-export type { ConnInfo } from "https://deno.land/std@0.153.0/http/server.ts";
+} from "https://deno.land/std@0.183.0/http/server.ts";
+export type { ConnInfo } from "https://deno.land/std@0.183.0/http/server.ts";
 export {
   Status,
   STATUS_TEXT,
-} from "https://deno.land/std@0.153.0/http/http_status.ts";
+} from "https://deno.land/std@0.183.0/http/http_status.ts";
 export {
   deleteCookie,
   setCookie,
-} from "https://deno.land/std@0.153.0/http/cookie.ts";
-export type { Cookie } from "https://deno.land/std@0.153.0/http/cookie.ts";
+} from "https://deno.land/std@0.183.0/http/cookie.ts";
+export type { Cookie } from "https://deno.land/std@0.183.0/http/cookie.ts";
 export {
   basename,
   dirname,
@@ -23,16 +23,16 @@ export {
   normalize,
   resolve,
   sep,
-} from "https://deno.land/std@0.153.0/path/mod.ts";
-export { setImmediate } from "https://deno.land/std@0.153.0/node/timers.ts";
-export { parse } from "https://deno.land/std@0.153.0/node/querystring.ts";
-export { default as EventEmitter } from "https://deno.land/std@0.153.0/node/events.ts";
-export { Sha1 } from "https://deno.land/std@0.153.0/hash/sha1.ts";
+} from "https://deno.land/std@0.183.0/path/mod.ts";
+export { setImmediate } from "https://deno.land/std@0.177.0/node/timers.ts";
+export { parse } from "https://deno.land/std@0.177.0/node/querystring.ts";
+export { default as EventEmitter } from "https://deno.land/std@0.177.0/node/events.ts";
+export { Sha1 } from "https://deno.land/std@0.160.0/hash/sha1.ts";
 export {
   readableStreamFromReader,
   readAll,
   readerFromStreamReader,
-} from "https://deno.land/std@0.153.0/streams/conversion.ts";
+} from "https://deno.land/std@0.172.0/streams/conversion.ts";
 
 export {
   charset,

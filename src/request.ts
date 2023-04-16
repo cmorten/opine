@@ -73,9 +73,11 @@ export class WrappedRequest implements OpineRequest {
       this.#responsePromiseResolver = resolve;
     });
 
+    this.url = request.url;
+    this.proto = parseUrl(this)?.protocol ?? "";
+
     const { pathname, search, hash } = new URL(request.url);
     this.url = `${pathname}${search}${hash}`;
-    this.proto = parseUrl(this)?.protocol ?? "";
     this.method = request.method;
     this.headers = new Headers(this.#request.headers);
   }
@@ -300,14 +302,23 @@ export class WrappedRequest implements OpineRequest {
     return typeofrequest(this.headers, arr as string[]);
   }
 
+  /**
+   * Upgrades the HTTP connection to a WebSocket connection by internally calling
+   * `Deno.upgradeWebSocket(req)`. Returns the created WebSocket.
+   *
+   * @returns {WebSocket} The created WebSocket
+   * @public
+   */
   upgrade(): WebSocket {
     const { socket, response } = Deno.upgradeWebSocket(this.#request);
     this.#responsePromiseResolver(response);
+
     return socket;
   }
 
   get #body() {
     const streamReader = this.#request.body?.getReader();
+
     return streamReader ? readerFromStreamReader(streamReader) : emptyReader();
   }
 

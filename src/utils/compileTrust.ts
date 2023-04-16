@@ -22,7 +22,7 @@ export function compileTrust(value: TrustValue) {
   if (typeof value === "number") {
     // Support trusting hop count
     return function (_: unknown, i: number) {
-      return i < value;
+      return i < (value as number);
     };
   }
 

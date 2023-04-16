@@ -318,7 +318,7 @@ export function sendError(res: OpineResponse, error?: any): void {
  * @private
  */
 async function offsetFileReader(
-  file: Deno.File,
+  file: Deno.FsFile,
   offset: number,
   contentLength: number,
 ): Promise<Deno.Reader & Deno.Closer> {

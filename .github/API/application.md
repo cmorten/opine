@@ -523,7 +523,7 @@ This method is supported for legacy reasons to aid in transitions from Express
 on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@2.3.3/mod.ts";
+import opine from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 const PORT = 3000;
@@ -542,7 +542,7 @@ starts listening for requests - this is provided for legacy reasons to aid in
 transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@2.3.3/mod.ts";
+import opine from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 
@@ -560,7 +560,7 @@ starts listening for requests - this is provided for legacy reasons to aid in
 transitions from Express on Node.
 
 ```ts
-import opine from "https://deno.land/x/opine@2.3.3/mod.ts";
+import opine from "https://deno.land/x/opine@2.3.4/mod.ts";
 
 const app = opine();
 
